@@ -21,6 +21,14 @@ module MercadonaFX {
     exports ui.pantallas.pantallaadminproductos;
     exports ui.pantallas.pantallaconfig;
     exports ui.pantallas.pantallamain;
+    exports ui.pantallas.addarticlescreen;
+    exports ui.pantallas.deletearticlescreen;
+    exports ui.pantallas.listarticlescreen;
+    exports ui.pantallas.updatearticlescreen;
+    exports ui.pantallas.addnewspaperscreen;
+    exports ui.pantallas.deletenewspaperscreen;
+    exports ui.pantallas.listnewspaperscreen;
+    exports ui.pantallas.updatenewspaperscreen;
     exports ui.pantallas.common;
     exports servicios.impl;
     exports servicios;
@@ -44,6 +52,14 @@ module MercadonaFX {
     opens ui.pantallas.pantallaconfig to javafx.fxml;
     opens ui.pantallas.pantallaadminproductos to javafx.fxml;
     opens ui.pantallas.pantalladminclientes to javafx.fxml;
+    opens ui.pantallas.addarticlescreen to javafx.fxml;
+    opens ui.pantallas.deletearticlescreen to javafx.fxml;
+    opens ui.pantallas.listarticlescreen to javafx.fxml;
+    opens ui.pantallas.updatearticlescreen to javafx.fxml;
+    opens ui.pantallas.addnewspaperscreen to javafx.fxml;
+    opens ui.pantallas.deletenewspaperscreen to javafx.fxml;
+    opens ui.pantallas.listnewspaperscreen to javafx.fxml;
+    opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
     opens ui.pantallas.pantallacliente;
     opens ui.pantallas.common;
 

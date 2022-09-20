@@ -36,7 +36,13 @@ public class PantallaMainController extends BasePantallaController implements In
 
 
     @FXML
-    private Menu menuAdmin;
+    private Menu menuOptions;
+
+    @FXML
+    private Menu newspapersMenu;
+
+    @FXML
+    private Menu articlesMenu;
 
     @FXML
     private MenuItem productosAdmin;
@@ -51,7 +57,7 @@ public class PantallaMainController extends BasePantallaController implements In
     private MenuItem salirAdmin;
 
     @FXML
-    private Menu menuClientes;
+    private MenuItem menuConfig;
 
     @FXML
     private BorderPane root;
@@ -88,15 +94,17 @@ public class PantallaMainController extends BasePantallaController implements In
     }
 
     public void logout() {
-        menuAdmin.setVisible(false);
-        menuClientes.setVisible(false);
+        newspapersMenu.setVisible(false);
+        articlesMenu.setVisible(false);
+        menuOptions.setVisible(false);
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        menuAdmin.setVisible(false);
-        menuClientes.setVisible(false);
+        newspapersMenu.setVisible(false);
+        articlesMenu.setVisible(false);
+        menuOptions.setVisible(false);
         cargarPantalla(Pantallas.PANTALLALOGIN);
     }
 
@@ -126,12 +134,14 @@ public class PantallaMainController extends BasePantallaController implements In
     public void onLoginHecho(Cliente c) {
         usuarioActual = c;
         if (usuarioActual.getNombre().equalsIgnoreCase("admin")) {
-            menuAdmin.setVisible(true);
-            menuClientes.setVisible(false);
+            newspapersMenu.setVisible(true);
+            articlesMenu.setVisible(true);
+            menuOptions.setVisible(true);
             cargarPantalla(Pantallas.PANTALLAADMINPRODUCTOS);
         } else {
-            menuClientes.setVisible(true);
-            menuAdmin.setVisible(false);
+            newspapersMenu.setVisible(true);
+            articlesMenu.setVisible(true);
+            menuOptions.setVisible(true);
             cargarPantalla(Pantallas.PANTALLACLIENTE);
         }
     }
@@ -161,5 +171,37 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void cambiarNombre(String nombre) {
         usuarioActual.setNombre(nombre);
+    }
+
+    public void listNewspapersMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
+    }
+
+    public void addNewspaperMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.ADDNEWSPAPERSCREEN);
+    }
+
+    public void updateNewspaperMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.UPDATENEWSPAPERSCREEN);
+    }
+
+    public void deleteNewspaperMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.DELETENEWSPAPERSCREEN);
+    }
+
+    public void listArticlesMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.LISTARTICLESCREEN);
+    }
+
+    public void addArticleMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.ADDARTICLESCREEN);
+    }
+
+    public void updateArticleMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.UPDATEARTICLESCREEN);
+    }
+
+    public void deleteArticleMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.DELETEARTICLESCREEN);
     }
 }

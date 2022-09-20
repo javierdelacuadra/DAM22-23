@@ -72,7 +72,7 @@ public class PantallaLoginController extends BasePantallaController implements I
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try (var inputStream = getClass().getResourceAsStream("/images/Mercadona-Logo.png")) {
+        try (var inputStream = getClass().getResourceAsStream("/images/MySQL-Logo.png")) {
             assert inputStream != null;
             Image logoImage = new Image(inputStream);
             logoMercadona.setImage(logoImage);

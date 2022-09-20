@@ -6,7 +6,16 @@ public enum Pantallas {
     PANTALLAADMINPRODUCTOS("/fxml/PantallaAdminProductos.fxml"),
     PANTALLAADMINCLIENTES("/fxml/PantallaAdminClientes.fxml"),
     PANTALLACLIENTE("/fxml/PantallaCliente.fxml"),
-    PANTALLACONFIG("/fxml/PantallaConfig.fxml");
+    PANTALLACONFIG("/fxml/PantallaConfig.fxml"),
+    LISTNEWSPAPERSCREEN("/fxml/ListNewspaperScreen.fxml"),
+    ADDNEWSPAPERSCREEN("/fxml/AddNewspapersScreen.fxml"),
+    UPDATENEWSPAPERSCREEN("/fxml/UpdateNewspaperScreen.fxml"),
+    DELETENEWSPAPERSCREEN("/fxml/DeleteNewspaperScreen.fxml"),
+    LISTARTICLESCREEN("/fxml/ListArticleScreen.fxml"),
+    ADDARTICLESCREEN("/fxml/AddArticleScreen.fxml"),
+    UPDATEARTICLESCREEN("/fxml/UpdateArticleScreen.fxml"),
+    DELETEARTICLESCREEN("/fxml/DeleteArticleScreen.fxml");
+
 
     private final String ruta;
 
