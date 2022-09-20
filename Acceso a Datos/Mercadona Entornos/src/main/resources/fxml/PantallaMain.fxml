@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.PantallaMainController">
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <menus>
+                <Menu fx:id="menuAdmin" mnemonicParsing="false" text="Opciones">
+                    <items>
+                        <MenuItem fx:id="productosAdmin" mnemonicParsing="false" onAction="#menuAdminProductos" text="Gestionar Productos"/>
+                        <MenuItem fx:id="clientesAdmin" mnemonicParsing="false" onAction="#menuAdminClientes" text="Gestionar Clientes"/>
+                        <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Cerrar sesión"/>
+                        <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Salir"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="menuClientes" mnemonicParsing="false" text="Clientes">
+                    <items>
+                        <MenuItem fx:id="compras" mnemonicParsing="false" onAction="#compras" text="Compras"/>
+                        <MenuItem fx:id="config" mnemonicParsing="false" onAction="#configuracion" text="Configuración"/>
+                        <MenuItem fx:id="logoutCliente" mnemonicParsing="false" onAction="#logout" text="Cerrar sesión"/>
+                        <MenuItem fx:id="salirCliente" mnemonicParsing="false" onAction="#salir" text="Salir"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

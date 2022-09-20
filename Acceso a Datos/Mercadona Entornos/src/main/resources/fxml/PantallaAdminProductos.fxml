@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallaadminproductos.PantallaAdminProductosController">
+    <TableView fx:id="tablaProductos" layoutX="144.0" layoutY="92.0" prefHeight="200.0" prefWidth="261.0">
+        <columns>
+            <TableColumn fx:id="columnaNombre" prefWidth="91.33331298828125" text="Nombre" />
+            <TableColumn fx:id="columnaPrecio" prefWidth="85.33329772949219" text="Precio" />
+            <TableColumn fx:id="columnaStock" prefWidth="83.33336385091144" text="Stock" />
+        </columns>
+    </TableView>
+    <Label layoutX="275.0" layoutY="26.0" text="Gestión Productos">
+        <font>
+            <Font size="32.0" />
+        </font>
+    </Label>
+    <MFXButton fx:id="botonadd" layoutX="144.0" layoutY="308.0" onAction="#addProducto" text="Añadir" />
+    <MFXButton fx:id="botonremove" layoutX="237.0" layoutY="308.0" onAction="#removeProducto" text="Eliminar" />
+    <MFXButton fx:id="botonupdate" layoutX="335.0" layoutY="308.0" onAction="#updateProducto" text="Modificar" />
+    <MFXTextField fx:id="textoNombre" layoutX="467.0" layoutY="115.0" prefHeight="49.0" prefWidth="218.0" />
+    <MFXTextField fx:id="textoPrecio" layoutX="467.0" layoutY="199.0" prefHeight="49.0" prefWidth="218.0" />
+    <MFXTextField fx:id="textoStock" layoutX="467.0" layoutY="283.0" prefHeight="49.0" prefWidth="218.0" />
+    <Label layoutX="542.0" layoutY="85.0" text="Nombre">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <Label layoutX="557.0" layoutY="172.0" text="Precio">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+   <Label layoutX="552.0" layoutY="257.0" text="Stock">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+    <Label layoutX="652.0" layoutY="41.0" text="Modo Admin: " />
+    <Label layoutX="728.0" layoutY="41.0" text="ON" textFill="#2bba15" />
+</AnchorPane>

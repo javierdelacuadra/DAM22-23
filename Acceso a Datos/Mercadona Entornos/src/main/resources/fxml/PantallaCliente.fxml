@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallacliente.PantallaClienteController">
+    <children>
+        <Label layoutX="176.0" layoutY="14.0" text="Bienvenido a Mercadona!">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <TableView fx:id="tablaProductos" layoutX="72.0" layoutY="95.0" prefHeight="213.0" prefWidth="200.0">
+            <columns>
+                <TableColumn fx:id="columnaProductosNombre" prefWidth="93.33331680297852" text="Nombre" />
+                <TableColumn fx:id="columnaProductosPrecio" prefWidth="50.6666259765625" text="Precio" />
+                <TableColumn fx:id="columnaProductosStock" prefWidth="55.3333740234375" text="Stock" />
+            </columns>
+        </TableView>
+        <Label layoutX="599.0" layoutY="76.0" text="Carrito">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="73.0" layoutY="61.0" text="Productos Disponibles">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <MFXButton layoutX="317.0" layoutY="151.0" onAction="#addProductoCarrito" text="Añadir Producto">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </MFXButton>
+        <MFXButton layoutX="311.0" layoutY="208.0" onAction="#eliminarProductoCarrito" text="Eliminar Producto">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </MFXButton>
+        <TableView fx:id="tablaCarrito" layoutX="515.0" layoutY="107.0" prefHeight="213.0" prefWidth="232.0">
+            <columns>
+                <TableColumn fx:id="columnaCarritoNombre" prefWidth="96.0" text="Nombre" />
+                <TableColumn fx:id="columnaCarritoPrecio" prefWidth="69.99996948242188" text="Precio" />
+                <TableColumn fx:id="columnaCarritoCantidad" prefWidth="65.33331298828125" text="Cantidad" />
+            </columns>
+        </TableView>
+        <MFXButton layoutX="345.0" layoutY="267.0" onAction="#comprar" text="Comprar">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </MFXButton>
+        <TableView fx:id="tablaMonederos" layoutX="40.0" layoutY="366.0" prefHeight="200.0" prefWidth="240.0">
+            <columns>
+                <TableColumn fx:id="columnaNombreMonedero" prefWidth="151.33330917358398" text="Monedero" />
+                <TableColumn fx:id="columnaSaldoMonedero" minWidth="0.0" prefWidth="86.66670227050781" text="Saldo" />
+            </columns>
+        </TableView>
+        <Label layoutX="99.0" layoutY="330.0" text="Monederos">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+      <ImageView fx:id="anuncio" fitHeight="226.0" fitWidth="386.0" layoutX="361.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>

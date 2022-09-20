@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantalladminclientes.PantallaAdminClientesController">
+    <TableView fx:id="tablaclientes" layoutX="107.0" layoutY="98.0" prefHeight="200.0" prefWidth="210.0">
+        <columns>
+            <TableColumn fx:id="columnaNombre" prefWidth="115.33331680297852" text="Nombre" />
+            <TableColumn fx:id="columnaDNI" prefWidth="93.33332824707031" text="DNI" />
+        </columns>
+    </TableView>
+    <Label layoutX="276.0" layoutY="26.0" text="Gestión Clientes">
+        <font>
+            <Font size="32.0" />
+        </font>
+    </Label>
+    <MFXButton fx:id="botonadd" layoutX="374.0" layoutY="274.0" onAction="#addCliente" text="Añadir" />
+    <MFXButton fx:id="botonremove" layoutX="467.0" layoutY="274.0" onAction="#removeCliente" text="Eliminar" />
+    <MFXButton fx:id="botonupdate" layoutX="565.0" layoutY="274.0" onAction="#updateCliente" text="Modificar" />
+    <MFXTextField fx:id="textoNombre" layoutX="390.0" layoutY="114.0" prefHeight="49.0" prefWidth="218.0" />
+    <MFXTextField fx:id="textoDNI" layoutX="390.0" layoutY="198.0" prefHeight="49.0" prefWidth="218.0" />
+    <Label layoutX="465.0" layoutY="84.0" text="Nombre">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <Label layoutX="480.0" layoutY="171.0" text="DNI">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+   <Label layoutX="652.0" layoutY="41.0" text="Modo Admin: "/>
+   <Label layoutX="728.0" layoutY="41.0" text="ON" textFill="#2bba15"/>
+</AnchorPane>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallaconfig.PantallaConfigController">
+   <Label layoutX="301.0" layoutY="20.0" text="Configuración">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Label>
+   <MFXButton fx:id="botonNombre" layoutX="73.0" layoutY="208.0" onAction="#cambiarNombre" text="Modificar Nombre" />
+   <MFXTextField fx:id="cambioNombreDNI" alignment="CENTER" layoutX="34.0" layoutY="132.0" prefHeight="0.0" prefWidth="196.0" promptText="Escribe el nuevo nombre" />
+   <TableView fx:id="tablaMonederos" layoutX="49.0" layoutY="344.0" prefHeight="200.0" prefWidth="149.0">
+      <columns>
+         <TableColumn fx:id="columnaNombre" prefWidth="95.3333101272583" text="Nombre" />
+         <TableColumn fx:id="columnaSaldo" prefWidth="55.33332061767578" text="Saldo" />
+      </columns>
+   </TableView>
+   <MFXButton fx:id="addMonedero" layoutX="230.0" layoutY="503.0" onAction="#addMonedero" text="Añadir" />
+   <MFXButton fx:id="deleteMonedero" layoutX="298.0" layoutY="503.0" text="Eliminar" />
+   <MFXButton fx:id="updateMonedero" layoutX="376.0" layoutY="503.0" text="Modificar" />
+   <MFXTextField fx:id="textoNombre" layoutX="246.0" layoutY="365.0" prefHeight="49.0" prefWidth="172.0" />
+   <MFXTextField fx:id="textoSaldo" layoutX="246.0" layoutY="440.0" prefHeight="49.0" prefWidth="172.0" />
+   <Label layoutX="312.0" layoutY="344.0" text="Nombre" />
+   <Label layoutX="317.0" layoutY="419.0" text="Saldo" />
+   <Label layoutX="466.0" layoutY="204.0" />
+   <Label layoutX="289.0" layoutY="219.0" text="Gasto total:">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="gastoTotal" layoutX="403.0" layoutY="222.0" text="Null">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <ImageView fx:id="imagen" fitHeight="143.0" fitWidth="149.0" layoutX="615.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+   </ImageView>
+   <MFXComboBox fx:id="fotoPerfil" alignment="CENTER" layoutX="575.0" layoutY="200.0" onAction="#fotoPerfil" prefHeight="56.0" prefWidth="190.0" promptText="Foto de Perfil">
+   </MFXComboBox>
+   <Label layoutX="645.0" layoutY="27.0" text="Foto de Perfil">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Label layoutX="110.0" layoutY="85.0" text="Perfil">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="78.0" layoutY="300.0" text="Monederos">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label layoutX="328.0" layoutY="101.0" text="Tu nombre:">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+   <Label fx:id="labelNombre" alignment="CENTER" contentDisplay="CENTER" layoutX="349.0" layoutY="143.0" prefHeight="25.0" prefWidth="62.0" text="null">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
+    <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="268.0" layoutY="275.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su nombre" />
+    <MFXTextField fx:id="textfieldDNI" alignment="CENTER" layoutX="270.0" layoutY="368.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su DNI" />
+    <Label fx:id="textoNombre" layoutX="350.0" layoutY="237.0" text="Nombre">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label fx:id="textoDNI" layoutX="365.0" layoutY="334.0" text="DNI">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <MFXButton fx:id="botonInicioSesion" layoutX="311.0" layoutY="443.0" onAction="#inicioSesion" text="Iniciar Sesión">
+      <font>
+         <Font size="18.0" />
+      </font></MFXButton>
+    <MFXButton fx:id="botonRegistro" layoutX="320.0" layoutY="502.0" onAction="#registro" text="Registrarse">
+      <font>
+         <Font size="18.0" />
+      </font></MFXButton>
+    <ImageView fx:id="logoMercadona" fitHeight="235.0" fitWidth="334.0" layoutX="212.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+    </ImageView>
+</AnchorPane>
