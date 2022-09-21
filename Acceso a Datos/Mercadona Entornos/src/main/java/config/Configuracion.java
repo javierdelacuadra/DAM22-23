@@ -23,6 +23,7 @@ public class Configuracion {
 
             this.pathClientes = configuracion.getPathClientes();
             this.pathProductos = configuracion.getPathProductos();
+            this.pathArticles = configuracion.getPathArticles();
 
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -31,5 +32,6 @@ public class Configuracion {
 
     private String pathClientes;
     private String pathProductos;
+    private String pathArticles;
 
 }

@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.addarticlescreen.AddArticleScreenController">
-   <children>
-      <Label layoutX="251.0" layoutY="32.0" text="Add Article Screen" />
-      <TableView layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.addarticlescreen.AddArticleScreenController">
+    <Label layoutX="251.0" layoutY="32.0" text="Add Article Screen" />
+    <TableView layoutX="52.0" layoutY="92.0" prefHeight="235.0" prefWidth="309.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="61.999935150146484" text="ID" />
+            <TableColumn prefWidth="88.66663360595703" text="nameArticle" />
+            <TableColumn prefWidth="64.66667175292969" text="IDType" />
+         <TableColumn prefWidth="92.66667683919269" text="IDNewspaper" />
         </columns>
-      </TableView>
-   </children>
+    </TableView>
+    <MFXButton layoutX="444.0" layoutY="356.0" mnemonicParsing="false" text="Add Article" />
+    <MFXTextField layoutX="397.0" layoutY="72.0" prefHeight="50.0" prefWidth="172.0" />
+    <MFXTextField layoutX="397.0" layoutY="147.0" prefHeight="50.0" prefWidth="172.0" />
+    <MFXTextField layoutX="397.0" layoutY="222.0" prefHeight="50.0" prefWidth="172.0" />
+    <Label layoutX="477.0" layoutY="50.0" text="ID" />
+    <Label layoutX="451.0" layoutY="125.0" text="nameArticle" />
+    <Label layoutX="464.0" layoutY="201.0" text="IDType" />
+   <Label layoutX="447.0" layoutY="275.0" text="IDNewspaper" />
+   <MFXTextField layoutX="397.0" layoutY="295.0" prefHeight="50.0" prefWidth="172.0" />
 </AnchorPane>

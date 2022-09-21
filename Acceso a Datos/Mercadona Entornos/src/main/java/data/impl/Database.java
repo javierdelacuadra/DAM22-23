@@ -5,14 +5,14 @@ import com.google.gson.reflect.TypeToken;
 import config.Configuracion;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
+import modelo.Article;
 import modelo.Cliente;
 import modelo.Producto;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,6 +44,38 @@ public class Database {
             log.error(e.getMessage(), e);
         }
         return productos;
+    }
+
+    public List<Article> loadArticles() {
+        List<Article> articles = new ArrayList<>();
+        int lines = 0;
+        try {
+            lines = Files.readAllLines(Paths.get(configuracion.getPathArticles())).size();
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+        try (FileInputStream fis = new FileInputStream(configuracion.getPathArticles());
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            for (int i = 0; i < lines; i++) {
+                articles.add((Article) ois.readObject());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return articles;
+    }
+
+    public boolean saveArticles(List<Article> articles) {
+        try (FileOutputStream fos = new FileOutputStream(configuracion.getPathArticles());
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Article article : articles) {
+                oos.writeObject(article);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public boolean saveProductos(List<Producto> productos) {
