@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4287ff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallabanners.BannersController">
+   <MFXTextField fx:id="difficulty" layoutX="69.0" layoutY="425.0" prefHeight="99.0" prefWidth="664.0" />
+   <ImageView fx:id="searchButton" fitHeight="46.0" fitWidth="147.0" layoutX="524.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#cargarResultado" />
+   <ImageView fx:id="filterAuto" fitHeight="80.0" fitWidth="80.0" layoutX="78.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterEasy" fitHeight="80.0" fitWidth="80.0" layoutX="170.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterNormal" fitHeight="80.0" fitWidth="80.0" layoutX="262.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterHard" fitHeight="80.0" fitWidth="80.0" layoutX="354.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterHarder" fitHeight="80.0" fitWidth="80.0" layoutX="446.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterInsane" fitHeight="80.0" fitWidth="80.0" layoutX="538.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="filterDemon" fitHeight="80.0" fitWidth="80.0" layoutX="630.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
+   <MFXCheckbox fx:id="ratedCheckBox" layoutX="170.0" layoutY="199.0" mnemonicParsing="false" text="Rated" onAction="#filtroRated"/>
+   <MFXCheckbox fx:id="featuredCheckBox" layoutX="293.0" layoutY="199.0" mnemonicParsing="false" text="Featured" onAction="#filtroFeatured"/>
+   <MFXCheckbox fx:id="epicCheckBox" layoutX="446.0" layoutY="199.0" mnemonicParsing="false" text="Epic" onAction="#filtroEpic"/>
+   <ImageView fx:id="plusButton" fitHeight="89.0" fitWidth="91.0" layoutX="665.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="backButton" fitHeight="73.0" fitWidth="80.0" layoutX="29.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#volverAtras" />
+</AnchorPane>
