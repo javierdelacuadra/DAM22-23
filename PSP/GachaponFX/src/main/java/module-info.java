@@ -9,6 +9,7 @@ module GachaponFX {
     requires javafx.fxml;
     requires javafx.controls;
     requires MaterialFX;
+    requires retrofit2;
 
     exports ui to javafx.graphics;
     exports modelo;

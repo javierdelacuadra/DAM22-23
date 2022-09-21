@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ui.pantallas.addnewspaperscreen.AddNewspaperScreenController">
-   <Label layoutX="286.0" layoutY="192.0" text="Add Newspaper Screen"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.addnewspaperscreen.AddNewspaperScreenController">
+   <Label layoutX="238.0" layoutY="39.0" text="Add Newspaper Screen" />
+   <TableView layoutX="52.0" layoutY="92.0" prefHeight="235.0" prefWidth="309.0">
+     <columns>
+       <TableColumn prefWidth="98.19998931884766" text="ID" />
+       <TableColumn prefWidth="106.79998779296875" text="Name" />
+         <TableColumn prefWidth="104.39999389648438" text="Release Date" />
+     </columns>
+   </TableView>
+   <MFXButton layoutX="430.0" layoutY="316.0" mnemonicParsing="false" text="Add Newspaper" />
+   <MFXTextField layoutX="397.0" layoutY="99.0" prefHeight="50.0" prefWidth="172.0" />
+   <MFXTextField layoutX="397.0" layoutY="175.0" prefHeight="50.0" prefWidth="172.0" />
+   <MFXTextField layoutX="397.0" layoutY="251.0" prefHeight="50.0" prefWidth="172.0" />
+   <Label layoutX="477.0" layoutY="77.0" text="ID" />
+   <Label layoutX="467.0" layoutY="153.0" text="Name" />
+   <Label layoutX="455.0" layoutY="230.0" text="Release Date" />
 </AnchorPane>

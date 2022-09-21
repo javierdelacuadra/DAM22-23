@@ -190,7 +190,7 @@ public class TiendaController extends BasePantallaController implements Initiali
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(ConstantesPantallas.TIENDA);
-                alert.setHeaderText(ConstantesPantallas.NO_TIENES_SUFICIENTES_MONEDAS);
+                //alert.setHeaderText(ConstantesPantallas.NO_TIENES_SUFICIENTES_MONEDAS);
                 alert.setContentText(ConstantesPantallas.NO_TIENES_SUFICIENTES_MONEDAS_PARA_COMPRAR_ESTE_PERSONAJE);
                 alert.showAndWait();
             }

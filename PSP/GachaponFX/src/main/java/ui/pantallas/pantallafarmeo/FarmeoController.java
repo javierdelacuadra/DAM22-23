@@ -29,10 +29,7 @@ public class FarmeoController extends BasePantallaController implements Initiali
     }
 
     @FXML
-    private MFXButton testButton;
-
-    @FXML
-    private Label labelMonedas;
+    private MFXButton extraInfo;
 
     @FXML
     private ImageView backButton;
@@ -46,19 +43,12 @@ public class FarmeoController extends BasePantallaController implements Initiali
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
+        extraInfo.setText("Información\n Adicional");
     }
 
     @Override
     public void principalCargado() {
 
-    }
-
-    public void addMonedas(MouseEvent actionEvent) {
-        serviciosFarmeo.addMonedas(1000);
-        Usuario usu = this.getMainController().getUsuario();
-        usu.setCantidadMonedas(this.getMainController().getUsuario().getCantidadMonedas() + 1000);
-        this.getMainController().setUsuario(usu);
-        labelMonedas.setText(ConstantesPantallas.MONEDAS_LABEL + this.getMainController().getUsuario().getCantidadMonedas() + ConstantesPantallas.CARACTER_VACIO);
     }
 
     public void volverAtras(MouseEvent mouseEvent) {

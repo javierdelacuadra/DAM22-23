@@ -2,13 +2,21 @@ package ui.pantallas.common;
 
 public class ConstantesPantallas {
     public static final String SEARCH_BUTTON = "/assets/search.png";
-    public static final String FILTER_AUTO = "/assets/difficulties/auto.png";
-    public static final String FILTER_EASY = "/assets/difficulties/easy.png";
-    public static final String FILTER_NORMAL = "/assets/difficulties/normal.png";
-    public static final String FILTER_HARD = "/assets/difficulties/hard.png";
-    public static final String FILTER_HARDER = "/assets/difficulties/harder.png";
-    public static final String FILTER_INSANE = "/assets/difficulties/insane.png";
-    public static final String FILTER_DEMON = "/assets/difficulties/demon.png";
+    public static final String USER_SEARCH_BUTTON = "/assets/search-user.png";
+    public static final String FILTER_AUTO_OFF = "/assets/difficulties/auto.png";
+    public static final String FILTER_EASY_OFF = "/assets/difficulties/easy.png";
+    public static final String FILTER_NORMAL_OFF = "/assets/difficulties/normal.png";
+    public static final String FILTER_HARD_OFF = "/assets/difficulties/hard.png";
+    public static final String FILTER_HARDER_OFF = "/assets/difficulties/harder.png";
+    public static final String FILTER_INSANE_OFF = "/assets/difficulties/insane.png";
+    public static final String FILTER_DEMON_OFF = "/assets/difficulties/demon.png";
+    public static final String FILTER_AUTO_ON = "/assets/difficulties/auto-epic.png";
+    public static final String FILTER_EASY_ON = "/assets/difficulties/easy-epic.png";
+    public static final String FILTER_NORMAL_ON = "/assets/difficulties/normal-epic.png";
+    public static final String FILTER_HARD_ON = "/assets/difficulties/hard-epic.png";
+    public static final String FILTER_HARDER_ON = "/assets/difficulties/harder-epic.png";
+    public static final String FILTER_INSANE_ON = "/assets/difficulties/insane-epic.png";
+    public static final String FILTER_DEMON_ON = "/assets/difficulties/demon-epic.png";
     public static final String PLUS_BUTTON = "/assets/plus.png";
     public static final String BACK_BUTTON = "/assets/back.png";
 
@@ -17,33 +25,11 @@ public class ConstantesPantallas {
 
 
 
-    public static final String TIRADA_DE_BANNER = "Tirada de Banner";
-    public static final String TIRADA_DE_BANNER_EXCLAMACION = "¡Tirada de Banner!";
-    public static final String HAS_OBTENIDO_EL_PERSONAJE = "¡Has obtenido el personaje: ";
-    public static final String PARENTESIS = " (";
     public static final String MONEDAS_LABEL = "Monedas: ";
     public static final String CARACTER_VACIO = "";
     public static final String ESTRELLA = "\u2605)";
     public static final String EXCLAMACION = "!";
-    public static final String NO_TIENES_SUFICIENTES_MONEDAS = "¡No tienes suficientes monedas!";
-    public static final String NECESITAS_160_MONEDAS_PARA_TIRAR_UN_BANNER = "¡Necesitas 160 monedas para tirar un banner!";
-    public static final String HAS_OBTENIDO_LOS_PERSONAJES = "Has obtenido los personajes: \n";
-    public static final String NECESITAS_1600_MONEDAS_PARA_HACER_UNA_TIRADA_MULTI = "¡Necesitas 1600 monedas para hacer una tirada multi!";
     public static final String ESPACIO = " ";
-    public static final String RUTA_GENERICA_BANNER = "/images/Banners/Banner";
-    public static final String PNG = ".png";
-    public static final String AYUDA = "Ayuda";
-    public static final String INFORMACIÓN_ACERCA_DEL_BANNER = "Información acerca del Banner";
-    public static final String PERSONAJE_DESTACADO = "Personaje Destacado: ";
-    public static final String BARRA_N = "\n";
-    public static final String PERSONAJES_DE_5_ESTRELLAS = "Personajes de 5\u2605: ";
-    public static final String PORCENTAJE_BARRA_N = "%\n";
-    public static final String PROBABILIDADES_DE_APARICIÓN = "Probabilidades de aparición: \n";
-    public static final String PERSONAJES_DE_4_ESTRELLAS = "Personajes de 4\u2605: ";
-    public static final String CADA_BANNER_GARANTIZA_UN_PERSONAJE_DE_5_CADA_90_TIRADAS = "Cada banner garantiza un personaje de 5\u2605 cada 90 tiradas.\n";
-    public static final String NÚMERO_DE_TIRADAS_DESDE_EL_ÚLTIMO_PERSONAJE_DESTACADO = "Número de tiradas desde el último personaje destacado: ";
-    public static final String TODAS_LAS_ESTADÍSTICAS_DE_ESTA_PESTAÑA_PERTENECEN_ÚNICAMENTE_AL_BANNER_SELECCIONADO_ACTUALMENTE = "Todas las estadísticas de esta pestaña pertenecen únicamente \nal banner seleccionado actualmente.\n";
-    public static final String PARA_CONSEGUIR_MÁS_MONEDAS_VE_A_LA_PANTALLA_FARMEO_EN_EL_MENÚ_PRINCIPAL = "Para conseguir más monedas, ve a la pantalla farmeo en el \nmenú principal.";
     public static final String REINICIO2 = "Se perderá todo el progreso realizado hasta el momento.\n" +
             "Todo tu inventario se cambiará en monedas por su valor.\n";
     public static final String REINICIO1 = "¿Está seguro que desea reiniciar la cuenta?";
