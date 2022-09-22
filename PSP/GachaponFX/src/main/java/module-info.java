@@ -10,6 +10,8 @@ module GachaponFX {
     requires javafx.controls;
     requires MaterialFX;
     requires retrofit2;
+    requires retrofit2.converter.gson;
+    requires okhttp3;
 
     exports ui to javafx.graphics;
     exports modelo;
@@ -18,6 +20,7 @@ module GachaponFX {
     exports servicios;
     exports di;
     exports config;
+    exports retrofit;
     exports ui.pantallas.pantallafarmeo;
     exports ui.pantallas.pantallalogin;
     exports ui.pantallas.pantallatienda;

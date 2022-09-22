@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
-import servicios.ServiciosBanner;
+import servicios.ServiciosBusqueda;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
@@ -22,11 +22,11 @@ import java.util.ResourceBundle;
 @Log4j2
 public class BannersController extends BasePantallaController implements Initializable {
 
-    private final ServiciosBanner serviciosBanner;
+    private final ServiciosBusqueda serviciosBusqueda;
 
     @Inject
-    public BannersController(ServiciosBanner serviciosBanner) {
-        this.serviciosBanner = serviciosBanner;
+    public BannersController(ServiciosBusqueda serviciosBusqueda) {
+        this.serviciosBusqueda = serviciosBusqueda;
     }
 
     @FXML
@@ -94,6 +94,9 @@ public class BannersController extends BasePantallaController implements Initial
 
     @FXML
     private MFXCheckbox epicCheckBox;
+
+    @FXML
+    private MFXTextField searchBox;
 
     public void loadImage(String path, ImageView imageView) {
         try (var inputStream = getClass().getResourceAsStream(path)) {
@@ -164,6 +167,51 @@ public class BannersController extends BasePantallaController implements Initial
     }
 
     public void cargarResultado(MouseEvent mouseEvent) {
+        String text = searchBox.getText();
+        if (text.isBlank()) {
+            text = "*";
+        }
+        StringBuilder difficulty = new StringBuilder();
+        StringBuilder code = new StringBuilder();
+        if (autoButton.isSelected()) {
+            code.append("0");
+        }
+        if (easyButton.isSelected()) {
+            code.append("1");
+        }
+        if (normalButton.isSelected()) {
+            code.append("2");
+        }
+        if (hardButton.isSelected()) {
+            code.append("3");
+        }
+        if (harderButton.isSelected()) {
+            code.append("4");
+        }
+        if (insaneButton.isSelected()) {
+            code.append("5");
+        }
+        if (demonButton.isSelected()) {
+            code.append("6");
+        }
+        if (!code.toString().isEmpty()){
+            for (int i = 0; i < code.toString().length(); i++) {
+                if (code.toString().charAt(i) == '0') {
+                    difficulty.append("-2");
+                } else if (code.toString().charAt(i) == '6') {
+                    difficulty.append("-3");
+                } else {
+                    difficulty.append(code.toString().charAt(i));
+                }
+                if (i != code.toString().length() - 1) {
+                    difficulty.append(",");
+                }
+            }
+        }
+        boolean rated = ratedCheckBox.isSelected();
+        boolean featured = featuredCheckBox.isSelected();
+        boolean epic = epicCheckBox.isSelected();
+        serviciosBusqueda.asjdfaos(text, String.valueOf(difficulty), rated, featured, epic);
         this.getMainController().cargarFarmeo();
     }
 
