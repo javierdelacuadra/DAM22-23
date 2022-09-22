@@ -11,7 +11,10 @@ module GachaponFX {
     requires MaterialFX;
     requires retrofit2;
     requires retrofit2.converter.gson;
+    requires retrofit2.converter.moshi;
     requires okhttp3;
+    requires com.squareup.moshi;
+
 
     exports ui to javafx.graphics;
     exports modelo;

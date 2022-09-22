@@ -1,16 +1,17 @@
 package retrofit;
 
+import modelo.ResponseLevels;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GDApi {
 
     @GET("getGJLevels21.php")
     Call<String> getLevels();
 
-    // diff 1-2-3-4-5 (easy-normal-hard-harder-insane) -2 = demon -3 = auto
-    // &featured&diff=-2 ex.
-    // * no name
-    // ? start of query
-    // & add query
+
+    @GET("/search/{searchTerm}")
+    Call<ResponseLevels> getNiveles(@Path("searchTerm") String searchTerm, @Query("diff") String difficulty, @Query("rated") boolean rated, @Query("featured") boolean featured, @Query("epic") boolean epic);
 }

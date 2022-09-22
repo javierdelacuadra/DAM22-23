@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class ResponseLevels{
-	private List<ResponseLevelsItem> responseLevels;
+	private List<ResponseLevelsItem> responseLevelsList;
 }

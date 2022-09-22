@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
+import modelo.ResponseLevels;
 import modelo.Usuario;
 import servicios.ServiciosConfig;
 import ui.pantallas.common.BasePantallaController;
@@ -57,6 +58,16 @@ public class MainController extends BasePantallaController implements Initializa
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public ResponseLevels responseLevels;
+
+    public ResponseLevels getResponseLevels() {
+        return responseLevels;
+    }
+
+    public void setResponseLevels(ResponseLevels responseLevels) {
+        this.responseLevels = responseLevels;
     }
 
     public String getNombre() {
@@ -115,7 +126,7 @@ public class MainController extends BasePantallaController implements Initializa
         cargarPantalla(Pantallas.PANTALLABANNERS);
     }
 
-    public void cargarTienda(ActionEvent actionEvent) {
+    public void cargarTienda() {
         cargarPantalla(Pantallas.PANTALLATIENDA);
     }
 

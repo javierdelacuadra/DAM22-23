@@ -4,12 +4,14 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
-import modelo.Usuario;
+import modelo.ResponseLevelsItem;
 import servicios.ServiciosFarmeo;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
@@ -34,6 +36,25 @@ public class FarmeoController extends BasePantallaController implements Initiali
     @FXML
     private ImageView backButton;
 
+    @FXML
+    private TableView<ResponseLevelsItem> table;
+
+    @FXML
+    private TableColumn<ResponseLevelsItem, String> name;
+
+    @FXML
+    private TableColumn<ResponseLevelsItem, String> id;
+
+    @FXML
+    private TableColumn<ResponseLevelsItem, String> author;
+
+    @FXML
+    private TableColumn<ResponseLevelsItem, String> difficulty;
+
+    @FXML
+    private TableColumn<ResponseLevelsItem, String> length;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try (var inputStream = getClass().getResourceAsStream(ConstantesPantallas.BACK_BUTTON)) {
@@ -43,12 +64,21 @@ public class FarmeoController extends BasePantallaController implements Initiali
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
+
+        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        author.setCellValueFactory(new PropertyValueFactory<>("Author"));
+        difficulty.setCellValueFactory(new PropertyValueFactory<>("Difficulty"));
+        length.setCellValueFactory(new PropertyValueFactory<>("Length"));
+
         extraInfo.setText("Información\n Adicional");
     }
 
     @Override
     public void principalCargado() {
-
+        getMainController().getResponseLevels().getResponseLevelsList().forEach(responseLevelsItem -> {
+            table.getItems().add(responseLevelsItem);
+        });
     }
 
     public void volverAtras(MouseEvent mouseEvent) {

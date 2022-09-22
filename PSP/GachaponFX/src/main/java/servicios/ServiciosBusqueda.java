@@ -2,9 +2,9 @@ package servicios;
 
 import data.DaoBanner;
 import jakarta.inject.Inject;
-import modelo.Banner;
-import modelo.Personaje;
+import modelo.ResponseLevelsItem;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ServiciosBusqueda {
@@ -16,7 +16,7 @@ public class ServiciosBusqueda {
         this.dao = dao;
     }
 
-    public void asjdfaos(String text, String difficulty, boolean rated, boolean featured, boolean epic) {
-        //return dao.cosa();
+    public List<ResponseLevelsItem> getNiveles(String text, String difficulty, boolean rated, boolean featured, boolean epic) throws IOException {
+        return dao.getNiveles(text, difficulty, rated, featured, epic);
     }
 }

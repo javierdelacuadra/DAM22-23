@@ -107,7 +107,7 @@ public class InicioController extends BasePantallaController implements Initiali
     }
 
     public void cargarPantallaTienda(ActionEvent actionEvent) {
-        this.getMainController().cargarTienda(actionEvent);
+        this.getMainController().cargarTienda();
     }
 
     public void cargarPantallaInventario(ActionEvent actionEvent) {

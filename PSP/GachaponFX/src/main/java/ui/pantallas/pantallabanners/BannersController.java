@@ -11,12 +11,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
+import modelo.ResponseLevels;
+import modelo.ResponseLevelsItem;
 import servicios.ServiciosBusqueda;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Log4j2
@@ -166,7 +169,7 @@ public class BannersController extends BasePantallaController implements Initial
         }
     }
 
-    public void cargarResultado(MouseEvent mouseEvent) {
+    public void cargarResultado(MouseEvent mouseEvent) throws IOException {
         String text = searchBox.getText();
         if (text.isBlank()) {
             text = "*";
@@ -211,12 +214,15 @@ public class BannersController extends BasePantallaController implements Initial
         boolean rated = ratedCheckBox.isSelected();
         boolean featured = featuredCheckBox.isSelected();
         boolean epic = epicCheckBox.isSelected();
-        serviciosBusqueda.asjdfaos(text, String.valueOf(difficulty), rated, featured, epic);
+        List<ResponseLevelsItem> lista = serviciosBusqueda.getNiveles(text, String.valueOf(difficulty), rated, featured, epic);
+        ResponseLevels responseLevels = this.getMainController().getResponseLevels();
+        responseLevels.setResponseLevelsList(lista);
+        this.getMainController().setResponseLevels(responseLevels);
         this.getMainController().cargarFarmeo();
     }
 
     public void cargarUsuario(MouseEvent mouseEvent) {
-        this.getMainController().cargarFarmeo();
+        this.getMainController().cargarTienda();
     }
 
     public void autoFilter(MouseEvent mouseEvent) {
