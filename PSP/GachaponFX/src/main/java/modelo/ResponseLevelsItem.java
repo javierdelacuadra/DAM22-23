@@ -39,7 +39,7 @@ public class ResponseLevelsItem{
 	private String gameVersion;
 	private int starsRequested;
 	private int officialSong;
-	private int songID;
+	private String songID;
 	private String playerID;
 	private int pages;
 	private int results;

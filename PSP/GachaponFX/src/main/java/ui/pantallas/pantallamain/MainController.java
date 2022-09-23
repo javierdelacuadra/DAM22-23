@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
 import modelo.ResponseLevels;
+import modelo.ResponseLevelsItem;
+import modelo.ResponseUser;
 import modelo.Usuario;
 import servicios.ServiciosConfig;
 import ui.pantallas.common.BasePantallaController;
@@ -24,6 +26,7 @@ import ui.pantallas.common.Pantallas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -60,14 +63,24 @@ public class MainController extends BasePantallaController implements Initializa
         this.usuario = usuario;
     }
 
-    public ResponseLevels responseLevels;
+    public List<ResponseLevelsItem> responseLevels;
 
-    public ResponseLevels getResponseLevels() {
+    public List<ResponseLevelsItem> getResponseLevels() {
         return responseLevels;
     }
 
-    public void setResponseLevels(ResponseLevels responseLevels) {
+    public void setResponseLevels(List<ResponseLevelsItem> responseLevels) {
         this.responseLevels = responseLevels;
+    }
+
+    public ResponseUser responseUser;
+
+    public ResponseUser getResponseUser() {
+        return responseUser;
+    }
+
+    public void setResponseUser(ResponseUser responseUser) {
+        this.responseUser = responseUser;
     }
 
     public String getNombre() {

@@ -1,6 +1,7 @@
 package servicios;
 
 import data.DaoBanner;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import modelo.ResponseLevelsItem;
 
@@ -16,7 +17,7 @@ public class ServiciosBusqueda {
         this.dao = dao;
     }
 
-    public List<ResponseLevelsItem> getNiveles(String text, String difficulty, boolean rated, boolean featured, boolean epic) throws IOException {
-        return dao.getNiveles(text, difficulty, rated, featured, epic);
+    public Either<String, List<ResponseLevelsItem>> getNiveles(String text, String difficulty) throws IOException {
+        return dao.getNiveles(text, difficulty);
     }
 }

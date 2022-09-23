@@ -18,6 +18,7 @@ import ui.pantallas.common.ConstantesPantallas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Log4j2
@@ -64,9 +65,8 @@ public class FarmeoController extends BasePantallaController implements Initiali
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
-
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         difficulty.setCellValueFactory(new PropertyValueFactory<>("Difficulty"));
         length.setCellValueFactory(new PropertyValueFactory<>("Length"));
@@ -76,9 +76,9 @@ public class FarmeoController extends BasePantallaController implements Initiali
 
     @Override
     public void principalCargado() {
-        getMainController().getResponseLevels().getResponseLevelsList().forEach(responseLevelsItem -> {
-            table.getItems().add(responseLevelsItem);
-        });
+        table.getItems().clear();
+        List<ResponseLevelsItem> levels = getMainController().getResponseLevels();
+        table.getItems().addAll(levels);
     }
 
     public void volverAtras(MouseEvent mouseEvent) {

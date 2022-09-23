@@ -17,8 +17,14 @@ public class ConstantesPantallas {
     public static final String FILTER_HARDER_ON = "/assets/difficulties/harder-epic.png";
     public static final String FILTER_INSANE_ON = "/assets/difficulties/insane-epic.png";
     public static final String FILTER_DEMON_ON = "/assets/difficulties/demon-epic.png";
-    public static final String PLUS_BUTTON = "/assets/plus.png";
+    public static final String INFO_BUTTON = "/assets/info.png";
     public static final String BACK_BUTTON = "/assets/back.png";
+    public static final String STAR_ICON = "/assets/star.png";
+    public static final String DIAMOND_ICON = "/assets/diamond.png";
+    public static final String SCOINS_ICON = "/assets/coin.png";
+    public static final String UCOINS_ICON = "/assets/silvercoin.png";
+    public static final String DEMON_ICON = "/assets/demon.png";
+    public static final String CP_ICON = "/assets/cp.png";
 
 
 

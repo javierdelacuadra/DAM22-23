@@ -1,19 +1,20 @@
 package ui.pantallas.pantallabanners;
 
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseLevels;
 import modelo.ResponseLevelsItem;
+import modelo.ResponseUser;
 import servicios.ServiciosBusqueda;
+import servicios.ServiciosFarmeo;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
@@ -27,9 +28,12 @@ public class BannersController extends BasePantallaController implements Initial
 
     private final ServiciosBusqueda serviciosBusqueda;
 
+    private final ServiciosFarmeo serviciosFarmeo;
+
     @Inject
-    public BannersController(ServiciosBusqueda serviciosBusqueda) {
+    public BannersController(ServiciosBusqueda serviciosBusqueda, ServiciosFarmeo serviciosFarmeo) {
         this.serviciosBusqueda = serviciosBusqueda;
+        this.serviciosFarmeo = serviciosFarmeo;
     }
 
     @FXML
@@ -63,7 +67,7 @@ public class BannersController extends BasePantallaController implements Initial
     private ImageView filterDemon;
 
     @FXML
-    private ImageView plusButton;
+    private ImageView infoButton;
 
     @FXML
     private ImageView backButton;
@@ -90,15 +94,6 @@ public class BannersController extends BasePantallaController implements Initial
     private MFXToggleButton demonButton;
 
     @FXML
-    private MFXCheckbox ratedCheckBox;
-
-    @FXML
-    private MFXCheckbox featuredCheckBox;
-
-    @FXML
-    private MFXCheckbox epicCheckBox;
-
-    @FXML
     private MFXTextField searchBox;
 
     public void loadImage(String path, ImageView imageView) {
@@ -122,7 +117,7 @@ public class BannersController extends BasePantallaController implements Initial
         loadImage(ConstantesPantallas.FILTER_HARDER_OFF, filterHarder);
         loadImage(ConstantesPantallas.FILTER_INSANE_OFF, filterInsane);
         loadImage(ConstantesPantallas.FILTER_DEMON_OFF, filterDemon);
-        loadImage(ConstantesPantallas.PLUS_BUTTON, plusButton);
+        loadImage(ConstantesPantallas.INFO_BUTTON, infoButton);
         loadImage(ConstantesPantallas.BACK_BUTTON, backButton);
         difficulty.setDisable(true);
         autoButton.setOpacity(0);
@@ -144,32 +139,7 @@ public class BannersController extends BasePantallaController implements Initial
         this.getMainController().cargarInicio();
     }
 
-    public void filtroEpic(ActionEvent actionEvent) {
-        if (epicCheckBox.isSelected()) {
-            featuredCheckBox.setSelected(true);
-            ratedCheckBox.setSelected(true);
-        } else {
-            featuredCheckBox.setSelected(false);
-            ratedCheckBox.setSelected(false);
-        }
-    }
-
-    public void filtroFeatured(ActionEvent actionEvent) {
-        if (!featuredCheckBox.isSelected() && epicCheckBox.isSelected()) {
-            epicCheckBox.setSelected(false);
-        } else if (featuredCheckBox.isSelected() && !ratedCheckBox.isSelected()) {
-            ratedCheckBox.setSelected(true);
-        }
-    }
-
-    public void filtroRated(ActionEvent actionEvent) {
-        if (!ratedCheckBox.isSelected() && (epicCheckBox.isSelected() || featuredCheckBox.isSelected())) {
-            epicCheckBox.setSelected(false);
-            featuredCheckBox.setSelected(false);
-        }
-    }
-
-    public void cargarResultado(MouseEvent mouseEvent) throws IOException {
+    public void mostrarNiveles(MouseEvent mouseEvent) throws IOException {
         String text = searchBox.getText();
         if (text.isBlank()) {
             text = "*";
@@ -197,7 +167,7 @@ public class BannersController extends BasePantallaController implements Initial
         if (demonButton.isSelected()) {
             code.append("6");
         }
-        if (!code.toString().isEmpty()){
+        if (!code.toString().isEmpty()) {
             for (int i = 0; i < code.toString().length(); i++) {
                 if (code.toString().charAt(i) == '0') {
                     difficulty.append("-2");
@@ -211,18 +181,45 @@ public class BannersController extends BasePantallaController implements Initial
                 }
             }
         }
-        boolean rated = ratedCheckBox.isSelected();
-        boolean featured = featuredCheckBox.isSelected();
-        boolean epic = epicCheckBox.isSelected();
-        List<ResponseLevelsItem> lista = serviciosBusqueda.getNiveles(text, String.valueOf(difficulty), rated, featured, epic);
-        ResponseLevels responseLevels = this.getMainController().getResponseLevels();
-        responseLevels.setResponseLevelsList(lista);
-        this.getMainController().setResponseLevels(responseLevels);
-        this.getMainController().cargarFarmeo();
+
+        boolean doSearch;
+        if (text.equals("*") && difficulty.toString().equals("")) {
+            doSearch = true;
+        } else doSearch = text.length() >= 3 || !difficulty.toString().equals("");
+        if (doSearch) {
+            Either<String, List<ResponseLevelsItem>> either = serviciosBusqueda.getNiveles(text, difficulty.toString());
+            if (either.isLeft()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText(either.getLeft());
+                alert.showAndWait();
+            } else {
+                this.getMainController().setResponseLevels(either.get());
+                this.getMainController().cargarFarmeo();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("El texto de búsqueda debe tener al menos 3 caracteres cuando no se selecciona ningún filtro");
+            alert.showAndWait();
+        }
     }
 
-    public void cargarUsuario(MouseEvent mouseEvent) {
-        this.getMainController().cargarTienda();
+    public void cargarUsuario(MouseEvent mouseEvent) throws IOException {
+        String text = searchBox.getText();
+        Either<String, ResponseUser> either = serviciosFarmeo.getUser(text);
+        if (either.isLeft()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText(either.getLeft());
+            alert.showAndWait();
+        } else {
+            this.getMainController().setResponseUser(either.get());
+            this.getMainController().cargarTienda();
+        }
     }
 
     public void autoFilter(MouseEvent mouseEvent) {
@@ -280,5 +277,13 @@ public class BannersController extends BasePantallaController implements Initial
         } else {
             loadImage(ConstantesPantallas.FILTER_DEMON_OFF, filterDemon);
         }
+    }
+
+    public void ayuda(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ayuda");
+        alert.setHeaderText("Ayuda");
+        alert.setContentText("Para buscar un nivel, escribe el nombre del nivel o el autor en el cuadro de búsqueda y pulsa el botón de buscar. Para buscar un usuario, escribe el nombre del usuario en el cuadro de búsqueda y pulsa el botón de usuario. Para filtrar los resultados, pulsa los botones de los filtros que quieras aplicar. Para volver a la pantalla de inicio, pulsa el botón de volver atrás.");
+        alert.showAndWait();
     }
 }

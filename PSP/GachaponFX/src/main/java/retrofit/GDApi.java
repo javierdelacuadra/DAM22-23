@@ -1,17 +1,23 @@
 package retrofit;
 
-import modelo.ResponseLevels;
+import modelo.ResponseLevelsItem;
+import modelo.ResponseUser;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import java.util.List;
+
 public interface GDApi {
 
-    @GET("getGJLevels21.php")
-    Call<String> getLevels();
+    @GET("search/{text}")
+    Call<List<ResponseLevelsItem>> getNiveles(@Path("text") String text,
+                                              @Query("diff") String difficulty);
 
+    @GET("search/{text}")
+    Call<List<ResponseLevelsItem>> getNiveles(@Path("text") String text);
 
-    @GET("/search/{searchTerm}")
-    Call<ResponseLevels> getNiveles(@Path("searchTerm") String searchTerm, @Query("diff") String difficulty, @Query("rated") boolean rated, @Query("featured") boolean featured, @Query("epic") boolean epic);
+    @GET("profile/{username}")
+    Call<ResponseUser> getUser(@Path("username") String username);
 }

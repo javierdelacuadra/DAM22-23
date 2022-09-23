@@ -1,7 +1,11 @@
 package servicios;
 
 import data.DaoFarmeo;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import modelo.ResponseUser;
+
+import java.io.IOException;
 
 public class ServiciosFarmeo {
 
@@ -12,7 +16,7 @@ public class ServiciosFarmeo {
         this.daoFarmeo = daoFarmeo;
     }
 
-    public void addMonedas(int cantidad) {
-        daoFarmeo.addMonedas(cantidad);
+    public Either<String, ResponseUser> getUser(String username) throws IOException {
+        return daoFarmeo.getUser(username);
     }
 }
