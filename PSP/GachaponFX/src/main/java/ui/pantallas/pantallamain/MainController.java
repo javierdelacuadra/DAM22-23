@@ -9,17 +9,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Menu;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseLevels;
 import modelo.ResponseLevelsItem;
 import modelo.ResponseUser;
-import modelo.Usuario;
-import servicios.ServiciosConfig;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 import ui.pantallas.common.Pantallas;
@@ -36,32 +35,26 @@ public class MainController extends BasePantallaController implements Initializa
 
     Instance<Object> instance;
 
-    private final ServiciosConfig serviciosConfig;
 
     @Inject
-    public MainController(Instance<Object> instance, ServiciosConfig serviciosConfig) {
+    public MainController(Instance<Object> instance) {
         this.instance = instance;
-        this.serviciosConfig = serviciosConfig;
     }
 
     @FXML
     private Stage primaryStage;
 
     @FXML
-    private Menu menuOpciones;
+    private HBox header;
+
+    double xOffset = 0;
+    double yOffset = 0;
 
     @FXML
     private BorderPane root;
 
-    public Usuario usuario;
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    @FXML
+    private ImageView botonClose;
 
     public List<ResponseLevelsItem> responseLevels;
 
@@ -83,14 +76,34 @@ public class MainController extends BasePantallaController implements Initializa
         this.responseUser = responseUser;
     }
 
-    public String getNombre() {
-        return serviciosConfig.getNombre();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        usuario = serviciosConfig.getUsuario();
-        menuOpciones.setVisible(false);
+        try (var inputStream = getClass().getResourceAsStream("/assets/close.png")) {
+            assert inputStream != null;
+            Image logoImage = new Image(inputStream);
+            botonClose.setImage(logoImage);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+        botonClose.setOnMouseClicked(mouseEvent -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Salir");
+            alert.setHeaderText("¿Estás seguro de que quieres salir?");
+            alert.setContentText("Si sales perderás todo tu progreso");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Platform.exit();
+            }
+        });
+        header.setOnMousePressed(mouseEvent -> {
+            xOffset = primaryStage.getX() - mouseEvent.getScreenX();
+            yOffset = primaryStage.getY() - mouseEvent.getScreenY();
+        });
+        header.setOnMouseDragged(mouseEvent -> {
+            primaryStage.setX(mouseEvent.getScreenX() + xOffset);
+            primaryStage.setY(mouseEvent.getScreenY() + yOffset);
+        });
     }
 
     private void closeWindowEvent(WindowEvent event) {
@@ -113,11 +126,11 @@ public class MainController extends BasePantallaController implements Initializa
     public void setStage(Stage stage) {
         primaryStage = stage;
         primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
-        if (Objects.equals(getNombre(), "")) {
-            cargarPantalla(Pantallas.PANTALLALOGIN);
-        } else {
-            cargarPantalla(Pantallas.PANTALLAINICIO);
-        }
+//        if (Objects.equals(getNombre(), "")) {
+//            cargarPantalla(Pantallas.PANTALLALOGIN);
+//        } else {
+//            cargarPantalla(Pantallas.PANTALLAINICIO);
+//        }
     }
 
     private void cargarPantalla(Pantallas pantalla) {
@@ -147,21 +160,7 @@ public class MainController extends BasePantallaController implements Initializa
         cargarPantalla(Pantallas.PANTALLAFARMEO);
     }
 
-    public void cargarInicio() {
-        serviciosConfig.saveUsuario(usuario);
-        cargarPantalla(Pantallas.PANTALLAINICIO);
-    }
-
     public void cargarInventario(ActionEvent actionEvent) {
         cargarPantalla(Pantallas.PANTALLAINVENTARIO);
-    }
-
-    public void saveUsuario() {
-        serviciosConfig.saveUsuario(usuario);
-    }
-
-    public void salir() {
-        serviciosConfig.saveUsuario(usuario);
-        Platform.exit();
     }
 }

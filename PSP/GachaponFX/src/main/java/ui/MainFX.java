@@ -5,7 +5,9 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import ui.pantallas.common.ConstantesPantallas;
 import ui.pantallas.common.Pantallas;
 import ui.pantallas.pantallamain.MainController;
@@ -23,8 +25,11 @@ public class MainFX {
             MainController controller = fxmlLoader.getController();
             controller.setStage(stage);
 
-            stage.setScene(new Scene(fxmlParent));
+            Scene scene = new Scene(fxmlParent);
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
             stage.setTitle(ConstantesPantallas.TITULO_APLICACION);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

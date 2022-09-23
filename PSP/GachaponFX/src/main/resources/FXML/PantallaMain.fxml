@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
-<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.MainController">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" style="-fx-background-radius: 10; -fx-border-radius: 10;"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.MainController">
     <top>
-        <MenuBar>
-            <Menu fx:id="menuOpciones" mnemonicParsing="false" text="Opciones">
-                <MenuItem fx:id="pantallaBanners" mnemonicParsing="false" onAction="#cargarPantallaBanners"
-                          text="Gestionar Banners"/>
-                <MenuItem fx:id="pantallaTienda" mnemonicParsing="false" onAction="#cargarTienda" text="Tienda"/>
-                <MenuItem fx:id="pantallaFarmeo" mnemonicParsing="false" onAction="#cargarFarmeo" text="Farmear"/>
-                <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" text="Cerrar sesión"/>
-                <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Salir"/>
-            </Menu>
-        </MenuBar>
+        <HBox fx:id="header" alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER"
+              style="-fx-background-color: #4287ff">
+            <ImageView fx:id="botonClose" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true"/>
+        </HBox>
     </top>
     <Label layoutX="333.0" layoutY="36.0" prefHeight="46.0" prefWidth="139.0" text="Gachapón">
         <font>
-            <Font size="30.0"/>
+            <Font size="30.0" />
         </font>
     </Label>
-    <MFXButton layoutX="318.0" layoutY="133.0" mnemonicParsing="false" text="Insertar Tarjeta de Crédito"/>
+    <MFXButton layoutX="318.0" layoutY="133.0" mnemonicParsing="false" text="Insertar Tarjeta de Crédito" />
+   <left>
+
+   </left>
 </BorderPane>

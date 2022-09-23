@@ -3,10 +3,10 @@ package ui.pantallas.common;
 public enum Pantallas {
     PANTALLAMAIN("/fxml/PantallaMain.fxml"),
     PANTALLALOGIN("/fxml/Login.fxml"),
-    PANTALLABANNERS("/fxml/Banners.fxml"),
-    PANTALLATIENDA("/fxml/Tienda.fxml"),
+    PANTALLABANNERS("/fxml/Busqueda.fxml"),
+    PANTALLATIENDA("/fxml/ResultadoUsers.fxml"),
     PANTALLAINICIO("/fxml/Inicio.fxml"),
-    PANTALLAFARMEO("/fxml/Farmeo.fxml"),
+    PANTALLAFARMEO("/fxml/ResultadoNiveles.fxml"),
     PANTALLAINVENTARIO("/fxml/Inventario.fxml");
 
     private final String ruta;
