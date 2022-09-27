@@ -7,7 +7,6 @@
     <top>
         <MenuBar fx:id="menuPrincipal">
             <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
-                <MenuItem fx:id="menuConfig" mnemonicParsing="false" onAction="#configuracion" text="Settings"/>
                 <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Cerrar sesión"/>
                 <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Salir"/>
             </Menu>

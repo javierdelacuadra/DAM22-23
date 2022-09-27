@@ -10,13 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
-import modelo.Cliente;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
 
@@ -34,7 +32,6 @@ public class PantallaMainController extends BasePantallaController implements In
         this.instance = instance;
     }
 
-
     @FXML
     private Menu menuOptions;
 
@@ -43,21 +40,6 @@ public class PantallaMainController extends BasePantallaController implements In
 
     @FXML
     private Menu articlesMenu;
-
-    @FXML
-    private MenuItem productosAdmin;
-
-    @FXML
-    private MenuItem clientesAdmin;
-
-    @FXML
-    private MenuItem logoutAdmin;
-
-    @FXML
-    private MenuItem salirAdmin;
-
-    @FXML
-    private MenuItem menuConfig;
 
     @FXML
     private BorderPane root;
@@ -129,48 +111,11 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.showAndWait();
     }
 
-    private Cliente usuarioActual;
-
-    public void onLoginHecho(Cliente c) {
-        usuarioActual = c;
-        if (usuarioActual.getNombre().equalsIgnoreCase("admin")) {
-            newspapersMenu.setVisible(true);
-            articlesMenu.setVisible(true);
-            menuOptions.setVisible(true);
-            cargarPantalla(Pantallas.PANTALLAADMINPRODUCTOS);
-        } else {
-            newspapersMenu.setVisible(true);
-            articlesMenu.setVisible(true);
-            menuOptions.setVisible(true);
-            cargarPantalla(Pantallas.PANTALLACLIENTE);
-        }
-    }
-
-    public Cliente getUsuarioActual() {
-        return usuarioActual;
-    }
-
-    @FXML
-    public void configuracion() {
-        cargarPantalla(Pantallas.PANTALLACONFIG);
-    }
-
-    @FXML
-    public void menuAdminProductos(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.PANTALLAADMINPRODUCTOS);
-    }
-
-    @FXML
-    public void menuAdminClientes(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.PANTALLAADMINCLIENTES);
-    }
-
-    public void compras(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.PANTALLACLIENTE);
-    }
-
-    public void cambiarNombre(String nombre) {
-        usuarioActual.setNombre(nombre);
+    public void onLoginHecho() {
+        newspapersMenu.setVisible(true);
+        articlesMenu.setVisible(true);
+        menuOptions.setVisible(true);
+        cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
     }
 
     public void listNewspapersMenu(ActionEvent actionEvent) {

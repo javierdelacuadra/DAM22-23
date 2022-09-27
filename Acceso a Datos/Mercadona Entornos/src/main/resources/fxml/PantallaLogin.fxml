@@ -22,10 +22,6 @@
       <font>
          <Font size="18.0" />
       </font></MFXButton>
-    <MFXButton fx:id="botonRegistro" layoutX="320.0" layoutY="502.0" onAction="#registro" text="Registrarse">
-      <font>
-         <Font size="18.0" />
-      </font></MFXButton>
     <ImageView fx:id="logoMercadona" fitHeight="235.0" fitWidth="334.0" layoutX="212.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
     </ImageView>
 </AnchorPane>
