@@ -3,14 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.deletearticlescreen.DeleteArticleScreenController">
-   <children>
-      <Label layoutX="245.0" layoutY="33.0" text="Delete Article Screen" />
-      <TableView layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.deletearticlescreen.DeleteArticleScreenController">
+    <Label layoutX="245.0" layoutY="33.0" text="Delete Article Screen"/>
+    <TableView fx:id="articlesTable" layoutX="62.0" layoutY="182.0" prefHeight="235.0" prefWidth="381.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle" />
+            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType" />
+            <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper" />
         </columns>
-      </TableView>
-   </children>
+    </TableView>
 </AnchorPane>

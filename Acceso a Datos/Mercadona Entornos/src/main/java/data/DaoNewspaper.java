@@ -17,10 +17,12 @@ import java.util.List;
 public class DaoNewspaper {
 
     private final Configuracion configuracion;
+    private final DaoArticles daoArticle;
 
     @Inject
-    public DaoNewspaper(Configuracion configuracion) {
+    public DaoNewspaper(Configuracion configuracion, DaoArticles daoArticle) {
         this.configuracion = configuracion;
+        this.daoArticle = daoArticle;
     }
 
     public List<Newspaper> getNewspapers() {
@@ -49,16 +51,21 @@ public class DaoNewspaper {
         }
     }
 
-    public boolean deleteNewspaper(String newspaper) {
+    public boolean deleteNewspaper(Newspaper newspaper) {
+        String line = newspaper.toLine();
         Path path = Paths.get(configuracion.getPathNewspapers());
         try {
             List<String> lines = Files.readAllLines(path);
-            lines.remove(newspaper);
+            lines.remove(line);
             Files.write(path, lines);
             return true;
         } catch (IOException e) {
             log.error("Error ", e);
             return false;
         }
+    }
+
+    public boolean checkArticles(Newspaper newspaper) {
+        return daoArticle.getArticles().stream().anyMatch(article -> article.getIdNewspaper() == newspaper.getId());
     }
 }

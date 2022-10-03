@@ -1,4 +1,2 @@
-pathClientes: data/clientes.json
-pathProductos: data/productos.json
 pathArticles: data/articles.txt
 pathNewspapers: data/newspapers.txt

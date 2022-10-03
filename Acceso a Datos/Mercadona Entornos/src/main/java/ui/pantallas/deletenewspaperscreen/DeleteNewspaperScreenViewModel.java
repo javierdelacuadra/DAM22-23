@@ -17,4 +17,8 @@ public class DeleteNewspaperScreenViewModel {
     public ObservableList<Newspaper> getNewspapers() {
         return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
     }
+
+    public boolean deleteNewspaper(Newspaper newspaper) {
+        return servicesNewspaper.deleteNewspaper(newspaper);
+    }
 }

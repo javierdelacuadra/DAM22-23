@@ -22,4 +22,12 @@ public class ServicesNewspaper {
     public boolean addNewspaper(Newspaper newspaper) {
         return daoNewspaper.saveNewspaper(newspaper);
     }
+
+    public boolean deleteNewspaper(Newspaper newspaper) {
+        if (!daoNewspaper.checkArticles(newspaper)) {
+            return daoNewspaper.deleteNewspaper(newspaper);
+        } else {
+            return false;
+        }
+    }
 }

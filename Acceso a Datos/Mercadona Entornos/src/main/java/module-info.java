@@ -49,11 +49,4 @@ module MercadonaFX {
     opens ui.pantallas.listnewspaperscreen to javafx.fxml;
     opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
     opens ui.pantallas.common;
-
-    /*requires org.junit.jupiter.api;
-    requires org.testfx;
-    requires org.testfx.junit5;
-    requires org.mockito.junit.jupiter;
-    requires org.mockito;*/
-
 }
