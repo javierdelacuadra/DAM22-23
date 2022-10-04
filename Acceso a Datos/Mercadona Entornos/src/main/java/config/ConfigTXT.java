@@ -11,20 +11,20 @@ import java.io.IOException;
 @Getter
 @Log4j2
 @Singleton
-public class Configuracion {
+public class ConfigTXT {
 
-    private Configuracion() {
+    private ConfigTXT() {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
 
         try {
-            Configuracion configuracion = mapper.readValue(
-                    Configuracion.class.getClassLoader().getResourceAsStream("config.yaml"), Configuracion.class);
+            ConfigTXT configTXT = mapper.readValue(
+                    ConfigTXT.class.getClassLoader().getResourceAsStream("config.yaml"), ConfigTXT.class);
 
-            this.pathClientes = configuracion.getPathClientes();
-            this.pathProductos = configuracion.getPathProductos();
-            this.pathArticles = configuracion.getPathArticles();
-            this.pathNewspapers = configuracion.getPathNewspapers();
+            this.pathClientes = configTXT.getPathClientes();
+            this.pathProductos = configTXT.getPathProductos();
+            this.pathArticles = configTXT.getPathArticles();
+            this.pathNewspapers = configTXT.getPathNewspapers();
 
         } catch (IOException e) {
             log.error(e.getMessage(), e);

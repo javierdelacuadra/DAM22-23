@@ -1,6 +1,6 @@
 package data;
 
-import config.Configuracion;
+import config.ConfigTXT;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import modelo.Article;
@@ -16,15 +16,15 @@ import java.util.List;
 @Log4j2
 public class DaoArticles {
 
-    private final Configuracion configuracion;
+    private final ConfigTXT configTXT;
 
     @Inject
-    public DaoArticles(Configuracion configuracion) {
-        this.configuracion = configuracion;
+    public DaoArticles(ConfigTXT configTXT) {
+        this.configTXT = configTXT;
     }
 
     public List<Article> getArticles() {
-        Path path = Paths.get(configuracion.getPathArticles());
+        Path path = Paths.get(configTXT.getPathArticles());
         ArrayList<Article> articles = new ArrayList<>();
         try {
             List<String> lines = Files.readAllLines(path);
@@ -40,7 +40,7 @@ public class DaoArticles {
 
     public boolean saveArticle(Article article) {
         String line = article.toLine();
-        Path path = Paths.get(configuracion.getPathArticles());
+        Path path = Paths.get(configTXT.getPathArticles());
         try {
             Files.write(path, line.getBytes(), StandardOpenOption.APPEND);
             return true;
@@ -51,7 +51,7 @@ public class DaoArticles {
     }
 
     public boolean deleteArticle(String article) {
-        Path path = Paths.get(configuracion.getPathArticles());
+        Path path = Paths.get(configTXT.getPathArticles());
         try {
             List<String> lines = Files.readAllLines(path);
             lines.remove(article);

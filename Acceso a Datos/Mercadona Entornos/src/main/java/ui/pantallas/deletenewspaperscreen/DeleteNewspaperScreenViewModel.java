@@ -21,4 +21,8 @@ public class DeleteNewspaperScreenViewModel {
     public boolean deleteNewspaper(Newspaper newspaper) {
         return servicesNewspaper.deleteNewspaper(newspaper);
     }
+
+    public boolean checkNewspaper(Newspaper newspaper) {
+        return servicesNewspaper.checkNewspaper(newspaper);
+    }
 }

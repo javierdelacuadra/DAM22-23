@@ -16,7 +16,7 @@ public class ServicesNewspaper {
     }
 
     public List<Newspaper> getNewspapers() {
-       return daoNewspaper.getNewspapers();
+        return daoNewspaper.getNewspapers();
     }
 
     public boolean addNewspaper(Newspaper newspaper) {
@@ -29,5 +29,9 @@ public class ServicesNewspaper {
         } else {
             return false;
         }
+    }
+
+    public boolean checkNewspaper(Newspaper newspaper) {
+        return daoNewspaper.checkArticles(newspaper);
     }
 }

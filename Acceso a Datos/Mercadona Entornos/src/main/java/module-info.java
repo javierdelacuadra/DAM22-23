@@ -11,6 +11,7 @@ module MercadonaFX {
     requires org.apache.logging.log4j;
     requires jakarta.cdi;
     requires jakarta.inject;
+    requires jakarta.xml.bind;
 
     exports ui;
     exports ui.common;
@@ -25,6 +26,7 @@ module MercadonaFX {
     exports ui.pantallas.deletenewspaperscreen;
     exports ui.pantallas.listnewspaperscreen;
     exports ui.pantallas.updatenewspaperscreen;
+    exports ui.pantallas.listreaderscreen;
     exports ui.pantallas.common;
     exports servicios;
     exports config;

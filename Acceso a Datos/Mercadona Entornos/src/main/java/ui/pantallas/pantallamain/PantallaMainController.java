@@ -42,6 +42,9 @@ public class PantallaMainController extends BasePantallaController implements In
     private Menu articlesMenu;
 
     @FXML
+    private Menu readersMenu;
+
+    @FXML
     private BorderPane root;
 
     @FXML
@@ -87,6 +90,7 @@ public class PantallaMainController extends BasePantallaController implements In
         newspapersMenu.setVisible(false);
         articlesMenu.setVisible(false);
         menuOptions.setVisible(false);
+        readersMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLALOGIN);
     }
 
@@ -115,6 +119,7 @@ public class PantallaMainController extends BasePantallaController implements In
         newspapersMenu.setVisible(true);
         articlesMenu.setVisible(true);
         menuOptions.setVisible(true);
+        readersMenu.setVisible(true);
         cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
     }
 
@@ -148,5 +153,9 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void deleteArticleMenu(ActionEvent actionEvent) {
         cargarPantalla(Pantallas.DELETEARTICLESCREEN);
+    }
+
+    public void listReadersMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.LISTREADERSCREEN);
     }
 }

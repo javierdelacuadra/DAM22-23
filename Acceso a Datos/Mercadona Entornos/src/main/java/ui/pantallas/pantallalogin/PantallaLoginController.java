@@ -41,10 +41,17 @@ public class PantallaLoginController extends BasePantallaController implements I
     @FXML
     private ImageView logoMercadona;
 
-
     @FXML
     public void inicioSesion() {
-        this.getPrincipalController().onLoginHecho();
+        if (textfieldNombre.getText().equals("root") || textfieldDNI.getText().equals("root")) {
+            this.getPrincipalController().onLoginHecho();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error al iniciar sesión");
+            alert.setContentText("El nombre o el DNI son incorrectos");
+            alert.showAndWait();
+        }
     }
 
     @Override

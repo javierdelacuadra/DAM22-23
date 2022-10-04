@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,14 +49,19 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
     }
 
     public void deleteNewspaper(MouseEvent mouseEvent) {
-        if (viewModel.deleteNewspaper(newspaperTable.getSelectionModel().getSelectedItem())) {
+        if (viewModel.checkNewspaper(newspaperTable.getSelectionModel().getSelectedItem())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Newspaper deleted");
-            alert.setHeaderText(null);
-            alert.setContentText("Newspaper deleted successfully");
+            alert.getButtonTypes().remove(ButtonType.OK);
+            alert.getButtonTypes().add(ButtonType.CANCEL);
+            alert.getButtonTypes().add(ButtonType.YES);
+            alert.setTitle("Do you want to delete this newspaper?");
+            alert.setHeaderText("Do you want to delete this newspaper?");
+            alert.setContentText("Are you sure you want to delete this newspaper?");
             alert.showAndWait();
-            viewModel.deleteNewspaper(newspaperTable.getSelectionModel().getSelectedItem());
-            newspaperTable.getItems().remove(newspaperTable.getSelectionModel().getSelectedItem());
+            if (alert.getResult() == ButtonType.YES) {
+                viewModel.deleteNewspaper(newspaperTable.getSelectionModel().getSelectedItem());
+                newspaperTable.setItems(viewModel.getNewspapers());
+            }
         }
     }
 }

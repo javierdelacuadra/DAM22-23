@@ -1,6 +1,6 @@
 package data;
 
-import config.Configuracion;
+import config.ConfigTXT;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import modelo.Newspaper;
@@ -16,17 +16,17 @@ import java.util.List;
 @Log4j2
 public class DaoNewspaper {
 
-    private final Configuracion configuracion;
+    private final ConfigTXT configTXT;
     private final DaoArticles daoArticle;
 
     @Inject
-    public DaoNewspaper(Configuracion configuracion, DaoArticles daoArticle) {
-        this.configuracion = configuracion;
+    public DaoNewspaper(ConfigTXT configTXT, DaoArticles daoArticle) {
+        this.configTXT = configTXT;
         this.daoArticle = daoArticle;
     }
 
     public List<Newspaper> getNewspapers() {
-        Path path = Paths.get(configuracion.getPathNewspapers());
+        Path path = Paths.get(configTXT.getPathNewspapers());
         ArrayList<Newspaper> newspapers = new ArrayList<>();
         try {
             List<String> lines = Files.readAllLines(path);
@@ -41,7 +41,7 @@ public class DaoNewspaper {
 
     public boolean saveNewspaper(Newspaper newspaper) {
         String line = newspaper.toLine();
-        Path path = Paths.get(configuracion.getPathNewspapers());
+        Path path = Paths.get(configTXT.getPathNewspapers());
         try {
             Files.write(path, line.getBytes(), StandardOpenOption.APPEND);
             return true;
@@ -53,7 +53,7 @@ public class DaoNewspaper {
 
     public boolean deleteNewspaper(Newspaper newspaper) {
         String line = newspaper.toLine();
-        Path path = Paths.get(configuracion.getPathNewspapers());
+        Path path = Paths.get(configTXT.getPathNewspapers());
         try {
             List<String> lines = Files.readAllLines(path);
             lines.remove(line);
