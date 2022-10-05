@@ -7,8 +7,8 @@
     <top>
         <MenuBar fx:id="menuPrincipal">
             <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
-                <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Cerrar sesión"/>
-                <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Salir"/>
+                <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Log out"/>
+                <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Exit"/>
             </Menu>
             <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
                 <MenuItem fx:id="listNewspapers" mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>

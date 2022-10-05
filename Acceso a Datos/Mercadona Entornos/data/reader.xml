@@ -3,29 +3,7 @@
     <reader>
         <id>1</id>
         <name>Juan</name>
-        <dateOfBirth>dtrhd</dateOfBirth>
-        <subscriptions>
-            <subscription>
-                <id></id>
-                <id_reader></id_reader>
-                <id_newspaper></id_newspaper>
-                <signingDate></signingDate>
-                <cancellationDate></cancellationDate>
-            </subscription>
-        </subscriptions>
-        <readArticles>
-            <readArticle>
-                <id></id>
-                <id_reader></id_reader>
-                <id_article></id_article>
-                <rating></rating>
-            </readArticle>
-        </readArticles>
-    </reader>
-    <reader>
-        <id>1</id>
-        <name>Juan</name>
-        <dateOfBirth>dtrhd</dateOfBirth>
+        <birthDate>2003-12-12</birthDate>
         <subscriptions>
             <subscription>
                 <id></id>

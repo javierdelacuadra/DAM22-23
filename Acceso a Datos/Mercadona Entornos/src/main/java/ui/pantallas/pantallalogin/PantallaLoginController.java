@@ -2,7 +2,6 @@ package ui.pantallas.pantallalogin;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -14,7 +13,6 @@ import ui.pantallas.common.BasePantallaController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Log4j2
@@ -39,7 +37,7 @@ public class PantallaLoginController extends BasePantallaController implements I
     private MFXButton botonRegistro;
 
     @FXML
-    private ImageView logoMercadona;
+    private ImageView logoSQL;
 
     @FXML
     public void inicioSesion() {
@@ -59,7 +57,7 @@ public class PantallaLoginController extends BasePantallaController implements I
         try (var inputStream = getClass().getResourceAsStream("/images/MySQL-Logo.png")) {
             assert inputStream != null;
             Image logoImage = new Image(inputStream);
-            logoMercadona.setImage(logoImage);
+            logoSQL.setImage(logoImage);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

@@ -57,8 +57,8 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.getButtonTypes().remove(ButtonType.OK);
         alert.getButtonTypes().add(ButtonType.CANCEL);
         alert.getButtonTypes().add(ButtonType.YES);
-        alert.setTitle("Salir de la aplicación");
-        alert.setContentText("¿Está seguro que desea salir de la aplicación?");
+        alert.setTitle("Exit the application");
+        alert.setContentText("Are you sure you want to exit the application?");
         alert.initOwner(primaryStage.getOwner());
         Optional<ButtonType> res = alert.showAndWait();
 
@@ -82,6 +82,7 @@ public class PantallaMainController extends BasePantallaController implements In
         newspapersMenu.setVisible(false);
         articlesMenu.setVisible(false);
         menuOptions.setVisible(false);
+        readersMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 

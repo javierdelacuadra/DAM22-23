@@ -17,7 +17,7 @@ public class MainFX {
 
     public void start(@Observes @StartupScene Stage stage) {
         try {
-            ResourceBundle r = ResourceBundle.getBundle("muchotexto");
+            ResourceBundle r = ResourceBundle.getBundle("bundle");
             fxmlLoader.setResources(r);
             Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/PantallaMain.fxml"));
             PantallaMainController controller = fxmlLoader.getController();

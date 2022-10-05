@@ -6,12 +6,12 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ui.pantallas.listreaderscreen.ListReadersScreenController"
             prefHeight="400.0" prefWidth="600.0">
-    <Label layoutX="240.0" layoutY="39.0" text="List Readers Screen" />
+    <Label layoutX="240.0" layoutY="39.0" text="List Readers Screen"/>
     <TableView fx:id="readersTable" layoutX="114.0" layoutY="79.0" prefHeight="242.0" prefWidth="305.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="nameColumn" prefWidth="128.19998168945312" text="Name" />
-            <TableColumn fx:id="birthDateColumn" prefWidth="102.20001220703125" text="Release Date" />
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="128.19998168945312" text="Name"/>
+            <TableColumn fx:id="birthDateColumn" prefWidth="102.20001220703125" text="Release Date"/>
         </columns>
     </TableView>
 </AnchorPane>
