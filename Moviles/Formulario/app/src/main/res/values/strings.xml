@@ -9,4 +9,6 @@
     <string name="add">Add</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="anterior">ANTERIOR</string>
+    <string name="siguiente">SIGUIENTE</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.formulario.databinding.ActivityMainBinding
+import com.example.formulario.domain.modelo.Persona
 import com.example.formulario.domain.usecases.AddPersonaUseCase
 import com.example.formulario.domain.usecases.DeletePersonaUseCase
 import com.example.formulario.domain.usecases.GetPersonasUseCase
@@ -26,8 +27,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-
-            //cosas
+            addButton.setOnClickListener {
+                viewModel.addPersona(
+                    Persona(
+                        nameTextField.editText.toString(),
+                        passwordTextField.editText.toString(),
+                        emailTextField.editText.toString(),
+                        true
+                    )
+                )
+            }
         }
     }
 }

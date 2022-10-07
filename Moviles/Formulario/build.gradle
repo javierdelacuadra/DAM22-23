@@ -4,8 +4,8 @@ buildscript {
         lifecycle_version = '2.5.1'
     }
     repositories {
-        google()
         mavenCentral()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'

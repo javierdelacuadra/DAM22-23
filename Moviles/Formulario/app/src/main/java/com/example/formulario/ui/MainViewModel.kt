@@ -21,13 +21,13 @@ class MainViewModel(
     private val _uiState = MutableLiveData<MainState>()
     val uiState: LiveData<MainState> get() = _uiState
 
-//    fun addPersona(persona: Persona) {
-//        if (!addPersonaUseCase(persona)) {
-//            _uiState.value = MainState(
-//                error = stringProvider.getString(R.string.name),
-//            )
-//        }
-//    }
+    fun addPersona(persona: Persona) {
+        if (!addPersonaUseCase(persona)) {
+            _uiState.value = MainState(
+                error = stringProvider.getString(R.string.name),
+            )
+        }
+    }
 
     fun getPersonas(id: Int) {
         val personas = getPersonasUseCase()
