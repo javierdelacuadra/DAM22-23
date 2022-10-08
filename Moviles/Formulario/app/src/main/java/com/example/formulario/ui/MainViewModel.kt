@@ -18,28 +18,80 @@ class MainViewModel(
     private val deletePersonaUseCase: DeletePersonaUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<MainState>()
+    private val _uiState = MutableLiveData(MainState())
     val uiState: LiveData<MainState> get() = _uiState
 
-    fun addPersona(persona: Persona) {
-        if (!addPersonaUseCase(persona)) {
+    fun addPersona(persona: Persona): Boolean {
+        if (persona.nombre.isEmpty() || persona.email.isEmpty() || persona.password.isEmpty()) {
+            _uiState.value =
+                MainState(mensaje = stringProvider.getString(R.string.error_campos_vacios))
+            return false
+        } else if (persona.email.count { it == Constantes.ARROBA } > Constantes.UNO) {
+            _uiState.value =
+                MainState(mensaje = stringProvider.getString(R.string.error_formato_email))
+            return false
+        } else if (!addPersonaUseCase(persona)) {
             _uiState.value = MainState(
-                error = stringProvider.getString(R.string.name),
+                mensaje = stringProvider.getString(R.string.error_al_guardar_persona)
+            )
+            return false
+        }
+        _uiState.value = _uiState.value?.copy(
+            persona = persona,
+            mensaje = stringProvider.getString(R.string.persona_guardada),
+        )
+        return true
+    }
+
+    fun getPersonaAnterior(id: Int) {
+        if (id <= Constantes.UNO) {
+            _uiState.value = _uiState.value?.copy(
+                mensaje = stringProvider.getString(R.string.error_no_hay_mas_personas)
+            )
+        } else {
+            _uiState.value = _uiState.value?.copy(
+                persona = getPersonasUseCase()[id - Constantes.DOS],
+                mensaje = null,
             )
         }
     }
 
-    fun getPersonas(id: Int) {
-        val personas = getPersonasUseCase()
-        if (personas.size < id || id < 0) {
-            _uiState.value = _uiState.value?.copy(error = "error")
-
-        } else
-            _uiState.value = _uiState.value?.copy(persona = personas[id])
+    fun getPersonaSiguiente(id: Int) {
+        if (id + Constantes.UNO > GetPersonasUseCase().invoke().size) {
+            _uiState.value = _uiState.value?.copy(
+                mensaje = stringProvider.getString(R.string.error_no_hay_mas_personas)
+            )
+        } else {
+            _uiState.value = _uiState.value?.copy(
+                persona = getPersonasUseCase()[id],
+                mensaje = null,
+            )
+        }
     }
 
-    fun deletePersona(persona: Persona) {
-        deletePersonaUseCase(persona)
+    fun deletePersona(persona: Persona): Boolean {
+        if (persona.id < Constantes.CERO || persona.id - Constantes.UNO >= GetPersonasUseCase().invoke().size) {
+            _uiState.value = _uiState.value?.copy(
+                mensaje = stringProvider.getString(R.string.error_persona_no_existe)
+            )
+            return false
+        } else if (!deletePersonaUseCase(persona)) {
+            _uiState.value = MainState(
+                mensaje = stringProvider.getString(R.string.error_al_eliminar_persona),
+            )
+            return false
+        }
+        _uiState.value = _uiState.value?.copy(
+            persona = Persona(
+                Constantes.CERO,
+                Constantes.NADA,
+                Constantes.NADA,
+                Constantes.NADA,
+                false
+            ),
+            mensaje = stringProvider.getString(R.string.persona_eliminada),
+        )
+        return true
     }
 }
 
@@ -55,7 +107,7 @@ class MainViewModelFactory(
     ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
+            @Suppress(Constantes.UNCHECKED_CAST)
             return MainViewModel(
                 stringProvider,
                 addPersonaUseCase,
@@ -63,6 +115,6 @@ class MainViewModelFactory(
                 deletePersonaUseCase,
             ) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException(Constantes.UNKNOWN_VIEW_MODEL_CLASS)
     }
 }

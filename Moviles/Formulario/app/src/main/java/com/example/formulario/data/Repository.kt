@@ -3,31 +3,32 @@ package com.example.formulario.data
 import com.example.formulario.domain.modelo.Persona
 
 object Repository {
-    private val personas = mutableMapOf<String, Persona>()
+    private val personas = mutableListOf<Persona>()
 
     init {
-        personas["1"] = Persona("Juan", "Perez", "12345678", true)
-        personas["2"] = Persona("Maria", "Gomez", "87654321", false)
+        personas.add(Persona(1, "Juanito", "1234", "juanito@gmail.com", true))
+        personas.add(Persona(2, "Pedrito", "1234", "pedrito@gmail.com", true))
+        personas.add(Persona(3, "Pepito", "1234", "pepito@gmail.com", true))
+        personas.add(Persona(4, "Pablito", "1234", "pablito@gmail.com", true))
     }
 
     fun addPersona(persona: Persona): Boolean {
-        if (personas.containsKey(persona.email)) {
-            return false
+        personas.stream().anyMatch { p -> p.email == persona.email }.let {
+            if (it) return false
         }
-        personas[persona.email] = persona
+        personas.add(persona)
         return true
     }
 
-
     fun getPersonas(): List<Persona> {
-        return personas.values.toList()
+        return personas
     }
 
-    fun deletePersona(persona: Persona) =
-        personas.remove(persona.nombre)
-
-//    fun updatePersona(persona: Persona) {
-//        personas.remove(persona)
-//        personas.add(persona)
-//    }
+    fun deletePersona(persona: Persona): Boolean {
+        if (personas.contains(persona)) {
+            personas.remove(persona)
+            return true
+        }
+        return false
+    }
 }

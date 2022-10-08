@@ -6,9 +6,21 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="emailConfirmation">Confirmo que quiero recibir información por correo electrónico</string>
-    <string name="add">Add</string>
+    <string name="add">Añadir</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="anterior">ANTERIOR</string>
     <string name="siguiente">SIGUIENTE</string>
+    <string name="_uno">1</string>
+    <string name="formatoIncorrectoEmail">Formato incorrecto en el email</string>
+    <string name="camposVaciosError">No puede haber campos vacíos</string>
+    <string name="errorEmail">Error: El email especificado ya corresponde a una persona registrada</string>
+    <string name="error_campos_vacios">No se han rellenado todos los campos</string>
+    <string name="error_formato_email">El formato del email es incorrecto</string>
+    <string name="error_al_guardar_persona">Error al añadir persona</string>
+    <string name="persona_guardada">Persona agregada correctamente</string>
+    <string name="error_persona_no_existe">La persona que intenta borrar no existe</string>
+    <string name="error_al_eliminar_persona">No se ha podido eliminar la persona</string>
+    <string name="persona_eliminada">Persona eliminada correctamente</string>
+    <string name="error_no_hay_mas_personas">No hay más personas</string>
 </resources>
