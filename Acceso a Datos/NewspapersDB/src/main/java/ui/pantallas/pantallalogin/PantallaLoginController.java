@@ -28,7 +28,7 @@ public class PantallaLoginController extends BasePantallaController implements I
 
     @FXML
     public void inicioSesion() {
-        if (textfieldNombre.getText().equals(ConstantesUI.ROOT) || textfieldDNI.getText().equals(ConstantesUI.ROOT)) {
+        if (textfieldNombre.getText().equals(ConstantesUI.ROOT) && textfieldDNI.getText().equals(ConstantesUI.ROOT)) {
             this.getPrincipalController().onLoginHecho();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
