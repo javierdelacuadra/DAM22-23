@@ -3,7 +3,6 @@ package ui.pantallas.pantallamain;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
 
@@ -57,8 +57,8 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.getButtonTypes().remove(ButtonType.OK);
         alert.getButtonTypes().add(ButtonType.CANCEL);
         alert.getButtonTypes().add(ButtonType.YES);
-        alert.setTitle("Exit the application");
-        alert.setContentText("Are you sure you want to exit the application?");
+        alert.setTitle(ConstantesUI.EXIT_THE_APPLICATION);
+        alert.setContentText(ConstantesUI.ARE_YOU_SURE_YOU_WANT_TO_EXIT_THE_APPLICATION);
         alert.initOwner(primaryStage.getOwner());
         Optional<ButtonType> res = alert.showAndWait();
 
@@ -110,12 +110,6 @@ public class PantallaMainController extends BasePantallaController implements In
         }
     }
 
-    public void sacarAlertError(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
-
     public void onLoginHecho() {
         newspapersMenu.setVisible(true);
         articlesMenu.setVisible(true);
@@ -124,39 +118,27 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
     }
 
-    public void listNewspapersMenu(ActionEvent actionEvent) {
+    public void listNewspapersMenu() {
         cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
     }
 
-    public void addNewspaperMenu(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.ADDNEWSPAPERSCREEN);
-    }
-
-    public void updateNewspaperMenu(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.UPDATENEWSPAPERSCREEN);
-    }
-
-    public void deleteNewspaperMenu(ActionEvent actionEvent) {
+    public void deleteNewspaperMenu() {
         cargarPantalla(Pantallas.DELETENEWSPAPERSCREEN);
     }
 
-    public void listArticlesMenu(ActionEvent actionEvent) {
+    public void listArticlesMenu() {
         cargarPantalla(Pantallas.LISTARTICLESCREEN);
     }
 
-    public void addArticleMenu(ActionEvent actionEvent) {
+    public void addArticleMenu() {
         cargarPantalla(Pantallas.ADDARTICLESCREEN);
     }
 
-    public void updateArticleMenu(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.UPDATEARTICLESCREEN);
-    }
-
-    public void deleteArticleMenu(ActionEvent actionEvent) {
-        cargarPantalla(Pantallas.DELETEARTICLESCREEN);
-    }
-
-    public void listReadersMenu(ActionEvent actionEvent) {
+    public void listReadersMenu() {
         cargarPantalla(Pantallas.LISTREADERSCREEN);
+    }
+
+    public void deleteReadersMenu() {
+        cargarPantalla(Pantallas.DELETEREADERSCREEN);
     }
 }

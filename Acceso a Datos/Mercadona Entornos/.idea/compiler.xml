@@ -8,9 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Mercadona" />
-        <module name="Mercadona Entornos" />
+        <module name="DB" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Mercadona Entornos" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

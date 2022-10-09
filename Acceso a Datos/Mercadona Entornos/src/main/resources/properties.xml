@@ -3,4 +3,5 @@
 <properties>
     <comment>XML file</comment>
     <entry key="xmlReaderPath">data/reader.xml</entry>
+    <entry key="txtArticleType">data/articleType.txt</entry>
 </properties>

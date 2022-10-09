@@ -1,22 +1,20 @@
-package ui.pantallas.listreaderscreen;
+package ui.pantallas.deletereaderscreen;
 
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.Newspaper;
 import modelo.Reader;
 import ui.pantallas.common.BasePantallaController;
 
-public class ListReadersScreenController extends BasePantallaController {
+public class DeleteReaderController extends BasePantallaController {
 
-    private final ListReadersScreenViewModel viewModel;
+    private final DeleteReaderViewModel viewModel;
 
     @Inject
-    public ListReadersScreenController(ListReadersScreenViewModel viewModel) {
+    public DeleteReaderController(DeleteReaderViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
@@ -32,20 +30,16 @@ public class ListReadersScreenController extends BasePantallaController {
     @FXML
     private TableColumn<Reader, String> birthDateColumn;
 
-    @FXML
-    public MFXComboBox<Newspaper> newspaperComboBox;
-
     public void initialize() throws JAXBException {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         readersTable.setItems(viewModel.getReaders());
-        newspaperComboBox.setItems(viewModel.getNewspapers());
     }
 
-
-    public void filterByNewspaper() throws JAXBException {
-        Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
-        readersTable.setItems(viewModel.getReadersByNewspaper(newspaper));
+    public void deleteReader() throws JAXBException {
+        viewModel.deleteReader(readersTable.getSelectionModel().getSelectedItem());
+        readersTable.getItems().clear();
+        readersTable.setItems(viewModel.getReaders());
     }
 }

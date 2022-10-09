@@ -1,17 +1,20 @@
 package data;
 
+import common.Constantes;
 import config.ConfigTXT;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
+import modelo.Article;
 import modelo.Newspaper;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Log4j2
 public class DaoNewspaper {
@@ -26,46 +29,38 @@ public class DaoNewspaper {
     }
 
     public List<Newspaper> getNewspapers() {
-        Path path = Paths.get(configTXT.getPathNewspapers());
-        ArrayList<Newspaper> newspapers = new ArrayList<>();
+        Path newspaperPath = Paths.get(configTXT.getPathNewspapers());
+        List<Newspaper> newspapers = new ArrayList<>();
         try {
-            List<String> lines = Files.readAllLines(path);
-            lines.forEach(line -> {
-                newspapers.add(new Newspaper(line));
-            });
+            List<String> newspaperLines = Files.readAllLines(newspaperPath);
+            newspaperLines.forEach(line -> newspapers.add(new Newspaper(line)));
+            return newspapers;
         } catch (IOException e) {
-            log.error("Error", e);
-        }
-        return newspapers;
-    }
-
-    public boolean saveNewspaper(Newspaper newspaper) {
-        String line = newspaper.toLine();
-        Path path = Paths.get(configTXT.getPathNewspapers());
-        try {
-            Files.write(path, line.getBytes(), StandardOpenOption.APPEND);
-            return true;
-        } catch (IOException e) {
-            log.error("Error", e);
-            return false;
+            log.error(Constantes.COULD_NOT_READ_THE_NEWSPAPERS, e);
+            return Collections.emptyList();
         }
     }
 
-    public boolean deleteNewspaper(Newspaper newspaper) {
+    public void deleteNewspaper(Newspaper newspaper) {
         String line = newspaper.toLine();
         Path path = Paths.get(configTXT.getPathNewspapers());
         try {
             List<String> lines = Files.readAllLines(path);
             lines.remove(line);
             Files.write(path, lines);
-            return true;
         } catch (IOException e) {
-            log.error("Error ", e);
-            return false;
+            log.error(Constantes.THE_NEWSPAPER_COULD_NOT_BE_DELETED, e);
         }
     }
 
     public boolean checkArticles(Newspaper newspaper) {
-        return daoArticle.getArticles().stream().anyMatch(article -> article.getIdNewspaper() == newspaper.getId());
+        List<Article> articles = daoArticle.getArticles();
+        AtomicBoolean result = new AtomicBoolean(false);
+        articles.forEach(article -> {
+            if (article.getIdNewspaper() == newspaper.getId()) {
+                result.set(true);
+            }
+        });
+        return result.get();
     }
 }

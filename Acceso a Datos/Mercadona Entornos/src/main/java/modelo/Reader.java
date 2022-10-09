@@ -1,21 +1,37 @@
 package modelo;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import di.LocalDateAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@XmlRootElement(name = "reader")
+@XmlAccessorType(XmlAccessType.FIELD)
+@NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement
 public class Reader {
+
     private int id;
-    @XmlElement
+
     private String name;
-    @XmlElement
-    private String birthDate;
+
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    @XmlElement(name = "dateOfBirth")
+    private LocalDate dateOfBirth;
+
+    @XmlElementWrapper(name = "subscriptions")
+    @XmlElement(name = "subscription")
     private List<Subscription> subscriptions;
-    private List<Article> articlesRead;
+
+
+    @XmlElementWrapper(name = "readArticles")
+    @XmlElement(name = "readArticle")
+    private List<ReadArticle> readArticles;
+
 }

@@ -4,12 +4,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import modelo.Article;
-import modelo.Newspaper;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -61,13 +62,21 @@ public class AddArticleScreenController extends BasePantallaController implement
     }
 
     public void addArticle() {
-        Article article = new Article(Integer.parseInt(idText.getText()),
-                nameText.getText(),
-                Integer.parseInt(typeIDText.getText()),
-                Integer.parseInt(newspaperIDText.getText()));
-        if (viewModel.addArticle(article)) {
-            articlesTable.getItems().clear();
-            articlesTable.setItems(viewModel.getArticles());
+        if (idText.getText().isEmpty() || nameText.getText().isEmpty() || typeIDText.getText().isEmpty() || newspaperIDText.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS, ButtonType.OK);
+            alert.showAndWait();
+        } else {
+            Article article = new Article(Integer.parseInt(idText.getText()),
+                    nameText.getText(),
+                    Integer.parseInt(typeIDText.getText()),
+                    Integer.parseInt(newspaperIDText.getText()));
+            if (viewModel.addArticle(article)) {
+                articlesTable.getItems().clear();
+                articlesTable.setItems(viewModel.getArticles());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.ARTICLE_ID_ISN_T_UNIQUE_OR_THE_NEWSPAPER_DOESN_T_EXIST, ButtonType.OK);
+                alert.showAndWait();
+            }
         }
     }
 }

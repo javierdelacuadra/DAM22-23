@@ -2,25 +2,27 @@
 
 <?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.addarticlescreen.AddArticleScreenController">
-    <Label layoutX="351.0" layoutY="52.0" text="Add Article Screen" />
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.addarticlescreen.AddArticleScreenController">
+    <Label layoutX="351.0" layoutY="52.0" text="Add Article Screen"/>
     <TableView fx:id="articlesTable" layoutX="62.0" layoutY="182.0" prefHeight="235.0" prefWidth="381.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID" />
-            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle" />
-            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType" />
-         <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper" />
+            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle"/>
+            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType"/>
+            <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper"/>
         </columns>
     </TableView>
-    <MFXButton fx:id="addArticle" layoutX="608.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#addArticle" text="Add Article" />
-    <MFXTextField fx:id="idText" layoutX="561.0" layoutY="145.0" prefHeight="50.0" prefWidth="172.0" />
-    <MFXTextField fx:id="nameText" layoutX="561.0" layoutY="220.0" prefHeight="50.0" prefWidth="172.0" />
-    <MFXTextField fx:id="typeIDText" layoutX="561.0" layoutY="295.0" prefHeight="50.0" prefWidth="172.0" />
-    <MFXTextField fx:id="newspaperIDText" layoutX="561.0" layoutY="368.0" prefHeight="50.0" prefWidth="172.0" />
-    <Label layoutX="641.0" layoutY="123.0" text="ID" />
-    <Label layoutX="615.0" layoutY="198.0" text="nameArticle" />
-    <Label layoutX="628.0" layoutY="274.0" text="IDType" />
-    <Label layoutX="611.0" layoutY="348.0" text="IDNewspaper" />
+    <MFXButton fx:id="addArticle" layoutX="608.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#addArticle"
+               text="Add Article"/>
+    <MFXTextField fx:id="idText" layoutX="561.0" layoutY="145.0" prefHeight="50.0" prefWidth="172.0"/>
+    <MFXTextField fx:id="nameText" layoutX="561.0" layoutY="220.0" prefHeight="50.0" prefWidth="172.0"/>
+    <MFXTextField fx:id="typeIDText" layoutX="561.0" layoutY="295.0" prefHeight="50.0" prefWidth="172.0"/>
+    <MFXTextField fx:id="newspaperIDText" layoutX="561.0" layoutY="368.0" prefHeight="50.0" prefWidth="172.0"/>
+    <Label layoutX="641.0" layoutY="123.0" text="ID"/>
+    <Label layoutX="615.0" layoutY="198.0" text="nameArticle"/>
+    <Label layoutX="628.0" layoutY="274.0" text="IDType"/>
+    <Label layoutX="611.0" layoutY="348.0" text="IDNewspaper"/>
 </AnchorPane>

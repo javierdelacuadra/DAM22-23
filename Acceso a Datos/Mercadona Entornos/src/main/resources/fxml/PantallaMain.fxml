@@ -12,21 +12,18 @@
             </Menu>
             <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
                 <MenuItem fx:id="listNewspapers" mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
-                <MenuItem fx:id="addNewspapers" mnemonicParsing="false" onAction="#addNewspaperMenu" text="Add"/>
-                <MenuItem fx:id="updateNewspapers" mnemonicParsing="false" onAction="#updateNewspaperMenu" text="Update"/>
-                <MenuItem fx:id="deleteNewspapers" mnemonicParsing="false" onAction="#deleteNewspaperMenu" text="Delete"/>
+                <MenuItem fx:id="deleteNewspapers" mnemonicParsing="false" onAction="#deleteNewspaperMenu"
+                          text="Delete"/>
             </Menu>
             <Menu fx:id="articlesMenu" mnemonicParsing="false" text="Articles">
                 <MenuItem fx:id="listArticles" mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
                 <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
-                <MenuItem fx:id="updateArticles" mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>
-                <MenuItem fx:id="deleteArticles" mnemonicParsing="false" onAction="#deleteArticleMenu" text="Delete"/>
             </Menu>
             <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
                 <MenuItem fx:id="listReaders" mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
-<!--                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>-->
-<!--                <MenuItem fx:id="updateArticles" mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>-->
-<!--                <MenuItem fx:id="deleteArticles" mnemonicParsing="false" onAction="#deleteArticleMenu" text="Delete"/>-->
+                <!--                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>-->
+                <!--                <MenuItem fx:id="updateArticles" mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>-->
+                <MenuItem fx:id="deleteReaders" mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
             </Menu>
         </MenuBar>
     </top>

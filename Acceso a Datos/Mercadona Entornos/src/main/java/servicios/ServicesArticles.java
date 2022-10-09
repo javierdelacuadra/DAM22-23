@@ -21,4 +21,5 @@ public class ServicesArticles {
     public boolean addArticle(Article article) {
         return daoArticles.saveArticle(article);
     }
+
 }

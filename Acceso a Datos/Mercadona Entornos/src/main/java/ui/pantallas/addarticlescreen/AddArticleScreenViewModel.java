@@ -4,9 +4,7 @@ import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modelo.Article;
-import modelo.Newspaper;
 import servicios.ServicesArticles;
-import servicios.ServicesNewspaper;
 
 public class AddArticleScreenViewModel {
     private final ServicesArticles servicesArticles;

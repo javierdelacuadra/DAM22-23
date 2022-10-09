@@ -7,7 +7,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Article;
-import ui.pantallas.addarticlescreen.AddArticleScreenViewModel;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;

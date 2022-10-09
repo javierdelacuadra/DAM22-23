@@ -19,16 +19,9 @@ public class ServicesNewspaper {
         return daoNewspaper.getNewspapers();
     }
 
-    public boolean addNewspaper(Newspaper newspaper) {
-        return daoNewspaper.saveNewspaper(newspaper);
-    }
-
-    public boolean deleteNewspaper(Newspaper newspaper) {
-        if (!daoNewspaper.checkArticles(newspaper)) {
-            return daoNewspaper.deleteNewspaper(newspaper);
-        } else {
-            return false;
-        }
+    public void deleteNewspaper(Newspaper newspaper) {
+        daoNewspaper.getNewspapers().stream().filter(newspaper1 -> newspaper1.getId() == newspaper.getId())
+                .findFirst().ifPresent(daoNewspaper::deleteNewspaper);
     }
 
     public boolean checkNewspaper(Newspaper newspaper) {

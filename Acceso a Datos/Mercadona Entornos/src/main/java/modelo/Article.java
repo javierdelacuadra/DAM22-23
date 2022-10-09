@@ -1,5 +1,6 @@
 package modelo;
 
+import common.Constantes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class Article {
     private int idNewspaper;
 
     public Article(String line) {
-        String[] split = line.split(";");
+        String[] split = line.split(Constantes.PUNTO_Y_COMA);
         this.id = Integer.parseInt(split[0]);
         this.nameArticle = split[1];
         this.idType = Integer.parseInt(split[2]);
@@ -20,6 +21,6 @@ public class Article {
     }
 
     public String toLine() {
-        return id + ";" + nameArticle + ";" + idType + ";" + idNewspaper + "\n";
+        return id + Constantes.PUNTO_Y_COMA + nameArticle + Constantes.PUNTO_Y_COMA + idType + Constantes.PUNTO_Y_COMA + idNewspaper + Constantes.ESPACIO;
     }
 }

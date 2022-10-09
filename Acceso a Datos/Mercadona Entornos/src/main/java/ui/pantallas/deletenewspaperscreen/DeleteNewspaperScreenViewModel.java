@@ -18,11 +18,11 @@ public class DeleteNewspaperScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
     }
 
-    public boolean deleteNewspaper(Newspaper newspaper) {
-        return servicesNewspaper.deleteNewspaper(newspaper);
+    public void deleteNewspaper(Newspaper newspaper) {
+        servicesNewspaper.deleteNewspaper(newspaper);
     }
 
-    public boolean checkNewspaper(Newspaper newspaper) {
+    public boolean checkArticles(Newspaper newspaper) {
         return servicesNewspaper.checkNewspaper(newspaper);
     }
 }

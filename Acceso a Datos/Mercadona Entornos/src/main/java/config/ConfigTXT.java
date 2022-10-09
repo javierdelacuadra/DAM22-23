@@ -2,6 +2,7 @@ package config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import common.Constantes;
 import jakarta.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -19,20 +20,17 @@ public class ConfigTXT {
 
         try {
             ConfigTXT configTXT = mapper.readValue(
-                    ConfigTXT.class.getClassLoader().getResourceAsStream("config.yaml"), ConfigTXT.class);
-
-            this.pathClientes = configTXT.getPathClientes();
-            this.pathProductos = configTXT.getPathProductos();
+                    ConfigTXT.class.getClassLoader().getResourceAsStream(Constantes.CONFIG_YAML), ConfigTXT.class);
             this.pathArticles = configTXT.getPathArticles();
             this.pathNewspapers = configTXT.getPathNewspapers();
+            this.pathArticleTypes = configTXT.getPathArticleTypes();
 
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
     }
 
-    private String pathClientes;
-    private String pathProductos;
     private String pathArticles;
     private String pathNewspapers;
+    public String pathArticleTypes;
 }

@@ -13,8 +13,7 @@ public class BasePantallaController {
         this.PantallaMainController = PantallaMainController;
     }
 
-    public void principalCargado()
-    {
+    public void principalCargado() {
 
     }
 }
