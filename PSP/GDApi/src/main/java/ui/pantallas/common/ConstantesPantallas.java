@@ -58,6 +58,7 @@ public class ConstantesPantallas {
     public static final String LENGTH = "Length";
     public static final String CREDITOS = "Créditos";
     public static final String LOS_CREDITOS = "Desarrollado por mí\nAgradecimientos:\nA Jimena por romper la aplicación innumerables veces\nAl desarrollador del juego por robarle todos los assets";
+    public static final String MENOS_DOS = "-2";
 
     private ConstantesPantallas() {
     }

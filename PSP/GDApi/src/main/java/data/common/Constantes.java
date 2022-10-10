@@ -1,4 +1,4 @@
-package common;
+package data.common;
 
 public class Constantes {
 
@@ -13,6 +13,7 @@ public class Constantes {
     public static final String USERNAME = "username";
     public static final String PROFILE_URL = "profile/{username}";
     public static final String LEVELS_URL = "search/{text}";
+    public static final String API_URL = "apiUrl";
 
     private Constantes() {
     }

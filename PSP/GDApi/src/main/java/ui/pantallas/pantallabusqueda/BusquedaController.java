@@ -2,16 +2,20 @@ package ui.pantallas.pantallabusqueda;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
 import modelo.ResponseLevelsItem;
-import modelo.ResponseUser;
+import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
 import servicios.ServiciosNiveles;
 import servicios.ServiciosUsers;
 import ui.pantallas.common.BasePantallaController;
@@ -25,9 +29,7 @@ import java.util.ResourceBundle;
 @Log4j2
 public class BusquedaController extends BasePantallaController implements Initializable {
 
-    public static final String MENOS_DOS = "-2";
     private final ServiciosNiveles serviciosNiveles;
-
     private final ServiciosUsers serviciosUsers;
 
     @Inject
@@ -146,17 +148,29 @@ public class BusquedaController extends BasePantallaController implements Initia
             doSearch = true;
         } else doSearch = text.length() >= 3 || !diff.equals(ConstantesPantallas.NADA);
         if (doSearch) {
-            Either<String, List<ResponseLevelsItem>> either = serviciosNiveles.getNiveles(text, diff);
-            if (either.isLeft()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle(ConstantesPantallas.ERROR);
-                alert.setHeaderText(ConstantesPantallas.ERROR);
-                alert.setContentText(either.getLeft());
-                alert.showAndWait();
-            } else {
-                this.getMainController().setResponseLevels(either.get());
-                this.getMainController().cargarPantallaNiveles();
-            }
+            getMainController().root.setCursor(Cursor.WAIT);
+            String finalText = text;
+            var task = new Task<Either<String, List<ResponseLevelsItem>>>() {
+                @Override
+                protected Either<String, List<ResponseLevelsItem>> call() {
+                    return serviciosNiveles.getNiveles(finalText, diff);
+                }
+            };
+            task.setOnSucceeded(workerStateEvent -> {
+                //workerStateEvent.getSource().valueProperty().get()
+                getMainController().root.setCursor(Cursor.DEFAULT);
+                var result = task.getValue();
+                result.peek(niveles -> {
+                    this.getMainController().setResponseLevels(niveles);
+                    this.getMainController().cargarPantallaNiveles();
+                }).peekLeft(error -> getMainController().crearAlertError(error));
+            });
+            task.setOnFailed(workerStateEvent -> {
+                //workerStateEvent.getSource().getException().getMessage()
+                getMainController().crearAlertError(task.getException().getMessage());
+                getMainController().root.setCursor(Cursor.DEFAULT);
+            });
+            new Thread(task).start();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(ConstantesPantallas.ERROR);
@@ -172,7 +186,7 @@ public class BusquedaController extends BasePantallaController implements Initia
         if (!code.isEmpty()) {
             for (int i = 0; i < code.length(); i++) {
                 if (code.charAt(i) == ConstantesPantallas.CEROCHAR) {
-                    difficultyString.append(MENOS_DOS);
+                    difficultyString.append(ConstantesPantallas.MENOS_DOS);
                 } else if (code.charAt(i) == ConstantesPantallas.SEISCHAR) {
                     difficultyString.append(ConstantesPantallas.MENOS_TRES);
                 } else {
@@ -214,17 +228,19 @@ public class BusquedaController extends BasePantallaController implements Initia
 
     public void cargarUsuario() {
         String text = searchBox.getText();
-        Either<String, ResponseUser> either = serviciosUsers.getUser(text);
-        if (either.isLeft()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(ConstantesPantallas.ERROR);
-            alert.setHeaderText(ConstantesPantallas.ERROR);
-            alert.setContentText(either.getLeft());
-            alert.showAndWait();
-        } else {
-            this.getMainController().setResponseUser(either.get());
-            this.getMainController().cargarPantallaUsers();
-        }
+
+        Single.fromCallable(() -> serviciosUsers.getUser(text))
+                .subscribeOn(Schedulers.io())
+                .observeOn(JavaFxScheduler.platform())
+                .doFinally(() -> getMainController().root.setCursor(Cursor.DEFAULT))
+                .subscribe(result ->
+                                result.peek(user -> {
+                                            this.getMainController().setResponseUser(user);
+                                            this.getMainController().cargarPantallaUsers();
+                                        })
+                                        .peekLeft(error -> getMainController().crearAlertError(error)),
+                        throwable -> getMainController().crearAlertError(throwable.getMessage()));
+        getMainController().root.setCursor(Cursor.WAIT);
     }
 
     public void autoFilter() {

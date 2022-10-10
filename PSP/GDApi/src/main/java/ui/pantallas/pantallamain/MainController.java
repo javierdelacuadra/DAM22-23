@@ -48,7 +48,7 @@ public class MainController extends BasePantallaController implements Initializa
     double yOffset = 0;
 
     @FXML
-    private BorderPane root;
+    public BorderPane root;
 
     @FXML
     private ImageView botonClose;
@@ -155,5 +155,13 @@ public class MainController extends BasePantallaController implements Initializa
 
     public void cargarPantallaInicio() {
         cargarPantalla(Pantallas.PANTALLAINICIO);
+    }
+
+    public void crearAlertError(String error) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(ConstantesPantallas.ERROR);
+        alert.setHeaderText(ConstantesPantallas.ERROR);
+        alert.setContentText(error);
+        alert.showAndWait();
     }
 }

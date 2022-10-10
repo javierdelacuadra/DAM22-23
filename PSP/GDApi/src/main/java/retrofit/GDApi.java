@@ -1,6 +1,6 @@
 package retrofit;
 
-import common.Constantes;
+import data.common.Constantes;
 import modelo.ResponseLevelsItem;
 import modelo.ResponseUser;
 import retrofit2.Call;

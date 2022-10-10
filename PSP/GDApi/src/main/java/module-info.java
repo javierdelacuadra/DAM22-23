@@ -1,8 +1,6 @@
 module GDApi {
     requires lombok;
     requires jakarta.jakartaee.web.api;
-    requires com.fasterxml.jackson.dataformat.yaml;
-    requires com.fasterxml.jackson.databind;
     requires com.google.gson;
     requires org.apache.logging.log4j;
     requires javafx.graphics;
@@ -15,6 +13,9 @@ module GDApi {
     requires okhttp3;
     requires com.squareup.moshi;
     requires io.vavr;
+    requires org.yaml.snakeyaml;
+    requires io.reactivex.rxjava3;
+    requires org.pdfsam.rxjavafx;
 
     exports ui to javafx.graphics;
     exports modelo;
@@ -33,11 +34,11 @@ module GDApi {
     opens ui;
     opens config;
     opens modelo;
-    opens common;
     opens ui.pantallas.common;
     opens ui.pantallas.pantallamain;
     opens ui.pantallas.pantallainicio;
     opens ui.pantallas.pantallabusqueda;
     opens ui.pantallas.pantallaniveles;
     opens ui.pantallas.pantallausers;
+    opens data.common;
 }

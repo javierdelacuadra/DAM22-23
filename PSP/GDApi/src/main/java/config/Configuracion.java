@@ -1,36 +1,27 @@
 package config;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import data.common.Constantes;
 import jakarta.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import org.yaml.snakeyaml.Yaml;
 
-import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
 
 @Getter
 @Log4j2
 @Singleton
 public class Configuracion {
 
+    private final String apiUrl;
+
     public Configuracion() {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        mapper.findAndRegisterModules();
-
-        try {
-            JsonNode node = mapper.readTree(
-                    Configuracion.class.getClassLoader().getResourceAsStream("config.yaml"));
-            this.pathUsuarios = node.get("pathUsuarios").asText();
-            this.pathBanners = node.get("pathBanners").asText();
-            this.pathPersonajes = node.get("pathPersonajes").asText();
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-
-        }
+        Yaml yaml = new Yaml();
+        InputStream inputStream = this.getClass()
+                .getClassLoader()
+                .getResourceAsStream("config.yaml");
+        Map<String, Object> obj = yaml.load(inputStream);
+        this.apiUrl = (String) obj.get(Constantes.API_URL);
     }
-
-    private String pathUsuarios;
-    private String pathBanners;
-    private String pathPersonajes;
 }

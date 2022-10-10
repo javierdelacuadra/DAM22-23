@@ -2,7 +2,7 @@ package di;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import common.Constantes;
+import data.common.Constantes;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
 import okhttp3.OkHttpClient;
@@ -16,7 +16,7 @@ public class GDApiProducer {
     @Singleton
     public Retrofit getRetrofit() {
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .connectionPool(new okhttp3.ConnectionPool(1, 2, java.util.concurrent.TimeUnit.SECONDS))
+                .connectionPool(new okhttp3.ConnectionPool(1, 5, java.util.concurrent.TimeUnit.SECONDS))
                 .build();
 
         Gson gson = new GsonBuilder()
