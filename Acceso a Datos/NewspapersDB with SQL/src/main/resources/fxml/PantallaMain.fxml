@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.PantallaMainController">
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
+                <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Log out"/>
+                <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Exit"/>
+            </Menu>
+            <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
+                <MenuItem fx:id="listNewspapers" mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
+                <MenuItem fx:id="deleteNewspapers" mnemonicParsing="false" onAction="#deleteNewspaperMenu"
+                          text="Delete"/>
+            </Menu>
+            <Menu fx:id="articlesMenu" mnemonicParsing="false" text="Articles">
+                <MenuItem fx:id="listArticles" mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
+                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
+            </Menu>
+            <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
+                <MenuItem fx:id="listReaders" mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
+                <!--                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>-->
+                <!--                <MenuItem fx:id="updateArticles" mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>-->
+                <MenuItem fx:id="deleteReaders" mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
