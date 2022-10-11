@@ -16,8 +16,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseLevelsItem;
-import modelo.ResponseUser;
+import domain.modelo.Nivel;
+import domain.modelo.Usuario;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 import ui.pantallas.common.Pantallas;
@@ -53,24 +53,24 @@ public class MainController extends BasePantallaController implements Initializa
     @FXML
     private ImageView botonClose;
 
-    public List<ResponseLevelsItem> responseLevels;
+    public List<Nivel> levels;
 
-    public List<ResponseLevelsItem> getResponseLevels() {
-        return responseLevels;
+    public List<Nivel> getResponseLevels() {
+        return levels;
     }
 
-    public void setResponseLevels(List<ResponseLevelsItem> responseLevels) {
-        this.responseLevels = responseLevels;
+    public void setResponseLevels(List<Nivel> responseLevels) {
+        this.levels = responseLevels;
     }
 
-    public ResponseUser responseUser;
+    public Usuario usuario;
 
-    public ResponseUser getResponseUser() {
-        return responseUser;
+    public Usuario getResponseUser() {
+        return usuario;
     }
 
-    public void setResponseUser(ResponseUser responseUser) {
-        this.responseUser = responseUser;
+    public void setResponseUser(Usuario responseUser) {
+        this.usuario = responseUser;
     }
 
 

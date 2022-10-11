@@ -1,9 +1,9 @@
-package servicios;
+package domain.servicios;
 
 import data.DaoUsers;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import modelo.ResponseUser;
+import domain.modelo.Usuario;
 
 public class ServiciosUsers {
 
@@ -14,7 +14,7 @@ public class ServiciosUsers {
         this.daoUsers = daoUsers;
     }
 
-    public Either<String, ResponseUser> getUser(String username) {
+    public Either<String, Usuario> getUser(String username) {
         return daoUsers.getUser(username);
     }
 }

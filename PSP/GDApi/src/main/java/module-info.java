@@ -9,22 +9,21 @@ module GDApi {
     requires MaterialFX;
     requires retrofit2;
     requires retrofit2.converter.gson;
-    requires retrofit2.converter.moshi;
     requires okhttp3;
-    requires com.squareup.moshi;
     requires io.vavr;
     requires org.yaml.snakeyaml;
     requires io.reactivex.rxjava3;
     requires org.pdfsam.rxjavafx;
+    requires retrofit2.adapter.rxjava3;
 
     exports ui to javafx.graphics;
-    exports modelo;
     exports data;
     exports ui.pantallas.pantallabusqueda;
-    exports servicios;
+    exports domain.modelo;
+    exports domain.servicios;
     exports di;
     exports config;
-    exports retrofit;
+    exports data.retrofit;
     exports ui.pantallas.pantallaniveles;
     exports ui.pantallas.pantallausers;
     exports ui.pantallas.pantallamain;
@@ -33,12 +32,14 @@ module GDApi {
 
     opens ui;
     opens config;
-    opens modelo;
     opens ui.pantallas.common;
     opens ui.pantallas.pantallamain;
     opens ui.pantallas.pantallainicio;
     opens ui.pantallas.pantallabusqueda;
     opens ui.pantallas.pantallaniveles;
     opens ui.pantallas.pantallausers;
+    opens data.retrofit;
     opens data.common;
+    opens domain.modelo;
+    opens domain.servicios;
 }

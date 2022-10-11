@@ -1,8 +1,9 @@
-package retrofit;
+package data.retrofit;
 
 import data.common.Constantes;
-import modelo.ResponseLevelsItem;
-import modelo.ResponseUser;
+import io.reactivex.rxjava3.core.Single;
+import domain.modelo.ResponseLevelsItem;
+import domain.modelo.ResponseUser;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -17,7 +18,7 @@ public interface GDApi {
                                               @Query(Constantes.DIFF) String difficulty);
 
     @GET(Constantes.LEVELS_URL)
-    Call<List<ResponseLevelsItem>> getNiveles(@Path(Constantes.TEXT) String text);
+    Single<List<ResponseLevelsItem>> getNiveles(@Path(Constantes.TEXT) String text);
 
     @GET(Constantes.PROFILE_URL)
     Call<ResponseUser> getUser(@Path(Constantes.USERNAME) String username);

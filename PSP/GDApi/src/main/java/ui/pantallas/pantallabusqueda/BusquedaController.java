@@ -14,10 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseLevelsItem;
+import domain.modelo.Nivel;
 import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
-import servicios.ServiciosNiveles;
-import servicios.ServiciosUsers;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
@@ -29,13 +27,11 @@ import java.util.ResourceBundle;
 @Log4j2
 public class BusquedaController extends BasePantallaController implements Initializable {
 
-    private final ServiciosNiveles serviciosNiveles;
-    private final ServiciosUsers serviciosUsers;
+    private final BusquedaViewModel viewModel;
 
     @Inject
-    public BusquedaController(ServiciosNiveles serviciosNiveles, ServiciosUsers serviciosUsers) {
-        this.serviciosNiveles = serviciosNiveles;
-        this.serviciosUsers = serviciosUsers;
+    public BusquedaController(BusquedaViewModel viewModel) {
+        this.viewModel = viewModel;
     }
 
     @FXML
@@ -136,47 +132,43 @@ public class BusquedaController extends BasePantallaController implements Initia
 
     }
 
-    public void mostrarNiveles() {
+    public void getNiveles() {
         String text = searchBox.getText();
-        if (text.isBlank()) {
-            text = ConstantesPantallas.ANY;
-        }
         String diff = parseDifficulty();
-
-        boolean doSearch;
-        if (text.equals(ConstantesPantallas.ANY) && diff.equals(ConstantesPantallas.NADA)) {
-            doSearch = true;
-        } else doSearch = text.length() >= 3 || !diff.equals(ConstantesPantallas.NADA);
-        if (doSearch) {
-            getMainController().root.setCursor(Cursor.WAIT);
-            String finalText = text;
-            var task = new Task<Either<String, List<ResponseLevelsItem>>>() {
-                @Override
-                protected Either<String, List<ResponseLevelsItem>> call() {
-                    return serviciosNiveles.getNiveles(finalText, diff);
-                }
-            };
-            task.setOnSucceeded(workerStateEvent -> {
-                //workerStateEvent.getSource().valueProperty().get()
-                getMainController().root.setCursor(Cursor.DEFAULT);
-                var result = task.getValue();
-                result.peek(niveles -> {
-                    this.getMainController().setResponseLevels(niveles);
-                    this.getMainController().cargarPantallaNiveles();
-                }).peekLeft(error -> getMainController().crearAlertError(error));
-            });
-            task.setOnFailed(workerStateEvent -> {
-                //workerStateEvent.getSource().getException().getMessage()
-                getMainController().crearAlertError(task.getException().getMessage());
-                getMainController().root.setCursor(Cursor.DEFAULT);
-            });
-            new Thread(task).start();
+        if (text.isBlank() && diff.isBlank()) {
+            this.getMainController().crearAlertError(ConstantesPantallas.ESCRIBE_ALGO_O_SELECCIONA_UN_FILTRO_PARA_BUSCAR);
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(ConstantesPantallas.ERROR);
-            alert.setHeaderText(ConstantesPantallas.ERROR);
-            alert.setContentText(ConstantesPantallas.EL_TEXTO_DE_BUSQUEDA_DEBE_TENER_AL_MENOS_3_CARACTERES_CUANDO_NO_SE_SELECCIONA_NINGUN_FILTRO);
-            alert.showAndWait();
+            if (text.isBlank()) {
+                text = ConstantesPantallas.ANY;
+            }
+            if (text.equals(ConstantesPantallas.ANY) && diff.equals(ConstantesPantallas.NADA)) {
+                this.getMainController().setResponseLevels(viewModel.getNivelesSinFiltro(text).get());
+                viewModel.getNivelesSinFiltro(text);
+            } else if (text.length() >= 3 || !diff.equals(ConstantesPantallas.NADA)) {
+                getMainController().root.setCursor(Cursor.WAIT);
+                String finalText = text;
+                var task = new Task<Either<String, List<Nivel>>>() {
+                    @Override
+                    protected Either<String, List<Nivel>> call() {
+                        return viewModel.getNivelesConFiltro(finalText, diff);
+                    }
+                };
+                task.setOnSucceeded(workerStateEvent -> {
+                    getMainController().root.setCursor(Cursor.DEFAULT);
+                    var result = task.getValue();
+                    result.peek(niveles -> {
+                        this.getMainController().setResponseLevels(niveles);
+                        this.getMainController().cargarPantallaNiveles();
+                    }).peekLeft(error -> getMainController().crearAlertError(error));
+                });
+                task.setOnFailed(workerStateEvent -> {
+                    getMainController().crearAlertError(task.getException().getMessage());
+                    getMainController().root.setCursor(Cursor.DEFAULT);
+                });
+                new Thread(task).start();
+            } else {
+                this.getMainController().crearAlertError(ConstantesPantallas.EL_TEXTO_DE_BUSQUEDA_DEBE_TENER_AL_MENOS_3_CARACTERES_CUANDO_NO_SE_SELECCIONA_NINGUN_FILTRO);
+            }
         }
     }
 
@@ -229,7 +221,7 @@ public class BusquedaController extends BasePantallaController implements Initia
     public void cargarUsuario() {
         String text = searchBox.getText();
 
-        Single.fromCallable(() -> serviciosUsers.getUser(text))
+        Single.fromCallable(() -> viewModel.getUser(text))
                 .subscribeOn(Schedulers.io())
                 .observeOn(JavaFxScheduler.platform())
                 .doFinally(() -> getMainController().root.setCursor(Cursor.DEFAULT))

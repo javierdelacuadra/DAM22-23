@@ -11,7 +11,7 @@
     <MFXTextField fx:id="difficulty" layoutX="69.0" layoutY="425.0" prefHeight="99.0" prefWidth="664.0"
                   style="-fx-background-color: #105deb; -fx-border-color: #105deb; -fx-opacity: 0.5;"/>
     <ImageView fx:id="searchButton" fitHeight="46.0" fitWidth="147.0" layoutX="524.0" layoutY="43.0"
-               onMouseClicked="#mostrarNiveles" pickOnBounds="true" preserveRatio="true"/>
+               onMouseClicked="#getNiveles" pickOnBounds="true" preserveRatio="true"/>
     <ImageView fx:id="filterAuto" fitHeight="80.0" fitWidth="80.0" layoutX="78.0" layoutY="435.0" pickOnBounds="true"
                preserveRatio="true"/>
     <ImageView fx:id="filterEasy" fitHeight="80.0" fitWidth="80.0" layoutX="170.0" layoutY="435.0" pickOnBounds="true"

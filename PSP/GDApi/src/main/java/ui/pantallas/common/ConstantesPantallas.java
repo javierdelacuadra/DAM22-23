@@ -31,7 +31,7 @@ public class ConstantesPantallas {
     public static final String ESTA_SEGURO_QUE_DESEA_SALIR_DE_LA_APLICACION_PODRIAN_PERDERSE_LOS_DATOS_DE_ESTA_SESION = "¿Está seguro que desea salir de la aplicación?";
     public static final String TITULO_APLICACION = "GDApi";
     public static final String ERROR = "Error";
-    public static final String EL_TEXTO_DE_BUSQUEDA_DEBE_TENER_AL_MENOS_3_CARACTERES_CUANDO_NO_SE_SELECCIONA_NINGUN_FILTRO = "El texto de búsqueda debe tener al menos 3 caracteres\n cuando no se selecciona ningún filtro";
+    public static final String EL_TEXTO_DE_BUSQUEDA_DEBE_TENER_AL_MENOS_3_CARACTERES_CUANDO_NO_SE_SELECCIONA_NINGUN_FILTRO = "El texto de búsqueda debe tener al menos 3 caracteres\ncuando no se selecciona ningún filtro";
     public static final String AYUDA = "Ayuda";
     public static final String ANY = "*";
     public static final String NADA = "";
@@ -59,6 +59,7 @@ public class ConstantesPantallas {
     public static final String CREDITOS = "Créditos";
     public static final String LOS_CREDITOS = "Desarrollado por mí\nAgradecimientos:\nA Jimena por romper la aplicación innumerables veces\nAl desarrollador del juego por robarle todos los assets";
     public static final String MENOS_DOS = "-2";
+    public static final String ESCRIBE_ALGO_O_SELECCIONA_UN_FILTRO_PARA_BUSCAR = "Escribe algo o selecciona un filtro para buscar";
 
     private ConstantesPantallas() {
     }

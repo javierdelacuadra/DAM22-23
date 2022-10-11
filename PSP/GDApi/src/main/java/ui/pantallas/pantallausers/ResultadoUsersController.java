@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseUser;
+import domain.modelo.Usuario;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
@@ -87,14 +87,14 @@ public class ResultadoUsersController extends BasePantallaController implements 
 
     @Override
     public void principalCargado() {
-        ResponseUser responseUser = getMainController().getResponseUser();
-        usernameLabel.setText(responseUser.getUsername());
-        starLabel.setText(responseUser.getStars() + ConstantesPantallas.NADA);
-        diamondLabel.setText(responseUser.getDiamonds() + ConstantesPantallas.NADA);
-        scoinsLabel.setText(responseUser.getCoins() + ConstantesPantallas.NADA);
-        ucoinsLabel.setText(responseUser.getUserCoins() + ConstantesPantallas.NADA);
-        demonLabel.setText(responseUser.getDemons() + ConstantesPantallas.NADA);
-        cpLabel.setText(responseUser.getCp() + ConstantesPantallas.NADA);
+        Usuario usuario = getMainController().getResponseUser();
+        usernameLabel.setText(usuario.getUsername());
+        starLabel.setText(usuario.getStars() + ConstantesPantallas.NADA);
+        diamondLabel.setText(usuario.getDiamonds() + ConstantesPantallas.NADA);
+        scoinsLabel.setText(usuario.getCoins() + ConstantesPantallas.NADA);
+        ucoinsLabel.setText(usuario.getUserCoins() + ConstantesPantallas.NADA);
+        demonLabel.setText(usuario.getDemons() + ConstantesPantallas.NADA);
+        cpLabel.setText(usuario.getCp() + ConstantesPantallas.NADA);
     }
 
     public void volverAtras() {

@@ -20,7 +20,7 @@ public class Configuracion {
         Yaml yaml = new Yaml();
         InputStream inputStream = this.getClass()
                 .getClassLoader()
-                .getResourceAsStream("config.yaml");
+                .getResourceAsStream(Constantes.CONFIG_YAML);
         Map<String, Object> obj = yaml.load(inputStream);
         this.apiUrl = (String) obj.get(Constantes.API_URL);
     }

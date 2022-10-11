@@ -8,7 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
-import modelo.ResponseLevelsItem;
+import domain.modelo.Nivel;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.ConstantesPantallas;
 
@@ -24,22 +24,22 @@ public class ResultadoNivelesController extends BasePantallaController implement
     private ImageView backButton;
 
     @FXML
-    private TableView<ResponseLevelsItem> table;
+    private TableView<Nivel> table;
 
     @FXML
-    private TableColumn<ResponseLevelsItem, String> name;
+    private TableColumn<Nivel, String> name;
 
     @FXML
-    private TableColumn<ResponseLevelsItem, String> id;
+    private TableColumn<Nivel, String> id;
 
     @FXML
-    private TableColumn<ResponseLevelsItem, String> author;
+    private TableColumn<Nivel, String> author;
 
     @FXML
-    private TableColumn<ResponseLevelsItem, String> difficulty;
+    private TableColumn<Nivel, String> difficulty;
 
     @FXML
-    private TableColumn<ResponseLevelsItem, String> length;
+    private TableColumn<Nivel, String> length;
 
 
     @Override
@@ -61,7 +61,7 @@ public class ResultadoNivelesController extends BasePantallaController implement
     @Override
     public void principalCargado() {
         table.getItems().clear();
-        List<ResponseLevelsItem> levels = getMainController().getResponseLevels();
+        List<Nivel> levels = getMainController().getResponseLevels();
         table.getItems().addAll(levels);
     }
 
