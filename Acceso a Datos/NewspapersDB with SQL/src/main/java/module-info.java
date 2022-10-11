@@ -5,14 +5,14 @@ module MercadonaFX {
     requires MaterialFX;
 
     requires lombok;
-    requires com.fasterxml.jackson.databind;
-    requires com.fasterxml.jackson.dataformat.yaml;
     requires com.google.gson;
     requires org.apache.logging.log4j;
     requires jakarta.cdi;
     requires jakarta.inject;
     requires jakarta.xml.bind;
     requires io.vavr;
+    requires java.sql;
+    requires org.yaml.snakeyaml;
 
     exports ui;
     exports ui.common;
@@ -38,6 +38,7 @@ module MercadonaFX {
     opens common;
     opens ui;
     opens ui.common;
+    opens data.common;
     opens ui.pantallas.pantallalogin to javafx.fxml;
     opens ui.pantallas.pantallamain to javafx.fxml;
     opens ui.pantallas.addarticlescreen to javafx.fxml;

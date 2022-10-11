@@ -10,6 +10,9 @@ public class Constantes {
     public static final String XML_READER_PATH = "xmlReaderPath";
     public static final String PUNTO_Y_COMA = ";";
     public static final String ESPACIO = "\n";
+    public static final String PATH_ARTICLES = "pathArticles";
+    public static final String PATH_NEWSPAPERS = "pathNewspapers";
+    public static final String PATH_ARTICLE_TYPES = "pathArticleTypes";
 
     private Constantes() {
     }

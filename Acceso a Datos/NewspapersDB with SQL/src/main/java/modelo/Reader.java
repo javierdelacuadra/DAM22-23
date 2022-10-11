@@ -25,13 +25,13 @@ public class Reader {
     @XmlElement(name = "dateOfBirth")
     private LocalDate dateOfBirth;
 
-    @XmlElementWrapper(name = "subscriptions")
-    @XmlElement(name = "subscription")
-    private List<Subscription> subscriptions;
-
-
-    @XmlElementWrapper(name = "readArticles")
-    @XmlElement(name = "readArticle")
-    private List<ReadArticle> readArticles;
+//    @XmlElementWrapper(name = "subscriptions")
+//    @XmlElement(name = "subscription")
+//    private List<Subscription> subscriptions;
+//
+//
+//    @XmlElementWrapper(name = "readArticles")
+//    @XmlElement(name = "readArticle")
+//    private List<ReadArticle> readArticles;
 
 }

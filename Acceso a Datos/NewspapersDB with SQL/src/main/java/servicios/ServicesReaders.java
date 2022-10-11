@@ -24,8 +24,8 @@ public class ServicesReaders {
 
     public List<Reader> getReadersByNewspaper(int idNewspaper) throws JAXBException {
         return daoReaders.getReaders().get().stream()
-                .filter(reader -> reader.getSubscriptions().stream()
-                        .anyMatch(subscription -> subscription.getId_newspaper() == idNewspaper))
+                //.filter(reader -> reader.getSubscriptions().stream()
+                      //  .anyMatch(subscription -> subscription.getId_newspaper() == idNewspaper))
                 .collect(Collectors.toList());
     }
 
