@@ -14,6 +14,7 @@ public class Constantes {
     public static final String SERVER_BAD_RESPONSE = "-1";
     public static final String NO_SE_HA_ENCONTRADO_EL_USUARIO = "No se ha encontrado el usuario";
     public static final String ERROR_DESCONOCIDO = "Error desconocido";
+    public static final String APPLICATION_JSON = "application/json";
 
     private Constantes() {
     }

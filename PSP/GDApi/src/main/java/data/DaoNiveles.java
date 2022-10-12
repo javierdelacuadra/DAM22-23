@@ -47,7 +47,7 @@ public class DaoNiveles {
                     if (throwable instanceof HttpException httpException) {
                         try (ResponseBody errorBody = Objects.requireNonNull(httpException.response()).errorBody()) {
                             assert errorBody != null;
-                            if (Objects.equals(errorBody.contentType(), MediaType.get("application/json"))) {
+                            if (Objects.equals(errorBody.contentType(), MediaType.get(Constantes.APPLICATION_JSON))) {
                                 error = Either.left(httpException.getMessage());
                             } else {
                                 error = Either.left(Objects.requireNonNull(httpException.response()).message());
