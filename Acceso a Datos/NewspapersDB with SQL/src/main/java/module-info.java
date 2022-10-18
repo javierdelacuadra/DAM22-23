@@ -13,6 +13,8 @@ module MercadonaFX {
     requires io.vavr;
     requires java.sql;
     requires org.yaml.snakeyaml;
+    requires com.zaxxer.hikari;
+    requires jakarta.annotation;
 
     exports ui;
     exports ui.common;
@@ -29,9 +31,9 @@ module MercadonaFX {
     exports config;
     exports data;
     exports di;
-    exports modelo;
+    exports model;
 
-    opens modelo to javafx.base, com.google.gson, jakarta.xml.bind;
+    opens model to javafx.base, com.google.gson, jakarta.xml.bind;
     opens config;
     opens servicios;
     opens data;

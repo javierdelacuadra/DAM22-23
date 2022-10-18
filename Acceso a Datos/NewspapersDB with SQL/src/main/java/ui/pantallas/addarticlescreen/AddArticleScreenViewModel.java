@@ -3,7 +3,7 @@ package ui.pantallas.addarticlescreen;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modelo.Article;
+import model.Article;
 import servicios.ServicesArticles;
 
 public class AddArticleScreenViewModel {

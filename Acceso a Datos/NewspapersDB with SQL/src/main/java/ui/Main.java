@@ -3,7 +3,7 @@ package ui;
 import data.DaoReadersSQL;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import modelo.Reader;
+import model.Reader;
 
 import java.time.LocalDate;
 
@@ -15,11 +15,13 @@ public class Main {
 
         DaoReadersSQL daoReadersSQL = container.select(DaoReadersSQL.class).get();
 
-        daoReadersSQL.getAllReaders().forEach(System.out::println);
+        daoReadersSQL.getAll().forEach(System.out::println);
 
-        daoReadersSQL.deleteReader(2);
+        daoReadersSQL.save(new Reader(4, "Juan", LocalDate.of(1990, 1, 1)));
 
-        Reader reader = new Reader(1, "Pepe", LocalDate.of(1990, 1, 1));
-        daoReadersSQL.updateReader(reader);
+//        daoReadersSQL.deleteReader(2);
+//
+//        Reader reader = new Reader(1, "Pepe", LocalDate.of(1990, 1, 1));
+//        daoReadersSQL.updateReader(reader);
     }
 }

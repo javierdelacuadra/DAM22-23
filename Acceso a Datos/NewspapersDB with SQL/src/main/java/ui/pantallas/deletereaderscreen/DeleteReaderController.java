@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.Reader;
+import model.Reader;
 import ui.pantallas.common.BasePantallaController;
 
 public class DeleteReaderController extends BasePantallaController {

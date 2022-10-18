@@ -2,7 +2,7 @@ package servicios;
 
 import data.DaoNewspaper;
 import jakarta.inject.Inject;
-import modelo.Newspaper;
+import model.Newspaper;
 
 import java.util.List;
 

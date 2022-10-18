@@ -1,7 +1,6 @@
 package common;
 
 public class Constantes {
-    public static final String CONFIG_YAML = "config.yaml";
     public static final String PROPERTIES_XML = "properties.xml";
     public static final String COULD_NOT_READ_THE_ARTICLES = "Could not read the articles";
     public static final String COULD_NOT_READ_THE_NEWSPAPERS = "Could not read the newspapers";
@@ -13,6 +12,9 @@ public class Constantes {
     public static final String PATH_ARTICLES = "pathArticles";
     public static final String PATH_NEWSPAPERS = "pathNewspapers";
     public static final String PATH_ARTICLE_TYPES = "pathArticleTypes";
+    public static final String ID = "id";
+    public static final String NAME = "name";
+    public static final String DATE_OF_BIRTH = "dateOfBirth";
 
     private Constantes() {
     }
