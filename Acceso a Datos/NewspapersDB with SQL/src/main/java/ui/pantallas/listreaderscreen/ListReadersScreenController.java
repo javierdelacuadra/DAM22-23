@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.Newspaper;
-import modelo.Reader;
+import model.Newspaper;
+import model.Reader;
 import ui.pantallas.common.BasePantallaController;
 
 public class ListReadersScreenController extends BasePantallaController {

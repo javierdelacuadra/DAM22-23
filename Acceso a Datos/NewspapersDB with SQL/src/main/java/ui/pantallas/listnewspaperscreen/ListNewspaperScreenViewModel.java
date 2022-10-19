@@ -3,7 +3,7 @@ package ui.pantallas.listnewspaperscreen;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modelo.Newspaper;
+import model.Newspaper;
 import servicios.ServicesNewspaper;
 
 public class ListNewspaperScreenViewModel {

@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 import common.Constantes;
 import lombok.AllArgsConstructor;

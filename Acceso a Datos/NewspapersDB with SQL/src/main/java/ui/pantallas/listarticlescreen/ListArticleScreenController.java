@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.Article;
+import model.Article;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;

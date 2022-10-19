@@ -1,22 +1,20 @@
-package ui.pantallas.deletereaderscreen;
+package ui.pantallas.updatereaderscreen;
 
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Reader;
-import servicios.ServicesReaders;
 import servicios.ServicesReadersSQL;
 
 import java.util.List;
 
-public class DeleteReaderViewModel {
+public class UpdateReaderViewModel {
 
     private final ServicesReadersSQL servicesReadersSQL;
 
     @Inject
-    public DeleteReaderViewModel(ServicesReadersSQL servicesReadersSQL) {
+    public UpdateReaderViewModel(ServicesReadersSQL servicesReadersSQL) {
         this.servicesReadersSQL = servicesReadersSQL;
     }
 
@@ -24,7 +22,8 @@ public class DeleteReaderViewModel {
         return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().get());
     }
 
-    public Either<Integer, List<Reader>> deleteReader(Reader reader) throws JAXBException {
-        return servicesReadersSQL.deleteReader(reader);
+    public Either<Integer, List<Reader>> updateReader(Reader reader) {
+        return servicesReadersSQL.updateReader(reader);
     }
+
 }

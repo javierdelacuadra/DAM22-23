@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 import di.LocalDateAdapter;
 import jakarta.xml.bind.annotation.*;
@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @XmlRootElement(name = "reader")

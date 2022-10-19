@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 import di.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;

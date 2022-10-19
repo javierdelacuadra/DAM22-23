@@ -21,8 +21,8 @@
             </Menu>
             <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
                 <MenuItem fx:id="listReaders" mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
-                <!--                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>-->
-                <!--                <MenuItem fx:id="updateArticles" mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>-->
+                <MenuItem fx:id="addReaders" mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
+                <MenuItem fx:id="updateReaders" mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
                 <MenuItem fx:id="deleteReaders" mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
             </Menu>
         </MenuBar>

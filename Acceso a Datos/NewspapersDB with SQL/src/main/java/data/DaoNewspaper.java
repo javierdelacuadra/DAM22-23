@@ -4,8 +4,8 @@ import common.Constantes;
 import config.ConfigTXT;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
-import modelo.Article;
-import modelo.Newspaper;
+import model.Article;
+import model.Newspaper;
 
 import java.io.IOException;
 import java.nio.file.Files;

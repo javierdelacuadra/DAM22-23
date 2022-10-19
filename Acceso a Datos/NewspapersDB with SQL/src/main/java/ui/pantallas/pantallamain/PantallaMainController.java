@@ -3,6 +3,7 @@ package ui.pantallas.pantallamain;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -140,5 +141,20 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void deleteReadersMenu() {
         cargarPantalla(Pantallas.DELETEREADERSCREEN);
+    }
+
+    public void addReaderMenu() {
+        cargarPantalla(Pantallas.ADDREADERSCREEN);
+    }
+
+    public void updateReaderMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.UPDATEREADERSCREEN);
+    }
+
+    public void createAlert(String error) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(error);
+        alert.setContentText(error);
+        alert.showAndWait();
     }
 }

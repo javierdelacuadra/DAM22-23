@@ -13,6 +13,8 @@ module MercadonaFX {
     requires io.vavr;
     requires java.sql;
     requires org.yaml.snakeyaml;
+    requires com.zaxxer.hikari;
+    requires jakarta.annotation;
 
     exports ui;
     exports ui.common;
@@ -24,14 +26,16 @@ module MercadonaFX {
     exports ui.pantallas.listnewspaperscreen;
     exports ui.pantallas.listreaderscreen;
     exports ui.pantallas.deletereaderscreen;
+    exports ui.pantallas.addreaderscreen;
+    exports ui.pantallas.updatereaderscreen;
     exports ui.pantallas.common;
     exports servicios;
     exports config;
     exports data;
     exports di;
-    exports modelo;
+    exports model;
 
-    opens modelo to javafx.base, com.google.gson, jakarta.xml.bind;
+    opens model to javafx.base, com.google.gson, jakarta.xml.bind;
     opens config;
     opens servicios;
     opens data;
@@ -47,5 +51,7 @@ module MercadonaFX {
     opens ui.pantallas.listnewspaperscreen to javafx.fxml;
     opens ui.pantallas.listreaderscreen to javafx.fxml;
     opens ui.pantallas.deletereaderscreen to javafx.fxml;
+    opens ui.pantallas.addreaderscreen to javafx.fxml;
+    opens ui.pantallas.updatereaderscreen to javafx.fxml;
     opens ui.pantallas.common;
 }

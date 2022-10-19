@@ -2,7 +2,7 @@ package servicios;
 
 import data.DaoArticles;
 import jakarta.inject.Inject;
-import modelo.Article;
+import model.Article;
 
 import java.util.List;
 

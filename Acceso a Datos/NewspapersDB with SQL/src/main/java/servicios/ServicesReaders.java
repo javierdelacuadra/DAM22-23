@@ -4,7 +4,7 @@ import data.DaoReaders;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBException;
-import modelo.Reader;
+import model.Reader;
 
 import java.util.List;
 import java.util.stream.Collectors;
