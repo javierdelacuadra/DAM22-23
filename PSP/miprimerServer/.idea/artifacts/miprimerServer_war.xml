@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="miprimerServer:war">
+    <output-path>$PROJECT_DIR$/miprimerServer/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>miprimerServer</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="miprimerServer-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="miprimerServer:war exploded" />
+    </root>
+  </artifact>
+</component>
