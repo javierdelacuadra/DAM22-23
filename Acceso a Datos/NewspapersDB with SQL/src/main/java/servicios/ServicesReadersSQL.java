@@ -24,8 +24,8 @@ public class ServicesReadersSQL {
         return daoReadersSQL.getAll();
     }
 
-    public Either<Integer, List<Reader>> deleteReader(int id) {
-        return daoReadersSQL.delete(id);
+    public Either<Integer, List<Reader>> deleteReader(Reader reader) {
+        return daoReadersSQL.delete(reader);
     }
 
     public Either<Integer, List<Reader>> updateReader(Reader reader) {

@@ -21,4 +21,11 @@ public class Newspaper {
     public String toLine() {
         return id + Constantes.PUNTO_Y_COMA + name + Constantes.PUNTO_Y_COMA + releaseDate + Constantes.ESPACIO;
     }
+
+    @Override
+    public String toString() {
+        return id +
+                ", name='" + name + '\'' +
+                ", Date='" + releaseDate + '\'';
+    }
 }

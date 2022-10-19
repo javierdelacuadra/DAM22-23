@@ -8,7 +8,9 @@ public enum Pantallas {
     LISTARTICLESCREEN("/fxml/ListArticleScreen.fxml"),
     ADDARTICLESCREEN("/fxml/AddArticleScreen.fxml"),
     LISTREADERSCREEN("/fxml/ListReadersScreen.fxml"),
-    DELETEREADERSCREEN("/fxml/DeleteReaderScreen.fxml");
+    DELETEREADERSCREEN("/fxml/DeleteReaderScreen.fxml"),
+    ADDREADERSCREEN("/fxml/AddReaderScreen.fxml"),
+    UPDATEREADERSCREEN("/fxml/UpdateReaderScreen.fxml");
 
 
     private final String ruta;

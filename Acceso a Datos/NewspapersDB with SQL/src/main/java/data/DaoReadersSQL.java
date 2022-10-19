@@ -39,8 +39,8 @@ public class DaoReadersSQL {
         List<Reader> readers = new ArrayList<>();
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER)) {
-            preparedStatement.setString(2, reader.getName());
-            preparedStatement.setDate(3, Date.valueOf(reader.getDateOfBirth()));
+            preparedStatement.setString(1, reader.getName());
+            preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
             preparedStatement.executeUpdate();
             readers = getAll().get();
         } catch (SQLException e) {
@@ -49,11 +49,11 @@ public class DaoReadersSQL {
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
-    public Either<Integer, List<Reader>> delete(int id) {
+    public Either<Integer, List<Reader>> delete(Reader reader) {
         List<Reader> readers = new ArrayList<>();
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_READER)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, reader.getId());
             preparedStatement.executeUpdate();
             readers = getAll().get();
         } catch (SQLException e) {
