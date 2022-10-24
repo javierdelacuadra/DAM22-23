@@ -44,8 +44,13 @@ public class ListReadersScreenController extends BasePantallaController {
     }
 
 
-    public void filterByNewspaper() throws JAXBException {
+    public void filterByNewspaper() {
         Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
-        readersTable.setItems(viewModel.getReadersByNewspaper(newspaper));
+        if (viewModel.getReadersByNewspaper(newspaper).isRight()) {
+            readersTable.setItems(viewModel.getReadersByNewspaper(newspaper).get());
+        } else {
+            readersTable.setItems(viewModel.getReaders());
+            this.getPrincipalController().createAlert("Couldn't find any reader with that newspaper");
+        }
     }
 }

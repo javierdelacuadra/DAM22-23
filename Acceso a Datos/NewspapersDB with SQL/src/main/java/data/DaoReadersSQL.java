@@ -92,4 +92,17 @@ public class DaoReadersSQL {
         }
         return readers;
     }
+
+    public Either<Integer, List<Reader>> getReadersByNewspaper(int id) {
+        List<Reader> readers = new ArrayList<>();
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_NEWSPAPER)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            readers = readRS(rs);
+        } catch (SQLException e) {
+            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
+    }
 }

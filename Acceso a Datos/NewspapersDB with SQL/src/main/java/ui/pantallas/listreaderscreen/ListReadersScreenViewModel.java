@@ -1,24 +1,21 @@
 package ui.pantallas.listreaderscreen;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Newspaper;
 import model.Reader;
 import servicios.ServicesNewspaper;
-import servicios.ServicesReaders;
 import servicios.ServicesReadersSQL;
 
 public class ListReadersScreenViewModel {
 
-    private final ServicesReaders servicesReaders;
     private final ServicesNewspaper servicesNewspaper;
     private final ServicesReadersSQL servicesReadersSQL;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesReaders servicesReaders, ServicesNewspaper servicesNewspaper, ServicesReadersSQL servicesReadersSQL) {
-        this.servicesReaders = servicesReaders;
+    public ListReadersScreenViewModel(ServicesNewspaper servicesNewspaper, ServicesReadersSQL servicesReadersSQL) {
         this.servicesNewspaper = servicesNewspaper;
         this.servicesReadersSQL = servicesReadersSQL;
     }
@@ -31,8 +28,8 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
     }
 
-    public ObservableList<Reader> getReadersByNewspaper(Newspaper newspaper) throws JAXBException {
-        return FXCollections.observableArrayList(servicesReaders.getReadersByNewspaper(newspaper.getId()));
+    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+        return servicesReadersSQL.getReadersByNewspaper(newspaper.getId()).map(FXCollections::observableArrayList);
     }
 
 }

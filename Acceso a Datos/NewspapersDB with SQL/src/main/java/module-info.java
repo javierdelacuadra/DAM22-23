@@ -28,6 +28,7 @@ module MercadonaFX {
     exports ui.pantallas.deletereaderscreen;
     exports ui.pantallas.addreaderscreen;
     exports ui.pantallas.updatereaderscreen;
+    exports ui.pantallas.addreadarticlescreen;
     exports ui.pantallas.common;
     exports servicios;
     exports config;
@@ -53,5 +54,6 @@ module MercadonaFX {
     opens ui.pantallas.deletereaderscreen to javafx.fxml;
     opens ui.pantallas.addreaderscreen to javafx.fxml;
     opens ui.pantallas.updatereaderscreen to javafx.fxml;
+    opens ui.pantallas.addreadarticlescreen to javafx.fxml;
     opens ui.pantallas.common;
 }
