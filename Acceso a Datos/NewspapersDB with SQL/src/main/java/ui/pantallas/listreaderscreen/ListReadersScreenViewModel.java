@@ -4,19 +4,24 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
+import servicios.ServicesArticles;
+import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaper;
 import servicios.ServicesReadersSQL;
 
 public class ListReadersScreenViewModel {
 
     private final ServicesNewspaper servicesNewspaper;
+    private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesReadersSQL servicesReadersSQL;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesNewspaper servicesNewspaper, ServicesReadersSQL servicesReadersSQL) {
+    public ListReadersScreenViewModel(ServicesNewspaper servicesNewspaper, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL) {
         this.servicesNewspaper = servicesNewspaper;
+        this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesReadersSQL = servicesReadersSQL;
     }
 
@@ -32,4 +37,11 @@ public class ListReadersScreenViewModel {
         return servicesReadersSQL.getReadersByNewspaper(newspaper.getId()).map(FXCollections::observableArrayList);
     }
 
+    public Either<Integer, ObservableList<Reader>> getReadersByArticleType(String articleType) {
+        return servicesReadersSQL.getReadersByArticleType(articleType).map(FXCollections::observableArrayList);
+    }
+
+    public ObservableList<ArticleType> getArticleTypes() {
+        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+    }
 }

@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticleType {
-    private int ID;
+    private int id;
     private String description;
 
     public ArticleType(String line) {
         String[] split = line.split(Constantes.PUNTO_Y_COMA);
-        this.ID = Integer.parseInt(split[0]);
+        this.id = Integer.parseInt(split[0]);
         this.description = split[1];
     }
 }

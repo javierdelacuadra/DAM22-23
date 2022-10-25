@@ -15,6 +15,10 @@ public class Constantes {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String DATE_OF_BIRTH = "dateOfBirth";
+    public static final String NAME_ARTICLE = "name_article";
+    public static final String ID_NEWSPAPER = "id_newspaper";
+    public static final String ID_TYPE = "id_type";
+    public static final String DESCRIPTION = "description";
 
     private Constantes() {
     }
