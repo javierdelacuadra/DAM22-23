@@ -1,25 +1,27 @@
 package ui.pantallas.listreaderscreen;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
+import servicios.ServicesArticles;
+import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaper;
-import servicios.ServicesReaders;
 import servicios.ServicesReadersSQL;
 
 public class ListReadersScreenViewModel {
 
-    private final ServicesReaders servicesReaders;
     private final ServicesNewspaper servicesNewspaper;
+    private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesReadersSQL servicesReadersSQL;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesReaders servicesReaders, ServicesNewspaper servicesNewspaper, ServicesReadersSQL servicesReadersSQL) {
-        this.servicesReaders = servicesReaders;
+    public ListReadersScreenViewModel(ServicesNewspaper servicesNewspaper, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL) {
         this.servicesNewspaper = servicesNewspaper;
+        this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesReadersSQL = servicesReadersSQL;
     }
 
@@ -31,8 +33,15 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
     }
 
-    public ObservableList<Reader> getReadersByNewspaper(Newspaper newspaper) throws JAXBException {
-        return FXCollections.observableArrayList(servicesReaders.getReadersByNewspaper(newspaper.getId()));
+    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+        return servicesReadersSQL.getReadersByNewspaper(newspaper.getId()).map(FXCollections::observableArrayList);
     }
 
+    public Either<Integer, ObservableList<Reader>> getReadersByArticleType(String articleType) {
+        return servicesReadersSQL.getReadersByArticleType(articleType).map(FXCollections::observableArrayList);
+    }
+
+    public ObservableList<ArticleType> getArticleTypes() {
+        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+    }
 }

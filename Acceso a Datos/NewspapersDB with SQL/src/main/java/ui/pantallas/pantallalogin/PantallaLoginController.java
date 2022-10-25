@@ -1,6 +1,7 @@
 package ui.pantallas.pantallalogin;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -17,27 +18,44 @@ import java.util.ResourceBundle;
 @Log4j2
 public class PantallaLoginController extends BasePantallaController implements Initializable {
 
+    private final LoginViewModel viewModel;
+
+    @Inject
+    public PantallaLoginController(LoginViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @FXML
     private MFXTextField textfieldNombre;
 
     @FXML
-    private MFXTextField textfieldDNI;
+    private MFXTextField textfieldPassword;
 
     @FXML
     private ImageView logoSQL;
 
     @FXML
     public void inicioSesion() {
-        if (textfieldNombre.getText().equals(ConstantesUI.ROOT) && textfieldDNI.getText().equals(ConstantesUI.ROOT)) {
-            this.getPrincipalController().onLoginHecho();
+        String nombre = textfieldNombre.getText();
+        String password = textfieldPassword.getText();
+
+        if (nombre == null || nombre.isEmpty() || password == null || password.isEmpty()) {
+            this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(ConstantesUI.ERROR);
-            alert.setHeaderText(ConstantesUI.COULD_NOT_LOG_IN);
-            alert.setContentText(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
-            alert.showAndWait();
+            Integer id = viewModel.login(nombre, password);
+            if (id == 400) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(ConstantesUI.ERROR);
+                alert.setHeaderText(ConstantesUI.COULD_NOT_LOG_IN);
+                alert.setContentText(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
+                alert.showAndWait();
+            } else {
+                this.getPrincipalController().setReader(viewModel.getReader(id));
+                this.getPrincipalController().onLoginHecho(id <= 0);
+            }
         }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

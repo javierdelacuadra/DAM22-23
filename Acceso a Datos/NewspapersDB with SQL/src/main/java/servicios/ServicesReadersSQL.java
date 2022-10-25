@@ -31,4 +31,20 @@ public class ServicesReadersSQL {
     public Either<Integer, List<Reader>> updateReader(Reader reader) {
         return daoReadersSQL.update(reader);
     }
+
+    public Either<Integer, List<Reader>> getReadersByNewspaper(int id) {
+        return daoReadersSQL.getAll(id);
+    }
+
+    public Either<Integer, List<Reader>> getReadersByArticleType(String articleType) {
+        return daoReadersSQL.getAll(articleType);
+    }
+
+    public Integer login(String name, String password) {
+        return daoReadersSQL.login(name, password);
+    }
+
+    public Reader getReadersById(int id) {
+        return daoReadersSQL.get(id);
+    }
 }

@@ -25,6 +25,16 @@
                 <MenuItem fx:id="updateReaders" mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
                 <MenuItem fx:id="deleteReaders" mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
             </Menu>
+            <Menu fx:id="readArticlesMenu" mnemonicParsing="false" text="Read Articles">
+                <MenuItem fx:id="addReadArticles" mnemonicParsing="false" onAction="#addReadArticlesMenu"
+                          text="Add a read article"/>
+            </Menu>
+            <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
+                <MenuItem fx:id="addSubscriptions" mnemonicParsing="false" onAction="#addSubscriptionMenu"
+                          text="Add"/>
+                <MenuItem fx:id="deleteSubscriptions" mnemonicParsing="false" onAction="#deleteSubscriptionMenu"
+                          text="Delete"/>
+            </Menu>
         </MenuBar>
     </top>
 </BorderPane>

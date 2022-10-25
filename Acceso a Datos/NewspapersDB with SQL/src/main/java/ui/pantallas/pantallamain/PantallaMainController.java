@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.log4j.Log4j2;
+import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
@@ -44,6 +45,12 @@ public class PantallaMainController extends BasePantallaController implements In
 
     @FXML
     private Menu readersMenu;
+
+    @FXML
+    private Menu readArticlesMenu;
+
+    @FXML
+    private Menu subscriptionsMenu;
 
     @FXML
     private BorderPane root;
@@ -84,6 +91,8 @@ public class PantallaMainController extends BasePantallaController implements In
         articlesMenu.setVisible(false);
         menuOptions.setVisible(false);
         readersMenu.setVisible(false);
+        readArticlesMenu.setVisible(false);
+        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 
@@ -93,6 +102,8 @@ public class PantallaMainController extends BasePantallaController implements In
         articlesMenu.setVisible(false);
         menuOptions.setVisible(false);
         readersMenu.setVisible(false);
+        readArticlesMenu.setVisible(false);
+        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLALOGIN);
     }
 
@@ -111,12 +122,28 @@ public class PantallaMainController extends BasePantallaController implements In
         }
     }
 
-    public void onLoginHecho() {
-        newspapersMenu.setVisible(true);
-        articlesMenu.setVisible(true);
-        menuOptions.setVisible(true);
-        readersMenu.setVisible(true);
+    public void onLoginHecho(boolean admin) {
+        if (admin) {
+            newspapersMenu.setVisible(true);
+            articlesMenu.setVisible(true);
+            menuOptions.setVisible(true);
+            readersMenu.setVisible(true);
+        } else {
+            menuOptions.setVisible(true);
+            readArticlesMenu.setVisible(true);
+            subscriptionsMenu.setVisible(true);
+        }
         cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
+    }
+
+    public Reader reader;
+
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
     public void listNewspapersMenu() {
@@ -151,10 +178,22 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.UPDATEREADERSCREEN);
     }
 
+    public void addReadArticlesMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
+    }
+
     public void createAlert(String error) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(error);
         alert.setContentText(error);
         alert.showAndWait();
+    }
+
+    public void addSubscriptionMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
+    }
+
+    public void deleteSubscriptionMenu(ActionEvent actionEvent) {
+        cargarPantalla(Pantallas.DELETESUBSCRIPTIONSCREEN);
     }
 }

@@ -11,7 +11,7 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
     <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="268.0" layoutY="275.0" prefHeight="49.0"
                   prefWidth="221.0" promptText="Escriba su nombre"/>
-    <MFXTextField fx:id="textfieldDNI" alignment="CENTER" layoutX="270.0" layoutY="368.0" prefHeight="49.0"
+    <MFXTextField fx:id="textfieldPassword" alignment="CENTER" layoutX="270.0" layoutY="368.0" prefHeight="49.0"
                   prefWidth="221.0" promptText="Escriba su DNI"/>
     <Label fx:id="textoNombre" layoutX="350.0" layoutY="237.0" text="Nombre">
         <font>

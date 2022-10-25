@@ -3,10 +3,12 @@ package ui.pantallas.listreaderscreen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
 import ui.pantallas.common.BasePantallaController;
@@ -35,17 +37,36 @@ public class ListReadersScreenController extends BasePantallaController {
     @FXML
     public MFXComboBox<Newspaper> newspaperComboBox;
 
+    @FXML
+    public MFXComboBox<ArticleType> articleTypeComboBox;
+
     public void initialize() throws JAXBException {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         readersTable.setItems(viewModel.getReaders());
         newspaperComboBox.setItems(viewModel.getNewspapers());
+        articleTypeComboBox.setItems(viewModel.getArticleTypes());
     }
 
 
-    public void filterByNewspaper() throws JAXBException {
+    public void filterByNewspaper() {
         Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
-        readersTable.setItems(viewModel.getReadersByNewspaper(newspaper));
+        if (viewModel.getReadersByNewspaper(newspaper).isRight()) {
+            readersTable.setItems(viewModel.getReadersByNewspaper(newspaper).get());
+        } else {
+            readersTable.setItems(viewModel.getReaders());
+            this.getPrincipalController().createAlert("Couldn't find any reader with that newspaper");
+        }
+    }
+
+    public void filterByArticleType() {
+        String articleType = articleTypeComboBox.getSelectionModel().getSelectedItem().getDescription();
+        if (viewModel.getReadersByArticleType(articleType).isRight()) {
+            readersTable.setItems(viewModel.getReadersByArticleType(articleType).get());
+        } else {
+            readersTable.setItems(viewModel.getReaders());
+            this.getPrincipalController().createAlert("Couldn't find any reader with that article type");
+        }
     }
 }
