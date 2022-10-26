@@ -5,6 +5,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Article;
 import model.ArticleType;
+import model.Reader;
 
 import java.util.List;
 
@@ -21,7 +22,15 @@ public class ServicesArticlesSQL {
         return daoArticlesSQL.getAll();
     }
 
+    public Either<Integer, List<Article>> getArticlesByReaderID(Reader reader) {
+        return daoArticlesSQL.getAll(reader.getId());
+    }
+
     public Either<Integer, List<ArticleType>> getArticleTypes() {
         return daoArticlesSQL.getAllArticleTypes();
+    }
+
+    public Either<Integer, List<Article>> addRating(Article article, Integer rating, Integer idReader) {
+        return daoArticlesSQL.saveReadArticle(article, rating, idReader);
     }
 }

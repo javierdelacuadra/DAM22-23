@@ -3,8 +3,10 @@ package model;
 import common.Constantes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Newspaper {
     private int id;

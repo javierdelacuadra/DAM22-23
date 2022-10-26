@@ -75,7 +75,7 @@ public class DaoArticles {
         });
         AtomicBoolean newspaperIDExists = new AtomicBoolean(false);
         getNewspapers().forEach(n -> {
-            if (n.getId() == article.getIdNewspaper()) {
+            if (n.getId() == article.getId_newspaper()) {
                 newspaperIDExists.set(true);
             }
         });

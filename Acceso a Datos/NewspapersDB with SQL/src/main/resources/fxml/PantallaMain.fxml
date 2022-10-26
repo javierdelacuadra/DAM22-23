@@ -6,33 +6,33 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.PantallaMainController">
     <top>
         <MenuBar fx:id="menuPrincipal">
-            <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
-                <MenuItem fx:id="logoutAdmin" mnemonicParsing="false" onAction="#logout" text="Log out"/>
-                <MenuItem fx:id="salirAdmin" mnemonicParsing="false" onAction="#salir" text="Exit"/>
+            <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Log out"/>
+                <MenuItem mnemonicParsing="false" onAction="#salir" text="Exit"/>
             </Menu>
             <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
-                <MenuItem fx:id="listNewspapers" mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
-                <MenuItem fx:id="deleteNewspapers" mnemonicParsing="false" onAction="#deleteNewspaperMenu"
+                <MenuItem mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#deleteNewspaperMenu"
                           text="Delete"/>
             </Menu>
             <Menu fx:id="articlesMenu" mnemonicParsing="false" text="Articles">
-                <MenuItem fx:id="listArticles" mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
-                <MenuItem fx:id="addArticles" mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
+                <MenuItem mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
             </Menu>
             <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
-                <MenuItem fx:id="listReaders" mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
-                <MenuItem fx:id="addReaders" mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
-                <MenuItem fx:id="updateReaders" mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
-                <MenuItem fx:id="deleteReaders" mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
+                <MenuItem mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
+                <MenuItem mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
+                <MenuItem mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
             </Menu>
             <Menu fx:id="readArticlesMenu" mnemonicParsing="false" text="Read Articles">
-                <MenuItem fx:id="addReadArticles" mnemonicParsing="false" onAction="#addReadArticlesMenu"
+                <MenuItem mnemonicParsing="false" onAction="#addReadArticlesMenu"
                           text="Add a read article"/>
             </Menu>
             <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
-                <MenuItem fx:id="addSubscriptions" mnemonicParsing="false" onAction="#addSubscriptionMenu"
+                <MenuItem mnemonicParsing="false" onAction="#addSubscriptionMenu"
                           text="Add"/>
-                <MenuItem fx:id="deleteSubscriptions" mnemonicParsing="false" onAction="#deleteSubscriptionMenu"
+                <MenuItem mnemonicParsing="false" onAction="#deleteSubscriptionMenu"
                           text="Delete"/>
             </Menu>
         </MenuBar>

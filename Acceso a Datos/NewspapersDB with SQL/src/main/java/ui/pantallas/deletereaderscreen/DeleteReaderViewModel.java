@@ -6,7 +6,6 @@ import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Reader;
-import servicios.ServicesReaders;
 import servicios.ServicesReadersSQL;
 
 import java.util.List;

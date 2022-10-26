@@ -35,7 +35,7 @@ public class PantallaMainController extends BasePantallaController implements In
     }
 
     @FXML
-    private Menu menuOptions;
+    private Menu optionsMenu;
 
     @FXML
     private Menu newspapersMenu;
@@ -89,7 +89,7 @@ public class PantallaMainController extends BasePantallaController implements In
     public void logout() {
         newspapersMenu.setVisible(false);
         articlesMenu.setVisible(false);
-        menuOptions.setVisible(false);
+        optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
         readArticlesMenu.setVisible(false);
         subscriptionsMenu.setVisible(false);
@@ -100,7 +100,7 @@ public class PantallaMainController extends BasePantallaController implements In
     public void initialize(URL url, ResourceBundle resourceBundle) {
         newspapersMenu.setVisible(false);
         articlesMenu.setVisible(false);
-        menuOptions.setVisible(false);
+        optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
         readArticlesMenu.setVisible(false);
         subscriptionsMenu.setVisible(false);
@@ -124,12 +124,15 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void onLoginHecho(boolean admin) {
         if (admin) {
+            optionsMenu.setVisible(true);
             newspapersMenu.setVisible(true);
             articlesMenu.setVisible(true);
-            menuOptions.setVisible(true);
             readersMenu.setVisible(true);
+            //TODO: edit admin permissions
+            readArticlesMenu.setVisible(true);
+            subscriptionsMenu.setVisible(true);
         } else {
-            menuOptions.setVisible(true);
+            optionsMenu.setVisible(true);
             readArticlesMenu.setVisible(true);
             subscriptionsMenu.setVisible(true);
         }
@@ -174,11 +177,11 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.ADDREADERSCREEN);
     }
 
-    public void updateReaderMenu(ActionEvent actionEvent) {
+    public void updateReaderMenu() {
         cargarPantalla(Pantallas.UPDATEREADERSCREEN);
     }
 
-    public void addReadArticlesMenu(ActionEvent actionEvent) {
+    public void addReadArticlesMenu() {
         cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
     }
 
@@ -189,11 +192,11 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.showAndWait();
     }
 
-    public void addSubscriptionMenu(ActionEvent actionEvent) {
+    public void addSubscriptionMenu() {
         cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
     }
 
-    public void deleteSubscriptionMenu(ActionEvent actionEvent) {
+    public void deleteSubscriptionMenu() {
         cargarPantalla(Pantallas.DELETESUBSCRIPTIONSCREEN);
     }
 }

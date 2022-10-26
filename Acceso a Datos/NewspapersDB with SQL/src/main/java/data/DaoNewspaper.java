@@ -57,7 +57,7 @@ public class DaoNewspaper {
         List<Article> articles = daoArticle.getArticles();
         AtomicBoolean result = new AtomicBoolean(false);
         articles.forEach(article -> {
-            if (article.getIdNewspaper() == newspaper.getId()) {
+            if (article.getId_newspaper() == newspaper.getId()) {
                 result.set(true);
             }
         });

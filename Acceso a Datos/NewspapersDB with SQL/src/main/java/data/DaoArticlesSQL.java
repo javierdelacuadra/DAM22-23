@@ -8,10 +8,7 @@ import model.Article;
 import model.ArticleType;
 import model.Reader;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,11 +29,24 @@ public class DaoArticlesSQL {
              Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_READ_ONLY)) {
 
-            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_READERS);
+            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLES);
             articles = readRS(rs);
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    public Either<Integer, List<Article>> getAll(Integer id) {
+        List<Article> articles = new ArrayList<>();
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_ARTICLES_BY_READER)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            articles = readRS(rs);
+        } catch (SQLException e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
@@ -56,6 +66,21 @@ public class DaoArticlesSQL {
         return types.isEmpty() ? Either.left(-1) : Either.right(types);
     }
 
+    public Either<Integer, List<Article>> saveReadArticle(Article article, Integer rating, Integer readerId) {
+        List<Article> articles = new ArrayList<>();
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READ_ARTICLE)) {
+            preparedStatement.setInt(1, article.getId());
+            preparedStatement.setInt(2, readerId);
+            preparedStatement.setInt(3, rating);
+            preparedStatement.executeUpdate();
+            articles = getAll(readerId).get();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
 
     private List<Article> readRS(ResultSet rs) {
         List<Article> articles = new ArrayList<>();
@@ -63,9 +88,9 @@ public class DaoArticlesSQL {
             while (rs.next()) {
                 Article article = new Article();
                 article.setId(rs.getInt(Constantes.ID));
-                article.setNameArticle(rs.getString(Constantes.NAME_ARTICLE));
-                article.setIdType(rs.getInt(Constantes.ID_TYPE));
-                article.setIdNewspaper(rs.getInt(Constantes.ID_NEWSPAPER));
+                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
+                article.setId_type(rs.getInt(Constantes.ID_TYPE));
+                article.setId_newspaper(rs.getInt(Constantes.ID_NEWSPAPER));
                 articles.add(article);
             }
         } catch (SQLException ex) {

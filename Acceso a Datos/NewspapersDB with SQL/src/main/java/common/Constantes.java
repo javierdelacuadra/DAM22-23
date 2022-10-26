@@ -19,6 +19,7 @@ public class Constantes {
     public static final String ID_NEWSPAPER = "id_newspaper";
     public static final String ID_TYPE = "id_type";
     public static final String DESCRIPTION = "description";
+    public static final String RELEASE_DATE = "release_date";
 
     private Constantes() {
     }
