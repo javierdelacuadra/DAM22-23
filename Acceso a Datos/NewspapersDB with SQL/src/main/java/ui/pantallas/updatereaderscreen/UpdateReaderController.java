@@ -52,7 +52,11 @@ public class UpdateReaderController extends BasePantallaController implements In
 
     public void updateReader() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
-            Reader reader = readersTable.getSelectionModel().getSelectedItem();
+            Reader reader = new Reader(
+                    readersTable.getSelectionModel().getSelectedItem().getId(),
+                    nameTextField.getText(),
+                    birthDatePicker.getValue()
+            );
             if (viewModel.updateReader(reader).isRight()) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());

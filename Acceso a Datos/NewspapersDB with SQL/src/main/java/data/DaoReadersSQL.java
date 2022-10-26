@@ -9,6 +9,7 @@ import model.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,10 +26,8 @@ public class DaoReadersSQL {
         try (Connection con = db.getConnection();
              Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_READ_ONLY)) {
-
             ResultSet rs = statement.executeQuery(SQLQueries.SELECT_READERS);
             readers = readRS(rs);
-
         } catch (SQLException ex) {
             Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,66 +60,60 @@ public class DaoReadersSQL {
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
-    public Integer getReaderByName(String name) {
-        int id = 0;
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_NAME)) {
-            preparedStatement.setString(1, name);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                id = rs.getInt(Constantes.ID);
+    public Either<Integer, List<Reader>> save(Reader reader, String password) {
+        int rowsAffected;
+        List<Reader> readers = getAll().get();
+        if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()))) {
+            try (Connection con = db.getConnection();
+                 PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, reader.getName());
+                preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
+                rowsAffected = preparedStatement.executeUpdate();
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if (rs.next()) {
+                    reader.setId(rs.getInt(1));
+                }
+                if (rowsAffected > 0) {
+                    saveLogin(reader.getId(), reader.getName(), password);
+                }
+                readers = getAll().get();
+            } catch (SQLException e) {
+                rowsAffected = -1;
+            } catch (Exception e) {
+                e.printStackTrace();
+                rowsAffected = 0;
             }
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
+        } else {
+            rowsAffected = -2;
         }
-        return id;
+        return rowsAffected > 0 ? Either.right(readers) : Either.left(rowsAffected);
     }
 
-//    public Either<Integer, List<Reader>> save(Reader reader) {
-//        List<Reader> readers = new ArrayList<>();
-//        try (Connection con = db.getConnection();
-//             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER)) {
-//            preparedStatement.setString(1, reader.getName());
-//            preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
-//            preparedStatement.executeUpdate();
-//            readers = getAll().get();
-//        } catch (SQLException e) {
-//            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
-//        }
-//        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
-//    }
-
-    public Either<Integer, List<Reader>> save(Reader reader, String password) {
-        List<Reader> readers = new ArrayList<>();
+    private void saveLogin(int id, String name, String password) {
         try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER)) {
-            preparedStatement.setString(1, reader.getName());
-            preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_LOGIN)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
-            readers = getAll().get();
-            try (PreparedStatement preparedStatement2 = con.prepareStatement(SQLQueries.INSERT_LOGIN)) {
-                preparedStatement2.setInt(1, getReaderByName(reader.getName()));
-                preparedStatement2.setString(2, reader.getName());
-                preparedStatement2.setString(3, password);
-                preparedStatement2.executeUpdate();
-            }
         } catch (SQLException e) {
-            //TODO remove line
             Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
         }
-        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
+    }
+
+    private void deleteLogin(String name) {
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_FROM_LOGIN)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     public Either<Integer, List<Reader>> delete(Reader reader) {
         List<Reader> readers = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_FROM_LOGIN)) {
-            preparedStatement.setInt(1, reader.getId());
-            preparedStatement.executeUpdate();
-            readers = getAll().get();
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
-        }
+        deleteLogin(reader.getName());
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_READER)) {
             preparedStatement.setInt(1, reader.getId());
@@ -140,16 +133,23 @@ public class DaoReadersSQL {
             preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
             preparedStatement.setInt(3, reader.getId());
             preparedStatement.executeUpdate();
-            try (PreparedStatement preparedStatement1 = con.prepareStatement(SQLQueries.UPDATE_READER_LOGIN)) {
-                preparedStatement1.setString(1, reader.getName());
-                preparedStatement1.setInt(2, reader.getId());
-                preparedStatement1.executeUpdate();
-            }
+            updateLogin(reader.getId(), reader.getName());
             readers = getAll().get();
         } catch (SQLException e) {
             Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
         }
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
+    }
+
+    private void updateLogin(Integer id, String name) {
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.UPDATE_READER_LOGIN)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     private List<Reader> readRS(ResultSet rs) {

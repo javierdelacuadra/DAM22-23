@@ -55,13 +55,15 @@ public class AddReaderScreenController extends BasePantallaController implements
     }
 
     public void saveReader() {
-        Reader reader = new Reader(0, nameTextField.getText(), birthDatePicker.getValue());
-        String password = passwordField.getText();
-        if (viewModel.addReader(reader, password).isRight()) {
-            readersTable.getItems().clear();
-            readersTable.setItems(viewModel.getReaders());
-        } else {
-            this.getPrincipalController().createAlert("There was an error adding the reader");
+        if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty() || birthDatePicker.getValue() != null) {
+            Reader reader = new Reader(0, nameTextField.getText(), birthDatePicker.getValue());
+            String password = passwordField.getText();
+            if (viewModel.addReader(reader, password).isRight()) {
+                readersTable.getItems().clear();
+                readersTable.setItems(viewModel.getReaders());
+            } else {
+                this.getPrincipalController().createAlert("There was an error adding the reader");
+            }
         }
     }
 }

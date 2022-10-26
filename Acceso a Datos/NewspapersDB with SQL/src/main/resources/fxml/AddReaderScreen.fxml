@@ -12,11 +12,12 @@
             <TableColumn fx:id="birthDateColumn" prefWidth="102.20001220703125" text="Date of Birth" />
         </columns>
     </TableView>
-   <MFXTextField fx:id="nameTextField" layoutX="412.0" layoutY="134.0" prefHeight="50.0" prefWidth="126.0" />
-    <MFXTextField fx:id="passwordField" layoutX="412.0" layoutY="204.0" prefHeight="50.0" prefWidth="126.0" />
-   <MFXDatePicker fx:id="birthDatePicker" layoutX="375.0" layoutY="242.0" />
-   <MFXButton layoutX="448.0" layoutY="319.0" mnemonicParsing="false" text="Add" onMouseClicked="#saveReader" />
-   <Label layoutX="459.0" layoutY="102.0" text="Name" />
+   <MFXTextField fx:id="nameTextField" layoutX="412.0" layoutY="121.0" prefHeight="50.0" prefWidth="126.0" />
+    <MFXTextField fx:id="passwordField" layoutX="412.0" layoutY="215.0" prefHeight="50.0" prefWidth="126.0" />
+   <MFXDatePicker fx:id="birthDatePicker" layoutX="375.0" layoutY="305.0" />
+   <MFXButton layoutX="434.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#saveReader" text="Add Reader" />
+   <Label layoutX="459.0" layoutY="93.0" text="Name" />
    <Label layoutX="461.0" layoutY="215.0" />
-   <Label layoutX="441.0" layoutY="206.0" text="Date of Birth" />
+   <Label layoutX="441.0" layoutY="278.0" text="Date of Birth" />
+   <Label layoutX="450.0" layoutY="183.0" text="Password" />
 </AnchorPane>
