@@ -1,5 +1,6 @@
 package ui.pantallas.listreaderscreen;
 
+import io.github.palexdev.materialfx.utils.PositionUtils;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
@@ -43,5 +44,9 @@ public class ListReadersScreenViewModel {
 
     public ObservableList<ArticleType> getArticleTypes() {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+    }
+
+    public Either<Integer, ObservableList<Reader>> getOldestSubscribers() {
+        return servicesReadersSQL.getOldestSubscribers().map(FXCollections::observableArrayList);
     }
 }

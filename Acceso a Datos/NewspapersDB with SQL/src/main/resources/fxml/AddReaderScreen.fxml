@@ -13,6 +13,7 @@
         </columns>
     </TableView>
    <MFXTextField fx:id="nameTextField" layoutX="412.0" layoutY="134.0" prefHeight="50.0" prefWidth="126.0" />
+    <MFXTextField fx:id="passwordField" layoutX="412.0" layoutY="204.0" prefHeight="50.0" prefWidth="126.0" />
    <MFXDatePicker fx:id="birthDatePicker" layoutX="375.0" layoutY="242.0" />
    <MFXButton layoutX="448.0" layoutY="319.0" mnemonicParsing="false" text="Add" onMouseClicked="#saveReader" />
    <Label layoutX="459.0" layoutY="102.0" text="Name" />

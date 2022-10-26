@@ -22,7 +22,7 @@ public class AddReaderScreenViewModel {
         return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().get());
     }
 
-    public Either<Integer, List<Reader>> addReader(Reader reader) {
-        return servicesReadersSQL.saveReader(reader);
+    public Either<Integer, List<Reader>> addReader(Reader reader, String password) {
+        return servicesReadersSQL.saveReader(reader, password);
     }
 }

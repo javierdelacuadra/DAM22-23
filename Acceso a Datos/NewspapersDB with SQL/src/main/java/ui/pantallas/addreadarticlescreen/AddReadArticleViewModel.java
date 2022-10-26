@@ -19,8 +19,8 @@ public class AddReadArticleViewModel {
         this.servicesArticlesSQL = servicesArticlesSQL;
     }
 
-    public ObservableList<Article> getArticles(Reader reader) {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesByReaderID(reader).get());
+    public Either<Integer, List<Article>> getArticles(Reader reader) {
+        return servicesArticlesSQL.getArticlesByReaderID(reader);
     }
 
     public Either<Integer, List<Article>> addRating(Article article, Integer rating, Integer idReader) {

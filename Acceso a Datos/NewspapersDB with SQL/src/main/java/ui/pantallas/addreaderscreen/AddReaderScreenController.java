@@ -41,6 +41,9 @@ public class AddReaderScreenController extends BasePantallaController implements
     private MFXTextField nameTextField;
 
     @FXML
+    private MFXTextField passwordField;
+
+    @FXML
     private MFXDatePicker birthDatePicker;
 
     @Override
@@ -51,13 +54,14 @@ public class AddReaderScreenController extends BasePantallaController implements
         readersTable.setItems(viewModel.getReaders());
     }
 
-    public void saveReader(MouseEvent mouseEvent) {
+    public void saveReader() {
         Reader reader = new Reader(0, nameTextField.getText(), birthDatePicker.getValue());
-        if (viewModel.addReader(reader).isRight()) {
+        String password = passwordField.getText();
+        if (viewModel.addReader(reader, password).isRight()) {
             readersTable.getItems().clear();
             readersTable.setItems(viewModel.getReaders());
         } else {
-            this.getPrincipalController().createAlert(viewModel.addReader(reader).getLeft().toString());
+            this.getPrincipalController().createAlert("There was an error adding the reader");
         }
     }
 }

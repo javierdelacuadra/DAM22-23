@@ -1,19 +1,14 @@
 package data;
 
-import common.Constantes;
 import data.common.SQLQueries;
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Newspaper;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
 
 public class DaoSubscriptions {
     private final DBConnection db;
@@ -23,5 +18,29 @@ public class DaoSubscriptions {
         this.db = db;
     }
 
+    public Integer save(Newspaper newspaper, Integer id) {
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_SUBSCRIPTION)) {
+            preparedStatement.setInt(1, newspaper.getId());
+            preparedStatement.setInt(2, id);
+            preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
+            preparedStatement.setDate(4, null);
+            preparedStatement.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
 
+    public Integer remove(Newspaper newspaper, Integer id) {
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_SUBSCRIPTION)) {
+            preparedStatement.setInt(1, newspaper.getId());
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
 }

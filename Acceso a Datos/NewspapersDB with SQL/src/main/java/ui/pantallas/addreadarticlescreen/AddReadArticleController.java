@@ -51,15 +51,20 @@ public class AddReadArticleController extends BasePantallaController implements 
     }
 
     @Override
-    public void principalCargado() {
-        articlesTable.setItems(viewModel.getArticles(this.getPrincipalController().getReader()));
+    public void principalCargado() {;
+        if (viewModel.getArticles(this.getPrincipalController().getReader()).isLeft()) {
+            articlesTable.setItems(FXCollections.observableArrayList());
+            this.getPrincipalController().createAlert("Subscribe to a newspaper to rate and view articles");
+        } else {
+            articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
+        }
     }
 
     public void addRating() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
             if (viewModel.addRating(articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem(), this.getPrincipalController().getReader().getId()).isRight()) {
                 articlesTable.getItems().clear();
-                articlesTable.setItems(viewModel.getArticles(this.getPrincipalController().getReader()));
+                articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                 this.getPrincipalController().createAlert("The rating has been submitted successfully");
             } else {
                 this.getPrincipalController().createAlert("Error adding rating");

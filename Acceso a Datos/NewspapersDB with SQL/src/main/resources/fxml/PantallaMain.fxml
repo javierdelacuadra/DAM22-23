@@ -31,9 +31,7 @@
             </Menu>
             <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
                 <MenuItem mnemonicParsing="false" onAction="#addSubscriptionMenu"
-                          text="Add"/>
-                <MenuItem mnemonicParsing="false" onAction="#deleteSubscriptionMenu"
-                          text="Delete"/>
+                          text="Manage subscriptions"/>
             </Menu>
         </MenuBar>
     </top>

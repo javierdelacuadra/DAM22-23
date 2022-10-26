@@ -37,7 +37,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("release_date"));
         newspaperTable.setItems(viewModel.getNewspapers());
     }
 }

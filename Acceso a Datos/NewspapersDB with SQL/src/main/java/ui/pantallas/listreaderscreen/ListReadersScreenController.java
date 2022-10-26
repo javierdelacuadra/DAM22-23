@@ -69,4 +69,19 @@ public class ListReadersScreenController extends BasePantallaController {
             this.getPrincipalController().createAlert("Couldn't find any reader with that article type");
         }
     }
+
+    public void filterOldestSubscribers() {
+        if (viewModel.getOldestSubscribers().isRight()) {
+            readersTable.setItems(viewModel.getOldestSubscribers().get());
+        } else {
+            readersTable.setItems(viewModel.getReaders());
+            this.getPrincipalController().createAlert("Couldn't find any reader subscribed to El Hola Mundo");
+        }
+    }
+
+    public void resetFilters() {
+        readersTable.setItems(viewModel.getReaders());
+        newspaperComboBox.getSelectionModel().clearSelection();
+        articleTypeComboBox.getSelectionModel().clearSelection();
+    }
 }

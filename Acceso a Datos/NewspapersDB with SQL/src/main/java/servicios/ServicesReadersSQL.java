@@ -1,6 +1,7 @@
 package servicios;
 
 import data.DaoReadersSQL;
+import io.vavr.Tuple1;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Reader;
@@ -16,8 +17,8 @@ public class ServicesReadersSQL {
         this.daoReadersSQL = daoReadersSQL;
     }
 
-    public Either<Integer, List<Reader>> saveReader(Reader reader) {
-        return daoReadersSQL.save(reader);
+    public Either<Integer, List<Reader>> saveReader(Reader reader, String password) {
+        return daoReadersSQL.save(reader, password);
     }
 
     public Either<Integer, List<Reader>> getAllReaders() {
@@ -46,5 +47,9 @@ public class ServicesReadersSQL {
 
     public Reader getReadersById(int id) {
         return daoReadersSQL.get(id);
+    }
+
+    public Either<Integer, List<Reader>> getOldestSubscribers() {
+        return daoReadersSQL.getOldestSubscribers();
     }
 }

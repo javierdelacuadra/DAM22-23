@@ -128,15 +128,13 @@ public class PantallaMainController extends BasePantallaController implements In
             newspapersMenu.setVisible(true);
             articlesMenu.setVisible(true);
             readersMenu.setVisible(true);
-            //TODO: edit admin permissions
-            readArticlesMenu.setVisible(true);
-            subscriptionsMenu.setVisible(true);
+            cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
         } else {
             optionsMenu.setVisible(true);
             readArticlesMenu.setVisible(true);
             subscriptionsMenu.setVisible(true);
+            cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
         }
-        cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
     }
 
     public Reader reader;
@@ -186,7 +184,7 @@ public class PantallaMainController extends BasePantallaController implements In
     }
 
     public void createAlert(String error) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(error);
         alert.setContentText(error);
         alert.showAndWait();

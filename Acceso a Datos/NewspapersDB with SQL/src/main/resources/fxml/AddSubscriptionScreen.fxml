@@ -12,6 +12,7 @@
             <TableColumn fx:id="releaseDateColumn" prefWidth="102.20001220703125" text="Release Date" />
         </columns>
     </TableView>
-   <MFXButton layoutX="420.0" layoutY="187.0" mnemonicParsing="false" text="Add Subscription" onMouseClicked="#addSubscription" />
+   <MFXButton layoutX="427.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#addSubscription" text="Subscribe" />
+    <MFXButton layoutX="419.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#removeSubscription" text="Unsubscribe" />
 
 </AnchorPane>

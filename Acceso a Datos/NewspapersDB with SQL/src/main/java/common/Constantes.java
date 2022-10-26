@@ -20,6 +20,7 @@ public class Constantes {
     public static final String ID_TYPE = "id_type";
     public static final String DESCRIPTION = "description";
     public static final String RELEASE_DATE = "release_date";
+    public static final String READERS = "count(readarticle.id_reader)";
 
     private Constantes() {
     }

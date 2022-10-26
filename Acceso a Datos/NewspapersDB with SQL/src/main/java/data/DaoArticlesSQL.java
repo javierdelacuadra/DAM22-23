@@ -6,7 +6,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Article;
 import model.ArticleType;
-import model.Reader;
+import model.Query1;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -64,6 +64,36 @@ public class DaoArticlesSQL {
             Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return types.isEmpty() ? Either.left(-1) : Either.right(types);
+    }
+
+    public Either<Integer, List<Query1>> getArticlesQuery() {
+        List<Query1> articles = new ArrayList<>();
+        try (Connection con = db.getConnection();
+             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                     ResultSet.CONCUR_READ_ONLY)) {
+
+            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS);
+            articles = readRSQuery(rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    private List<Query1> readRSQuery(ResultSet rs) {
+        List<Query1> articles = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Query1 article = new Query1();
+                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
+                article.setCount(rs.getInt(Constantes.READERS));
+                article.setDescription(rs.getString(Constantes.DESCRIPTION));
+                articles.add(article);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).   log(Level.SEVERE, null, ex);
+        }
+        return articles;
     }
 
     public Either<Integer, List<Article>> saveReadArticle(Article article, Integer rating, Integer readerId) {

@@ -45,7 +45,8 @@ public class DaoNewspaperSQL {
                 Newspaper newspaper = new Newspaper();
                 newspaper.setId(rs.getInt(Constantes.ID));
                 newspaper.setName(rs.getString(Constantes.NAME));
-                newspaper.setReleaseDate(String.valueOf(rs.getDate(Constantes.RELEASE_DATE)));
+                newspaper.setRelease_date(String.valueOf(rs.getDate(Constantes.RELEASE_DATE)));
+                newspapers.add(newspaper);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoReadersSQL.class.getName()).log(Level.SEVERE, null, ex);
