@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -13,10 +13,6 @@
     <input type="submit" value="Enviar">
 </form>
 
-<label>
-    <textarea name="textarea" cols="35" rows="7">
-        Resultado: <% out.println(request.getSession().getAttribute("mensaje"));%>
-    </textarea>
-</label>
+<p><% out.println(request.getSession().getAttribute("mensaje"));%></p>
 </body>
 </html>
