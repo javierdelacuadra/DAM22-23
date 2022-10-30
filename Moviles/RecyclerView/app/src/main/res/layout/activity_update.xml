@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mainactivity.MainActivity">
+    tools:context=".ui.updateactivity.UpdateActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameTextField"
@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.025"
+        app:layout_constraintVertical_bias="0.136"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -38,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.288"
+        app:layout_constraintVertical_bias="0.33"
         app:startIconDrawable="@drawable/ic_baseline_password_24">
 
 
@@ -56,10 +56,10 @@
         android:hint="@string/email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.54"
+        app:layout_constraintVertical_bias="0.536"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
         app:suffixText="@string/suffixCorreo">
 
@@ -76,78 +76,15 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.001" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchMaterial"
-        android:layout_width="348dp"
-        android:layout_height="54dp"
-        android:checked="true"
-        android:text="@string/emailConfirmation"
+    <Button
+        android:id="@+id/updateButton"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextField"
-        app:layout_constraintVertical_bias="0.708" />
-
-    <Button
-        android:id="@+id/addButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/labelPersonas"
-        app:layout_constraintHorizontal_bias="0.698"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchMaterial"
-        app:layout_constraintVertical_bias="0.846" />
-
-    <Button
-        android:id="@+id/anteriorButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/anterior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/switchMaterial"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextField" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchMaterial"
-        app:layout_constraintVertical_bias="0.923" />
-
-    <Button
-        android:id="@+id/siguienteButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/siguiente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/switchMaterial"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextField" />
-
-    <TextView
-        android:id="@+id/labelPersonas"
-        android:layout_width="41dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="72dp"
-        android:text="@string/_uno"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-        app:layout_constraintTop_toBottomOf="@+id/switchMaterial"
-        app:layout_constraintVertical_bias="0.515" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

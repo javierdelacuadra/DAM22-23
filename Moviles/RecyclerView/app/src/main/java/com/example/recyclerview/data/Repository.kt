@@ -6,10 +6,10 @@ object Repository {
     private val personas = mutableListOf<Persona>()
 
     init {
-        personas.add(Persona(1, "Juanito", "1234", "juanito@gmail.com", true))
-        personas.add(Persona(2, "Pedrito", "1234", "pedrito@gmail.com", true))
-        personas.add(Persona(3, "Pepito", "1234", "pepito@gmail.com", true))
-        personas.add(Persona(4, "Pablito", "1234", "pablito@gmail.com", true))
+        personas.add(Persona("Juanito", "1234", "juanito@gmail.com"))
+        personas.add(Persona("Pedrito", "1234", "pedrito@gmail.com"))
+        personas.add(Persona("Pepito", "1234", "pepito@gmail.com"))
+        personas.add(Persona("Pablito", "1234", "pablito@gmail.com"))
     }
 
     fun addPersona(persona: Persona): Boolean {
@@ -24,11 +24,20 @@ object Repository {
         return personas
     }
 
-    fun deletePersona(persona: Persona): Boolean {
-        if (personas.contains(persona)) {
-            personas.remove(persona)
-            return true
+    fun getPersona(email: String): Persona? {
+        return personas.find { it.email == email }
+    }
+
+    fun deletePersona(email: String): Boolean {
+        return personas.removeIf { it.email == email }
+    }
+
+    fun updatePersona(persona: Persona): Boolean {
+        personas.stream().anyMatch { p -> p.email == persona.email }.let {
+            if (!it) return false
         }
-        return false
+        personas.removeIf { it.email == persona.email }
+        personas.add(persona)
+        return true
     }
 }

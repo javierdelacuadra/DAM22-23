@@ -4,14 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ReciclerActivity">
+    tools:context=".ui.listactivity.ListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listPersonajes"
-
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-
+        android:id="@+id/listaPersonas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
