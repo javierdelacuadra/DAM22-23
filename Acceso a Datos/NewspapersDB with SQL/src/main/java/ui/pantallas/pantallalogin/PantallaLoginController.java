@@ -43,12 +43,14 @@ public class PantallaLoginController extends BasePantallaController implements I
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
             Integer id = viewModel.login(nombre, password);
-            if (id == 400) {
+            if (id == -2) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ConstantesUI.ERROR);
                 alert.setHeaderText(ConstantesUI.COULD_NOT_LOG_IN);
                 alert.setContentText(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
                 alert.showAndWait();
+            } else if (id == -3) {
+                this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
             } else {
                 this.getPrincipalController().setReader(viewModel.getReader(id));
                 this.getPrincipalController().onLoginHecho(id <= 0);

@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Newspaper;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -46,10 +46,12 @@ public class AddSubscriptionController extends BasePantallaController implements
         if (newspaperTable.getSelectionModel().getSelectedItem() != null) {
             Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
             if (viewModel.addSubscription(newspaper, this.getPrincipalController().getReader().getId()) == 1) {
-                this.getPrincipalController().createAlert("You have successfully subscribed to the newspaper \n" + newspaper.getName());
+                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_SUCCESSFULLY_SUBSCRIBED_TO_THE_NEWSPAPER + newspaper.getName());
             } else {
-                this.getPrincipalController().createAlert("You have already subscribed to the newspaper \n" + newspaper.getName());
+                this.getPrincipalController().createAlert(ConstantesUI.YOU_ARE_ALREADY_SUBSCRIBED_TO_THE_NEWSPAPER + newspaper.getName());
             }
+        } else {
+            this.getPrincipalController().createAlert(ConstantesUI.PLEASE_SELECT_A_NEWSPAPER);
         }
     }
 
@@ -57,10 +59,12 @@ public class AddSubscriptionController extends BasePantallaController implements
         if (newspaperTable.getSelectionModel().getSelectedItem() != null) {
             Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
             if (viewModel.removeSubscription(newspaper, this.getPrincipalController().getReader().getId()) == 1) {
-                this.getPrincipalController().createAlert("You have successfully unsubscribed to the newspaper \n" + newspaper.getName());
+                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_SUCCESSFULLY_UNSUBSCRIBED_TO_THE_NEWSPAPER + newspaper.getName());
             } else {
-                this.getPrincipalController().createAlert("You have not subscribed to the newspaper \n" + newspaper.getName());
+                this.getPrincipalController().createAlert(ConstantesUI.YOU_ARE_NOT_SUBSCRIBED_TO_THE_NEWSPAPER + newspaper.getName());
             }
+        } else {
+            this.getPrincipalController().createAlert(ConstantesUI.PLEASE_SELECT_A_NEWSPAPER);
         }
     }
 }

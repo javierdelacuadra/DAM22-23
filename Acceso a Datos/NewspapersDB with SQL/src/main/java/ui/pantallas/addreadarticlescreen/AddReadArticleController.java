@@ -1,6 +1,7 @@
 package ui.pantallas.addreadarticlescreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,9 +10,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddReadArticleController extends BasePantallaController implements Initializable {
@@ -51,10 +54,10 @@ public class AddReadArticleController extends BasePantallaController implements 
     }
 
     @Override
-    public void principalCargado() {;
+    public void principalCargado() {
         if (viewModel.getArticles(this.getPrincipalController().getReader()).isLeft()) {
             articlesTable.setItems(FXCollections.observableArrayList());
-            this.getPrincipalController().createAlert("Subscribe to a newspaper to rate and view articles");
+            this.getPrincipalController().createAlert(ConstantesUI.SUBSCRIBE_TO_A_NEWSPAPER_TO_RATE_AND_VIEW_ARTICLES);
         } else {
             articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
         }
@@ -62,15 +65,18 @@ public class AddReadArticleController extends BasePantallaController implements 
 
     public void addRating() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
-            if (viewModel.addRating(articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem(), this.getPrincipalController().getReader().getId()).isRight()) {
+            Either<Integer, List<Article>> result = viewModel.addRating(articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem(), this.getPrincipalController().getReader().getId());
+                if (result.isRight()) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
-                this.getPrincipalController().createAlert("The rating has been submitted successfully");
-            } else {
-                this.getPrincipalController().createAlert("Error adding rating");
+                this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);
+            } else if (result.getLeft() == -1) {
+                this.getPrincipalController().createAlert(ConstantesUI.ERROR_ADDING_RATING);
+            } else if (result.getLeft() == -2) {
+                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_ALREADY_RATED_THIS_ARTICLE);
             }
         } else {
-            this.getPrincipalController().createAlert("Select an article and a rating");
+            this.getPrincipalController().createAlert(ConstantesUI.SELECT_AN_ARTICLE_AND_A_RATING);
         }
     }
 }

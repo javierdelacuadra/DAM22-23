@@ -3,7 +3,6 @@ package ui.pantallas.pantallamain;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -183,6 +182,10 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
     }
 
+    public void addSubscriptionMenu() {
+        cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
+    }
+
     public void createAlert(String error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(error);
@@ -190,11 +193,4 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.showAndWait();
     }
 
-    public void addSubscriptionMenu() {
-        cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
-    }
-
-    public void deleteSubscriptionMenu() {
-        cargarPantalla(Pantallas.DELETESUBSCRIPTIONSCREEN);
-    }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Reader;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 public class DeleteReaderController extends BasePantallaController {
@@ -37,13 +38,19 @@ public class DeleteReaderController extends BasePantallaController {
         readersTable.setItems(viewModel.getReaders());
     }
 
-    public void deleteReader() throws JAXBException {
+    public void deleteReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
-        if (viewModel.deleteReader(reader).isRight()) {
-            readersTable.getItems().clear();
-            readersTable.setItems(viewModel.getReaders());
+        if (reader != null) {
+            if (viewModel.deleteReader(reader).isRight()) {
+                readersTable.getItems().clear();
+                readersTable.setItems(viewModel.getReaders());
+            } else if (viewModel.deleteReader(reader).getLeft() == -1) {
+                this.getPrincipalController().createAlert(ConstantesUI.ERROR_DELETING_READER);
+            } else if (viewModel.deleteReader(reader).getLeft() == -2) {
+                this.getPrincipalController().createAlert(ConstantesUI.READER_NOT_FOUND);
+            }
         } else {
-            this.getPrincipalController().createAlert(viewModel.deleteReader(reader).getLeft().toString());
+            this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
     }
 }

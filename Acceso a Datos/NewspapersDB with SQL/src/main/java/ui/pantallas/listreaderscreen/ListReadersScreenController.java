@@ -3,7 +3,6 @@ package ui.pantallas.listreaderscreen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -11,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 public class ListReadersScreenController extends BasePantallaController {
@@ -56,7 +56,7 @@ public class ListReadersScreenController extends BasePantallaController {
             readersTable.setItems(viewModel.getReadersByNewspaper(newspaper).get());
         } else {
             readersTable.setItems(viewModel.getReaders());
-            this.getPrincipalController().createAlert("Couldn't find any reader with that newspaper");
+            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_WITH_THAT_NEWSPAPER);
         }
     }
 
@@ -66,7 +66,7 @@ public class ListReadersScreenController extends BasePantallaController {
             readersTable.setItems(viewModel.getReadersByArticleType(articleType).get());
         } else {
             readersTable.setItems(viewModel.getReaders());
-            this.getPrincipalController().createAlert("Couldn't find any reader with that article type");
+            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_WITH_THAT_ARTICLE_TYPE);
         }
     }
 
@@ -75,7 +75,7 @@ public class ListReadersScreenController extends BasePantallaController {
             readersTable.setItems(viewModel.getOldestSubscribers().get());
         } else {
             readersTable.setItems(viewModel.getReaders());
-            this.getPrincipalController().createAlert("Couldn't find any reader subscribed to El Hola Mundo");
+            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_SUBSCRIBED_TO_EL_HOLA_MUNDO);
         }
     }
 

@@ -2,7 +2,6 @@ package ui.pantallas.deletereaderscreen;
 
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Reader;
@@ -23,7 +22,7 @@ public class DeleteReaderViewModel {
         return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().get());
     }
 
-    public Either<Integer, List<Reader>> deleteReader(Reader reader) throws JAXBException {
+    public Either<Integer, List<Reader>> deleteReader(Reader reader) {
         return servicesReadersSQL.deleteReader(reader);
     }
 }

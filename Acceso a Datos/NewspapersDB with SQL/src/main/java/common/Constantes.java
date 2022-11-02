@@ -21,6 +21,9 @@ public class Constantes {
     public static final String DESCRIPTION = "description";
     public static final String RELEASE_DATE = "release_date";
     public static final String READERS = "count(readarticle.id_reader)";
+    public static final String ID_READER = "id_reader";
+    public static final String ID_ARTICLE = "id_article";
+    public static final String RATING = "rating";
 
     private Constantes() {
     }

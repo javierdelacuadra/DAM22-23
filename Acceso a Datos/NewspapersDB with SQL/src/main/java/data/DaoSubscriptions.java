@@ -28,7 +28,7 @@ public class DaoSubscriptions {
             preparedStatement.executeUpdate();
             return 1;
         } catch (SQLException e) {
-            return 0;
+            return -1;
         }
     }
 
@@ -40,7 +40,7 @@ public class DaoSubscriptions {
             preparedStatement.executeUpdate();
             return 1;
         } catch (SQLException e) {
-            return 0;
+            return -1;
         }
     }
 }

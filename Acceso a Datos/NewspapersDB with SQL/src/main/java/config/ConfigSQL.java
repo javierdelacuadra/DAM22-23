@@ -12,11 +12,11 @@ import java.util.Properties;
 @Singleton
 public class ConfigSQL {
 
-    private Properties p;
+    private final Properties p;
 
     private ConfigSQL() {
         Path path = Paths.get("src/main/resources/mysql-properties.xml");
-        p= new Properties();
+        p = new Properties();
         InputStream propertiesStream;
         try {
             propertiesStream = Files.newInputStream(path);

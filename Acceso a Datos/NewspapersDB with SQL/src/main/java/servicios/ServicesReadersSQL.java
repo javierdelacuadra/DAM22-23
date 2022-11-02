@@ -1,7 +1,6 @@
 package servicios;
 
 import data.DaoReadersSQL;
-import io.vavr.Tuple1;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Reader;

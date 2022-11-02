@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import model.Article;
 import model.ArticleType;
 import model.Query1;
+import model.ReadArticle;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -91,22 +92,54 @@ public class DaoArticlesSQL {
                 articles.add(article);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).   log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles;
+    }
+
+    private List<ReadArticle> readRSReadArticle(ResultSet rs) {
+        List<ReadArticle> articles = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                ReadArticle article = new ReadArticle();
+                article.setId(rs.getInt(Constantes.ID));
+                article.setId_article(rs.getInt(Constantes.ID_ARTICLE));
+                article.setId_reader(rs.getInt(Constantes.ID_READER));
+                article.setRating(rs.getInt(Constantes.RATING));
+                articles.add(article);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         return articles;
     }
 
     public Either<Integer, List<Article>> saveReadArticle(Article article, Integer rating, Integer readerId) {
+        List<ReadArticle> readArticles = new ArrayList<>();
         List<Article> articles = new ArrayList<>();
         try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READ_ARTICLE)) {
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READARTICLES_BY_ID_ARTICLE)) {
             preparedStatement.setInt(1, article.getId());
             preparedStatement.setInt(2, readerId);
-            preparedStatement.setInt(3, rating);
-            preparedStatement.executeUpdate();
-            articles = getAll(readerId).get();
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            ResultSet rs = preparedStatement.executeQuery();
+            readArticles = readRSReadArticle(rs);
+        } catch (SQLException e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        if (readArticles.isEmpty()) {
+            try (Connection con = db.getConnection();
+                 PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READ_ARTICLE)) {
+                preparedStatement.setInt(1, article.getId());
+                preparedStatement.setInt(2, readerId);
+                preparedStatement.setInt(3, rating);
+                preparedStatement.executeUpdate();
+                articles = getAll(readerId).get();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            return Either.left(-2);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }

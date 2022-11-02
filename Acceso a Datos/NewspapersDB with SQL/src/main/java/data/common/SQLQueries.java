@@ -7,8 +7,9 @@ public class SQLQueries {
     public static final String INSERT_LOGIN = "INSERT INTO login (name, password, id_reader) VALUES (?, ?, ?)";
     public static final String DELETE_READER = "delete from readers where id = ?";
     public static final String DELETE_FROM_LOGIN = "delete from login where name = ?";
+    public static final String DELETE_FROM_READARTICLES = "delete from readarticle where id_reader = ?";
+    public static final String DELETE_FROM_SUBSCRIPTIONS = "delete from subscription where id_reader = ?";
     public static final String UPDATE_READER_LOGIN = "update login set name = ? where id_reader = ?";
-
     public static final String UPDATE_READER = "update readers set name = ?, dateOfBirth = ? where id = ?";
     public static final String SELECT_READERS_BY_NEWSPAPER = "select * from readers where id in (select id_reader from subscription where id_newspaper = ?)";
     public static final String LOGIN = "select * from login where name = ? and password = ?";
@@ -24,6 +25,7 @@ public class SQLQueries {
     public static final String DELETE_SUBSCRIPTION = "delete from subscription where id_newspaper = ? and id_reader = ?";
     public static final String SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS = "select type.description, article.name_article, count(readarticle.id_reader) from type, article, readarticle where type.id = article.id_type and article.id = readarticle.id_article group by type.description, article.name_article";
     public static final String SELECT_OLDEST_SUBSCRIBERS = "select * from readers where id in (select id_reader from subscription where id_newspaper in (select id from newspaper where name = 'El Hola Mundo') order by start_date)";
+    public static final String SELECT_READARTICLES_BY_ID_ARTICLE = "select * from readarticle where id_article = ? and id_reader = ?";
 
     private SQLQueries() {
     }

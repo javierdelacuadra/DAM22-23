@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Reader;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -60,15 +60,19 @@ public class UpdateReaderController extends BasePantallaController implements In
             if (viewModel.updateReader(reader).isRight()) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());
-            } else {
-                this.getPrincipalController().createAlert(viewModel.updateReader(reader).getLeft().toString());
+            } else if (viewModel.updateReader(reader).getLeft() == -1) {
+                this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_UPDATING_THE_READER);
+            } else if (viewModel.updateReader(reader).getLeft() == -2) {
+                this.getPrincipalController().createAlert(ConstantesUI.THE_READER_DOES_NOT_EXIST);
             }
         } else {
-            this.getPrincipalController().createAlert("No reader was selected");
+            this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
+        nameTextField.setText(ConstantesUI.ANY);
+        birthDatePicker.setValue(null);
     }
 
-    public void fillTextFields(MouseEvent mouseEvent) {
+    public void fillTextFields() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = readersTable.getSelectionModel().getSelectedItem();
             nameTextField.setText(reader.getName());
