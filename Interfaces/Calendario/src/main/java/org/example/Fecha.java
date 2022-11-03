@@ -52,7 +52,7 @@ public class Fecha implements Calendariable {
             throw new FechaException("La fecha introducida no es válida");
         }
         if (Integer.parseInt(year) < 1900) {
-            throw new FechaException("EstásMuyViejoException");
+            throw new FechaException("El año debe ser mayor que 1900");
         }
         return LocalDate.of(Integer.parseInt(year), Integer.parseInt(mes), Integer.parseInt(dia));
     }
