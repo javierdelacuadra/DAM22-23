@@ -15,6 +15,7 @@ module MercadonaFX {
     requires org.yaml.snakeyaml;
     requires com.zaxxer.hikari;
     requires jakarta.annotation;
+    requires spring.jdbc;
 
     exports ui;
     exports ui.common;

@@ -24,6 +24,7 @@ public class Constantes {
     public static final String ID_READER = "id_reader";
     public static final String ID_ARTICLE = "id_article";
     public static final String RATING = "rating";
+    public static final String TABLE_NEWSPAPERS = "newspapers";
 
     private Constantes() {
     }
