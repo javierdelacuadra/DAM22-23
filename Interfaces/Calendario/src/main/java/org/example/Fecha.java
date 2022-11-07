@@ -14,8 +14,7 @@ public class Fecha extends JPanel implements Calendariable {
     JLabel label2 = new JLabel("Mes");
     JLabel label3 = new JLabel("Año");
 
-    @Override
-    public void showCalendar() {
+    public Fecha() {
         setSize(300, 300);
         setLayout(new GridLayout(3, 2,0, 5));
         add(label1);
@@ -29,15 +28,9 @@ public class Fecha extends JPanel implements Calendariable {
         label3.setHorizontalAlignment(JLabel.CENTER);
     }
 
-    public Fecha() {
-        showCalendar();
-    }
-
-    public Fecha(int day, int month, int year) {
-        showCalendar();
-        textField1.setText(String.valueOf(day));
-        textField2.setText(String.valueOf(month));
-        textField3.setText(String.valueOf(year));
+    public Fecha(int day, int month, int year) throws FechaException {
+        this();
+        setFecha(day, month, year);
     }
 
     public LocalDate getFecha() throws FechaException {

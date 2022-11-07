@@ -35,6 +35,10 @@ public class DBConnection {
         return new HikariDataSource(hikariConfig);
     }
 
+    public DataSource getHikariDataSource() {
+        return hikariDataSource;
+    }
+
     public Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
