@@ -16,7 +16,7 @@ public class Fecha extends JPanel implements Calendariable {
 
     public Fecha() {
         setSize(300, 300);
-        setLayout(new GridLayout(3, 2,0, 5));
+        setLayout(new GridLayout(3, 2, 0, 5));
         add(label1);
         add(textField1);
         add(label2);
