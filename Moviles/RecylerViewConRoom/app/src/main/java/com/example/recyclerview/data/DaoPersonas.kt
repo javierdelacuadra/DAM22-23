@@ -17,4 +17,7 @@ interface DaoPersonas {
 
     @Update
     suspend fun updatePersona(persona: PersonaEntity)
+
+    @Query("SELECT * FROM personas WHERE email = :email")
+    suspend fun getPersona(email: String): PersonaEntity
 }

@@ -8,10 +8,18 @@ class Repository (private val dao: DaoPersonas) {
 
     suspend fun getPersonas() = dao.getPersonas().map { it.toPersona() }
 
+    suspend fun getPersona(email: String) = dao.getPersona(email).toPersona()
+
     suspend fun addPersona(persona: Persona) = dao.addPersona(persona.toPersonaEntity())
 
     suspend fun deletePersona(persona: Persona) = dao.deletePersona(persona.toPersonaEntity())
 
-    suspend fun updatePersona(persona: Persona) = dao.updatePersona(persona.toPersonaEntity())
-
+    suspend fun updatePersona(persona: Persona) {
+        val personaToUpdate = Persona(
+            persona.nombre,
+            persona.password.ifEmpty { getPersona(persona.email).password },
+            persona.email
+        )
+        dao.updatePersona(personaToUpdate.toPersonaEntity())
+    }
 }

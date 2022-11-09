@@ -10,6 +10,6 @@ data class PersonaEntity (
     val nombre: String,
     @ColumnInfo(name = "password")
     val password: String,
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey
     val email: String,
 )

@@ -62,6 +62,7 @@ class ListActivity : AppCompatActivity() {
 
     private fun deletePersona(persona: Persona) {
         viewModel.deletePersona(persona)
+        viewModel.cargarPersonas()
     }
 
     private fun updatePersona(nombre: String, email: String) {
