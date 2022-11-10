@@ -56,17 +56,7 @@ public class ReadersRest {
 
     @GET
     @Path("/{id}")
-    public Response getReader(@PathParam("id") String id) {
-        AtomicReference<Response> r = new AtomicReference<>();
-        if (servicios.getReader(id) != null) {
-            return Response.ok(Response.Status.OK).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity(APIError.builder()
-                            .mensaje("No se ha encontrado el usuario")
-                            .fecha(LocalDate.now())
-                            .build())
-                    .build();
-        }
+    public Reader getReader(@PathParam("id") String id) {
+        return servicios.getReader(id).get();
     }
 }

@@ -21,7 +21,7 @@ public class ServiciosReaders {
         return dao.getAll();
     }
 
-    public Either<Integer,List<Reader>> addReader(Reader reader) {
+    public Either<Integer, Reader> addReader(Reader reader) {
         return dao.save(reader);
     }
 
@@ -33,7 +33,7 @@ public class ServiciosReaders {
         return dao.delete(id);
     }
 
-    public Reader getReader(String id) {
+    public Either<Integer, Reader> getReader(String id) {
         return dao.get(id);
     }
 }

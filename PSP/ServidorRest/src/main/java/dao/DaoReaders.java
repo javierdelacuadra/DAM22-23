@@ -35,7 +35,7 @@ public class DaoReaders {
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
-    public boolean save(Reader reader) {
+    public Either<Integer, Reader> save(Reader reader) {
         List<Reader> readers = getAll().get();
         if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()))) {
             try (Connection con = db.getConnection();
@@ -52,12 +52,12 @@ public class DaoReaders {
                 throw new UnknownParamException("a");
             } catch (Exception e) {
                 e.printStackTrace();
-                return false;
+                return Either.left(-1);
             }
         } else {
-            return false;
+            return Either.left(-1);
         }
-        return true;
+        return Either.right(reader);
     }
 
     public Either<Integer, List<Reader>> update(Reader reader) {
@@ -93,7 +93,7 @@ public class DaoReaders {
         }
     }
 
-    public Reader get(String id) {
+    public Either<Integer, Reader> get(String id) {
         Reader reader = new Reader();
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_ID)) {
@@ -107,7 +107,7 @@ public class DaoReaders {
         } catch (SQLException e) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
         }
-        return reader;
+        return reader.getId() == 0 ? Either.left(-1) : Either.right(reader);
     }
 
     private List<Reader> readRS(ResultSet rs) {
