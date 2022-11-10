@@ -70,6 +70,7 @@ class ListActivity : AppCompatActivity() {
         intent.putExtra(Constantes.NOMBRE, nombre)
         intent.putExtra(Constantes.EMAIL, email)
         startActivity(intent)
+        //TODO: luego
     }
 
     public override fun onResume() {
