@@ -10,7 +10,6 @@ import jakarta.ws.rs.core.Response;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Path("/readers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,18 +25,26 @@ public class ReadersRest {
 
     @GET
     public List<Reader> getAllReaders() {
-        return servicios.getAllReaders().get();
+        return servicios.getAllReaders();
     }
 
     @POST
-    public Reader addReader(Reader reader) {
-        return servicios.addReader(reader).get();
+    public Response addReader(Reader reader) {
+        if (servicios.addReader(reader)) {
+            return Response.status(Response.Status.CREATED).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
-//    @PUT
-//    public Reader updateReader(Reader reader) {
-//        return servicios.updateReader(reader);
-//    }
+    @PUT
+    public Response updateReader(Reader reader) {
+        if (servicios.updateReader(reader)) {
+            return Response.status(Response.Status.OK).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
 
     @DELETE
     @Path("/{id}")
@@ -57,6 +64,6 @@ public class ReadersRest {
     @GET
     @Path("/{id}")
     public Reader getReader(@PathParam("id") String id) {
-        return servicios.getReader(id).get();
+        return servicios.getReader(id);
     }
 }

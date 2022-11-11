@@ -1,9 +1,10 @@
 package dao;
 
+import dao.common.Constantes;
 import dao.common.SQLQueries;
 import dao.modelo.Reader;
-import domain.exceptions.UnknownParamException;
-import io.vavr.control.Either;
+import domain.exceptions.DatabaseException;
+import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 
 import java.sql.*;
@@ -21,7 +22,7 @@ public class DaoReaders {
         this.db = db;
     }
 
-    public Either<Integer, List<Reader>> getAll() {
+    public List<Reader> getAll() {
         List<Reader> readers;
         try (Connection con = db.getConnection();
              Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -30,13 +31,13 @@ public class DaoReaders {
             readers = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-            throw new UnknownParamException("a");
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_READERS);
         }
-        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
+        return readers;
     }
 
-    public Either<Integer, Reader> save(Reader reader) {
-        List<Reader> readers = getAll().get();
+    public boolean save(Reader reader) {
+        List<Reader> readers = getAll();
         if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()))) {
             try (Connection con = db.getConnection();
                  PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER, Statement.RETURN_GENERATED_KEYS)) {
@@ -49,34 +50,29 @@ public class DaoReaders {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-                throw new UnknownParamException("a");
-            } catch (Exception e) {
-                e.printStackTrace();
-                return Either.left(-1);
+                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_READER);
             }
-        } else {
-            return Either.left(-1);
+            return true;
         }
-        return Either.right(reader);
+        throw new DatabaseException(Constantes.YA_EXISTE_UN_READER_CON_ESE_NOMBRE);
     }
 
-    public Either<Integer, List<Reader>> update(Reader reader) {
-        List<Reader> readers = new ArrayList<>();
-        if (getAll().get().stream().noneMatch(r -> r.getName().equals(reader.getName()) && r.getId() != reader.getId())) {
+    public boolean update(Reader reader) {
+        List<Reader> readers = getAll();
+        if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()) && r.getId() != reader.getId())) {
             try (Connection con = db.getConnection();
                  PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.UPDATE_READER)) {
                 preparedStatement.setString(1, reader.getName());
                 preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
                 preparedStatement.setInt(3, reader.getId());
                 preparedStatement.executeUpdate();
-                readers = getAll().get();
             } catch (SQLException e) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_READER);
             }
-        } else {
-            return Either.left(-2);
+            return true;
         }
-        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
+        throw new DatabaseException(Constantes.YA_EXISTE_UN_READER_CON_ESE_NOMBRE);
     }
 
     public boolean delete(String id) {
@@ -86,28 +82,27 @@ public class DaoReaders {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+            throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_READER);
         }
     }
 
-    public Either<Integer, Reader> get(String id) {
+    public Reader get(String id) {
         Reader reader = new Reader();
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_ID)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                reader.setId(rs.getInt("id"));
-                reader.setName(rs.getString("name"));
-                reader.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
+                reader.setId(rs.getInt(Constantes.ID));
+                reader.setName(rs.getString(Constantes.NAME));
+                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
             }
         } catch (SQLException e) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+            throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_EL_READER);
         }
-        return reader.getId() == 0 ? Either.left(-1) : Either.right(reader);
+        return reader;
     }
 
     private List<Reader> readRS(ResultSet rs) {
@@ -115,9 +110,9 @@ public class DaoReaders {
         try {
             while (rs.next()) {
                 Reader reader = new Reader();
-                reader.setId(rs.getInt("id"));
-                reader.setName(rs.getString("name"));
-                reader.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
+                reader.setId(rs.getInt(Constantes.ID));
+                reader.setName(rs.getString(Constantes.NAME));
+                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
                 readers.add(reader);
             }
         } catch (SQLException ex) {

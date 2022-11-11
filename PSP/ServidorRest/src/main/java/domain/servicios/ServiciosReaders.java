@@ -2,7 +2,6 @@ package domain.servicios;
 
 import dao.DaoReaders;
 import dao.modelo.Reader;
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 
 import java.util.List;
@@ -16,24 +15,23 @@ public class ServiciosReaders {
         this.dao = dao;
     }
 
-
-    public Either<Integer,List<Reader>> getAllReaders() {
+    public List<Reader> getAllReaders() {
         return dao.getAll();
     }
 
-    public Either<Integer, Reader> addReader(Reader reader) {
+    public boolean addReader(Reader reader) {
         return dao.save(reader);
     }
 
-//    public Either<Integer,Reader> updateReader(Reader reader) {
-//        return dao.update(reader);
-//    }
+    public boolean updateReader(Reader reader) {
+        return dao.update(reader);
+    }
 
     public boolean deleteReader(String id) {
         return dao.delete(id);
     }
 
-    public Either<Integer, Reader> getReader(String id) {
+    public Reader getReader(String id) {
         return dao.get(id);
     }
 }
