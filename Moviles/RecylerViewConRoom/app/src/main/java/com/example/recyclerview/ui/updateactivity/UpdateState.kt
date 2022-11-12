@@ -1,12 +1,13 @@
 package com.example.recyclerview.ui.updateactivity
 
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.ui.common.Constantes
+import com.example.recyclerview.ui.common.ConstantesUI
 
-class UpdateState (
+class UpdateState(
     val persona: Persona = Persona(
-        Constantes.NADA,
-        Constantes.NADA,
-        Constantes.NADA,),
+        ConstantesUI.NADA,
+        ConstantesUI.NADA,
+        ConstantesUI.NADA,
+    ),
     val mensaje: String? = null
 )

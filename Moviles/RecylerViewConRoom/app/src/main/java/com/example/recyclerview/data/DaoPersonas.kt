@@ -1,12 +1,13 @@
 package com.example.recyclerview.data
 
 import androidx.room.*
+import com.example.recyclerview.data.common.Constantes
 import com.example.recyclerview.data.modelo.PersonaEntity
 
 @Dao
 interface DaoPersonas {
 
-    @Query("SELECT * FROM personas")
+    @Query(Constantes.SELECT_PERSONAS)
     suspend fun getPersonas(): List<PersonaEntity>
 
     @Insert
@@ -18,6 +19,6 @@ interface DaoPersonas {
     @Update
     suspend fun updatePersona(persona: PersonaEntity)
 
-    @Query("SELECT * FROM personas WHERE email = :email")
+    @Query(Constantes.SELECT_PERSONA)
     suspend fun getPersona(email: String): PersonaEntity
 }

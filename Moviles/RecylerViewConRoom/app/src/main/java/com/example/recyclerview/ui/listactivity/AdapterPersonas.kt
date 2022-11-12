@@ -11,9 +11,13 @@ import com.example.recyclerview.domain.modelo.Persona
 
 class AdapterPersonas(
     private var personas: List<Persona>,
-    private val deletePersona: (Persona) -> Unit,
-    private val updatePersona: (String, String) -> Unit,
+    private val actions: PersonaActions,
 ) : RecyclerView.Adapter<PersonasViewHolder>() {
+
+    interface PersonaActions {
+        fun deletePersona(persona: Persona)
+        fun updatePersona(nombre: String, email: String)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonasViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -21,7 +25,7 @@ class AdapterPersonas(
     }
 
     override fun onBindViewHolder(holder: PersonasViewHolder, position: Int) {
-        holder.render(personas[position], deletePersona, updatePersona)
+        holder.render(personas[position], actions)
     }
 
     override fun getItemCount(): Int = personas.size
@@ -38,8 +42,7 @@ class PersonasViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
 
     fun render(
         persona: Persona,
-        deletePersona: (Persona) -> Unit,
-        updatePersona: (String, String) -> Unit,
+        actions: AdapterPersonas.PersonaActions
     ) {
 
         with(binding) {
@@ -48,11 +51,14 @@ class PersonasViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
         }
 
         view.findViewById<ImageButton>(R.id.buttonDelete).setOnClickListener {
-            deletePersona(Persona(persona.nombre, persona.password, persona.email))
+            actions.deletePersona(Persona(persona.nombre, persona.password, persona.email))
         }
 
         view.findViewById<ImageButton>(R.id.buttonUpdate).setOnClickListener {
-            updatePersona(binding.nombreTextField.text.toString(), binding.emailTextField.text.toString())
+            actions.updatePersona(
+                binding.nombreTextField.text.toString(),
+                binding.emailTextField.text.toString()
+            )
         }
     }
 }

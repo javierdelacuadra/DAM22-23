@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.DeletePersonaUseCase
 import com.example.recyclerview.domain.usecases.GetPersonasUseCase
-import com.example.recyclerview.ui.common.Constantes
+import com.example.recyclerview.ui.common.ConstantesUI
 import kotlinx.coroutines.launch
 
 class ListViewModel(
@@ -15,23 +15,30 @@ class ListViewModel(
     private val _uiState = MutableLiveData(ListState(null, emptyList()))
     val uiState: LiveData<ListState> get() = _uiState
 
-    fun deletePersona(persona: Persona) {
+    fun handleEvent(event: ListEvent) {
+        when (event) {
+            is ListEvent.GetPersonas -> cargarPersonas()
+            is ListEvent.DeletePersona -> deletePersona(event.persona)
+        }
+    }
+
+    private fun deletePersona(persona: Persona) {
         viewModelScope.launch {
             try {
                 deletePersonaUseCase.invoke(persona)
-                _uiState.value = _uiState.value?.copy(mensaje = Constantes.PERSONA_BORRADA)
+                _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.PERSONA_BORRADA)
             } catch (e: Exception) {
-                _uiState.value = _uiState.value?.copy(mensaje = Constantes.ERROR_BORRAR_PERSONA)
+                _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.ERROR_BORRAR_PERSONA)
             }
         }
     }
 
-    fun cargarPersonas() {
+    private fun cargarPersonas() {
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value?.copy(lista = getPersonasUseCase.invoke())
             } catch (e: Exception) {
-                _uiState.value = _uiState.value?.copy(mensaje = Constantes.ERROR_CARGAR_PERSONAS)
+                _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.ERROR_CARGAR_PERSONAS)
             }
         }
     }
@@ -45,13 +52,13 @@ class ListViewModel(
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
-                @Suppress(Constantes.UNCHECKED_CAST)
+                @Suppress(ConstantesUI.UNCHECKED_CAST)
                 return ListViewModel(
                     getPersonasUseCase,
                     deletePersonaUseCase,
                 ) as T
             }
-            throw IllegalArgumentException(Constantes.UNKNOWN_VIEW_MODEL_CLASS)
+            throw IllegalArgumentException(ConstantesUI.UNKNOWN_VIEW_MODEL_CLASS)
         }
     }
 }

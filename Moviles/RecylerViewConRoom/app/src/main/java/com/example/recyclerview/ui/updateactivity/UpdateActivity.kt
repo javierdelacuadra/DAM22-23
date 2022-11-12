@@ -10,7 +10,7 @@ import com.example.recyclerview.data.Repository
 import com.example.recyclerview.databinding.ActivityUpdateBinding
 import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.UpdatePersonaUseCase
-import com.example.recyclerview.ui.common.Constantes
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class UpdateActivity : AppCompatActivity() {
@@ -29,9 +29,9 @@ class UpdateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val nombre = intent.getStringExtra(Constantes.NOMBRE)
-        val email = intent.getStringExtra(Constantes.EMAIL)
-        val emailSinArroba = email?.substringBefore(Constantes.ARROBA)
+        val nombre = intent.getStringExtra(ConstantesUI.NOMBRE)
+        val email = intent.getStringExtra(ConstantesUI.EMAIL)
+        val emailSinArroba = email?.substringBefore(ConstantesUI.ARROBA)
         binding = ActivityUpdateBinding.inflate(layoutInflater).apply {
             setContentView(root)
             nameTextField.editText?.setText(nombre)
@@ -48,20 +48,23 @@ class UpdateActivity : AppCompatActivity() {
     }
 
     private fun updatePersona() {
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.update)
-            .setMessage(R.string.update_message)
-            .setPositiveButton(R.string.SI) { _, _ ->
-                viewModel.updatePersona(
-                    Persona(
+        if (binding.nameTextField.editText?.text.toString().isNotEmpty()) {
+            val dialog = MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.update)
+                .setMessage(R.string.update_message)
+                .setPositiveButton(R.string.SI) { _, _ ->
+                    val persona = Persona(
                         binding.nameTextField.editText?.text.toString(),
                         binding.passwordTextField.editText?.text.toString(),
-                        binding.emailTextField.editText?.text.toString() + Constantes.EMAIL_DOMAIN,
+                        binding.emailTextField.editText?.text.toString() + ConstantesUI.EMAIL_DOMAIN,
                     )
-                )
-            }
-            .setNegativeButton(R.string.no) { _, _ -> }
-            .create()
-        dialog.show()
+                    viewModel.handleEvent(UpdateEvent.UpdatePersona(persona))
+                }
+                .setNegativeButton(R.string.no) { _, _ -> }
+                .create()
+            dialog.show()
+        } else {
+            Toast.makeText(this, R.string.empty_fields, Toast.LENGTH_SHORT).show()
+        }
     }
 }

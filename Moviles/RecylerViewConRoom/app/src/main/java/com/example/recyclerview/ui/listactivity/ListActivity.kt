@@ -13,7 +13,7 @@ import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.DeletePersonaUseCase
 import com.example.recyclerview.domain.usecases.GetPersonasUseCase
 import com.example.recyclerview.ui.addactivity.AddActivity
-import com.example.recyclerview.ui.common.Constantes
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.updateactivity.UpdateActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import timber.log.Timber
@@ -32,13 +32,23 @@ class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recicler)
-        val button = this.findViewById<FloatingActionButton>(R.id.fab)
-        button.setOnClickListener {
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
             loadPantallaAdd()
         }
-        viewModel.cargarPersonas()
+        viewModel.handleEvent(ListEvent.GetPersonas)
         listaPersonas = findViewById(R.id.listaPersonas)
-        val adapter = AdapterPersonas(ArrayList(), ::deletePersona, ::updatePersona)
+
+        val adapter = AdapterPersonas(ArrayList(),
+            object : AdapterPersonas.PersonaActions {
+                override fun deletePersona(persona: Persona) {
+                    borrarPersona(persona)
+                }
+
+                override fun updatePersona(nombre: String, email: String) {
+                    actualizarPersona(nombre, email)
+                }
+            })
 
         listaPersonas.adapter = adapter
         listaPersonas.layoutManager = GridLayoutManager(this, 1)
@@ -60,21 +70,22 @@ class ListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun deletePersona(persona: Persona) {
-        viewModel.deletePersona(persona)
-        viewModel.cargarPersonas()
+    private fun borrarPersona(persona: Persona) {
+        viewModel.handleEvent(ListEvent.DeletePersona(persona))
+        viewModel.handleEvent(ListEvent.GetPersonas)
     }
 
-    private fun updatePersona(nombre: String, email: String) {
+    private fun actualizarPersona(nombre: String, email: String) {
         val intent = Intent(this, UpdateActivity::class.java)
-        intent.putExtra(Constantes.NOMBRE, nombre)
-        intent.putExtra(Constantes.EMAIL, email)
+        val bundle = Bundle()
+        bundle.putString(ConstantesUI.NOMBRE, nombre)
+        bundle.putString(ConstantesUI.EMAIL, email)
+        intent.putExtras(bundle)
         startActivity(intent)
-        //TODO: luego
     }
 
     public override fun onResume() {
         super.onResume()
-        viewModel.cargarPersonas()
+        viewModel.handleEvent(ListEvent.GetPersonas)
     }
 }

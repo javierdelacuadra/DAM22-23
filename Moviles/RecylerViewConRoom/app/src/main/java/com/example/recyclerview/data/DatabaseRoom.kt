@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.recyclerview.data.common.Constantes
 import com.example.recyclerview.data.modelo.PersonaEntity
 
-@Database(entities = [PersonaEntity::class], version =1, exportSchema = true)
+@Database(entities = [PersonaEntity::class], version = 1, exportSchema = true)
 abstract class DatabaseRoom : RoomDatabase() {
 
     abstract fun daoPersonas(): DaoPersonas
@@ -20,10 +21,9 @@ abstract class DatabaseRoom : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DatabaseRoom::class.java,
-                    "item_database"
+                    Constantes.ITEM_DATABASE
                 )
-                    .createFromAsset("database/personas.db")
-                    //.fallbackToDestructiveMigrationFrom(4)
+                    .createFromAsset(Constantes.DATABASE_PATH)
                     .build()
                 INSTANCE = instance
                 instance

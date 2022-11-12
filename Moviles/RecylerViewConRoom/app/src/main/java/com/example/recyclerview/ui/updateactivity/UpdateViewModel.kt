@@ -3,7 +3,7 @@ package com.example.recyclerview.ui.updateactivity
 import androidx.lifecycle.*
 import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.UpdatePersonaUseCase
-import com.example.recyclerview.ui.common.Constantes
+import com.example.recyclerview.ui.common.ConstantesUI
 import kotlinx.coroutines.launch
 
 class UpdateViewModel(
@@ -12,11 +12,17 @@ class UpdateViewModel(
     private val _state = MutableLiveData<UpdateState>()
     val state: LiveData<UpdateState> = _state
 
-    fun updatePersona(persona: Persona) {
+    fun handleEvent(event: UpdateEvent) {
+        when (event) {
+            is UpdateEvent.UpdatePersona -> updatePersona(event.persona)
+        }
+    }
+
+    private fun updatePersona(persona: Persona) {
         viewModelScope.launch {
             try {
                 updatePersonaUseCase.invoke(persona)
-                _state.value = UpdateState(mensaje = Constantes.PERSONA_ACTUALIZADA)
+                _state.value = UpdateState(mensaje = ConstantesUI.PERSONA_ACTUALIZADA)
             } catch (e: Exception) {
                 _state.value = UpdateState(mensaje = e.message)
             }
@@ -28,12 +34,12 @@ class UpdateViewModel(
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UpdateViewModel::class.java)) {
-                @Suppress(Constantes.UNCHECKED_CAST)
+                @Suppress(ConstantesUI.UNCHECKED_CAST)
                 return UpdateViewModel(
                     updatePersonaUseCase,
                 ) as T
             }
-            throw IllegalArgumentException(Constantes.UNKNOWN_VIEW_MODEL_CLASS)
+            throw IllegalArgumentException(ConstantesUI.UNKNOWN_VIEW_MODEL_CLASS)
         }
     }
 }
