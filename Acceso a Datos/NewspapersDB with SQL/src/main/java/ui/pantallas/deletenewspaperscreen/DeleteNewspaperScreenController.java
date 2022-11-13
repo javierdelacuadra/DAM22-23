@@ -39,23 +39,21 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("release_date"));
         newspaperTable.setItems(viewModel.getNewspapers());
     }
 
     public void deleteNewspaper() {
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
-        if (viewModel.checkArticles(newspaper)) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ConstantesUI.THE_NEWSPAPER_HAS_ARTICLES_ARE_YOU_SURE_YOU_WANT_TO_DELETE_IT, ButtonType.YES, ButtonType.NO);
+        if (newspaper != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ConstantesUI.NEWSPAPER_DELETED_SUCCESSFULLY, ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
                 viewModel.deleteNewspaper(newspaper);
-                newspaperTable.getItems().remove(newspaper);
+                newspaperTable.setItems(viewModel.getNewspapers());
             }
         } else {
-            viewModel.deleteNewspaper(newspaper);
-            newspaperTable.getItems().remove(newspaper);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, ConstantesUI.NEWSPAPER_DELETED_SUCCESSFULLY);
+            Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.PLEASE_SELECT_A_NEWSPAPER, ButtonType.OK);
             alert.showAndWait();
         }
     }

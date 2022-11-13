@@ -1,6 +1,5 @@
 package ui.pantallas.listreaderscreen;
 
-import io.github.palexdev.materialfx.utils.PositionUtils;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
@@ -8,20 +7,19 @@ import javafx.collections.ObservableList;
 import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
-import servicios.ServicesArticles;
 import servicios.ServicesArticlesSQL;
-import servicios.ServicesNewspaper;
+import servicios.ServicesNewspaperSQL;
 import servicios.ServicesReadersSQL;
 
 public class ListReadersScreenViewModel {
 
-    private final ServicesNewspaper servicesNewspaper;
+    private final ServicesNewspaperSQL servicesNewspaperSQL;
     private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesReadersSQL servicesReadersSQL;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesNewspaper servicesNewspaper, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL) {
-        this.servicesNewspaper = servicesNewspaper;
+    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL) {
+        this.servicesNewspaperSQL = servicesNewspaperSQL;
         this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesReadersSQL = servicesReadersSQL;
     }
@@ -31,7 +29,7 @@ public class ListReadersScreenViewModel {
     }
 
     public ObservableList<Newspaper> getNewspapers() {
-        return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
+        return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
     public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {

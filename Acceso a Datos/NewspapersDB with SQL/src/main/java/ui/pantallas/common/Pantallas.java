@@ -12,7 +12,10 @@ public enum Pantallas {
     ADDREADERSCREEN("/fxml/AddReaderScreen.fxml"),
     UPDATEREADERSCREEN("/fxml/UpdateReaderScreen.fxml"),
     ADDREADARTICLESCREEN("/fxml/AddReadArticleScreen.fxml"),
-    ADDSUBSCRIPTIONSCREEN("/fxml/AddSubscriptionScreen.fxml");
+    ADDSUBSCRIPTIONSCREEN("/fxml/AddSubscriptionScreen.fxml"),
+    ADDNEWSPAPERSCREEN("/fxml/AddNewspaperScreen.fxml"),
+    UPDATENEWSPAPERSCREEN("/fxml/UpdateNewspaperScreen.fxml"),
+    QUERIESSCREEN("/fxml/QueriesScreen.fxml");
 
     private final String ruta;
 

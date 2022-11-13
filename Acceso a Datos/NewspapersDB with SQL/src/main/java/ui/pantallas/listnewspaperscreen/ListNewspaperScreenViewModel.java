@@ -4,18 +4,18 @@ import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Newspaper;
-import servicios.ServicesNewspaper;
+import servicios.ServicesNewspaperSQL;
 
 public class ListNewspaperScreenViewModel {
 
-    private final ServicesNewspaper servicesNewspaper;
+    private final ServicesNewspaperSQL servicesNewspaperSQL;
 
     @Inject
-    public ListNewspaperScreenViewModel(ServicesNewspaper servicesNewspaper) {
-        this.servicesNewspaper = servicesNewspaper;
+    public ListNewspaperScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL) {
+        this.servicesNewspaperSQL = servicesNewspaperSQL;
     }
 
     public ObservableList<Newspaper> getNewspapers() {
-        return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
+        return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 }

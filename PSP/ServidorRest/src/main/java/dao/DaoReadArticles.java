@@ -2,7 +2,6 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Article;
 import dao.modelo.ReadArticle;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
@@ -23,11 +22,11 @@ public class DaoReadArticles {
         this.db = db;
     }
 
-    public boolean saveReadArticle(Article article, Integer rating) {
+    public boolean saveReadArticle(String idArticle, String idReader, String rating) {
         List<ReadArticle> readArticles;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READARTICLES_BY_ID_ARTICLE)) {
-            preparedStatement.setInt(1, article.getId());
+            preparedStatement.setInt(1, Integer.parseInt(idArticle));
             ResultSet rs = preparedStatement.executeQuery();
             readArticles = readRSReadArticle(rs);
         } catch (SQLException e) {
@@ -36,8 +35,9 @@ public class DaoReadArticles {
         if (readArticles.isEmpty()) {
             try (Connection con = db.getConnection();
                  PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READ_ARTICLE)) {
-                preparedStatement.setInt(1, article.getId());
-                preparedStatement.setInt(2, rating);
+                preparedStatement.setInt(1, Integer.parseInt(idArticle));
+                preparedStatement.setInt(2, Integer.parseInt(idReader));
+                preparedStatement.setInt(3, Integer.parseInt(rating));
                 preparedStatement.executeUpdate();
             } catch (SQLException ex) {
                 throw new DatabaseException(Constantes.ERROR_AL_INSERTAR_EL_READ_ARTICLE);

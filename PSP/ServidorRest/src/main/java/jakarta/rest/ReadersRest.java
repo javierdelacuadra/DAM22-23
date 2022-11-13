@@ -50,14 +50,9 @@ public class ReadersRest {
     @Path("/{id}")
     public Response deleteReader(@PathParam("id") String id) {
         if (servicios.deleteReader(id)) {
-            return Response.status(Response.Status.NO_CONTENT).build();
+            return Response.status(Response.Status.OK).build();
         } else {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity(APIError.builder()
-                            .mensaje("No se ha encontrado el usuario")
-                            .fecha(LocalDate.now())
-                            .build())
-                    .build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
@@ -65,5 +60,17 @@ public class ReadersRest {
     @Path("/{id}")
     public Reader getReader(@PathParam("id") String id) {
         return servicios.getReader(id);
+    }
+
+    @GET
+    @Path("/articleTypes")
+    public List<Reader> getReadersByArticleType(@QueryParam("type") String type) {
+        return servicios.getReadersByArticleType(type);
+    }
+
+    @GET
+    @Path("/newspapers")
+    public List<Reader> getReadersByNewspaper(@QueryParam("idNewspaper") String idNewspaper) {
+        return servicios.getReadersByNewspaper(idNewspaper);
     }
 }

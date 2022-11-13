@@ -16,6 +16,7 @@ module MercadonaFX {
     requires com.zaxxer.hikari;
     requires jakarta.annotation;
     requires spring.jdbc;
+    requires spring.tx;
 
     exports ui;
     exports ui.common;
@@ -31,6 +32,9 @@ module MercadonaFX {
     exports ui.pantallas.updatereaderscreen;
     exports ui.pantallas.addreadarticlescreen;
     exports ui.pantallas.addsubscriptionscreen;
+    exports ui.pantallas.springqueryscreen;
+    exports ui.pantallas.addnewspaperscreen;
+    exports ui.pantallas.updatenewspaperscreen;
     exports ui.pantallas.common;
     exports servicios;
     exports config;
@@ -58,5 +62,8 @@ module MercadonaFX {
     opens ui.pantallas.updatereaderscreen to javafx.fxml;
     opens ui.pantallas.addreadarticlescreen to javafx.fxml;
     opens ui.pantallas.addsubscriptionscreen to javafx.fxml;
+    opens ui.pantallas.springqueryscreen to javafx.fxml;
+    opens ui.pantallas.addnewspaperscreen to javafx.fxml;
+    opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
     opens ui.pantallas.common;
 }

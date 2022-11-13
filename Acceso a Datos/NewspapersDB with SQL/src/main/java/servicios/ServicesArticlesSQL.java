@@ -3,10 +3,7 @@ package servicios;
 import data.DaoArticlesSQL;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Article;
-import model.ArticleType;
-import model.Query1;
-import model.Reader;
+import model.*;
 
 import java.util.List;
 
@@ -37,5 +34,21 @@ public class ServicesArticlesSQL {
 
     public Either<Integer, List<Query1>> getArticlesQuery() {
         return daoArticlesSQL.getArticlesQuery();
+    }
+
+    public Either<Integer, List<Article>> addArticle(Article article) {
+        return daoArticlesSQL.add(article);
+    }
+
+    public Either<Integer, List<Article>> getArticlesByType(String type) {
+        return daoArticlesSQL.getAll(type);
+    }
+
+    public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
+        return daoArticlesSQL.getArticlesByTypeAndNameNewspaper(type, nameNewspaper);
+    }
+
+    public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
+        return daoArticlesSQL.getArticlesByNewspaperWithBadRatings(idNewspaper);
     }
 }

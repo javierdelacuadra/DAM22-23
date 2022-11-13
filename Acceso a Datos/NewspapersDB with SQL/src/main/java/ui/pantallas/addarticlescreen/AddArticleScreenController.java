@@ -1,5 +1,6 @@
 package ui.pantallas.addarticlescreen;
 
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
+import model.ArticleType;
+import model.Newspaper;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -41,36 +44,35 @@ public class AddArticleScreenController extends BasePantallaController implement
     private TableColumn<Article, Integer> newspaperIDColumn;
 
     @FXML
-    private MFXTextField idText;
-
-    @FXML
     private MFXTextField nameText;
 
     @FXML
-    private MFXTextField typeIDText;
+    private MFXComboBox<ArticleType> typeIDComboBox;
 
     @FXML
-    private MFXTextField newspaperIDText;
+    private MFXComboBox<Newspaper> newspaperIDComboBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameArticle"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("idType"));
-        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("idNewspaper"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id_type"));
+        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("id_newspaper"));
         articlesTable.setItems(viewModel.getArticles());
+        typeIDComboBox.setItems(viewModel.getArticleTypes());
+        newspaperIDComboBox.setItems(viewModel.getNewspapers());
     }
 
     public void addArticle() {
-        if (idText.getText().isEmpty() || nameText.getText().isEmpty() || typeIDText.getText().isEmpty() || newspaperIDText.getText().isEmpty()) {
+        if (nameText.getText().isEmpty() || typeIDComboBox.getSelectionModel().getSelectedItem() == null || newspaperIDComboBox.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS, ButtonType.OK);
             alert.showAndWait();
         } else {
-            Article article = new Article(Integer.parseInt(idText.getText()),
+            Article article = new Article(-1,
                     nameText.getText(),
-                    Integer.parseInt(typeIDText.getText()),
-                    Integer.parseInt(newspaperIDText.getText()));
-            if (viewModel.addArticle(article)) {
+                    typeIDComboBox.getSelectionModel().getSelectedItem().getId(),
+                    newspaperIDComboBox.getSelectionModel().getSelectedItem().getId());
+            if (viewModel.addArticle(article).isRight()) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(viewModel.getArticles());
             } else {

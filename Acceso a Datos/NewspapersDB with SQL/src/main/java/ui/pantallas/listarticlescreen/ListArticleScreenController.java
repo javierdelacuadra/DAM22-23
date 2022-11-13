@@ -1,14 +1,16 @@
 package ui.pantallas.listarticlescreen;
 
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Article;
+import model.ArticleType;
 import model.Query1;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -50,6 +52,9 @@ public class ListArticleScreenController extends BasePantallaController implemen
     @FXML
     private TableColumn<Query1, String> articleTypeColumn;
 
+    @FXML
+    private MFXComboBox<ArticleType> typeComboBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -61,6 +66,7 @@ public class ListArticleScreenController extends BasePantallaController implemen
         nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
         readerCountColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
         articleTypeColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeComboBox.setItems(viewModel.getArticleTypes());
     }
 
     public void showArticlesQuery() {
@@ -68,11 +74,24 @@ public class ListArticleScreenController extends BasePantallaController implemen
             articlesQueryTable.setItems(viewModel.showArticlesQuery());
             articlesQueryTable.setVisible(true);
             articlesTable.setVisible(false);
+            typeComboBox.getSelectionModel().clearSelection();
         }
     }
 
     public void showArticles() {
         articlesTable.setVisible(true);
+        articlesTable.setItems(viewModel.getArticles());
         articlesQueryTable.setVisible(false);
+        typeComboBox.getSelectionModel().clearSelection();
+    }
+
+    public void showArticlesByType() {
+        if (typeComboBox.getValue() != null) {
+            articlesTable.setItems(viewModel.getArticlesByType(typeComboBox.getValue().getDescription()));
+            articlesTable.setVisible(true);
+            articlesQueryTable.setVisible(false);
+        } else {
+            this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_ARTICLE_TYPE);
+        }
     }
 }

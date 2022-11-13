@@ -1,7 +1,6 @@
 package domain.servicios;
 
 import dao.DaoReadArticles;
-import dao.modelo.Article;
 import jakarta.inject.Inject;
 
 public class ServiciosReadArticles {
@@ -13,7 +12,7 @@ public class ServiciosReadArticles {
         this.dao = dao;
     }
 
-    public boolean saveReadArticle(Article article, Integer rating) {
-        return dao.saveReadArticle(article, rating);
+    public boolean saveReadArticle(String idArticle, String idReader, String rating) {
+        return dao.saveReadArticle(idArticle, idReader, rating);
     }
 }

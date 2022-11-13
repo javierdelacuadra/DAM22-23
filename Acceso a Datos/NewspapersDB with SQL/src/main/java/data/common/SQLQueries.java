@@ -29,6 +29,10 @@ public class SQLQueries {
     public static final String INSERT_NEWSPAPER = "INSERT INTO newspaper (name, release_date) VALUES (?, ?)";
     public static final String DELETE_NEWSPAPER = "delete from newspaper where id = ?";
     public static final String UPDATE_NEWSPAPER = "update newspaper set name = ?, release_date = ? where id = ?";
+    public static final String SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER = "select article.id, article.name_article, article.id_type, newspaper.name from article, newspaper where article.id_newspaper = newspaper.id and newspaper.name = ? and article.id_type in (select id from type where description = ?)";
+    public static final String SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS = "select a.id, a.name_article, r.id_reader, r.rating, (select count(*) from readarticle where id_reader = r.id_reader and rating < 5) as bad_ratings from article a left join readarticle r on a.id = r.id_article where a.id_newspaper = ? and r.rating < 5";
+    public static final String INSERT_ARTICLE = "INSERT INTO article (name_article, id_type, id_newspaper) VALUES (?, ?, ?)";
+    public static final String SELECT_ARTICLES_BY_TYPE = "select * from article where id_type in (select id from type where description = ?)";
 
     private SQLQueries() {
     }

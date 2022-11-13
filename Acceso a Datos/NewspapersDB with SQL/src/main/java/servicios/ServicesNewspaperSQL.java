@@ -18,4 +18,16 @@ public class ServicesNewspaperSQL {
     public Either<Integer, List<Newspaper>> getNewspapers() {
         return daoNewspaperSQL.getAll();
     }
+
+    public Either<Integer, List<Newspaper>> addNewspaper(Newspaper newspaper) {
+        return daoNewspaperSQL.addNewspaper(newspaper);
+    }
+
+    public Either<Integer, List<Newspaper>> deleteNewspaper(Integer id) {
+        return daoNewspaperSQL.deleteNewspaper(id);
+    }
+
+    public Either<Integer, List<Newspaper>> updateNewspaper(Newspaper newspaper) {
+        return daoNewspaperSQL.updateNewspaper(newspaper);
+    }
 }

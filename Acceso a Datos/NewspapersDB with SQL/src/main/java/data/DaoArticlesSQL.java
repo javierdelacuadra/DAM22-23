@@ -4,10 +4,10 @@ import common.Constantes;
 import data.common.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Article;
-import model.ArticleType;
-import model.Query1;
-import model.ReadArticle;
+import model.*;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,27 +26,35 @@ public class DaoArticlesSQL {
 
     public Either<Integer, List<Article>> getAll() {
         List<Article> articles = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_READ_ONLY)) {
-
-            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLES);
-            articles = readRS(rs);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            String query = SQLQueries.SELECT_ARTICLES;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class));
+        } catch (DataAccessException e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
     public Either<Integer, List<Article>> getAll(Integer id) {
         List<Article> articles = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_ARTICLES_BY_READER)) {
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            articles = readRS(rs);
-        } catch (SQLException e) {
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_READER;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), id);
+        } catch (DataAccessException e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    public Either<Integer, List<Article>> getAll(String type) {
+        List<Article> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), type);
+        } catch (DataAccessException e) {
             Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
@@ -145,23 +153,6 @@ public class DaoArticlesSQL {
     }
 
 
-    private List<Article> readRS(ResultSet rs) {
-        List<Article> articles = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                Article article = new Article();
-                article.setId(rs.getInt(Constantes.ID));
-                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
-                article.setId_type(rs.getInt(Constantes.ID_TYPE));
-                article.setId_newspaper(rs.getInt(Constantes.ID_NEWSPAPER));
-                articles.add(article);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return articles;
-    }
-
     private List<ArticleType> readRSArticleType(ResultSet rs) {
         List<ArticleType> types = new ArrayList<>();
         try {
@@ -175,5 +166,43 @@ public class DaoArticlesSQL {
             Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return types;
+    }
+
+    public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
+        List<Query2> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query2.class), type, nameNewspaper);
+        } catch (Exception e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
+        List<Query3> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query3.class), idNewspaper);
+        } catch (Exception e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+
+    public Either<Integer, List<Article>> add(Article article) {
+        List<Article> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.INSERT_ARTICLE;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            jdbc.update(query, article.getName_article(), article.getId_type(), article.getId_newspaper());
+            articles = getAll().get();
+        } catch (DataAccessException e) {
+            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 }

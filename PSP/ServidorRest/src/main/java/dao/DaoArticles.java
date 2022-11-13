@@ -3,13 +3,11 @@ package dao;
 import dao.common.Constantes;
 import dao.common.SQLQueries;
 import dao.modelo.Article;
+import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,16 +51,14 @@ public class DaoArticles {
     }
 
     public Article get(String id) {
-        Article article = null;
-        try (Connection connection = db.getConnection()) {
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_BY_ID + id);
-            List<Article> articles = readRS(rs);
-            if (articles.size() > 0) {
-                article = articles.get(0);
-            }
-        } catch (SQLException e) {
-            throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_EL_ARTICLE);
+        Article article;
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_ARTICLE_BY_ID)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            ResultSet rs = preparedStatement.executeQuery();
+            article = readRS(rs).get(0);
+        } catch (SQLException | IndexOutOfBoundsException e) {
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_ARTICLES);
         }
         return article;
     }
@@ -70,9 +66,16 @@ public class DaoArticles {
     public boolean save(Article article) {
         List<Article> articles = getAll();
         if (articles.stream().noneMatch(a -> a.getName_article().equals(article.getName_article()))) {
-            try (Connection connection = db.getConnection()) {
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                statement.executeUpdate(SQLQueries.INSERT_ARTICLE);
+            try (Connection connection = db.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_ARTICLE, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, article.getName_article());
+                preparedStatement.setInt(2, article.getId_type());
+                preparedStatement.setInt(3, article.getId_newspaper());
+                preparedStatement.executeUpdate();
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if (rs.next()) {
+                    article.setId(rs.getInt(1));
+                }
             } catch (SQLException e) {
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_ARTICLE);
             }
@@ -83,10 +86,14 @@ public class DaoArticles {
 
     public boolean update(Article article) {
         List<Article> articles = getAll();
-        if (articles.stream().anyMatch(a -> a.getName_article().equals(article.getName_article()))) {
-            try (Connection connection = db.getConnection()) {
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                statement.executeUpdate(SQLQueries.UPDATE_ARTICLE);
+        if (articles.stream().anyMatch(a -> a.getId() == article.getId())) {
+            try (Connection connection = db.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ARTICLE)) {
+                preparedStatement.setString(1, article.getName_article());
+                preparedStatement.setInt(2, article.getId_type());
+                preparedStatement.setInt(3, article.getId_newspaper());
+                preparedStatement.setInt(4, article.getId());
+                preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_ARTICLE);
             }
@@ -98,9 +105,10 @@ public class DaoArticles {
     public boolean delete(String id) {
         List<Article> articles = getAll();
         if (articles.stream().anyMatch(a -> a.getId() == Integer.parseInt(id))) {
-            try (Connection connection = db.getConnection()) {
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                statement.executeUpdate(SQLQueries.DELETE_ARTICLE + id);
+            try (Connection connection = db.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_ARTICLE)) {
+                preparedStatement.setInt(1, Integer.parseInt(id));
+                preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_ARTICLE);
             }
@@ -109,4 +117,16 @@ public class DaoArticles {
         throw new ObjectNotFoundException(Constantes.NO_EXISTE_UN_ARTICLE_CON_ESE_ID);
     }
 
+    public List<Article> getArticlesByType(String type) {
+        List<Article> articles;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_ARTICLES_BY_TYPE)) {
+            preparedStatement.setString(1, type);
+            ResultSet rs = preparedStatement.executeQuery();
+            articles = readRS(rs);
+        } catch (SQLException e) {
+            throw new DatabaseException(Constantes.ERROR_AL_REALIZAR_LA_CONSULTA);
+        }
+        return articles;
+    }
 }

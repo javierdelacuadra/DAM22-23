@@ -186,11 +186,22 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
     }
 
+    public void addNewspaperMenu() {
+        cargarPantalla(Pantallas.ADDNEWSPAPERSCREEN);
+    }
+
+    public void updateNewspaperMenu() {
+        cargarPantalla(Pantallas.UPDATENEWSPAPERSCREEN);
+    }
+
+    public void queriesMenu() {
+        cargarPantalla(Pantallas.QUERIESSCREEN);
+    }
+
     public void createAlert(String error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(error);
         alert.setContentText(error);
         alert.showAndWait();
     }
-
 }

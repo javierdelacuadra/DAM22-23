@@ -4,25 +4,21 @@ import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Newspaper;
-import servicios.ServicesNewspaper;
+import servicios.ServicesNewspaperSQL;
 
 public class DeleteNewspaperScreenViewModel {
-    private final ServicesNewspaper servicesNewspaper;
+    private final ServicesNewspaperSQL servicesNewspaperSQL;
 
     @Inject
-    public DeleteNewspaperScreenViewModel(ServicesNewspaper servicesNewspaper) {
-        this.servicesNewspaper = servicesNewspaper;
+    public DeleteNewspaperScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL) {
+        this.servicesNewspaperSQL = servicesNewspaperSQL;
     }
 
     public ObservableList<Newspaper> getNewspapers() {
-        return FXCollections.observableArrayList(servicesNewspaper.getNewspapers());
+        return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
     public void deleteNewspaper(Newspaper newspaper) {
-        servicesNewspaper.deleteNewspaper(newspaper);
-    }
-
-    public boolean checkArticles(Newspaper newspaper) {
-        return servicesNewspaper.checkNewspaper(newspaper);
+        servicesNewspaperSQL.deleteNewspaper(newspaper.getId());
     }
 }

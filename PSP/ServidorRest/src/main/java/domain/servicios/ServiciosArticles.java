@@ -34,4 +34,8 @@ public class ServiciosArticles {
     public Article getArticle(String id) {
         return dao.get(id);
     }
+
+    public List<Article> getArticlesByType(String type) {
+        return dao.getArticlesByType(type);
+    }
 }

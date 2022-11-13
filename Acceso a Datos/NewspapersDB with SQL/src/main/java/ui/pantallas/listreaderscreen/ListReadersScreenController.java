@@ -2,7 +2,6 @@ package ui.pantallas.listreaderscreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,7 +39,7 @@ public class ListReadersScreenController extends BasePantallaController {
     @FXML
     public MFXComboBox<ArticleType> articleTypeComboBox;
 
-    public void initialize() throws JAXBException {
+    public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));

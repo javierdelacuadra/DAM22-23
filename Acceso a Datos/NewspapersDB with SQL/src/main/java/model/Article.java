@@ -22,7 +22,4 @@ public class Article {
         this.id_newspaper = Integer.parseInt(split[3]);
     }
 
-    public String toLine() {
-        return id + Constantes.PUNTO_Y_COMA + name_article + Constantes.PUNTO_Y_COMA + id_type + Constantes.PUNTO_Y_COMA + id_newspaper + Constantes.ESPACIO;
-    }
 }

@@ -1,24 +1,40 @@
 package ui.pantallas.addarticlescreen;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Article;
-import servicios.ServicesArticles;
+import model.ArticleType;
+import model.Newspaper;
+import servicios.ServicesArticlesSQL;
+import servicios.ServicesNewspaperSQL;
+
+import java.util.List;
 
 public class AddArticleScreenViewModel {
-    private final ServicesArticles servicesArticles;
+    private final ServicesArticlesSQL servicesArticlesSQL;
+    private final ServicesNewspaperSQL servicesNewspaperSQL;
 
     @Inject
-    public AddArticleScreenViewModel(ServicesArticles servicesArticles) {
-        this.servicesArticles = servicesArticles;
+    public AddArticleScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesNewspaperSQL servicesNewspaperSQL) {
+        this.servicesArticlesSQL = servicesArticlesSQL;
+        this.servicesNewspaperSQL = servicesNewspaperSQL;
     }
 
     public ObservableList<Article> getArticles() {
-        return FXCollections.observableArrayList(servicesArticles.getArticles());
+        return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public boolean addArticle(Article article) {
-        return servicesArticles.addArticle(article);
+    public Either<Integer, List<Article>> addArticle(Article article) {
+        return servicesArticlesSQL.addArticle(article);
+    }
+
+    public ObservableList<ArticleType> getArticleTypes() {
+        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+    }
+
+    public ObservableList<Newspaper> getNewspapers() {
+        return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 }

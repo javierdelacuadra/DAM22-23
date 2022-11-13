@@ -40,4 +40,5 @@ public class Constantes {
     public static final String NO_SE_HA_ENCONTRADO_EL_READER = "No se ha encontrado el reader";
     public static final String NO_SE_HA_PODIDO_GUARDAR_LA_SUSCRIPCION = "No se ha podido guardar la suscripción";
     public static final String NO_SE_HA_PODIDO_ELIMINAR_LA_SUSCRIPCION = "No se ha podido eliminar la suscripción";
+    public static final String BAD_RATINGS = "bad_ratings";
 }

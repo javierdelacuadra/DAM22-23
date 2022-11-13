@@ -21,11 +21,11 @@ public class DaoSubscriptions {
         this.db = db;
     }
 
-    public boolean save(Newspaper newspaper, String id) {
+    public boolean save(String newspaperId, String readerId) {
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_SUBSCRIPTION)) {
-            preparedStatement.setInt(1, newspaper.getId());
-            preparedStatement.setInt(2, Integer.parseInt(id));
+            preparedStatement.setInt(1, Integer.parseInt(newspaperId));
+            preparedStatement.setInt(2, Integer.parseInt(readerId));
             preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
             preparedStatement.setDate(4, null);
             preparedStatement.executeUpdate();
@@ -35,11 +35,11 @@ public class DaoSubscriptions {
         return true;
     }
 
-    public boolean remove(Newspaper newspaper, String id) {
+    public boolean remove(String newspaperId, String readerId) {
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_SUBSCRIPTION)) {
-            preparedStatement.setInt(1, newspaper.getId());
-            preparedStatement.setInt(2, Integer.parseInt(id));
+            preparedStatement.setInt(1, Integer.parseInt(newspaperId));
+            preparedStatement.setInt(2, Integer.parseInt(readerId));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_LA_SUSCRIPCION);

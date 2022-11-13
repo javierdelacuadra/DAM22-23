@@ -1,5 +1,6 @@
 package config;
 
+import common.Constantes;
 import jakarta.inject.Singleton;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class ConfigSQL {
     private final Properties p;
 
     private ConfigSQL() {
-        Path path = Paths.get("src/main/resources/mysql-properties.xml");
+        Path path = Paths.get(Constantes.SQL_PROPERTIES_PATH);
         p = new Properties();
         InputStream propertiesStream;
         try {

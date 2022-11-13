@@ -104,18 +104,13 @@ public class DaoNewspapers {
     }
 
     public Newspaper get(String id) {
-        Newspaper newspaper = new Newspaper();
+        Newspaper newspaper;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_NEWSPAPER_BY_ID)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
             ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                newspaper.setId(rs.getInt(Constantes.ID));
-                newspaper.setName(rs.getString(Constantes.NAME));
-                newspaper.setRelease_date(String.valueOf(rs.getDate(Constantes.RELEASE_DATE)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            newspaper = readRS(rs).get(0);
+        } catch (SQLException | IndexOutOfBoundsException ex) {
             throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_EL_NEWSPAPER);
         }
         return newspaper;

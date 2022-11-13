@@ -66,7 +66,7 @@ public class AddReadArticleController extends BasePantallaController implements 
     public void addRating() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
             Either<Integer, List<Article>> result = viewModel.addRating(articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem(), this.getPrincipalController().getReader().getId());
-                if (result.isRight()) {
+            if (result.isRight()) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                 this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);

@@ -93,14 +93,9 @@ public class DaoReaders {
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_ID)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
             ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                reader.setId(rs.getInt(Constantes.ID));
-                reader.setName(rs.getString(Constantes.NAME));
-                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
-            throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_EL_READER);
+            reader = readRS(rs).get(0);
+        } catch (SQLException | IndexOutOfBoundsException e) {
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_READERS);
         }
         return reader;
     }
@@ -117,6 +112,32 @@ public class DaoReaders {
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return readers;
+    }
+
+    public List<Reader> getReadersByArticleType(String articleType) {
+        List<Reader> readers;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_ARTICLE_TYPE)) {
+            preparedStatement.setString(1, articleType);
+            ResultSet rs = preparedStatement.executeQuery();
+            readers = readRS(rs);
+        } catch (SQLException e) {
+            throw new DatabaseException(Constantes.ERROR_AL_REALIZAR_LA_CONSULTA);
+        }
+        return readers;
+    }
+
+    public List<Reader> getReadersByNewspaper(String idNewspaper) {
+        List<Reader> readers;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_NEWSPAPER)) {
+            preparedStatement.setInt(1, Integer.parseInt(idNewspaper));
+            ResultSet rs = preparedStatement.executeQuery();
+            readers = readRS(rs);
+        } catch (SQLException e) {
+            throw new DatabaseException(Constantes.ERROR_AL_REALIZAR_LA_CONSULTA);
         }
         return readers;
     }

@@ -1,4 +1,0 @@
-1;El Pais;1;4
-2;El Gran Pais;2;1
-3;El Increíble Pais;1;4
-4;El Tremendo Pais;3;2

@@ -3,7 +3,6 @@ package ui.common;
 public class ConstantesUI {
     public static final String YOU_MUST_FILL_ALL_THE_FIELDS = "You must fill all the fields";
     public static final String ARTICLE_ID_ISN_T_UNIQUE_OR_THE_NEWSPAPER_DOESN_T_EXIST = "Article ID isn't unique or newspaper doesn't exist";
-    public static final String THE_NEWSPAPER_HAS_ARTICLES_ARE_YOU_SURE_YOU_WANT_TO_DELETE_IT = "The newspaper has articles\nAre you sure you want to delete it?";
     public static final String NEWSPAPER_DELETED_SUCCESSFULLY = "Newspaper deleted successfully";
     public static final String MY_SQL_LOGO_PATH = "/images/MySQL-Logo.png";
     public static final String ERROR = "Error";
@@ -34,6 +33,12 @@ public class ConstantesUI {
     public static final String THERE_WAS_AN_ERROR_UPDATING_THE_READER = "There was an error updating the reader";
     public static final String THE_READER_DOES_NOT_EXIST = "The reader does not exist";
     public static final String ANY = "";
+    public static final String ERROR_ADDING_NEWSPAPER = "Error adding newspaper";
+    public static final String YOU_HAVEN_T_SELECTED_ANY_ARTICLE_TYPE = "You haven't selected any article type";
+    public static final String YOU_HAVEN_T_SELECTED_ANY_NEWSPAPER = "You haven't selected any newspaper";
+    public static final String THE_QUERY_DID_NOT_RETURN_ANY_RESULTS = "The query did not return any results";
+    public static final String YOU_MUST_SELECT_A_NEWSPAPER_AND_AN_ARTICLE_TYPE = "You must select a newspaper and an article type";
+    public static final String YOU_MUST_SELECT_A_NEWSPAPER = "You must select a newspaper";
 
     private ConstantesUI() {
     }

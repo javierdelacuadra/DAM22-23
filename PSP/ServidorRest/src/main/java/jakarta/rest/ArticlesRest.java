@@ -60,5 +60,10 @@ public class ArticlesRest {
         return servicios.getArticle(id);
     }
 
+    @GET
+    @Path("/type/{type}")
+    public List<Article> getArticlesByType(@PathParam("type") String type) {
+        return servicios.getArticlesByType(type);
+    }
 
 }
