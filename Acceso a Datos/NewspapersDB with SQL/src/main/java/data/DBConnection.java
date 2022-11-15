@@ -5,11 +5,13 @@ import com.zaxxer.hikari.HikariDataSource;
 import config.ConfigSQL;
 import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@Singleton
 public class DBConnection {
     private final ConfigSQL config;
     private final DataSource hikariDataSource;
