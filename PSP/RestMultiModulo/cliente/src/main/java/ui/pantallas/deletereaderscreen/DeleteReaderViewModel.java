@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import model.Reader;
 import servicios.ServicesReadersSQL;
 
-import java.util.List;
-
 public class DeleteReaderViewModel {
 
     private final ServicesReadersSQL servicesReadersSQL;

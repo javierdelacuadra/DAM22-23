@@ -8,7 +8,6 @@ import model.Newspaper;
 import servicios.ServicesNewspaperSQL;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class AddNewspaperScreenViewModel {
 

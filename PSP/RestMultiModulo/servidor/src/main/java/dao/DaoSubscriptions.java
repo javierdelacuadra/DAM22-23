@@ -2,7 +2,6 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Newspaper;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
 

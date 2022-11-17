@@ -17,24 +17,11 @@
                 <MenuItem mnemonicParsing="false" onAction="#deleteNewspaperMenu"
                           text="Delete"/>
             </Menu>
-            <Menu fx:id="articlesMenu" mnemonicParsing="false" text="Articles">
-                <MenuItem mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
-                <MenuItem mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
-                <MenuItem mnemonicParsing="false" onAction="#queriesMenu" text="Spring Queries"/>
-            </Menu>
             <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
                 <MenuItem mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
                 <MenuItem mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
                 <MenuItem mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
                 <MenuItem mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
-            </Menu>
-            <Menu fx:id="readArticlesMenu" mnemonicParsing="false" text="Read Articles">
-                <MenuItem mnemonicParsing="false" onAction="#addReadArticlesMenu"
-                          text="Add a read article"/>
-            </Menu>
-            <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
-                <MenuItem mnemonicParsing="false" onAction="#addSubscriptionMenu"
-                          text="Manage subscriptions"/>
             </Menu>
         </MenuBar>
     </top>

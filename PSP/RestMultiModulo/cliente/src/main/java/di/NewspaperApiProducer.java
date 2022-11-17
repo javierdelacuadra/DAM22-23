@@ -11,6 +11,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.time.LocalDate;
+
 public class NewspaperApiProducer {
 
     @Produces
@@ -22,6 +24,7 @@ public class NewspaperApiProducer {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
 
 

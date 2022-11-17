@@ -40,16 +40,7 @@ public class PantallaMainController extends BasePantallaController implements In
     private Menu newspapersMenu;
 
     @FXML
-    private Menu articlesMenu;
-
-    @FXML
     private Menu readersMenu;
-
-    @FXML
-    private Menu readArticlesMenu;
-
-    @FXML
-    private Menu subscriptionsMenu;
 
     @FXML
     private BorderPane root;
@@ -87,22 +78,16 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void logout() {
         newspapersMenu.setVisible(false);
-        articlesMenu.setVisible(false);
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
-        readArticlesMenu.setVisible(false);
-        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         newspapersMenu.setVisible(false);
-        articlesMenu.setVisible(false);
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
-        readArticlesMenu.setVisible(false);
-        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.LISTREADERSCREEN);
     }
 
@@ -125,14 +110,10 @@ public class PantallaMainController extends BasePantallaController implements In
         if (admin) {
             optionsMenu.setVisible(true);
             newspapersMenu.setVisible(true);
-            articlesMenu.setVisible(true);
             readersMenu.setVisible(true);
             cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
         } else {
             optionsMenu.setVisible(true);
-            readArticlesMenu.setVisible(true);
-            subscriptionsMenu.setVisible(true);
-            cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
         }
     }
 
@@ -154,14 +135,6 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.DELETENEWSPAPERSCREEN);
     }
 
-    public void listArticlesMenu() {
-        cargarPantalla(Pantallas.LISTARTICLESCREEN);
-    }
-
-    public void addArticleMenu() {
-        cargarPantalla(Pantallas.ADDARTICLESCREEN);
-    }
-
     public void listReadersMenu() {
         cargarPantalla(Pantallas.LISTREADERSCREEN);
     }
@@ -178,24 +151,12 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.UPDATEREADERSCREEN);
     }
 
-    public void addReadArticlesMenu() {
-        cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
-    }
-
-    public void addSubscriptionMenu() {
-        cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
-    }
-
     public void addNewspaperMenu() {
         cargarPantalla(Pantallas.ADDNEWSPAPERSCREEN);
     }
 
     public void updateNewspaperMenu() {
         cargarPantalla(Pantallas.UPDATENEWSPAPERSCREEN);
-    }
-
-    public void queriesMenu() {
-        cargarPantalla(Pantallas.QUERIESSCREEN);
     }
 
     public void createAlert(String error) {

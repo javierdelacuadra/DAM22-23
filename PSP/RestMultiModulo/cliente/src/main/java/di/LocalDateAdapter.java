@@ -1,17 +1,21 @@
 package di;
 
-import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
-public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
+public class LocalDateAdapter extends TypeAdapter<LocalDate> {
 
-    public LocalDate unmarshal(String v) {
-        return LocalDate.parse(v);
+    @Override
+    public void write(final JsonWriter jsonWriter, final LocalDate localDate) throws IOException {
+        jsonWriter.value(localDate.toString());
     }
 
-    public String marshal(LocalDate v) {
-        return v.toString();
+    @Override
+    public LocalDate read(final JsonReader jsonReader) throws IOException {
+        return LocalDate.parse(jsonReader.nextString());
     }
-
 }

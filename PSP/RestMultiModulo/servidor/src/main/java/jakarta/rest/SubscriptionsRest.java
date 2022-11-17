@@ -1,6 +1,5 @@
 package jakarta.rest;
 
-import dao.modelo.Newspaper;
 import domain.servicios.ServiciosSubscriptions;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

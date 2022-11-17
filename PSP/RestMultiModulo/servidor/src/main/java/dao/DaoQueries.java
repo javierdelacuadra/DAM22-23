@@ -2,15 +2,16 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.*;
+import dao.modelo.Query1;
+import dao.modelo.Query2;
+import dao.modelo.Query3;
+import dao.modelo.Reader;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DaoQueries {
 

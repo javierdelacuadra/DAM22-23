@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import model.Newspaper;
 import servicios.ServicesNewspaperSQL;
 
-import java.util.List;
-
 public class UpdateNewspaperScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;

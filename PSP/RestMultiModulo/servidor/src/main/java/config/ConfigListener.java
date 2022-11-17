@@ -1,10 +1,10 @@
 package config;
 
-        import dao.DBConnection;
-        import jakarta.inject.Inject;
-        import jakarta.servlet.ServletContextEvent;
-        import jakarta.servlet.ServletContextListener;
-        import jakarta.servlet.annotation.WebListener;
+import dao.DBConnection;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener()
 public class ConfigListener implements ServletContextListener {

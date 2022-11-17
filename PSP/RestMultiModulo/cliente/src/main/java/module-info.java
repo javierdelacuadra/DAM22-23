@@ -34,7 +34,6 @@ module MercadonaFX {
     exports ui.pantallas.deletereaderscreen;
     exports ui.pantallas.addreaderscreen;
     exports ui.pantallas.updatereaderscreen;
-    exports ui.pantallas.springqueryscreen;
     exports ui.pantallas.addnewspaperscreen;
     exports ui.pantallas.updatenewspaperscreen;
     exports ui.pantallas.common;
@@ -46,7 +45,6 @@ module MercadonaFX {
     exports data.retrofit;
 
     opens model to javafx.base, com.google.gson, jakarta.xml.bind;
-    opens java.time to com.google.gson;
     opens config;
     opens servicios;
     opens data;
@@ -61,7 +59,6 @@ module MercadonaFX {
     opens ui.pantallas.deletereaderscreen to javafx.fxml;
     opens ui.pantallas.addreaderscreen to javafx.fxml;
     opens ui.pantallas.updatereaderscreen to javafx.fxml;
-    opens ui.pantallas.springqueryscreen to javafx.fxml;
     opens ui.pantallas.addnewspaperscreen to javafx.fxml;
     opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
     opens ui.pantallas.common;
