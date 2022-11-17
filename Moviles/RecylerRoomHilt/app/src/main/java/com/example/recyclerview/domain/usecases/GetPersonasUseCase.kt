@@ -1,7 +1,8 @@
 package com.example.recyclerview.domain.usecases
 
 import com.example.recyclerview.data.Repository
+import javax.inject.Inject
 
-class GetPersonasUseCase(private val repository: Repository) {
+class GetPersonasUseCase @Inject constructor(private val repository: Repository) {
     suspend fun invoke() = repository.getPersonas()
 }

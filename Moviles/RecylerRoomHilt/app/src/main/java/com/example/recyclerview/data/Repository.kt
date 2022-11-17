@@ -3,8 +3,9 @@ package com.example.recyclerview.data
 import com.example.recyclerview.data.modelo.toPersona
 import com.example.recyclerview.data.modelo.toPersonaEntity
 import com.example.recyclerview.domain.modelo.Persona
+import javax.inject.Inject
 
-class Repository(private val dao: DaoPersonas) {
+class Repository @Inject constructor(private val dao: DaoPersonas) {
 
     suspend fun getPersonas() = dao.getPersonas().map { it.toPersona() }
 

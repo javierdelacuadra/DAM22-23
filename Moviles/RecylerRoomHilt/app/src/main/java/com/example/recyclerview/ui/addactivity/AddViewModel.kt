@@ -6,8 +6,10 @@ import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.AddPersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.utils.StringProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
+@HiltViewModel
 class AddViewModel(
     private val stringProvider: StringProvider,
     private val addPersonaUseCase: AddPersonaUseCase,

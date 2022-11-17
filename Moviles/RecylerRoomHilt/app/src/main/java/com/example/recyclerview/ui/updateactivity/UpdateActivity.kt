@@ -12,7 +12,9 @@ import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.UpdatePersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpdateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUpdateBinding

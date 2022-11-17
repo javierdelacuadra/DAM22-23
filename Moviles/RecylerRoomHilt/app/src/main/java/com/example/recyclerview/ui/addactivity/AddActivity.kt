@@ -15,7 +15,9 @@ import com.example.recyclerview.domain.usecases.AddPersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.utils.StringProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddBinding

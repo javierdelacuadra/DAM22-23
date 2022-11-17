@@ -5,8 +5,10 @@ import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.domain.usecases.DeletePersonaUseCase
 import com.example.recyclerview.domain.usecases.GetPersonasUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
+@HiltViewModel
 class ListViewModel(
     private val getPersonasUseCase: GetPersonasUseCase,
     private val deletePersonaUseCase: DeletePersonaUseCase,

@@ -16,8 +16,10 @@ import com.example.recyclerview.ui.addactivity.AddActivity
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.updateactivity.UpdateActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class ListActivity : AppCompatActivity() {
 
     private lateinit var listaPersonas: RecyclerView
