@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.addreadarticlescreen.AddReadArticleController">
+    <TableView fx:id="articlesTable" layoutX="14.0" layoutY="102.0" prefHeight="235.0" prefWidth="381.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle"/>
+            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType"/>
+            <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper"/>
+        </columns>
+    </TableView>
+    <MFXComboBox fx:id="ratingComboBox" layoutX="443.0" layoutY="145.0"/>
+    <MFXButton layoutX="463.0" layoutY="228.0" mnemonicParsing="false" text="Add Rating" onMouseClicked="#addRating"/>
+
+</AnchorPane>
