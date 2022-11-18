@@ -3,14 +3,14 @@ package data.common;
 public class SQLQueries {
 
     public static final String SELECT_READERS = "select * from readers where id > 0";
-    public static final String INSERT_READER = "INSERT INTO readers (name, dateOfBirth) VALUES (?,?)";
+    public static final String INSERT_READER = "INSERT INTO readers (name, date_of_birth) VALUES (?,?)";
     public static final String INSERT_LOGIN = "INSERT INTO login (name, password, id_reader) VALUES (?, ?, ?)";
     public static final String DELETE_READER = "delete from readers where id = ?";
     public static final String DELETE_FROM_LOGIN = "delete from login where name = ?";
     public static final String DELETE_FROM_READARTICLES = "delete from readarticle where id_reader = ?";
     public static final String DELETE_FROM_SUBSCRIPTIONS = "delete from subscription where id_reader = ?";
     public static final String UPDATE_READER_LOGIN = "update login set name = ? where id_reader = ?";
-    public static final String UPDATE_READER = "update readers set name = ?, dateOfBirth = ? where id = ?";
+    public static final String UPDATE_READER = "update readers set name = ?, date_of_birth = ? where id = ?";
     public static final String SELECT_READERS_BY_NEWSPAPER = "select * from readers where id in (select id_reader from subscription where id_newspaper = ?)";
     public static final String LOGIN = "select * from login where name = ? and password = ?";
     public static final String SELECT_READER_BY_NAME = "select id from readers where name = ?";

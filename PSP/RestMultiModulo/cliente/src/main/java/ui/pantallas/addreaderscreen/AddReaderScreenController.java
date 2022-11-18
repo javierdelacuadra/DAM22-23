@@ -58,19 +58,17 @@ public class AddReaderScreenController extends BasePantallaController implements
             this.getPrincipalController().createAlert(ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS);
         } else {
             if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty() || birthDatePicker.getValue() != null) {
-                Reader reader = new Reader(0, nameTextField.getText(), birthDatePicker.getValue());
+                Reader reader = new Reader(nameTextField.getText(), birthDatePicker.getValue());
                 String password = passwordField.getText();
                 if (viewModel.addReader(reader, password).isRight()) {
                     readersTable.getItems().clear();
                     readersTable.setItems(viewModel.getReaders());
                 } else {
-                    int error = Integer.parseInt(viewModel.addReader(reader, password).getLeft());
-                    if (error == -1) {
-                        this.getPrincipalController().createAlert(ConstantesUI.SOMETHING_UNEXPECTED_HAPPENED);
-                    } else if (error == -2) {
-                        this.getPrincipalController().createAlert(ConstantesUI.DATE_FORMAT_IS_NOT_CORRECT_OR_IS_EMPTY);
-                    } else if (error == -3) {
-                        this.getPrincipalController().createAlert(ConstantesUI.THERE_IS_ALREADY_A_READER_WITH_THAT_NAME_AND_BIRTH_DATE);
+                    String error = viewModel.addReader(reader, password).getLeft();
+                    if (error.equalsIgnoreCase("HTTP 500 Internal Server Error")) {
+                        this.getPrincipalController().createAlert("No se ha podido añadir el reader");
+                    } else {
+                        this.getPrincipalController().createAlert("La base de datos no está disponible");
                     }
                 }
             }

@@ -85,9 +85,9 @@ public class PantallaMainController extends BasePantallaController implements In
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        newspapersMenu.setVisible(false);
-        optionsMenu.setVisible(false);
-        readersMenu.setVisible(false);
+//        newspapersMenu.setVisible(false);
+//        optionsMenu.setVisible(false);
+//        readersMenu.setVisible(false);
         cargarPantalla(Pantallas.LISTREADERSCREEN);
     }
 

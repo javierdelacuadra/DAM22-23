@@ -40,7 +40,7 @@ public class DaoReaders {
         List<Reader> readers = getAll();
         if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()))) {
             try (Connection con = db.getConnection();
-                 PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER, Statement.RETURN_GENERATED_KEYS)) {
+                 PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO readers (name, date_of_birth) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, reader.getName());
                 preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
                 preparedStatement.executeUpdate();

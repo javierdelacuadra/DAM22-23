@@ -2,9 +2,9 @@ package dao.common;
 
 public class SQLQueries {
     public static final String SELECT_READERS = "SELECT * FROM readers";
-    public static final String INSERT_READER = "INSERT INTO readers (name, dateOfBirth) VALUES (?, ?)";
     public static final String UPDATE_READER = "UPDATE readers SET name = ?, dateOfBirth = ? WHERE id = ?";
     public static final String DELETE_READER = "DELETE FROM readers WHERE id = ?";
+    public static final String INSERT_READER = "INSERT INTO readers (name, dateOfBirth) VALUES (?, ?)";
     public static final String SELECT_READER_BY_ID = "SELECT * FROM readers WHERE id = ?";
     public static final String SELECT_NEWSPAPERS = "SELECT * FROM newspaper";
     public static final String INSERT_NEWSPAPER = "INSERT INTO newspaper (name, release_date) VALUES (?, ?)";

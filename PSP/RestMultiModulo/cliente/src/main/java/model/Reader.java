@@ -13,4 +13,9 @@ public class Reader {
     private int id;
     private String name;
     private LocalDate dateOfBirth;
+
+    public Reader(String name, LocalDate dateOfBirth) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+    }
 }
