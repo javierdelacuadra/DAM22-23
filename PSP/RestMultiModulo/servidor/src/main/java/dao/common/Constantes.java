@@ -41,4 +41,9 @@ public class Constantes {
     public static final String NO_SE_HA_PODIDO_GUARDAR_LA_SUSCRIPCION = "No se ha podido guardar la suscripción";
     public static final String NO_SE_HA_PODIDO_ELIMINAR_LA_SUSCRIPCION = "No se ha podido eliminar la suscripción";
     public static final String BAD_RATINGS = "bad_ratings";
+    public static final String CONFIG_YAML = "config.yaml";
+    public static final String URL_DB = "urlDB";
+    public static final String USER_NAME = "user_name";
+    public static final String PASSWORD = "password";
+    public static final String DRIVER = "driver";
 }

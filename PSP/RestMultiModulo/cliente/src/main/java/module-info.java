@@ -6,24 +6,19 @@ module MercadonaFX {
 
     requires lombok;
     requires com.google.gson;
-    requires org.apache.logging.log4j;
     requires io.vavr;
-    requires com.fasterxml.jackson.datatype.jsr310;
     requires java.sql;
     requires org.yaml.snakeyaml;
-    requires com.zaxxer.hikari;
-    requires spring.jdbc;
-    requires spring.tx;
-    requires jakarta.xml.bind;
     requires retrofit2;
     requires retrofit2.converter.gson;
     requires okhttp3;
     requires io.reactivex.rxjava3;
-    requires org.pdfsam.rxjavafx;
     requires retrofit2.adapter.rxjava3;
     requires jakarta.inject;
     requires jakarta.annotation;
     requires jakarta.cdi;
+    requires domain;
+    requires retrofit2.converter.scalars;
 
     exports ui;
     exports ui.common;
@@ -41,17 +36,14 @@ module MercadonaFX {
     exports config;
     exports data;
     exports di;
-    exports model;
     exports data.retrofit;
 
-    opens model to javafx.base, com.google.gson, jakarta.xml.bind;
     opens config;
     opens servicios;
     opens data;
     opens common;
     opens ui;
     opens ui.common;
-    opens data.common;
     opens ui.pantallas.pantallamain to javafx.fxml;
     opens ui.pantallas.deletenewspaperscreen to javafx.fxml;
     opens ui.pantallas.listnewspaperscreen to javafx.fxml;

@@ -1,11 +1,11 @@
 package domain.servicios;
 
 import dao.DaoQueries;
-import dao.modelo.Query1;
-import dao.modelo.Query2;
-import dao.modelo.Query3;
-import dao.modelo.Reader;
 import jakarta.inject.Inject;
+import modelo.Query1;
+import modelo.Query2;
+import modelo.Query3;
+import modelo.Reader;
 
 import java.util.List;
 

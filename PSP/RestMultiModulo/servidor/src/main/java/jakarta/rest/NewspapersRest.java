@@ -1,15 +1,16 @@
 package jakarta.rest;
 
-import dao.modelo.Newspaper;
 import domain.servicios.ServiciosNewspapers;
+import jakarta.common.ConstantesREST;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import modelo.Newspaper;
 
 import java.util.List;
 
-@Path("/newspapers")
+@Path(ConstantesREST.NEWSPAPERS_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class NewspapersRest {
@@ -27,37 +28,32 @@ public class NewspapersRest {
     }
 
     @GET
-    @Path("/{id}")
-    public Newspaper getNewspaper(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Newspaper getNewspaper(@PathParam(ConstantesREST.ID) String id) {
         return servicios.get(id);
     }
 
     @POST
     public Response saveNewspaper(Newspaper newspaper) {
-        if (servicios.addNewspaper(newspaper)) {
-            return Response.status(Response.Status.CREATED).build();
-        } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+        return Response.status(Response.Status.CREATED)
+                .entity(servicios.addNewspaper(newspaper))
+                .build();
     }
 
     @PUT
     public Response updateNewspaper(Newspaper newspaper) {
-        if (servicios.updateNewspaper(newspaper)) {
-            return Response.status(Response.Status.OK).build();
-        } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+        return Response.status(Response.Status.CREATED)
+                .entity(servicios.updateNewspaper(newspaper))
+                .build();
     }
 
     @DELETE
-    @Path("/{id}")
-    public Response deleteNewspaper(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Response deleteNewspaper(@PathParam(ConstantesREST.ID) String id) {
         if (servicios.deleteNewspaper(id)) {
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.NO_CONTENT).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-
 }

@@ -3,12 +3,13 @@ package ui.pantallas.updatereaderscreen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Reader;
+import modelo.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -44,10 +45,23 @@ public class UpdateReaderController extends BasePantallaController implements In
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        readersTable.setItems(viewModel.getReaders());
+        idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.NAME));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.DATE_OF_BIRTH));
+        viewModel.getReaders();
+        viewModel.getState().addListener((observableValue, oldState, newState) -> {
+            if (newState.error != null) {
+                Platform.runLater(() -> {
+                    getPrincipalController().createAlert(newState.error);
+                });
+            }
+            if (newState.readers != null) {
+                Platform.runLater(() -> {
+                    readersTable.getItems().clear();
+                    readersTable.getItems().addAll(newState.readers);
+                });
+            }
+        });
     }
 
     public void updateReader() {
@@ -57,19 +71,10 @@ public class UpdateReaderController extends BasePantallaController implements In
                     nameTextField.getText(),
                     birthDatePicker.getValue()
             );
-            if (viewModel.updateReader(reader).isRight()) {
-                readersTable.getItems().clear();
-                readersTable.setItems(viewModel.getReaders());
-//            } else if (viewModel.updateReader(reader).getLeft() == -1) {
-//                this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_UPDATING_THE_READER);
-//            } else if (viewModel.updateReader(reader).getLeft() == -2) {
-//                this.getPrincipalController().createAlert(ConstantesUI.THE_READER_DOES_NOT_EXIST);
-            }
-        } else {
-            this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
+            viewModel.updateReader(reader);
+            nameTextField.setText(ConstantesUI.ANY);
+            birthDatePicker.setValue(null);
         }
-        nameTextField.setText(ConstantesUI.ANY);
-        birthDatePicker.setValue(null);
     }
 
     public void fillTextFields() {

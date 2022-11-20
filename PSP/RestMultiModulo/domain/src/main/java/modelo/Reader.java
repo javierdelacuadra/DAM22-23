@@ -1,4 +1,4 @@
-package model;
+package modelo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +10,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reader {
+
     private int id;
+
     private String name;
+
     private LocalDate dateOfBirth;
 
     public Reader(String name, LocalDate dateOfBirth) {

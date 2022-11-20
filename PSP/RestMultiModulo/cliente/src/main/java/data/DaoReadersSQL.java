@@ -1,10 +1,11 @@
 package data;
 
+import com.google.gson.Gson;
 import data.retrofit.NewspapersApi;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Reader;
+import modelo.Reader;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class DaoReadersSQL extends DaoGenerics {
     private final NewspapersApi newspapersApi;
 
     @Inject
-    public DaoReadersSQL(NewspapersApi newspapersApi) {
+    public DaoReadersSQL(NewspapersApi newspapersApi, Gson gson) {
+        super(gson);
         this.newspapersApi = newspapersApi;
     }
 
@@ -28,7 +30,7 @@ public class DaoReadersSQL extends DaoGenerics {
         return createSafeSingleApiCall(newspapersApi.updateReader(reader));
     }
 
-    public Single<Either<String, Reader>> delete(String id) {
-        return createSafeSingleApiCall(newspapersApi.deleteReader(id));
+    public Single<Either<String, Boolean>> delete(String id) {
+        return createSafeSingleDeleteCall(newspapersApi.deleteReader(id));
     }
 }

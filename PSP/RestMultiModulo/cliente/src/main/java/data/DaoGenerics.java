@@ -4,43 +4,52 @@ import com.google.gson.Gson;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
-import retrofit2.Call;
+import jakarta.inject.Inject;
+import okhttp3.MediaType;
+import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 import retrofit2.Response;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public abstract class DaoGenerics {
-    public <T> Either<String, T> createSafeApiCall(Call<T> call) {
-        Either<String, T> respuesta;
+    private final Gson gson;
 
-        try {
-            Response<T> response = call.execute();
-            if (response.isSuccessful()) {
-                respuesta = Either.right(response.body());
-            } else {
-                assert response.errorBody() != null;
-                respuesta = Either.left(response.errorBody().string());
-            }
-        } catch (Exception e) {
-            respuesta = Either.left(e.getMessage());
-        }
-        return respuesta;
+    @Inject
+    public DaoGenerics(Gson gson) {
+        this.gson = gson;
     }
 
     public <T> Single<Either<String, T>> createSafeSingleApiCall(Single<T> call) {
         return call.map(t -> Either.right(t).mapLeft(Object::toString))
                 .subscribeOn(Schedulers.io())
-                .onErrorReturn(throwable -> {
-                    Either<String, T> either = Either.left(throwable.getMessage());
-                    if (throwable instanceof HttpException) {
-                        if (Objects.equals(((HttpException) throwable).code(), 404)) {
-                            Gson gson = new Gson();
-                            either = Either.left(gson.toJson("No se ha encontrado el recurso"));
-                        }
-                    }
-                    return either;
-                });
+                .onErrorReturn(this::createError);
     }
 
+
+    public Single<Either<String, Boolean>> createSafeSingleDeleteCall(Single<Response<Object>> apiCall) {
+        return apiCall.map(objectResponse -> objectResponse.isSuccessful() ?
+                        Either.right(true).mapLeft(Object::toString) :
+                        Either.right(false).mapLeft(Object::toString))
+                .subscribeOn(Schedulers.io())
+                .onErrorReturn(this::createError);
+    }
+
+    private <T> Either<String, T> createError(Throwable throwable) {
+        Either<String, T> either = Either.left(throwable.getMessage());
+        if (throwable instanceof HttpException httpException) {
+            try (ResponseBody responseBody = Objects.requireNonNull(httpException.response()).errorBody()) {
+                if (Objects.equals(Objects.requireNonNull(responseBody).contentType(),
+                        MediaType.get("application/json"))) {
+                    either = Either.left(gson.fromJson(responseBody.string(), String.class));
+                } else {
+                    either = Either.left(responseBody.string());
+                }
+            } catch (IOException e) {
+                either = Either.left(e.getMessage());
+            }
+        }
+        return either;
+    }
 }

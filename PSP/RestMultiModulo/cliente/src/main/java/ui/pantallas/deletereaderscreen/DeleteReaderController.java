@@ -1,12 +1,12 @@
 package ui.pantallas.deletereaderscreen;
 
 import jakarta.inject.Inject;
-import jakarta.xml.bind.JAXBException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Reader;
+import modelo.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -31,25 +31,32 @@ public class DeleteReaderController extends BasePantallaController {
     @FXML
     private TableColumn<Reader, String> birthDateColumn;
 
-    public void initialize() throws JAXBException {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        readersTable.setItems(viewModel.getReaders());
+    public void initialize() {
+        idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.NAME));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.DATE_OF_BIRTH));
+        viewModel.getReaders();
+        viewModel.getState().addListener((observableValue, oldState, newState) -> {
+            if (newState.error != null) {
+                Platform.runLater(() -> {
+                    getPrincipalController().createAlert(newState.error);
+                });
+            }
+            if (newState.readers != null) {
+                Platform.runLater(() -> {
+                    readersTable.getItems().clear();
+                    readersTable.getItems().addAll(newState.readers);
+                });
+            }
+        });
     }
 
     public void deleteReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
             if (viewModel.deleteReader(String.valueOf(reader.getId())).isRight()) {
-                readersTable.getItems().clear();
-                readersTable.setItems(viewModel.getReaders());
+                readersTable.getItems().removeIf(reader1 -> reader1.getId() == reader.getId());
             }
-//            } else if (viewModel.deleteReader(reader).getLeft() == -1) {
-//                this.getPrincipalController().createAlert(ConstantesUI.ERROR_DELETING_READER);
-//            } else if (viewModel.deleteReader(reader).getLeft() == -2) {
-//                this.getPrincipalController().createAlert(ConstantesUI.READER_NOT_FOUND);
-//            }
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }

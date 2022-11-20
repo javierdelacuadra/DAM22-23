@@ -2,10 +2,10 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Newspaper;
 import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
+import modelo.Newspaper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class DaoNewspapers {
         return newspapers;
     }
 
-    public boolean save(Newspaper newspaper) {
+    public Newspaper save(Newspaper newspaper) {
         List<Newspaper> newspapers = getAll();
         if (newspapers.stream().noneMatch(n -> n.getName().equals(newspaper.getName()))) {
             try (Connection con = db.getConnection();
@@ -64,31 +64,27 @@ public class DaoNewspapers {
                 if (rs.next()) {
                     newspaper.setId(rs.getInt(1));
                 }
+                return newspaper;
             } catch (SQLException ex) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_NEWSPAPER);
             }
-            return true;
         }
         throw new DatabaseException(Constantes.YA_EXISTE_UN_NEWSPAPER_CON_ESE_NOMBRE);
     }
 
-    public boolean update(Newspaper newspaper) {
-        List<Newspaper> newspapers = getAll();
-        if (newspapers.stream().anyMatch(n -> n.getName().equals(newspaper.getName()))) {
-            try (Connection con = db.getConnection();
-                 PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.UPDATE_NEWSPAPER)) {
-                preparedStatement.setString(1, newspaper.getName());
-                preparedStatement.setDate(2, Date.valueOf(newspaper.getRelease_date()));
-                preparedStatement.setInt(3, newspaper.getId());
-                preparedStatement.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER);
-            }
-            return true;
+    public Newspaper update(Newspaper newspaper) {
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.UPDATE_NEWSPAPER)) {
+            preparedStatement.setString(1, newspaper.getName());
+            preparedStatement.setDate(2, Date.valueOf(newspaper.getRelease_date()));
+            preparedStatement.setInt(3, newspaper.getId());
+            preparedStatement.executeUpdate();
+            return newspaper;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER);
         }
-        throw new DatabaseException(Constantes.NO_EXISTE_UN_NEWSPAPER_CON_ESE_NOMBRE);
     }
 
     public boolean delete(String id) {

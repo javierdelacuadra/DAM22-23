@@ -7,13 +7,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.recyclerview.R
-import com.example.recyclerview.data.DatabaseRoom
-import com.example.recyclerview.data.Repository
 import com.example.recyclerview.databinding.ActivityAddBinding
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.usecases.AddPersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
-import com.example.recyclerview.utils.StringProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,12 +18,7 @@ class AddActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddBinding
 
-    private val viewModel: AddViewModel by viewModels {
-        AddViewModel.AddViewModelFactory(
-            StringProvider.instance(this),
-            AddPersonaUseCase(Repository(DatabaseRoom.getDatabase(this).daoPersonas()))
-        )
-    }
+    private val viewModel: AddViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

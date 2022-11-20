@@ -7,9 +7,10 @@ import com.example.recyclerview.domain.usecases.GetPersonasUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel(
+class ListViewModel @Inject constructor(
     private val getPersonasUseCase: GetPersonasUseCase,
     private val deletePersonaUseCase: DeletePersonaUseCase,
 ) : ViewModel() {
@@ -42,25 +43,6 @@ class ListViewModel(
             } catch (e: Exception) {
                 _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.ERROR_CARGAR_PERSONAS)
             }
-        }
-    }
-
-    /**
-     * Factory class to instantiate the [ViewModel] instance.
-     */
-    class ListViewModelFactory(
-        private val getPersonasUseCase: GetPersonasUseCase,
-        private val deletePersonaUseCase: DeletePersonaUseCase,
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
-                @Suppress(ConstantesUI.UNCHECKED_CAST)
-                return ListViewModel(
-                    getPersonasUseCase,
-                    deletePersonaUseCase,
-                ) as T
-            }
-            throw IllegalArgumentException(ConstantesUI.UNKNOWN_VIEW_MODEL_CLASS)
         }
     }
 }

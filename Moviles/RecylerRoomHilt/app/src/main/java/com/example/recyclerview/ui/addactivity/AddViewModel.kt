@@ -8,9 +8,10 @@ import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.utils.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class AddViewModel(
+class AddViewModel @Inject constructor(
     private val stringProvider: StringProvider,
     private val addPersonaUseCase: AddPersonaUseCase,
 ) : ViewModel() {
@@ -48,22 +49,4 @@ class AddViewModel(
         }
     }
 
-    /**
-     * Factory class to instantiate the [ViewModel] instance.
-     */
-    class AddViewModelFactory(
-        private val stringProvider: StringProvider,
-        private val addPersonaUseCase: AddPersonaUseCase,
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AddViewModel::class.java)) {
-                @Suppress(ConstantesUI.UNCHECKED_CAST)
-                return AddViewModel(
-                    stringProvider,
-                    addPersonaUseCase,
-                ) as T
-            }
-            throw IllegalArgumentException(ConstantesUI.UNKNOWN_VIEW_MODEL_CLASS)
-        }
-    }
 }

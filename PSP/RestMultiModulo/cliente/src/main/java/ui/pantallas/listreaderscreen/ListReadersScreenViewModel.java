@@ -1,13 +1,16 @@
 package ui.pantallas.listreaderscreen;
 
-import io.vavr.control.Either;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.inject.Inject;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Newspaper;
-import model.Reader;
+import modelo.Newspaper;
+import modelo.Reader;
 import servicios.ServicesNewspaperSQL;
 import servicios.ServicesReadersSQL;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ListReadersScreenViewModel {
 
@@ -21,26 +24,20 @@ public class ListReadersScreenViewModel {
     }
 
     public ObservableList<Reader> getReaders() {
-        return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().blockingGet().get());
+        AtomicReference<ObservableList<Reader>> readers = new AtomicReference<>(FXCollections.observableArrayList());
+        servicesReadersSQL.getAllReaders()
+                .observeOn(Schedulers.from(Platform::runLater))
+                .subscribe(either -> {
+                    if (either.isRight()) {
+                        readers.get().addAll(either.get());
+                    } else {
+                        readers.set(FXCollections.observableArrayList());
+                    }
+                });
+        return readers.get();
     }
 
     public ObservableList<Newspaper> getNewspapers() {
         return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().blockingGet().get());
-    }
-
-    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
-        //return servicesReadersSQL.getReadersByNewspaper(newspaper.getId()).map(FXCollections::observableArrayList);
-        return Either.right(FXCollections.observableArrayList());
-    }
-
-    public Either<Integer, ObservableList<Reader>> getReadersByArticleType(String articleType) {
-//        return servicesReadersSQL.getReadersByArticleType(articleType).map(FXCollections::observableArrayList);
-        return Either.right(FXCollections.observableArrayList());
-    }
-
-    public Either<Integer, ObservableList<Reader>> getOldestSubscribers() {
-//        return servicesReadersSQL.getOldestSubscribers().map(FXCollections::observableArrayList);
-        return Either.right(FXCollections.observableArrayList());
-
     }
 }

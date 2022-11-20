@@ -1,8 +1,8 @@
 package domain.servicios;
 
 import dao.DaoReaders;
-import dao.modelo.Reader;
 import jakarta.inject.Inject;
+import modelo.Reader;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ public class ServiciosReaders {
         return dao.getAll();
     }
 
-    public boolean addReader(Reader reader) {
+    public Reader addReader(Reader reader) {
         return dao.save(reader);
     }
 
-    public boolean updateReader(Reader reader) {
+    public Reader updateReader(Reader reader) {
         return dao.update(reader);
     }
 

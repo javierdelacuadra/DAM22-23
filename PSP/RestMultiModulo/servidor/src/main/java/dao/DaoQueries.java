@@ -2,12 +2,12 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Query1;
-import dao.modelo.Query2;
-import dao.modelo.Query3;
-import dao.modelo.Reader;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
+import modelo.Query1;
+import modelo.Query2;
+import modelo.Query3;
+import modelo.Reader;
 
 import java.sql.*;
 import java.util.ArrayList;

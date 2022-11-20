@@ -51,14 +51,6 @@ public class DBConnection {
         return connection;
     }
 
-    public void closeConnection(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @PreDestroy
     public void closePool() {
         ((HikariDataSource) hikariDataSource).close();

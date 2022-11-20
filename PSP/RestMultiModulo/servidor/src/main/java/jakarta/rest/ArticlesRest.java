@@ -1,15 +1,16 @@
 package jakarta.rest;
 
-import dao.modelo.Article;
 import domain.servicios.ServiciosArticles;
+import jakarta.common.ConstantesREST;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import modelo.Article;
 
 import java.util.List;
 
-@Path("/articles")
+@Path(ConstantesREST.ARTICLES_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ArticlesRest {
@@ -45,8 +46,8 @@ public class ArticlesRest {
     }
 
     @DELETE
-    @Path("/{id}")
-    public Response deleteArticle(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Response deleteArticle(@PathParam(ConstantesREST.ID) String id) {
         if (servicios.deleteArticle(id)) {
             return Response.status(Response.Status.OK).build();
         } else {
@@ -55,14 +56,14 @@ public class ArticlesRest {
     }
 
     @GET
-    @Path("/{id}")
-    public Article getArticle(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Article getArticle(@PathParam(ConstantesREST.ID) String id) {
         return servicios.getArticle(id);
     }
 
     @GET
-    @Path("/type/{type}")
-    public List<Article> getArticlesByType(@PathParam("type") String type) {
+    @Path(ConstantesREST.TYPE_PATH)
+    public List<Article> getArticlesByType(@PathParam(ConstantesREST.TYPE) String type) {
         return servicios.getArticlesByType(type);
     }
 

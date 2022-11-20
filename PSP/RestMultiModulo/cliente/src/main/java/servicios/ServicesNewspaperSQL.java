@@ -4,7 +4,7 @@ import data.DaoNewspaperSQL;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Newspaper;
+import modelo.Newspaper;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ServicesNewspaperSQL {
         return daoNewspaperSQL.update(newspaper);
     }
 
-    public Single<Either<String, Newspaper>> deleteNewspaper(String id) {
+    public Single<Either<String, Boolean>> deleteNewspaper(String id) {
         return daoNewspaperSQL.delete(id);
     }
 }

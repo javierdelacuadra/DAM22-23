@@ -13,8 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import lombok.extern.log4j.Log4j2;
-import model.Reader;
+import modelo.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
@@ -24,7 +23,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-@Log4j2
 public class PantallaMainController extends BasePantallaController implements Initializable {
 
 
@@ -85,9 +83,6 @@ public class PantallaMainController extends BasePantallaController implements In
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        newspapersMenu.setVisible(false);
-//        optionsMenu.setVisible(false);
-//        readersMenu.setVisible(false);
         cargarPantalla(Pantallas.LISTREADERSCREEN);
     }
 
@@ -102,18 +97,7 @@ public class PantallaMainController extends BasePantallaController implements In
             pantallaController.principalCargado();
             root.setCenter(panePantalla);
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-    }
-
-    public void onLoginHecho(boolean admin) {
-        if (admin) {
-            optionsMenu.setVisible(true);
-            newspapersMenu.setVisible(true);
-            readersMenu.setVisible(true);
-            cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
-        } else {
-            optionsMenu.setVisible(true);
+            e.printStackTrace();
         }
     }
 

@@ -2,9 +2,9 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.ReadArticle;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
+import modelo.ReadArticle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

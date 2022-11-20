@@ -1,17 +1,18 @@
 package jakarta.rest;
 
-import dao.modelo.Query1;
-import dao.modelo.Query2;
-import dao.modelo.Query3;
-import dao.modelo.Reader;
 import domain.servicios.ServiciosQueries;
+import jakarta.common.ConstantesREST;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import modelo.Query1;
+import modelo.Query2;
+import modelo.Query3;
+import modelo.Reader;
 
 import java.util.List;
 
-@Path("/queries")
+@Path(ConstantesREST.QUERIES_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class QueriesRest {
@@ -24,26 +25,26 @@ public class QueriesRest {
     }
 
     @GET
-    @Path("/query1")
+    @Path(ConstantesREST.QUERY_1_PATH)
     public List<Query1> getArticlesQuery() {
         return servicios.getArticlesQuery();
     }
 
     @GET
-    @Path("/query2")
+    @Path(ConstantesREST.QUERY_2_PATH)
     public List<Reader> getOldestSubscribers() {
         return servicios.getOldestSubscribers();
     }
 
     @GET
-    @Path("/query3")
-    public List<Query2> getArticlesByTypeAndNameNewspaper(@QueryParam("type") String type) {
+    @Path(ConstantesREST.QUERY_3_PATH)
+    public List<Query2> getArticlesByTypeAndNameNewspaper(@QueryParam(ConstantesREST.TYPE) String type) {
         return servicios.getArticlesByTypeAndNameNewspaper(type);
     }
 
     @GET
-    @Path("/query4")
-    public List<Query3> getArticlesByNewspaperWithBadRatings(@QueryParam("idNewspaper") String idNewspaper) {
+    @Path(ConstantesREST.QUERY_4_PATH)
+    public List<Query3> getArticlesByNewspaperWithBadRatings(@QueryParam(ConstantesREST.ID_NEWSPAPER) String idNewspaper) {
         return servicios.getArticlesByNewspaperWithBadRatings(idNewspaper);
     }
 }

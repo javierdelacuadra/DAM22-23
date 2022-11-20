@@ -1,15 +1,16 @@
 package jakarta.rest;
 
-import dao.modelo.Reader;
 import domain.servicios.ServiciosReaders;
+import jakarta.common.ConstantesREST;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import modelo.Reader;
 
 import java.util.List;
 
-@Path("/readers")
+@Path(ConstantesREST.READERS_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ReadersRest {
@@ -28,47 +29,43 @@ public class ReadersRest {
 
     @POST
     public Response addReader(Reader reader) {
-        if (servicios.addReader(reader)) {
-            return Response.status(Response.Status.CREATED).build();
-        } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+        return Response.status(Response.Status.CREATED)
+                .entity(servicios.addReader(reader))
+                .build();
     }
 
     @PUT
     public Response updateReader(Reader reader) {
-        if (servicios.updateReader(reader)) {
-            return Response.status(Response.Status.OK).build();
-        } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+        return Response.status(Response.Status.CREATED)
+                .entity(servicios.updateReader(reader))
+                .build();
     }
 
     @DELETE
-    @Path("/{id}")
-    public Response deleteReader(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Response deleteReader(@PathParam(ConstantesREST.ID) String id) {
         if (servicios.deleteReader(id)) {
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.NO_CONTENT).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
     @GET
-    @Path("/{id}")
-    public Reader getReader(@PathParam("id") String id) {
+    @Path(ConstantesREST.PATH_ID)
+    public Reader getReader(@PathParam(ConstantesREST.ID) String id) {
         return servicios.getReader(id);
     }
 
     @GET
-    @Path("/articleTypes")
-    public List<Reader> getReadersByArticleType(@QueryParam("type") String type) {
+    @Path(ConstantesREST.ARTICLE_TYPES)
+    public List<Reader> getReadersByArticleType(@QueryParam(ConstantesREST.TYPE) String type) {
         return servicios.getReadersByArticleType(type);
     }
 
     @GET
-    @Path("/newspapers")
-    public List<Reader> getReadersByNewspaper(@QueryParam("idNewspaper") String idNewspaper) {
+    @Path(ConstantesREST.NEWSPAPERS_PATH)
+    public List<Reader> getReadersByNewspaper(@QueryParam(ConstantesREST.ID_NEWSPAPER) String idNewspaper) {
         return servicios.getReadersByNewspaper(idNewspaper);
     }
 }

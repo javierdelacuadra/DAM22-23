@@ -1,8 +1,8 @@
 package domain.servicios;
 
 import dao.DaoArticles;
-import dao.modelo.Article;
 import jakarta.inject.Inject;
+import modelo.Article;
 
 import java.util.List;
 

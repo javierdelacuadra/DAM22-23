@@ -4,4 +4,5 @@ module ServidorRest {
     requires java.sql;
     requires org.yaml.snakeyaml;
     requires lombok;
+    requires domain;
 }

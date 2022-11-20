@@ -6,7 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Newspaper;
+import modelo.Newspaper;
+import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -35,9 +36,9 @@ public class ListNewspaperScreenController extends BasePantallaController implem
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("release_date"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.NAME));
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.RELEASE_DATE));
         newspaperTable.setItems(viewModel.getNewspapers());
     }
 }

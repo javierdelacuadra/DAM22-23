@@ -7,11 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
-import com.example.recyclerview.data.DatabaseRoom
-import com.example.recyclerview.data.Repository
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.usecases.DeletePersonaUseCase
-import com.example.recyclerview.domain.usecases.GetPersonasUseCase
 import com.example.recyclerview.ui.addactivity.AddActivity
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.updateactivity.UpdateActivity
@@ -24,12 +20,7 @@ class ListActivity : AppCompatActivity() {
 
     private lateinit var listaPersonas: RecyclerView
 
-    private val viewModel: ListViewModel by viewModels {
-        ListViewModel.ListViewModelFactory(
-            GetPersonasUseCase(Repository(DatabaseRoom.getDatabase(this).daoPersonas())),
-            DeletePersonaUseCase(Repository(DatabaseRoom.getDatabase(this).daoPersonas()))
-        )
-    }
+    private val viewModel: ListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,4 @@
-package dao.modelo;
+package modelo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

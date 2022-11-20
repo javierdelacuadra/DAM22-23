@@ -5,11 +5,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.recyclerview.R
-import com.example.recyclerview.data.DatabaseRoom
-import com.example.recyclerview.data.Repository
 import com.example.recyclerview.databinding.ActivityUpdateBinding
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.usecases.UpdatePersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,15 +16,7 @@ class UpdateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUpdateBinding
 
-    private val viewModel: UpdateViewModel by viewModels {
-        UpdateViewModel.UpdateViewModelFactory(
-            UpdatePersonaUseCase(
-                Repository(
-                    DatabaseRoom.getDatabase(this).daoPersonas()
-                )
-            )
-        )
-    }
+    private val viewModel: UpdateViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

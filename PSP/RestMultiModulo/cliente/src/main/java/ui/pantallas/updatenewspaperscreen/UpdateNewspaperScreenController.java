@@ -3,12 +3,13 @@ package ui.pantallas.updatenewspaperscreen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Newspaper;
+import modelo.Newspaper;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -45,10 +46,23 @@ public class UpdateNewspaperScreenController extends BasePantallaController impl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("release_date"));
-        newspaperTable.setItems(viewModel.getNewspapers());
+        idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.NAME));
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.RELEASE_DATE));
+        viewModel.getNewspapers();
+        viewModel.getState().addListener((observableValue, oldState, newState) -> {
+            if (newState.error != null) {
+                Platform.runLater(() -> {
+                    getPrincipalController().createAlert(newState.error);
+                });
+            }
+            if (newState.newspapers != null) {
+                Platform.runLater(() -> {
+                    newspaperTable.getItems().clear();
+                    newspaperTable.getItems().addAll(newState.newspapers);
+                });
+            }
+        });
     }
 
     public void updateNewspaper() {
@@ -58,14 +72,7 @@ public class UpdateNewspaperScreenController extends BasePantallaController impl
                     nameTextField.getText(),
                     releaseDatePicker.getValue().toString()
             );
-            if (viewModel.updateNewspaper(newspaper).isRight()) {
-                newspaperTable.getItems().clear();
-                newspaperTable.setItems(viewModel.getNewspapers());
-//            } else if (viewModel.updateNewspaper(newspaper).getLeft() == -1) {
-//                this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_UPDATING_THE_READER);
-//            } else if (viewModel.updateNewspaper(newspaper).getLeft() == -2) {
-//                this.getPrincipalController().createAlert(ConstantesUI.THE_READER_DOES_NOT_EXIST);
-            }
+            viewModel.updateNewspaper(newspaper);
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_NEWSPAPER);
         }

@@ -2,10 +2,10 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Reader;
 import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
+import modelo.Reader;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,11 +36,11 @@ public class DaoReaders {
         return readers;
     }
 
-    public boolean save(Reader reader) {
+    public Reader save(Reader reader) {
         List<Reader> readers = getAll();
         if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()))) {
             try (Connection con = db.getConnection();
-                 PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO readers (name, date_of_birth) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                 PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_READER, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, reader.getName());
                 preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
                 preparedStatement.executeUpdate();
@@ -48,16 +48,16 @@ public class DaoReaders {
                 if (rs.next()) {
                     reader.setId(rs.getInt(1));
                 }
+                return reader;
             } catch (SQLException ex) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_READER);
             }
-            return true;
         }
         throw new DatabaseException(Constantes.YA_EXISTE_UN_READER_CON_ESE_NOMBRE);
     }
 
-    public boolean update(Reader reader) {
+    public Reader update(Reader reader) {
         List<Reader> readers = getAll();
         if (readers.stream().noneMatch(r -> r.getName().equals(reader.getName()) && r.getId() != reader.getId())) {
             try (Connection con = db.getConnection();
@@ -66,11 +66,11 @@ public class DaoReaders {
                 preparedStatement.setDate(2, Date.valueOf(reader.getDateOfBirth()));
                 preparedStatement.setInt(3, reader.getId());
                 preparedStatement.executeUpdate();
+                return reader;
             } catch (SQLException e) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
                 throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_READER);
             }
-            return true;
         }
         throw new DatabaseException(Constantes.YA_EXISTE_UN_READER_CON_ESE_NOMBRE);
     }
@@ -88,7 +88,7 @@ public class DaoReaders {
     }
 
     public Reader get(String id) {
-        Reader reader = new Reader();
+        Reader reader;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_ID)) {
             preparedStatement.setInt(1, Integer.parseInt(id));

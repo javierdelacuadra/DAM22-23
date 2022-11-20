@@ -3,12 +3,13 @@ package ui.pantallas.addreaderscreen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Reader;
+import modelo.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -47,10 +48,25 @@ public class AddReaderScreenController extends BasePantallaController implements
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        readersTable.setItems(viewModel.getReaders());
+        idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.NAME));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.DATE_OF_BIRTH));
+
+        viewModel.getReaders();
+
+        viewModel.getState().addListener((observableValue, oldState, newState) -> {
+            if (newState.error != null) {
+                Platform.runLater(() -> {
+                    getPrincipalController().createAlert(newState.error);
+                });
+            }
+            if (newState.readers != null) {
+                Platform.runLater(() -> {
+                    readersTable.getItems().clear();
+                    readersTable.getItems().addAll(newState.readers);
+                });
+            }
+        });
     }
 
     public void saveReader() {
@@ -59,18 +75,7 @@ public class AddReaderScreenController extends BasePantallaController implements
         } else {
             if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty() || birthDatePicker.getValue() != null) {
                 Reader reader = new Reader(nameTextField.getText(), birthDatePicker.getValue());
-                String password = passwordField.getText();
-                if (viewModel.addReader(reader, password).isRight()) {
-                    readersTable.getItems().clear();
-                    readersTable.setItems(viewModel.getReaders());
-                } else {
-                    String error = viewModel.addReader(reader, password).getLeft();
-                    if (error.equalsIgnoreCase("HTTP 500 Internal Server Error")) {
-                        this.getPrincipalController().createAlert("No se ha podido añadir el reader");
-                    } else {
-                        this.getPrincipalController().createAlert("La base de datos no está disponible");
-                    }
-                }
+                viewModel.addReader(reader);
             }
         }
     }

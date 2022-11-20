@@ -1,8 +1,8 @@
 package domain.servicios;
 
 import dao.DaoNewspapers;
-import dao.modelo.Newspaper;
 import jakarta.inject.Inject;
+import modelo.Newspaper;
 
 import java.util.List;
 
@@ -23,11 +23,11 @@ public class ServiciosNewspapers {
         return dao.get(id);
     }
 
-    public boolean addNewspaper(Newspaper newspaper) {
+    public Newspaper addNewspaper(Newspaper newspaper) {
         return dao.save(newspaper);
     }
 
-    public boolean updateNewspaper(Newspaper newspaper) {
+    public Newspaper updateNewspaper(Newspaper newspaper) {
         return dao.update(newspaper);
     }
 

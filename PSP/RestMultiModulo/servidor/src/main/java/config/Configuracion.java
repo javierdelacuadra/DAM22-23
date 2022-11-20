@@ -1,5 +1,6 @@
 package config;
 
+import dao.common.Constantes;
 import jakarta.inject.Singleton;
 import org.yaml.snakeyaml.Yaml;
 
@@ -18,20 +19,20 @@ public class Configuracion {
         Yaml yaml = new Yaml();
         InputStream inputStream = this.getClass()
                 .getClassLoader()
-                .getResourceAsStream("config.yaml");
+                .getResourceAsStream(Constantes.CONFIG_YAML);
         Map<String, Object> obj = yaml.load(inputStream);
-        this.urlDB = (String) obj.get("urlDB");
-        this.user_name = (String) obj.get("user_name");
-        this.password = (String) obj.get("password");
-        this.driver = (String) obj.get("driver");
+        this.urlDB = (String) obj.get(Constantes.URL_DB);
+        this.user_name = (String) obj.get(Constantes.USER_NAME);
+        this.password = (String) obj.get(Constantes.PASSWORD);
+        this.driver = (String) obj.get(Constantes.DRIVER);
     }
 
     public String getProperty(String property) {
         return switch (property) {
-            case "urlDB" -> urlDB;
-            case "user_name" -> user_name;
-            case "password" -> password;
-            case "driver" -> driver;
+            case Constantes.URL_DB -> urlDB;
+            case Constantes.USER_NAME -> user_name;
+            case Constantes.PASSWORD -> password;
+            case Constantes.DRIVER -> driver;
             default -> null;
         };
     }

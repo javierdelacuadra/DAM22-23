@@ -1,26 +1,58 @@
 package ui.pantallas.updatenewspaperscreen;
 
-import io.vavr.control.Either;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.inject.Inject;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.Newspaper;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import modelo.Newspaper;
 import servicios.ServicesNewspaperSQL;
+
+import java.util.List;
 
 public class UpdateNewspaperScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
+    private final ObjectProperty<UpdateNewspaperState> state;
 
     @Inject
     public UpdateNewspaperScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL) {
         this.servicesNewspaperSQL = servicesNewspaperSQL;
+        state = new SimpleObjectProperty<>(new UpdateNewspaperState(null, null));
     }
 
-    public ObservableList<Newspaper> getNewspapers() {
-        return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().blockingGet().get());
+    public ObjectProperty<UpdateNewspaperState> getState() {
+        return state;
     }
 
-    public Either<String, Newspaper> updateNewspaper(Newspaper newspaper) {
-        return servicesNewspaperSQL.updateNewspaper(newspaper).blockingGet();
+    public void getNewspapers() {
+        servicesNewspaperSQL.getNewspapers()
+                .observeOn(Schedulers.single())
+                .subscribe(either -> {
+                    if (either.isRight()) {
+                        state.set(new UpdateNewspaperState(null, either.get()));
+                    } else {
+                        state.set(new UpdateNewspaperState(either.getLeft(), null));
+                    }
+                });
+    }
+
+    public void updateNewspaper(Newspaper newspaper) {
+        servicesNewspaperSQL.updateNewspaper(newspaper)
+                .subscribeOn(Schedulers.single())
+                .subscribe(either -> {
+                    if (either.isRight()) {
+                        List<Newspaper> newspapers = state.get().newspapers;
+                        newspapers.stream()
+                                .filter(n -> n.getId() == (newspaper.getId()))
+                                .findFirst()
+                                .ifPresent(n -> {
+                                    n.setName(newspaper.getName());
+                                    n.setRelease_date(newspaper.getRelease_date());
+                                });
+                        state.set(new UpdateNewspaperState(null, newspapers));
+                    } else {
+                        state.set(new UpdateNewspaperState(either.getLeft(), null));
+                    }
+                });
     }
 }

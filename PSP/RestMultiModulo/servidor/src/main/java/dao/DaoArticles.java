@@ -2,10 +2,10 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
-import dao.modelo.Article;
 import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
+import modelo.Article;
 
 import java.sql.*;
 import java.util.ArrayList;
