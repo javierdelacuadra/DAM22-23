@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objetos>
+    <objeto>
+        <id>1</id>
+        <nombre>name1</nombre>
+        <apellido>surname1</apellido>
+        <fecha>2021-10-10</fecha>
+    </objeto>
+    <objeto>
+        <id>2</id>
+        <nombre>name2</nombre>
+        <apellido>surname2</apellido>
+        <fecha>2021-10-10</fecha>
+    </objeto>
+    <objeto>
+        <id>3</id>
+        <nombre>name3</nombre>
+        <apellido>surname3</apellido>
+        <fecha>2021-10-10</fecha>
+    </objeto>
+</objetos>
