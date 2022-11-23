@@ -9,4 +9,5 @@ object Constantes {
     const val SELECT_PERSONA = "SELECT * FROM $TABLE_NAME WHERE $EMAIL = :email"
     const val DATABASE_PATH = "database/personas.db"
     const val ITEM_DATABASE = "item_database"
+    const val SELECT_TARJETAS = "SELECT * FROM tarjetas WHERE $EMAIL = :email"
 }

@@ -48,6 +48,11 @@ class PersonasViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
         with(binding) {
             nombreTextField.text = persona.nombre
             emailTextField.text = persona.email
+            if (persona.tarjetas == null) {
+                tarjetasTextField.text = "Tarjetas: 0"
+            } else {
+                tarjetasTextField.text = "Tarjetas: " + persona.tarjetas.size.toString()
+            }
         }
 
         view.findViewById<ImageButton>(R.id.buttonDelete).setOnClickListener {

@@ -2,7 +2,9 @@ package com.example.recyclerview.data
 
 import com.example.recyclerview.data.modelo.toPersona
 import com.example.recyclerview.data.modelo.toPersonaEntity
+import com.example.recyclerview.data.modelo.toTarjetaEntity
 import com.example.recyclerview.domain.modelo.Persona
+import com.example.recyclerview.domain.modelo.Tarjeta
 import javax.inject.Inject
 
 class Repository @Inject constructor(private val dao: DaoPersonas) {
@@ -23,4 +25,8 @@ class Repository @Inject constructor(private val dao: DaoPersonas) {
         )
         dao.updatePersona(personaToUpdate.toPersonaEntity())
     }
+
+    suspend fun getPersonasWithTarjetas() = dao.getPersonasWithTarjetas().map { it.toPersona() }
+
+    suspend fun addTarjeta(tarjeta: Tarjeta) = dao.addTarjeta(tarjeta.toTarjetaEntity())
 }

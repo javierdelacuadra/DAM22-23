@@ -11,11 +11,10 @@ object ConstantesUI {
     const val EMAIL_DOMAIN = "@gmail.com"
     const val UNO = 1
     const val NADA = ""
-    const val UNCHECKED_CAST = "UNCHECKED_CAST"
-    const val UNKNOWN_VIEW_MODEL_CLASS = "Unknown ViewModel class"
     const val AGREGAR_PERSONA = "Agregar persona"
     const val PERSONA_NO_AGREGADA = "Persona no agregada"
     const val NOMBRE = "nombre"
     const val EMAIL = "email"
     const val DESEA_AGREGAR_UNA_PERSONA = "¿Desea agregar una persona?"
+    const val PERSONA = "persona"
 }

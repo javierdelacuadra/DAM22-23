@@ -39,4 +39,10 @@
     <string name="persona_no_actualizada">Persona no actualizada</string>
     <string name="empty_fields">Debes rellenar todos los campos</string>
     <string name="empty_password">Si dejas la contraseña vacía se mantendrá la actual</string>
+    <string name="tarjeta_guardada">Tarjeta añadida con éxito</string>
+    <string name="error_al_guardar_tarjeta">Error al guardar tarjeta</string>
+    <string name="numero_tarjeta">NºTarjeta</string>
+    <string name="fecha_caducidad">Fecha de Caducidad</string>
+    <string name="CVV">CVV</string>
+    <string name="addTarjeta">Añadir Tarjeta</string>
 </resources>
