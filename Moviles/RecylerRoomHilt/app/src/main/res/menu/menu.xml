@@ -5,6 +5,5 @@
         android:id="@+id/action_action1"
         android:icon="@drawable/ic_baseline_add_card_24"
         android:title="@string/addTarjeta"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 </menu>

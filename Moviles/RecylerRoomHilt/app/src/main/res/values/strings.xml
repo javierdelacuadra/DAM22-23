@@ -45,4 +45,8 @@
     <string name="fecha_caducidad">Fecha de Caducidad</string>
     <string name="CVV">CVV</string>
     <string name="addTarjeta">Añadir Tarjeta</string>
+    <string name="verTarjetas">Ver Tarjetas</string>
+    <string name="mes">Mes</string>
+    <string name="year">Año</string>
+    <string name="formato_tarjeta_incorrecto">Alguno de los campos es incorrecto</string>
 </resources>

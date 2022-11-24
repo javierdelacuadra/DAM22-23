@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,7 +18,6 @@ import com.example.recyclerview.ui.updateactivity.UpdateActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class ListActivity : AppCompatActivity() {
@@ -68,13 +68,11 @@ class ListActivity : AppCompatActivity() {
         listaPersonas.layoutManager = GridLayoutManager(this, 1)
 
         viewModel.uiState.observe(this) { state ->
-            state.mensaje.let { error ->
-                Timber.e(error)
-            }
             state.lista.let { listaPersonas ->
-                if (listaPersonas != null) {
-                    adapter.cambiarLista(listaPersonas)
-                }
+                adapter.cambiarLista(listaPersonas)
+            }
+            state.mensaje?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -87,15 +85,15 @@ class ListActivity : AppCompatActivity() {
     private fun loadPantallaAddTarjeta() {
         if (viewModel.uiState.value?.lista?.isEmpty() == true) {
             MaterialAlertDialogBuilder(this)
-                .setTitle("No hay personas")
-                .setMessage("No hay personas para añadir tarjetas")
-                .setPositiveButton("OK") { dialog, _ ->
+                .setTitle(ConstantesUI.NO_HAY_PERSONAS)
+                .setMessage(ConstantesUI.NO_HAY_PERSONAS_PARA_TARJETAS)
+                .setPositiveButton(ConstantesUI.OK) { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
         } else {
             val builder = MaterialAlertDialogBuilder(this)
-            builder.setTitle("Selecciona una persona")
+            builder.setTitle(ConstantesUI.SELECCIONA_UNA_PERSONA)
             val personas = viewModel.uiState.value?.lista
             val nombres = personas?.map { it.nombre }
             builder.setItems(nombres?.toTypedArray()) { _, which ->

@@ -1,4 +1,4 @@
-package com.example.recyclerview.domain.usecases
+package com.example.recyclerview.domain.usecases.tarjetas
 
 import com.example.recyclerview.data.Repository
 import com.example.recyclerview.domain.modelo.Tarjeta

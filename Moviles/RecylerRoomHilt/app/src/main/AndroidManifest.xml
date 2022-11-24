@@ -42,6 +42,10 @@
             android:name=".ui.addtarjeta.AddTarjetaActivity"
             android:parentActivityName=".ui.listactivity.ListActivity" />
 
+        <activity
+            android:name=".ui.listtarjetas.ListTarjetasActivity"
+            android:parentActivityName=".ui.addtarjeta.AddTarjetaActivity" />
+
     </application>
 
 </manifest>

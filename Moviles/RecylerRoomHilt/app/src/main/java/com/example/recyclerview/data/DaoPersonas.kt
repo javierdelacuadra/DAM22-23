@@ -21,9 +21,6 @@ interface DaoPersonas {
     @Update
     suspend fun updatePersona(persona: PersonaEntity)
 
-    @Update
-    suspend fun updatePersona(persona: PersonaWithTarjetas)
-
     @Query(Constantes.SELECT_PERSONA)
     suspend fun getPersona(email: String): PersonaEntity
 
@@ -35,15 +32,9 @@ interface DaoPersonas {
     @Query(Constantes.SELECT_PERSONA)
     suspend fun getPersonaWithTarjetas(email: String): PersonaWithTarjetas
 
-    @Transaction
-    suspend fun addTarjeta(tarjeta: TarjetaEntity) {
-        addTarjeta(tarjeta)
-        val persona = getPersonaWithTarjetas(tarjeta.email)
-        persona.tarjeta?.toMutableList()?.add(tarjeta)
-        updatePersona(persona)
-    }
+    @Insert
+    suspend fun addTarjeta(tarjeta: TarjetaEntity)
 
-    @Transaction
     @Query(Constantes.SELECT_TARJETAS)
-    suspend fun getTarjetas(email: String): List<TarjetaEntity>
+    suspend fun getTarjetas(): List<TarjetaEntity>
 }

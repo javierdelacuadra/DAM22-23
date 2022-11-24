@@ -4,24 +4,28 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.recyclerview.data.common.Constantes
 
-@Entity(tableName = "tarjetas",
-foreignKeys = [
-    ForeignKey(entity = PersonaEntity::class,
-        parentColumns = ["email"],
-        childColumns = ["email"])
-        ])
-data class TarjetaEntity (
+@Entity(
+    tableName = Constantes.TABLA_TARJETAS,
+    foreignKeys = [
+        ForeignKey(
+            entity = PersonaEntity::class,
+            parentColumns = [Constantes.EMAIL],
+            childColumns = [Constantes.EMAIL],
+        )
+    ]
+)
+data class TarjetaEntity(
     @PrimaryKey
     val numeroTarjeta: String,
 
-    @ColumnInfo(name = "fechaCaducidad")
+    @ColumnInfo(name = Constantes.FECHA_CADUCIDAD)
     val fechaCaducidad: String,
 
-    @ColumnInfo(name = "cvv")
-    val cvv : Int,
+    @ColumnInfo(name = Constantes.CVV)
+    val cvv: Int,
 
-    @ColumnInfo(name = "email")
+    @ColumnInfo(name = Constantes.EMAIL)
     var email: String,
-
 )

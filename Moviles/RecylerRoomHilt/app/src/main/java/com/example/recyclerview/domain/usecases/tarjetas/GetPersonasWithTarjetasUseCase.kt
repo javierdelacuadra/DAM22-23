@@ -1,4 +1,4 @@
-package com.example.recyclerview.domain.usecases
+package com.example.recyclerview.domain.usecases.tarjetas
 
 import com.example.recyclerview.data.Repository
 import javax.inject.Inject

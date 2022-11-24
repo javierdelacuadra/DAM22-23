@@ -1,11 +1,13 @@
 package com.example.recyclerview.ui.addtarjeta
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.recyclerview.databinding.AddTarjetaBinding
-import com.example.recyclerview.domain.modelo.Tarjeta
+import com.example.recyclerview.ui.common.ConstantesUI
+import com.example.recyclerview.ui.listtarjetas.ListTarjetasActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +22,10 @@ class AddTarjetaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonAddTarjeta.setOnClickListener {
-           addTarjeta()
+            addTarjeta()
+        }
+        binding.buttonVerListaTarjetas.setOnClickListener {
+            verListaTarjetas()
         }
 
         viewModel.uiState.observe(this) { state ->
@@ -30,22 +35,25 @@ class AddTarjetaActivity : AppCompatActivity() {
         }
     }
 
-    private fun addTarjeta() {
-        if (binding.editTextNumeroTarjeta.editText?.text.toString().isNotEmpty() &&
-            binding.editTextFechaCaducidad.editText?.text.toString().isNotEmpty() &&
-            binding.editTextCvv.editText?.text.toString().isNotEmpty() &&
-            binding.editTextCvv.editText?.text.toString().toIntOrNull() != null
-        ) {
-            val tarjeta = Tarjeta(
-                binding.editTextNumeroTarjeta.editText?.text.toString(),
-                binding.editTextFechaCaducidad.editText?.text.toString(),
-                binding.editTextCvv.editText?.text.toString().toInt(),
-                intent.getStringExtra("email").toString(),
-            )
-            viewModel.handleEvent(AddTarjetaEvent.AddTarjeta(tarjeta))
-        } else {
-            Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show()
-        }
+    private fun verListaTarjetas() {
+        val intent = Intent(this, ListTarjetasActivity::class.java)
+        startActivity(intent)
     }
-    //TODO: poner 2 campos para mes y año y validar fecha correcta y longitud de cvv y numero de tarjeta
+
+    private fun addTarjeta() {
+        val numeroTarjeta = binding.editTextNumeroTarjeta.editText?.text.toString()
+        val mes = binding.editTextMes.editText?.text.toString()
+        val year = binding.editTextYear.editText?.text.toString()
+        val cvv = binding.editTextCvv.editText?.text.toString()
+        val email = intent.getStringExtra(ConstantesUI.EMAIL)
+        viewModel.handleEvent(
+            AddTarjetaEvent.AddTarjeta(
+                numeroTarjeta,
+                mes,
+                year,
+                cvv,
+                email ?: ConstantesUI.NADA
+            )
+        )
+    }
 }

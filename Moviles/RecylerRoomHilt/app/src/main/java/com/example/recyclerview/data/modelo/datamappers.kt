@@ -45,11 +45,3 @@ fun PersonaWithTarjetas.toPersona(): Persona {
         this.tarjeta?.map { it.toTarjeta() },
     )
 }
-
-fun PersonaWithTarjetas.toPersonaEntity(): PersonaEntity {
-    return PersonaEntity(
-        this.persona.nombre,
-        this.persona.password,
-        this.persona.email,
-    )
-}

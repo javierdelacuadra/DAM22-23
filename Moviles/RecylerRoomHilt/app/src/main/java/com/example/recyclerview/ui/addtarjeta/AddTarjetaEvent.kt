@@ -1,7 +1,11 @@
 package com.example.recyclerview.ui.addtarjeta
 
-import com.example.recyclerview.domain.modelo.Tarjeta
-
 sealed interface AddTarjetaEvent {
-    data class AddTarjeta(val tarjeta: Tarjeta) : AddTarjetaEvent
+    data class AddTarjeta(
+        val numeroTarjeta: String,
+        val mes: String,
+        val year: String,
+        val cvv: String,
+        val email: String
+    ) : AddTarjetaEvent
 }
