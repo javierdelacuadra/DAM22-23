@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.ListViewBinding
 import com.example.recyclerview.domain.modelo.Persona
+import com.example.recyclerview.ui.common.ConstantesUI
 
 class AdapterPersonas(
     private var personas: List<Persona>,
@@ -48,10 +49,20 @@ class PersonasViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
         with(binding) {
             nombreTextField.text = persona.nombre
             emailTextField.text = persona.email
+            if (persona.tarjetas == null) {
+                tarjetasTextField.text = ConstantesUI.NO_HAY_TARJETA
+            } else {
+                tarjetasTextField.text = ConstantesUI.TARJETAS + persona.tarjetas.size.toString()
+            }
         }
 
         view.findViewById<ImageButton>(R.id.buttonDelete).setOnClickListener {
-            actions.deletePersona(Persona(persona.nombre, persona.password, persona.email))
+            actions.deletePersona(
+                Persona(
+                    persona.nombre, persona.password,
+                    persona.email
+                )
+            )
         }
 
         view.findViewById<ImageButton>(R.id.buttonUpdate).setOnClickListener {

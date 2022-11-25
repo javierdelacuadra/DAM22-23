@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.recyclerview.data.DaoPersonas
 import com.example.recyclerview.data.DatabaseRoom
+import com.example.recyclerview.data.common.Constantes
 import com.example.recyclerview.utils.StringProvider
 import dagger.Module
 import dagger.Provides
@@ -18,23 +19,23 @@ import javax.inject.Singleton
 object RoomModule {
 
     @Provides
-    @Named("assetDB")
-    fun getAssetDB() : String = "database/personas.db"
+    @Named(Constantes.ASSET_DB)
+    fun getAssetDB(): String = Constantes.DATABASE_PATH
 
 
     @Provides
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context,
-        @Named("assetDB") ruta: String
-    )  : DatabaseRoom =
-        Room.databaseBuilder(context, DatabaseRoom::class.java, "persona_database")
+        @Named(Constantes.ASSET_DB) ruta: String
+    ): DatabaseRoom =
+        Room.databaseBuilder(context, DatabaseRoom::class.java, Constantes.ITEM_DATABASE)
             .createFromAsset(ruta)
             .fallbackToDestructiveMigrationFrom(1)
             .build()
 
     @Provides
-    fun providesPersonaDao(personasDatabase: DatabaseRoom) :DaoPersonas =
+    fun providesPersonaDao(personasDatabase: DatabaseRoom): DaoPersonas =
         personasDatabase.daoPersonas()
 
 

@@ -1,9 +1,12 @@
 package com.example.recyclerview.ui.addactivity
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.R
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.usecases.AddPersonaUseCase
+import com.example.recyclerview.domain.usecases.personas.AddPersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.utils.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel

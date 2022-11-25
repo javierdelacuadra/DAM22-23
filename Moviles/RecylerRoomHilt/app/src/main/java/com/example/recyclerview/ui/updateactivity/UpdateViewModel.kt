@@ -1,8 +1,11 @@
 package com.example.recyclerview.ui.updateactivity
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.usecases.UpdatePersonaUseCase
+import com.example.recyclerview.domain.usecases.personas.UpdatePersonaUseCase
 import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
