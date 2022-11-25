@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@XmlRootElement(name = "objetos")
+@XmlRootElement(name = "clients")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
-public class Objetos {
-    @XmlElement(name = "objeto")
-    List<Objeto> objeto;
+public class Clients {
+
+    @XmlElement(name = "client")
+    List<Client> client;
 }

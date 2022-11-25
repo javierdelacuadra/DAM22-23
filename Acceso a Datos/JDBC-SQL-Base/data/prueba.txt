@@ -1,4 +1,0 @@
-1;Prueba1;prueba;2003-12-12
-2;Prueba2;prueba;2003-12-12
-3;Prueba3;prueba;2003-12-12
-4;Prueba4;prueba;2003-12-12
