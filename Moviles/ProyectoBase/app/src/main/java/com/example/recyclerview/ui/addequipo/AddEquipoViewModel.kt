@@ -27,15 +27,24 @@ class AddEquipoViewModel @Inject constructor(
     }
 
     private fun addEquipo(equipo: Equipo) {
-        if (validarCampos(equipo)) {
+        if (validarPuesto(equipo)) {
             viewModelScope.launch {
                 try {
                     addEquipoUseCase.invoke(equipo)
                     _uiState.value =
                         AddEquipoState(mensaje = "Equipo añadido con éxito")
                 } catch (e: Exception) {
-                    _uiState.value =
-                        AddEquipoState(mensaje = "Error al añadir el equipo")
+                    val mensaje = e.message
+                    if (mensaje.equals("UNIQUE constraint failed: equipos.puesto (code 2067 SQLITE_CONSTRAINT_UNIQUE)")) {
+                        _uiState.value =
+                            AddEquipoState(mensaje = "Ya hay un equipo con ese puesto")
+                    } else if (mensaje.equals("UNIQUE constraint failed: equipos.nombre (code 1555 SQLITE_CONSTRAINT_PRIMARYKEY)")) {
+                        _uiState.value =
+                            AddEquipoState(mensaje = "Ya hay un equipo con ese nombre")
+                    } else {
+                        _uiState.value =
+                            AddEquipoState(mensaje = "hacker chino???")
+                    }
                 }
             }
         } else {
@@ -44,7 +53,7 @@ class AddEquipoViewModel @Inject constructor(
         }
     }
 
-    private fun validarCampos(equipoActual: Equipo) : Boolean {
+    private fun validarPuesto(equipoActual: Equipo): Boolean {
         val puesto = equipoActual.puesto
         var puestoUnico = true
         viewModelScope.launch {

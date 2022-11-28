@@ -24,5 +24,5 @@ interface DaoEquipos {
     suspend fun deleteEquipo(nombreEquipo: String)
 
     @Query("SELECT * FROM componentes WHERE nombreEquipo = :nombreEquipo")
-    suspend fun getComponentes(nombreEquipo: String) : List<ComponenteEntity>
+    suspend fun getComponentes(nombreEquipo: String): List<ComponenteEntity>
 }

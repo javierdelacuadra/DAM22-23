@@ -13,5 +13,6 @@ class EquiposRepository @Inject constructor(private val dao: DaoEquipos) {
     suspend fun addEquipo(equipo: Equipo) = dao.addEquipo(equipo.toEquipoEntity())
     suspend fun deleteEquipo(nombreEquipo: String) = dao.deleteEquipo(nombreEquipo)
 
-    suspend fun getComponentes(nombreEquipo: String) = dao.getComponentes(nombreEquipo).map { it.toComponente() }
+    suspend fun getComponentes(nombreEquipo: String) =
+        dao.getComponentes(nombreEquipo).map { it.toComponente() }
 }

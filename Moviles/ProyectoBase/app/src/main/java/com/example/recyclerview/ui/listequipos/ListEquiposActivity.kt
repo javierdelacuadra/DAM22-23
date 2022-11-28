@@ -67,6 +67,8 @@ class ListEquiposActivity : AppCompatActivity() {
             state.mensaje?.let {
                 Timber.i(it)
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                //durante el examen no he conseguido que salga ni un solo toast
+                //no sé si es el emulador que va mal en cualquier caso los mensajes están en el timber
             }
         }
     }

@@ -33,7 +33,8 @@ class ListEquiposViewModel @Inject constructor(
                 _uiState.value = _uiState.value?.copy(mensaje = "Equipo borrado con exito")
                 loadEquipos()
             } catch (e: Exception) {
-                _uiState.value = _uiState.value?.copy(mensaje = "No se puede borrar porque tiene componentes")
+                _uiState.value =
+                    _uiState.value?.copy(mensaje = "No se puede borrar porque tiene componentes")
             }
         }
     }

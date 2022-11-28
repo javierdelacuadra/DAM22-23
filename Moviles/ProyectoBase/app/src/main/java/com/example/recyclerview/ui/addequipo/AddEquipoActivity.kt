@@ -34,15 +34,22 @@ class AddEquipoActivity : AppCompatActivity() {
 
     private fun addEquipo() {
         with(binding) {
-            viewModel.handleEvent(
-                AddEquipoEvent.AddEquipo(
-                    Equipo(
-                        editTextNombreEquipo.editText?.text.toString(),
-                        nacionalidadTextField.editText?.text.toString(),
-                        editTextPuesto.editText?.text.toString().toInt()
+            if (editTextNombreEquipo.editText?.text.toString().isEmpty()
+                || nacionalidadTextField.editText?.text.toString().isEmpty()
+                || editTextPuesto.editText?.text.toString().isEmpty()) {
+                Toast.makeText(applicationContext, "Debes rellenar todos los campos", Toast.LENGTH_SHORT)
+                Timber.i("Debes rellenar todos los campos")
+            } else {
+                viewModel.handleEvent(
+                    AddEquipoEvent.AddEquipo(
+                        Equipo(
+                            editTextNombreEquipo.editText?.text.toString(),
+                            nacionalidadTextField.editText?.text.toString(),
+                            editTextPuesto.editText?.text.toString().toInt()
+                        )
                     )
                 )
-            )
+            }
         }
     }
 }
