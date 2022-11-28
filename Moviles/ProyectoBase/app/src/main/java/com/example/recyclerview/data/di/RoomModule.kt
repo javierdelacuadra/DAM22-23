@@ -2,7 +2,7 @@ package com.example.recyclerview.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.recyclerview.data.DaoPersonas
+import com.example.recyclerview.data.DaoEquipos
 import com.example.recyclerview.data.DatabaseRoom
 import com.example.recyclerview.data.common.Constantes
 import dagger.Module
@@ -34,7 +34,7 @@ object RoomModule {
             .build()
 
     @Provides
-    fun providesPersonaDao(personasDatabase: DatabaseRoom): DaoPersonas =
-        personasDatabase.daoPersonas()
+    fun providesDaoEquipos(personasDatabase: DatabaseRoom): DaoEquipos =
+        personasDatabase.daoEquipos()
 
 }

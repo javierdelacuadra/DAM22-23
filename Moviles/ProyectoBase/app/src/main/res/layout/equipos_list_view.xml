@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/teal_200">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/componentesTextField"
+        android:layout_width="159dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="2dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Componentes:" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/nombreEquipoTextField"
+        android:layout_width="159dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_200"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/puestoTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="Nombre" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/puestoTextField"
+        android:layout_width="103dp"
+        android:layout_height="32dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nombreEquipoTextField"
+        tools:text="Puesto:" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/nacionalidadTextField"
+        android:layout_width="136dp"
+        android:layout_height="32dp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonDetalle"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Lugar:" />
+
+    <ImageButton
+        android:id="@+id/buttonDelete"
+        android:layout_width="100dp"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        android:contentDescription="@string/delete"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintStart_toEndOf="@+id/buttonDetalle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/buttonDetalle"
+        android:layout_width="110dp"
+        android:layout_height="46dp"
+        android:background="@color/white"
+        android:contentDescription="@string/update"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_baseline_info_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
