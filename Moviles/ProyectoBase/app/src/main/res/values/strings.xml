@@ -51,4 +51,9 @@
     <string name="formato_tarjeta_incorrecto">Alguno de los campos es incorrecto</string>
     <string name="n_tarjeta_helper">Longitud: 16 caracteres</string>
     <string name="cvv_helper">Ejemplo: 123</string>
+    <string name="addEquipo">Añadir Equipo</string>
+    <string name="nombreEquipo">Nombre del Equipo</string>
+    <string name="nacionalidad">Nacionalidad</string>
+    <string name="puesto">Puesto</string>
+    <string name="puesto_helper">Ejemplo: 1, 2, 3</string>
 </resources>

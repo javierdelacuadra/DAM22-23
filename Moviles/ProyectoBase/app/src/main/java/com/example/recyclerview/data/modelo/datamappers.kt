@@ -1,47 +1,38 @@
 package com.example.recyclerview.data.modelo
 
-import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.domain.modelo.Tarjeta
+import com.example.recyclerview.domain.modelo.Componente
+import com.example.recyclerview.domain.modelo.Equipo
 
-fun PersonaEntity.toPersona(): Persona {
-    return Persona(
+fun EquipoWithComponentes.toEquipo(): Equipo {
+    return Equipo(
+        this.equipo.nombre,
+        this.equipo.nacionalidad,
+        this.equipo.puesto,
+        this.componentes.map { it.toComponente() },
+    )
+}
+
+fun EquipoEntity.toEquipo(): Equipo {
+    return Equipo(
         this.nombre,
-        this.password,
-        this.email,
+        this.nacionalidad,
+        this.puesto,
     )
 }
 
-fun Persona.toPersonaEntity(): PersonaEntity {
-    return PersonaEntity(
+fun Equipo.toEquipoEntity(): EquipoEntity {
+    return EquipoEntity(
         this.nombre,
-        this.password,
-        this.email,
+        this.nacionalidad,
+        this.puesto
     )
 }
 
-fun TarjetaEntity.toTarjeta(): Tarjeta {
-    return Tarjeta(
-        this.numeroTarjeta,
-        this.fechaCaducidad,
-        this.cvv,
-        this.email,
-    )
-}
-
-fun Tarjeta.toTarjetaEntity(): TarjetaEntity {
-    return TarjetaEntity(
-        this.numeroTarjeta,
-        this.fechaCaducidad,
-        this.cvv,
-        this.email,
-    )
-}
-
-fun PersonaWithTarjetas.toPersona(): Persona {
-    return Persona(
-        this.persona.nombre,
-        this.persona.password,
-        this.persona.email,
-        this.tarjeta?.map { it.toTarjeta() },
+fun ComponenteEntity.toComponente(): Componente {
+    return Componente(
+        this.id,
+        this.nombreJugador,
+        this.nombreEquipo,
+        this.tipo
     )
 }
