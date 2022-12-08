@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
+    <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="268.0" layoutY="275.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su nombre" />
+    <MFXTextField fx:id="textfieldPassword" alignment="CENTER" layoutX="270.0" layoutY="368.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su contraseña" />
+    <MFXTextField fx:id="textfieldEmail" alignment="CENTER" layoutX="270.0" layoutY="461.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su email" />
+    <Label fx:id="textoNombre" layoutX="350.0" layoutY="237.0" text="Nombre">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <Label fx:id="textoDNI" layoutX="345.0" layoutY="333.0" text="Password">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <Label fx:id="textoEmail" layoutX="365.0" layoutY="427.0" text="Email">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <MFXButton fx:id="botonInicioSesion" layoutX="202.0" layoutY="531.0" onAction="#inicioSesion" text="Iniciar Sesión">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </MFXButton>
+    <MFXButton fx:id="botonRegistro" layoutX="430.0" layoutY="531.0" onAction="#registro" text="Registrarse">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </MFXButton>
+    <ImageView fx:id="logoSQL" fitHeight="235.0" fitWidth="334.0" layoutX="212.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+    </ImageView>
+</AnchorPane>
