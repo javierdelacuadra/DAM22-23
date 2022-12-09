@@ -12,7 +12,6 @@ import retrofit2.HttpException;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class DaoGenerics {

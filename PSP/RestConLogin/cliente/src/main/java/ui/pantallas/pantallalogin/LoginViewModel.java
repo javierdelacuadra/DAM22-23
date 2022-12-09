@@ -59,7 +59,20 @@ public class LoginViewModel {
                     }
                 });
         return id.get();
-        //TODO: si se te pasan los 5 minutos no deja pasar (cambiar de 10 a 5), filtros de permisos, posibilidad de volver a mandar el email si caduca,
-        //TODO: se me ha olvidado la contraseña, al hacer logout, se borra el atributo LOGIN de la sesion
+        //TODO: si se te pasan los 5 minutos no deja pasar (cambiar de 10 a 5), filtros de permisos,
+        //TODO: al hacer logout, se borra el atributo LOGIN de la sesion
+        //TODO: getReaderById para el principalController
+    }
+
+    public void recoverPassword(String email) {
+        servicesReadersSQL.recoverPassword(email)
+                .observeOn(Schedulers.from(Platform::runLater))
+                .subscribe(s -> state.set(new LoginState("Se ha enviado un correo para recuperar la contraseña a:\n" + email, null)));
+    }
+
+    public void sendEmail(String email) {
+        servicesReadersSQL.sendEmail(email)
+                .observeOn(Schedulers.from(Platform::runLater))
+                .subscribe(s -> state.set(new LoginState("Se ha enviado un correo para activar tu cuenta a:\n" + email, null)));
     }
 }

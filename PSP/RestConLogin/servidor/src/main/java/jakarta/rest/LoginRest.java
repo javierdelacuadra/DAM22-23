@@ -37,4 +37,28 @@ public class LoginRest {
                 .entity(servicios.addLogin(login))
                 .build();
     }
+
+    @GET
+    @Path("/logout")
+    public Response logout() {
+        request.getSession().invalidate();
+        return Response.status(Response.Status.OK)
+                .build();
+    }
+
+    @GET
+    @Path("/passwordRecovery")
+    public Response passwordRecovery(@QueryParam("email") String email) {
+        return Response.status(Response.Status.NO_CONTENT)
+                .entity(servicios.passwordRecovery(email))
+                .build();
+    }
+
+    @GET
+    @Path("/emailResend")
+    public Response emailResend(@QueryParam("email") String email) {
+        return Response.status(Response.Status.NO_CONTENT)
+                .entity(servicios.emailResend(email))
+                .build();
+    }
 }

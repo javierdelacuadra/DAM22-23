@@ -4,8 +4,6 @@ import dao.DaoLogin;
 import jakarta.inject.Inject;
 import model.ReaderLogin;
 
-import java.time.LocalDateTime;
-
 public class ServiciosLogin {
 
     private final DaoLogin daoLogin;
@@ -25,5 +23,17 @@ public class ServiciosLogin {
 
     public void activarUsuario(String code) {
         daoLogin.activarUsuario(code);
+    }
+
+    public Object passwordRecovery(String email) {
+        return daoLogin.passwordRecovery(email);
+    }
+
+    public Object emailResend(String email) {
+        return daoLogin.emailResend(email);
+    }
+
+    public void crearNuevaPassword(String password, String code) {
+        daoLogin.crearNuevaPassword(password, code);
     }
 }

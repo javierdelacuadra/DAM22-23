@@ -45,4 +45,12 @@ public class ServicesReadersSQL {
     public Single<Either<String,ReaderLogin>> register(ReaderLogin reader) {
         return daoReadersSQL.register(reader);
     }
+
+    public Single<String> recoverPassword(String email) {
+        return daoReadersSQL.recoverPassword(email);
+    }
+
+    public Single<String> sendEmail(String email) {
+        return daoReadersSQL.sendEmail(email);
+    }
 }

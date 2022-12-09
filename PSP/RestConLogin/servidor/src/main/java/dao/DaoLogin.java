@@ -69,7 +69,7 @@ public class DaoLogin {
             preparedStatement.setInt(6, 0);
             preparedStatement.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
             preparedStatement.executeUpdate();
-            generateAndSendEmail(login.getEmail(), generateMessage(activationCode), "Activación de cuenta");
+            generateAndSendEmail(login.getEmail(), generateActivationMessage(activationCode), "Activación de cuenta");
         } catch (SQLException e) {
             throw new DatabaseException("Ya existe un usuario con ese nombre");
         } catch (MessagingException e) {
@@ -78,8 +78,12 @@ public class DaoLogin {
         return login;
     }
 
-    public String generateMessage(String activationCode) {
+    public String generateActivationMessage(String activationCode) {
         return "http://localhost:8080/RestLogin-1.0-SNAPSHOT/activar?code=" + activationCode;
+    }
+
+    public String generatePasswordRecoveryMessage(String activationCode) {
+        return "http://localhost:8080/RestLogin-1.0-SNAPSHOT/passwordRecovery.jsp?code=" + activationCode;
     }
 
     public Reader save(Reader reader) {
@@ -151,6 +155,61 @@ public class DaoLogin {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DatabaseException("Error al activar el usuario");
+        }
+    }
+
+    public Object passwordRecovery(String email) {
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_USER_BY_EMAIL)) {
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                String activationCode = rs.getString("activation_code");
+                generateAndSendEmail(email, generatePasswordRecoveryMessage(activationCode), "Recuperación de contraseña");
+            } else {
+                throw new ObjectNotFoundException("No existe ningún usuario con ese email");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error en la base de datos");
+        } catch (MessagingException e) {
+            throw new DatabaseException("Error al enviar el correo de recuperación");
+        }
+        return null;
+    }
+
+    public Object emailResend(String email) {
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_USER_BY_EMAIL)) {
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                try (PreparedStatement preparedStatement2 = connection.prepareStatement(SQLQueries.UPDATE_REGISTER_DATE)) {
+                    preparedStatement2.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+                    preparedStatement2.setString(2, email);
+                    preparedStatement2.executeUpdate();
+                }
+                String activationCode = rs.getString("activation_code");
+                generateAndSendEmail(email, generateActivationMessage(activationCode), "Activación de cuenta");
+            } else {
+                throw new ObjectNotFoundException("No existe ningún usuario con ese email");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error en la base de datos");
+        } catch (MessagingException e) {
+            throw new DatabaseException("Error al enviar el correo de activación");
+        }
+        return null;
+    }
+
+    public void crearNuevaPassword(String password, String code) {
+        String passwordHasheada = passwordHash.generate(password.toCharArray());
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_PASSWORD)) {
+            preparedStatement.setString(1, passwordHasheada);
+            preparedStatement.setString(2, code);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Error al actualizar la contraseña");
         }
     }
 }

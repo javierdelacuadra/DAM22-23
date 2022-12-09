@@ -59,4 +59,12 @@ public class DaoReadersSQL extends DaoGenerics {
     public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {
         return createSafeSingleApiCall(newspapersApi.registerReader(reader));
     }
+
+    public Single<String> recoverPassword(String email) {
+        return newspapersApi.recoverPassword(email);
+    }
+
+    public Single<String> sendEmail(String email) {
+        return newspapersApi.sendEmail(email);
+    }
 }

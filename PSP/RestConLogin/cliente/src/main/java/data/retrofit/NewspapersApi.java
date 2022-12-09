@@ -39,4 +39,10 @@ public interface NewspapersApi {
 
     @POST("login")
     Single<ReaderLogin> registerReader(@Body ReaderLogin reader);
+
+    @GET("login/passwordRecovery")
+    Single<String> recoverPassword(@Query("email") String email);
+
+    @GET("login/emailResend")
+    Single<String> sendEmail(@Query("email") String email);
 }
