@@ -7,11 +7,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlets.common.ConstantesServlets;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletRecuperarPassword", urlPatterns = {"/passwordRecovery"})
+@WebServlet(name = ConstantesServlets.SERVLET_RECUPERAR_PASSWORD, urlPatterns = {ConstantesServlets.PASSWORD_RECOVERY})
 public class ServletRecuperarPassword extends HttpServlet {
+
     private final ServiciosLogin serviciosLogin;
 
     @Inject
@@ -20,19 +22,14 @@ public class ServletRecuperarPassword extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String password = req.getParameter("password");
-        String code = req.getParameter("code");
+        String password = req.getParameter(ConstantesServlets.PASSWORD);
+        String code = req.getParameter(ConstantesServlets.CODE);
         if (password != null && code != null) {
             serviciosLogin.crearNuevaPassword(password, code);
-            resp.sendRedirect("success.jsp");
+            resp.sendRedirect(ConstantesServlets.SUCCESS_JSP);
         } else {
-            resp.sendRedirect("error.jsp");
+            resp.sendRedirect(ConstantesServlets.ERROR_JSP);
         }
     }
 

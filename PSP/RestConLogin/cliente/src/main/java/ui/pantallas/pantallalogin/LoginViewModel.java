@@ -5,14 +5,9 @@ import jakarta.inject.Inject;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import model.Reader;
 import model.ReaderLogin;
 import servicios.ServicesReadersSQL;
-import ui.pantallas.deletereaderscreen.DeleteReaderState;
-
-import java.util.concurrent.atomic.AtomicReference;
-
-;
+import ui.common.ConstantesUI;
 
 public class LoginViewModel {
 
@@ -42,37 +37,32 @@ public class LoginViewModel {
                 });
     }
 
-
-    public Reader getReader(int id) {
-        return servicesReadersSQL.getReadersById(id);
-    }
-
-    public Integer register(ReaderLogin readerLogin) {
-        AtomicReference<Integer> id = new AtomicReference<>(0);
+    public void register(ReaderLogin readerLogin) {
         servicesReadersSQL.register(readerLogin)
                 .observeOn(Schedulers.from(Platform::runLater))
                 .subscribe(either -> {
                     if (either.isRight()) {
-                        id.getAndSet(either.get().getId_reader());
+                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, readerLogin));
                     } else {
-                        id.getAndSet(-1);
+                        state.set(new LoginState(either.getLeft(), null));
                     }
                 });
-        return id.get();
-        //TODO: si se te pasan los 5 minutos no deja pasar (cambiar de 10 a 5), filtros de permisos,
-        //TODO: al hacer logout, se borra el atributo LOGIN de la sesion
-        //TODO: getReaderById para el principalController
     }
 
     public void recoverPassword(String email) {
         servicesReadersSQL.recoverPassword(email)
                 .observeOn(Schedulers.from(Platform::runLater))
-                .subscribe(s -> state.set(new LoginState("Se ha enviado un correo para recuperar la contraseña a:\n" + email, null)));
+                .subscribe(stringResponse ->
+                                state.set(new LoginState(ConstantesUI.SE_HA_ENVIADO_UN_CORREO_PARA_RECUPERAR_LA_PASSWORD_A + email, null)),
+                        throwable -> state.set(new LoginState(ConstantesUI.ERROR_INESPERADO, null))
+                );
     }
 
     public void sendEmail(String email) {
         servicesReadersSQL.sendEmail(email)
                 .observeOn(Schedulers.from(Platform::runLater))
-                .subscribe(s -> state.set(new LoginState("Se ha enviado un correo para activar tu cuenta a:\n" + email, null)));
+                .subscribe(stringResponse -> state.set(new LoginState(ConstantesUI.SE_HA_ENVIADO_UN_CORREO_PARA_ACTIVAR_TU_CUENTA_A + email, null)),
+                        throwable -> state.set(new LoginState(ConstantesUI.ERROR_INESPERADO, null))
+                );
     }
 }

@@ -1,6 +1,7 @@
 package data;
 
 import com.google.gson.Gson;
+import data.common.ConstantesDao;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
@@ -42,7 +43,7 @@ public abstract class DaoGenerics {
         if (throwable instanceof HttpException httpException) {
             try (ResponseBody responseBody = Objects.requireNonNull(httpException.response()).errorBody()) {
                 if (Objects.equals(Objects.requireNonNull(responseBody).contentType(),
-                        MediaType.get("application/json"))) {
+                        MediaType.get(ConstantesDao.APPLICATION_JSON))) {
                     ClientAPIError clientAPIError = gson.fromJson(responseBody.string(), ClientAPIError.class);
                     either = Either.left(clientAPIError.getMensaje());
                 } else {

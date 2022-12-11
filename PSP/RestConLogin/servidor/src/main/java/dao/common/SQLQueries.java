@@ -1,6 +1,9 @@
 package dao.common;
 
 public class SQLQueries {
+    public SQLQueries() {
+    }
+
     public static final String SELECT_READERS = "SELECT * FROM readers";
     public static final String UPDATE_READER = "UPDATE readers SET name = ?, date_of_birth = ? WHERE id = ?";
     public static final String DELETE_READER = "DELETE FROM readers WHERE id = ?";

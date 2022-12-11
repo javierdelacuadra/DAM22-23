@@ -4,10 +4,8 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
@@ -72,14 +70,12 @@ public class PantallaLoginController extends BasePantallaController implements I
             Image logoImage = new Image(inputStream);
             logoSQL.setImage(logoImage);
         } catch (IOException e) {
-            log.error("Error al cargar el logo de MySQL", e);
+            log.error(ConstantesUI.ERROR_AL_CARGAR_EL_LOGO_DE_MY_SQL, e);
         }
 
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.mensaje != null) {
-                Platform.runLater(() -> {
-                    getPrincipalController().createAlert(newState.mensaje);
-                });
+                Platform.runLater(() -> getPrincipalController().createAlert(newState.mensaje));
             }
             if (newState.readerLogin != null) {
                 Platform.runLater(() -> {
@@ -105,7 +101,7 @@ public class PantallaLoginController extends BasePantallaController implements I
         if (nombre == null || nombre.isEmpty() || password == null || password.isEmpty()) {
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
-            ReaderLogin readerLogin = new ReaderLogin(nombre, password, "");
+            ReaderLogin readerLogin = new ReaderLogin(nombre, password, ConstantesUI.ACTIVATION_CODE);
             viewModel.login(readerLogin);
         }
     }
@@ -118,20 +114,8 @@ public class PantallaLoginController extends BasePantallaController implements I
         if (nombre == null || nombre.isEmpty() || password == null || password.isEmpty() || email == null || email.isEmpty()) {
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
-            ReaderLogin readerLogin = new ReaderLogin(nombre, password, email, 0, "", 0, LocalDateTime.now());
-            Integer id = viewModel.register(readerLogin);
-            if (id == -2) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle(ConstantesUI.ERROR);
-                alert.setHeaderText(ConstantesUI.COULD_NOT_REGISTER);
-                alert.setContentText(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
-                alert.showAndWait();
-            } else if (id == -3) {
-                this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_REGISTER);
-            } else {
-                this.getPrincipalController().setReader(viewModel.getReader(id));
-                this.getPrincipalController().onLoginHecho(id <= 0);
-            }
+            ReaderLogin readerLogin = new ReaderLogin(nombre, password, email, 0, ConstantesUI.ACTIVATION_CODE, 0, LocalDateTime.now());
+            viewModel.register(readerLogin);
         }
     }
 
@@ -166,6 +150,7 @@ public class PantallaLoginController extends BasePantallaController implements I
         botonRegistro.setVisible(false);
         botonRecuperarPassword.setVisible(false);
         botonMandarEmail.setVisible(false);
+        clearTextFields();
     }
 
     public void menuRegistro() {
@@ -179,6 +164,7 @@ public class PantallaLoginController extends BasePantallaController implements I
         botonRegistro.setVisible(true);
         botonRecuperarPassword.setVisible(false);
         botonMandarEmail.setVisible(false);
+        clearTextFields();
     }
 
     public void menuOpciones() {
@@ -192,5 +178,12 @@ public class PantallaLoginController extends BasePantallaController implements I
         botonRegistro.setVisible(false);
         botonRecuperarPassword.setVisible(true);
         botonMandarEmail.setVisible(true);
+        clearTextFields();
+    }
+
+    private void clearTextFields() {
+        textfieldNombre.clear();
+        textfieldPassword.clear();
+        textfieldEmail.clear();
     }
 }

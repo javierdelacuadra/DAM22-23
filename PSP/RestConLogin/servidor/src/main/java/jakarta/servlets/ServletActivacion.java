@@ -7,11 +7,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlets.common.ConstantesServlets;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletMail", urlPatterns = {"/activar"})
+@WebServlet(name = ConstantesServlets.SERVLET_MAIL, urlPatterns = {ConstantesServlets.ACTIVAR})
 public class ServletActivacion extends HttpServlet {
+
 
     private final ServiciosLogin serviciosLogin;
 
@@ -22,8 +24,9 @@ public class ServletActivacion extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String code = req.getParameter("code");
+        String code = req.getParameter(ConstantesServlets.CODE);
         serviciosLogin.activarUsuario(code);
+        resp.getWriter().write(ConstantesServlets.ACTIVATED);
     }
 
     @Override

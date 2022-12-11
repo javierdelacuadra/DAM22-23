@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cambio de contraseña</title>
+    <title>Cambio de contraseña</title>
 </head>
 <body>
 <h1>Cambio de contraseña</h1>

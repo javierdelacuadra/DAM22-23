@@ -1,5 +1,6 @@
 package data.retrofit;
 
+import data.retrofit.common.ConstantesAPI;
 import io.reactivex.rxjava3.core.Single;
 import model.Newspaper;
 import model.Reader;
@@ -10,39 +11,43 @@ import retrofit2.http.*;
 import java.util.List;
 
 public interface NewspapersApi {
-    @GET("newspapers")
+
+    @GET(ConstantesAPI.NEWSPAPERS)
     Single<List<Newspaper>> getNewspapers();
 
-    @POST("newspapers")
+    @POST(ConstantesAPI.NEWSPAPERS)
     Single<Newspaper> addNewspaper(@Body Newspaper newspaper);
 
-    @PUT("newspapers")
+    @PUT(ConstantesAPI.NEWSPAPERS)
     Single<Newspaper> updateNewspaper(@Body Newspaper newspaper);
 
-    @DELETE("newspapers/{id}")
-    Single<Response<Object>> deleteNewspaper(@Path("id") String id);
+    @DELETE(ConstantesAPI.NEWSPAPERS_ID)
+    Single<Response<Object>> deleteNewspaper(@Path(ConstantesAPI.ID) String id);
 
-    @GET("readers")
+    @GET(ConstantesAPI.READERS)
     Single<List<Reader>> getReaders();
 
-    @POST("readers")
+    @POST(ConstantesAPI.READERS)
     Single<Reader> addReader(@Body Reader reader);
 
-    @PUT("readers")
+    @PUT(ConstantesAPI.READERS)
     Single<Reader> updateReader(@Body Reader reader);
 
-    @DELETE("readers/{id}")
-    Single<Response<Object>> deleteReader(@Path("id") String id);
+    @DELETE(ConstantesAPI.READERS_ID)
+    Single<Response<Object>> deleteReader(@Path(ConstantesAPI.ID) String id);
 
-    @GET("login")
-    Single<ReaderLogin> loginReader(@Query("username") String username, @Query("password") String password);
+    @GET(ConstantesAPI.LOGIN)
+    Single<ReaderLogin> loginReader(@Query(ConstantesAPI.USERNAME) String username, @Query(ConstantesAPI.PASSWORD) String password);
 
-    @POST("login")
+    @POST(ConstantesAPI.LOGIN)
     Single<ReaderLogin> registerReader(@Body ReaderLogin reader);
 
-    @GET("login/passwordRecovery")
-    Single<String> recoverPassword(@Query("email") String email);
+    @GET(ConstantesAPI.LOGIN_PASSWORD_RECOVERY)
+    Single<Response<String>> recoverPassword(@Query(ConstantesAPI.EMAIL) String email);
 
-    @GET("login/emailResend")
-    Single<String> sendEmail(@Query("email") String email);
+    @GET(ConstantesAPI.LOGIN_EMAIL_RESEND)
+    Single<Response<String>> sendEmail(@Query(ConstantesAPI.EMAIL) String email);
+
+    @GET(ConstantesAPI.LOGIN_LOGOUT)
+    Single<Response<String>> logout();
 }

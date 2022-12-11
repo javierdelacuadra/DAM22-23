@@ -3,6 +3,7 @@ package dao;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import config.Configuracion;
+import dao.common.ConstantesDBConnection;
 import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -24,15 +25,15 @@ public class DBConnection {
 
     private DataSource getHikariPool() {
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(config.getProperty("urlDB"));
-        hikariConfig.setUsername(config.getProperty("user_name"));
-        hikariConfig.setPassword(config.getProperty("password"));
-        hikariConfig.setDriverClassName(config.getProperty("driver"));
+        hikariConfig.setJdbcUrl(config.getProperty(ConstantesDBConnection.URL_DB));
+        hikariConfig.setUsername(config.getProperty(ConstantesDBConnection.USER_NAME));
+        hikariConfig.setPassword(config.getProperty(ConstantesDBConnection.PASSWORD));
+        hikariConfig.setDriverClassName(config.getProperty(ConstantesDBConnection.DRIVER));
         hikariConfig.setMaximumPoolSize(4);
 
-        hikariConfig.addDataSourceProperty("cachePrepStmts", true);
-        hikariConfig.addDataSourceProperty("prepStmtCacheSize", 250);
-        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
+        hikariConfig.addDataSourceProperty(ConstantesDBConnection.CACHE_PREP_STMTS, true);
+        hikariConfig.addDataSourceProperty(ConstantesDBConnection.PREP_STMT_CACHE_SIZE, 250);
+        hikariConfig.addDataSourceProperty(ConstantesDBConnection.PREP_STMT_CACHE_SQL_LIMIT, 2048);
 
         return new HikariDataSource(hikariConfig);
     }

@@ -14,7 +14,7 @@ public class ServiciosLogin {
     }
 
     public ReaderLogin getLogin(String user, String pass) {
-        return daoLogin.getLogin(user, pass);
+        return daoLogin.checkLogin(user, pass);
     }
 
     public ReaderLogin addLogin(ReaderLogin login) {
@@ -25,11 +25,11 @@ public class ServiciosLogin {
         daoLogin.activarUsuario(code);
     }
 
-    public Object passwordRecovery(String email) {
+    public String passwordRecovery(String email) {
         return daoLogin.passwordRecovery(email);
     }
 
-    public Object emailResend(String email) {
+    public String emailResend(String email) {
         return daoLogin.emailResend(email);
     }
 

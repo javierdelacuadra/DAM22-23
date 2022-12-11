@@ -6,6 +6,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Reader;
 import model.ReaderLogin;
+import retrofit2.Response;
 
 import java.util.List;
 
@@ -34,23 +35,24 @@ public class ServicesReadersSQL {
         return daoReadersSQL.update(reader);
     }
 
-    public Reader getReadersById(int id) {
-        return daoReadersSQL.get(id);
-    }
 
     public Single<Either<String, ReaderLogin>> login(ReaderLogin readerLogin) {
         return daoReadersSQL.login(readerLogin);
     }
 
-    public Single<Either<String,ReaderLogin>> register(ReaderLogin reader) {
+    public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {
         return daoReadersSQL.register(reader);
     }
 
-    public Single<String> recoverPassword(String email) {
+    public Single<Response<String>> recoverPassword(String email) {
         return daoReadersSQL.recoverPassword(email);
     }
 
-    public Single<String> sendEmail(String email) {
+    public Single<Response<String>> sendEmail(String email) {
         return daoReadersSQL.sendEmail(email);
+    }
+
+    public Single<Response<String>> logout() {
+        return daoReadersSQL.logout();
     }
 }

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +20,8 @@
 <form action="${pageContext.request.contextPath}/passwordRecovery" method="post">
     <input type="hidden" name="code" value="<%= code %>">
     <label for="password">Escribe tu nueva contraseña:</label>
-    <input type="password" id="password" name="password" />
-    <input type="submit" value="Enviar" />
+    <input type="password" id="password" name="password"/>
+    <input type="submit" value="Enviar"/>
 </form>
 </body>
 </html>

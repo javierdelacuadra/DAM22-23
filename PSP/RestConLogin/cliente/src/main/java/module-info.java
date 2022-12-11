@@ -23,6 +23,7 @@ module MercadonaFX {
 
     exports ui;
     exports ui.common;
+    exports ui.pantallas.common.constantes;
     exports ui.pantallas.pantallamain;
     exports ui.pantallas.deletenewspaperscreen;
     exports ui.pantallas.listnewspaperscreen;
@@ -37,13 +38,16 @@ module MercadonaFX {
     exports servicios;
     exports config;
     exports data;
+    exports data.common;
     exports di;
+    exports di.common;
     exports data.retrofit;
+    exports data.retrofit.common;
 
     opens config;
     opens servicios;
     opens data;
-    opens common;
+    opens config.common;
     opens ui;
     opens ui.common;
     opens ui.pantallas.pantallamain to javafx.fxml;

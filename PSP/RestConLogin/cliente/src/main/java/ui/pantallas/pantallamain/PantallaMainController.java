@@ -25,9 +25,11 @@ import java.util.ResourceBundle;
 
 public class PantallaMainController extends BasePantallaController implements Initializable {
 
+    private final PantallaMainViewModel viewModel;
 
     @Inject
-    public PantallaMainController(Instance<Object> instance) {
+    public PantallaMainController(PantallaMainViewModel viewModel, Instance<Object> instance) {
+        this.viewModel = viewModel;
         this.instance = instance;
     }
 
@@ -61,6 +63,8 @@ public class PantallaMainController extends BasePantallaController implements In
         res.ifPresent(buttonType -> {
             if (buttonType == ButtonType.CANCEL) {
                 event.consume();
+            } else {
+                Platform.exit();
             }
         });
     }
@@ -78,6 +82,7 @@ public class PantallaMainController extends BasePantallaController implements In
         newspapersMenu.setVisible(false);
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
+        viewModel.logout();
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 
@@ -85,13 +90,10 @@ public class PantallaMainController extends BasePantallaController implements In
         if (admin) {
             optionsMenu.setVisible(true);
             newspapersMenu.setVisible(true);
-//            articlesMenu.setVisible(true);
             readersMenu.setVisible(true);
             cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
         } else {
             optionsMenu.setVisible(true);
-//            readArticlesMenu.setVisible(true);
-//            subscriptionsMenu.setVisible(true);
             cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
         }
     }
@@ -99,6 +101,11 @@ public class PantallaMainController extends BasePantallaController implements In
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarPantalla(Pantallas.LOGINSCREEN);
+        viewModel.getState().addListener((observableValue, oldState, newState) -> {
+            if (newState.mensaje != null) {
+                Platform.runLater(() -> createAlert(newState.mensaje));
+            }
+        });
     }
 
     private void cargarPantalla(Pantallas pantalla) {

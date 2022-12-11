@@ -1,6 +1,6 @@
 package config;
 
-import common.Constantes;
+import config.common.Constantes;
 import jakarta.inject.Singleton;
 import lombok.Getter;
 import org.yaml.snakeyaml.Yaml;

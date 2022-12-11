@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cliente" />
         <module name="servidor" />
+        <module name="RestLogin" />
         <module name="ServidorRest" />
         <module name="domain" />
       </profile>

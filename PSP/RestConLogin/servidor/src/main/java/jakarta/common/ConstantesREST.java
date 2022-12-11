@@ -1,6 +1,9 @@
 package jakarta.common;
 
 public class ConstantesREST {
+    public ConstantesREST() {
+    }
+
     public static final String ARTICLES_PATH = "/articles";
     public static final String ID = "id";
     public static final String PATH_ID = "/{id}";

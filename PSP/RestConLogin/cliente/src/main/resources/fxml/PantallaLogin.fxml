@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
-    <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="275.0" layoutY="314.0" prefHeight="49.0" prefWidth="181.0" promptText="Escriba su nombre" />
-    <MFXTextField fx:id="textfieldPassword" alignment="CENTER" layoutX="272.0" layoutY="390.0" prefHeight="49.0" prefWidth="188.0" promptText="Escriba su contraseña" />
-    <MFXTextField fx:id="textfieldEmail" alignment="CENTER" layoutX="255.0" layoutY="461.0" prefHeight="49.0" prefWidth="221.0" promptText="Escriba su email" />
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
+    <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="275.0" layoutY="314.0" prefHeight="49.0"
+                  prefWidth="181.0" promptText="Escriba su nombre"/>
+    <MFXTextField fx:id="textfieldPassword" alignment="CENTER" layoutX="272.0" layoutY="390.0" prefHeight="49.0"
+                  prefWidth="188.0" promptText="Escriba su contraseña"/>
+    <MFXTextField fx:id="textfieldEmail" alignment="CENTER" layoutX="255.0" layoutY="461.0" prefHeight="49.0"
+                  prefWidth="221.0" promptText="Escriba su email"/>
     <MFXButton fx:id="botonInicioSesion" layoutX="298.0" layoutY="467.0" onAction="#inicioSesion" text="Iniciar Sesión">
         <font>
-            <Font size="18.0" />
+            <Font size="18.0"/>
         </font>
     </MFXButton>
     <MFXButton fx:id="botonRegistro" layoutX="307.0" layoutY="527.0" onAction="#registro" text="Registrarse">
         <font>
-            <Font size="18.0" />
+            <Font size="18.0"/>
         </font>
     </MFXButton>
-    <ImageView fx:id="logoSQL" fitHeight="235.0" fitWidth="334.0" layoutX="211.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="logoSQL" fitHeight="235.0" fitWidth="334.0" layoutX="211.0" layoutY="24.0" pickOnBounds="true"
+               preserveRatio="true">
     </ImageView>
-    <MFXButton fx:id="botonRecuperarPassword" layoutX="185.0" layoutY="527.0" mnemonicParsing="false" text="Recuperar contraseña" onAction="#recuperarPassword" />
-    <MFXButton fx:id="botonMandarEmail" layoutX="423.0" layoutY="527.0" mnemonicParsing="false" text="Reenviar correo" onAction="#mandarEmail" />
-   <MFXButton fx:id="menuLoginButton" layoutX="252.0" layoutY="271.0" mnemonicParsing="false" text="Login" onAction="#menuLogin" />
-   <MFXButton fx:id="menuRegistroButton" layoutX="335.0" layoutY="271.0" mnemonicParsing="false" text="Registro" onAction="#menuRegistro" />
-   <MFXButton fx:id="menuOpcionesButton" layoutX="433.0" layoutY="271.0" mnemonicParsing="false" text="Opciones" onAction="#menuOpciones" />
+    <MFXButton fx:id="botonRecuperarPassword" layoutX="185.0" layoutY="527.0" mnemonicParsing="false"
+               text="Recuperar contraseña" onAction="#recuperarPassword"/>
+    <MFXButton fx:id="botonMandarEmail" layoutX="423.0" layoutY="527.0" mnemonicParsing="false" text="Reenviar correo"
+               onAction="#mandarEmail"/>
+    <MFXButton fx:id="menuLoginButton" layoutX="252.0" layoutY="271.0" mnemonicParsing="false" text="Login"
+               onAction="#menuLogin"/>
+    <MFXButton fx:id="menuRegistroButton" layoutX="335.0" layoutY="271.0" mnemonicParsing="false" text="Registro"
+               onAction="#menuRegistro"/>
+    <MFXButton fx:id="menuOpcionesButton" layoutX="433.0" layoutY="271.0" mnemonicParsing="false" text="Opciones"
+               onAction="#menuOpciones"/>
 </AnchorPane>

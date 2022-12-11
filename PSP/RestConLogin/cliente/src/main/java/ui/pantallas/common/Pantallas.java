@@ -1,16 +1,18 @@
 package ui.pantallas.common;
 
+import ui.pantallas.common.constantes.ConstantesPantallas;
+
 public enum Pantallas {
-    PANTALLAMAIN("/fxml/PantallaMain.fxml"),
-    LISTNEWSPAPERSCREEN("/fxml/ListNewspaperScreen.fxml"),
-    DELETENEWSPAPERSCREEN("/fxml/DeleteNewspaperScreen.fxml"),
-    LISTREADERSCREEN("/fxml/ListReadersScreen.fxml"),
-    DELETEREADERSCREEN("/fxml/DeleteReaderScreen.fxml"),
-    ADDREADERSCREEN("/fxml/AddReaderScreen.fxml"),
-    UPDATEREADERSCREEN("/fxml/UpdateReaderScreen.fxml"),
-    ADDNEWSPAPERSCREEN("/fxml/AddNewspaperScreen.fxml"),
-    UPDATENEWSPAPERSCREEN("/fxml/UpdateNewspaperScreen.fxml"),
-    LOGINSCREEN("/fxml/PantallaLogin.fxml");
+    PANTALLAMAIN(ConstantesPantallas.FXML_PANTALLA_MAIN_FXML),
+    LISTNEWSPAPERSCREEN(ConstantesPantallas.FXML_LIST_NEWSPAPER_SCREEN_FXML),
+    DELETENEWSPAPERSCREEN(ConstantesPantallas.FXML_DELETE_NEWSPAPER_SCREEN_FXML),
+    LISTREADERSCREEN(ConstantesPantallas.FXML_LIST_READERS_SCREEN_FXML),
+    DELETEREADERSCREEN(ConstantesPantallas.FXML_DELETE_READER_SCREEN_FXML),
+    ADDREADERSCREEN(ConstantesPantallas.FXML_ADD_READER_SCREEN_FXML),
+    UPDATEREADERSCREEN(ConstantesPantallas.FXML_UPDATE_READER_SCREEN_FXML),
+    ADDNEWSPAPERSCREEN(ConstantesPantallas.FXML_ADD_NEWSPAPER_SCREEN_FXML),
+    UPDATENEWSPAPERSCREEN(ConstantesPantallas.FXML_UPDATE_NEWSPAPER_SCREEN_FXML),
+    LOGINSCREEN(ConstantesPantallas.FXML_PANTALLA_LOGIN_FXML);
 
     private final String ruta;
 
