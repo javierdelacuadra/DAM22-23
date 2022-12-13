@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.listarticlescreen.ListArticleScreenController">
+    <Label layoutX="253.0" layoutY="27.0" text="List Article Screen"/>
+    <TableView fx:id="articlesTable" layoutX="62.0" layoutY="73.0" prefHeight="235.0" prefWidth="381.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle"/>
+            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType"/>
+            <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper"/>
+        </columns>
+    </TableView>
+    <TableView fx:id="articlesQueryTable" layoutX="62.0" layoutY="73.0" prefHeight="235.0" prefWidth="381.0">
+        <columns>
+            <TableColumn fx:id="nameArticleColumn" prefWidth="179.59998321533203" text="nameArticle"/>
+            <TableColumn fx:id="readerCountColumn" prefWidth="115.60003662109375" text="Number of readers"/>
+            <TableColumn fx:id="articleTypeColumn" prefWidth="87.0" text="Description"/>
+        </columns>
+    </TableView>
+    <MFXButton fx:id="showArticlesQuery" layoutX="130.0" layoutY="337.0" mnemonicParsing="false"
+               onMouseClicked="#showArticlesQuery" text="Show description and number of readers"/>
+    <MFXButton fx:id="showArticles" layoutX="468.0" layoutY="115.0" mnemonicParsing="false"
+               onMouseClicked="#showArticles" text="Reset filters and show articles"/>
+    <MFXButton fx:id="showArticlesByType" layoutX="492.0" layoutY="217.0" mnemonicParsing="false"
+               onMouseClicked="#showArticlesByType" text="Show articles by type"/>
+    <MFXComboBox fx:id="typeComboBox" layoutX="459.0" layoutY="268.0" prefWidth="200.0"/>
+
+</AnchorPane>

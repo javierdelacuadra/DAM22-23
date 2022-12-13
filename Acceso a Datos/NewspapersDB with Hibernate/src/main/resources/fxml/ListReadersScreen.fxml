@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.listreaderscreen.ListReadersScreenController">
+    <TableView fx:id="readersTable" layoutX="51.0" layoutY="102.0" prefHeight="300.0" prefWidth="305.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="128.19998168945312" text="Name"/>
+            <TableColumn fx:id="birthDateColumn" prefWidth="102.20001220703125" text="Date of Birth"/>
+        </columns>
+    </TableView>
+    <MFXButton layoutX="428.0" layoutY="201.0" mnemonicParsing="false" onAction="#filterByNewspaper"
+               text="Filter Readers"/>
+    <Label layoutX="423.0" layoutY="93.0" text="Filter by newspaper"/>
+    <MFXComboBox fx:id="newspaperComboBox" layoutX="365.0" layoutY="146.0" prefHeight="40.0" prefWidth="220.0"/>
+    <Label layoutX="256.0" layoutY="32.0" prefHeight="25.0" prefWidth="88.0" text="Filter Readers"/>
+    <Label layoutX="423.0" layoutY="252.0" text="Filter by articleType"/>
+    <MFXComboBox fx:id="articleTypeComboBox" layoutX="364.0" layoutY="285.0" prefHeight="40.0" prefWidth="220.0"/>
+    <MFXButton layoutX="428.0" layoutY="347.0" mnemonicParsing="false" onAction="#filterByArticleType"
+               text="Filter Readers"/>
+    <MFXButton layoutX="172.0" layoutY="436.0" mnemonicParsing="false" onAction="#resetFilters" text="Reset Filters"/>
+    <MFXButton layoutX="380.0" layoutY="436.0" mnemonicParsing="false" onAction="#filterOldestSubscribers"
+               text="Get 5 oldest subscribers of El Hola Mundo"/>
+</AnchorPane>

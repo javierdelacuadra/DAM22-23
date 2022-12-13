@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.springqueryscreen.QueriesScreenController">
+    <TableView fx:id="tableQuery2" layoutX="386.0" layoutY="72.0" prefHeight="285.0" prefWidth="399.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="45.3333740234375" text="ID"/>
+            <TableColumn fx:id="nameArticleColumn" prefWidth="125.33331298828125" text="Name Article"/>
+            <TableColumn fx:id="idTypeColumn" prefWidth="51.333404541015625" text="ID Type"/>
+            <TableColumn fx:id="nameNewspaperColumn" prefWidth="186.0" text="Name Newspaper"/>
+        </columns>
+    </TableView>
+    <MFXButton layoutX="484.0" layoutY="398.0" mnemonicParsing="false"
+               onMouseClicked="#getArticlesByTypeAndNameNewspaper" text="Get Articles by Type and Name Newspaper"/>
+    <MFXComboBox fx:id="comboBoxType" layoutX="501.0" layoutY="495.0" prefHeight="40.0" prefWidth="219.0"/>
+    <MFXComboBox fx:id="comboBoxNewspaper" layoutX="156.0" layoutY="495.0" prefHeight="40.0" prefWidth="207.0"/>
+    <TableView fx:id="tableQuery3" layoutX="10.0" layoutY="72.0" prefHeight="251.0" prefWidth="350.0">
+        <columns>
+            <TableColumn fx:id="idColumnQ3" prefWidth="26.000029802322388" text="ID"/>
+            <TableColumn fx:id="nameArticleColumnQ3" prefWidth="120.00003623962402" text="Name Article"/>
+            <TableColumn fx:id="idReaderColumn" prefWidth="68.66668701171875" text="ID Reader"/>
+            <TableColumn fx:id="ratingColumn" prefWidth="54.66661071777344" text="Rating"/>
+            <TableColumn fx:id="badRatingsColumn" prefWidth="78.0" text="Bad Ratings"/>
+        </columns>
+    </TableView>
+    <MFXButton layoutX="46.0" layoutY="372.0" mnemonicParsing="false"
+               onMouseClicked="#getArticlesByNewspaperWithBadRatings"
+               text="Get Articles from a newspaper with bad ratings"/>
+    <Label layoutX="227.0" layoutY="466.0" text="Newspapers"/>
+    <Label layoutX="577.0" layoutY="457.0" text="Article Types"/>
+
+</AnchorPane>

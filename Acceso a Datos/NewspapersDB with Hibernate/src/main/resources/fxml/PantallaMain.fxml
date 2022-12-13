@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallamain.PantallaMainController">
+    <top>
+        <MenuBar>
+            <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Log out"/>
+                <MenuItem mnemonicParsing="false" onAction="#salir" text="Exit"/>
+            </Menu>
+            <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
+                <MenuItem mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#addNewspaperMenu" text="Add"/>
+                <MenuItem mnemonicParsing="false" onAction="#updateNewspaperMenu" text="Update"/>
+                <MenuItem mnemonicParsing="false" onAction="#deleteNewspaperMenu"
+                          text="Delete"/>
+            </Menu>
+            <Menu fx:id="articlesMenu" mnemonicParsing="false" text="Articles">
+                <MenuItem mnemonicParsing="false" onAction="#listArticlesMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
+                <MenuItem mnemonicParsing="false" onAction="#queriesMenu" text="Spring Queries"/>
+            </Menu>
+            <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
+                <MenuItem mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
+                <MenuItem mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
+                <MenuItem mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
+                <MenuItem mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
+            </Menu>
+            <Menu fx:id="readArticlesMenu" mnemonicParsing="false" text="Read Articles">
+                <MenuItem mnemonicParsing="false" onAction="#addReadArticlesMenu"
+                          text="Add a read article"/>
+            </Menu>
+            <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
+                <MenuItem mnemonicParsing="false" onAction="#addSubscriptionMenu"
+                          text="Manage subscriptions"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
