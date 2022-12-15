@@ -2,13 +2,13 @@ package jakarta.security;
 
 import domain.servicios.ServiciosLogin;
 import jakarta.inject.Inject;
+import jakarta.security.common.ConstantesSecurity;
 import jakarta.security.enterprise.credential.BasicAuthenticationCredential;
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
 import jakarta.security.enterprise.identitystore.IdentityStore;
 import model.ReaderLogin;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 
@@ -32,11 +32,12 @@ public class InMemoryIdentityStore implements IdentityStore {
     @Override
     public CredentialValidationResult validate(Credential credential) {
         if (credential instanceof BasicAuthenticationCredential user) {
-            ReaderLogin login = servicios.getLogin(user.getCaller(), Arrays.toString(user.getPassword().getValue()));
-            //TODO: cambiar a login.getRole()
-            return switch (user.getCaller()) {
-                case "admin" -> new CredentialValidationResult("admin", Set.of("admin"));
-                case "usuario" -> new CredentialValidationResult("usuario", Collections.singleton("usuario"));
+            ReaderLogin login = servicios.getLogin(user.getCaller(), user.getPassword().getValue());
+            return switch (login.getRole().toLowerCase()) {
+                case ConstantesSecurity.ADMIN ->
+                        new CredentialValidationResult(ConstantesSecurity.ADMIN, Set.of(ConstantesSecurity.ADMIN));
+                case ConstantesSecurity.USER ->
+                        new CredentialValidationResult(ConstantesSecurity.USER, Collections.singleton(ConstantesSecurity.USER));
                 default -> INVALID_RESULT;
             };
         }

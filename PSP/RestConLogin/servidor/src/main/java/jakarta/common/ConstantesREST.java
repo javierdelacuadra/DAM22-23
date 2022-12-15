@@ -1,9 +1,12 @@
 package jakarta.common;
 
 public class ConstantesREST {
+
     public ConstantesREST() {
     }
 
+    public static final String ROLE_ADMIN = "admin";
+    public static final String ROLE_USER = "user";
     public static final String ARTICLES_PATH = "/articles";
     public static final String ID = "id";
     public static final String PATH_ID = "/{id}";

@@ -2,6 +2,7 @@ package data;
 
 import com.google.gson.Gson;
 import data.common.ConstantesDao;
+import data.retrofit.common.ConstantesAPI;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
@@ -41,17 +42,23 @@ public abstract class DaoGenerics {
     private <T> Either<String, T> createError(Throwable throwable) {
         Either<String, T> either = Either.left(throwable.getMessage());
         if (throwable instanceof HttpException httpException) {
-            try (ResponseBody responseBody = Objects.requireNonNull(httpException.response()).errorBody()) {
-                if (Objects.equals(Objects.requireNonNull(responseBody).contentType(),
-                        MediaType.get(ConstantesDao.APPLICATION_JSON))) {
-                    ClientAPIError clientAPIError = gson.fromJson(responseBody.string(), ClientAPIError.class);
-                    either = Either.left(clientAPIError.getMensaje());
-                } else {
-                    either = Either.left(responseBody.string());
+            int code = httpException.code();
+            if (code == 401) {
+                either = Either.left(ConstantesAPI.ACCION_NO_AUTORIZADA);
+            } else if (code == 403) {
+                either = Either.left(ConstantesAPI.ERROR_403);
+            } else
+                try (ResponseBody responseBody = Objects.requireNonNull(httpException.response()).errorBody()) {
+                    if (Objects.equals(Objects.requireNonNull(responseBody).contentType(),
+                            MediaType.get(ConstantesDao.APPLICATION_JSON))) {
+                        ClientAPIError clientAPIError = gson.fromJson(responseBody.string(), ClientAPIError.class);
+                        either = Either.left(clientAPIError.getMensaje());
+                    } else {
+                        either = Either.left(responseBody.string());
+                    }
+                } catch (IOException e) {
+                    either = Either.left(e.getMessage());
                 }
-            } catch (IOException e) {
-                either = Either.left(e.getMessage());
-            }
         }
         return either;
     }

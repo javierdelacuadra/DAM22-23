@@ -17,10 +17,21 @@ public class ReaderLogin {
     private String activation_code;
     private int active;
     private LocalDateTime registration_date;
+    private String role;
 
     public ReaderLogin(String nombre, String password, String email) {
         this.username = nombre;
         this.password = password;
         this.email = email;
+    }
+
+    public ReaderLogin(String username, String password, String email, int id_reader, String activation_code, int active, LocalDateTime registration_date) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.id_reader = id_reader;
+        this.activation_code = activation_code;
+        this.active = active;
+        this.registration_date = registration_date;
     }
 }

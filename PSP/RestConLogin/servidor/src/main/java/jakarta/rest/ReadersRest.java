@@ -1,8 +1,8 @@
 package jakarta.rest;
 
 import domain.servicios.ServiciosReaders;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.common.ConstantesREST;
-import jakarta.filtros.LoginOnly;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -24,13 +24,13 @@ public class ReadersRest {
     }
 
     @GET
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN, ConstantesREST.ROLE_USER})
     public List<Reader> getAllReaders() {
         return servicios.getAllReaders();
     }
 
     @POST
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response addReader(Reader reader) {
         return Response.status(Response.Status.CREATED)
                 .entity(servicios.addReader(reader))
@@ -38,7 +38,7 @@ public class ReadersRest {
     }
 
     @PUT
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response updateReader(Reader reader) {
         return Response.status(Response.Status.CREATED)
                 .entity(servicios.updateReader(reader))
@@ -47,7 +47,7 @@ public class ReadersRest {
 
     @DELETE
     @Path(ConstantesREST.PATH_ID)
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response deleteReader(@PathParam(ConstantesREST.ID) String id) {
         if (servicios.deleteReader(id)) {
             return Response.status(Response.Status.NO_CONTENT).build();

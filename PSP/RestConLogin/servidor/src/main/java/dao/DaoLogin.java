@@ -30,19 +30,20 @@ public class DaoLogin {
         this.passwordHash = passwordHash;
     }
 
-    public ReaderLogin checkLogin(String user, String pass) {
+    public ReaderLogin checkLogin(String user, char[] pass) {
         ReaderLogin readerLogin = new ReaderLogin();
         try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_LOGIN)) {
             preparedStatement.setString(1, user);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                if (passwordHash.verify(pass.toCharArray(), rs.getString(ConstantesDaoLogin.PASSWORD))) {
+                if (passwordHash.verify(pass, rs.getString(ConstantesDaoLogin.PASSWORD))) {
                     if (rs.getInt(ConstantesDaoLogin.ACTIVE) == 0) {
                         throw new ObjectNotFoundException(ConstantesDaoLogin.EL_USUARIO_NO_ESTA_ACTIVADO_REVISA_TU_CORREO);
                     } else {
                         readerLogin.setId_reader(rs.getInt(ConstantesDaoLogin.ID_READER));
                         readerLogin.setUsername(rs.getString(ConstantesDaoLogin.USERNAME));
+                        readerLogin.setRole(rs.getString(ConstantesDaoLogin.ROLE));
                     }
                 } else {
                     throw new ObjectNotFoundException(ConstantesDaoLogin.PASSWORD_INCORRECTA);

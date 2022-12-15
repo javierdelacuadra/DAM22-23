@@ -13,7 +13,7 @@ public class ServiciosLogin {
         this.daoLogin = daoLogin;
     }
 
-    public ReaderLogin getLogin(String user, String pass) {
+    public ReaderLogin getLogin(String user, char[] pass) {
         return daoLogin.checkLogin(user, pass);
     }
 

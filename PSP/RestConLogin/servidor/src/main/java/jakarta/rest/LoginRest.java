@@ -8,6 +8,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
 import model.ReaderLogin;
 
 @Path(ConstantesLoginRest.RUTA_LOGIN)
@@ -18,6 +19,9 @@ public class LoginRest {
     @Context
     HttpServletRequest request;
 
+    @Context
+    SecurityContext securityContext;
+
     private final ServiciosLogin servicios;
 
     @Inject
@@ -27,7 +31,6 @@ public class LoginRest {
 
     @GET
     public ReaderLogin getLogin() {
-        //usar securityContext
         request.getSession().setAttribute(ConstantesLoginRest.LOGIN, true);
         return new ReaderLogin();
     }
@@ -43,6 +46,7 @@ public class LoginRest {
     @Path(ConstantesLoginRest.LOGOUT)
     public Response logout() {
         request.getSession().removeAttribute(ConstantesLoginRest.LOGIN);
+        request.getSession().removeAttribute(ConstantesLoginRest.CREDENTIAL);
         return Response.status(Response.Status.NO_CONTENT)
                 .entity(ConstantesLoginRest.SESION_CERRADA_CORRECTAMENTE)
                 .build();

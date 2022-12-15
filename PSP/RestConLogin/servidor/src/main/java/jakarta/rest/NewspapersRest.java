@@ -1,8 +1,8 @@
 package jakarta.rest;
 
 import domain.servicios.ServiciosNewspapers;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.common.ConstantesREST;
-import jakarta.filtros.LoginOnly;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -35,7 +35,7 @@ public class NewspapersRest {
     }
 
     @POST
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response saveNewspaper(Newspaper newspaper) {
         return Response.status(Response.Status.CREATED)
                 .entity(servicios.addNewspaper(newspaper))
@@ -43,7 +43,7 @@ public class NewspapersRest {
     }
 
     @PUT
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response updateNewspaper(Newspaper newspaper) {
         return Response.status(Response.Status.CREATED)
                 .entity(servicios.updateNewspaper(newspaper))
@@ -52,7 +52,7 @@ public class NewspapersRest {
 
     @DELETE
     @Path(ConstantesREST.PATH_ID)
-    @LoginOnly
+    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
     public Response deleteNewspaper(@PathParam(ConstantesREST.ID) String id) {
         if (servicios.deleteNewspaper(id)) {
             return Response.status(Response.Status.NO_CONTENT).build();

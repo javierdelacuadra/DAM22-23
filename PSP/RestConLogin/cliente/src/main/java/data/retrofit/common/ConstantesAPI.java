@@ -2,6 +2,8 @@ package data.retrofit.common;
 
 public class ConstantesAPI {
     public static final String AUTHORIZATION = "Authorization";
+    public static final String ACCION_NO_AUTORIZADA = "Acción no autorizada";
+    public static final String ERROR_403 = "Página o acción no disponible, debes iniciar sesión\npara acceder a ella";
 
     public ConstantesAPI() {
     }
@@ -12,8 +14,6 @@ public class ConstantesAPI {
     public static final String READERS = "readers";
     public static final String READERS_ID = "readers/{id}";
     public static final String LOGIN = "login";
-    public static final String USERNAME = "username";
-    public static final String PASSWORD = "password";
     public static final String LOGIN_PASSWORD_RECOVERY = "login/passwordRecovery";
     public static final String EMAIL = "email";
     public static final String LOGIN_EMAIL_RESEND = "login/emailResend";
