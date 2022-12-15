@@ -1,6 +1,8 @@
 package data.retrofit.common;
 
 public class ConstantesAPI {
+    public static final String AUTHORIZATION = "Authorization";
+
     public ConstantesAPI() {
     }
 

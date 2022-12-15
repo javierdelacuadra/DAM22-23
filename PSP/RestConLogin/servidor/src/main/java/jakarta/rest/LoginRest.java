@@ -14,6 +14,7 @@ import model.ReaderLogin;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class LoginRest {
+
     @Context
     HttpServletRequest request;
 
@@ -25,10 +26,10 @@ public class LoginRest {
     }
 
     @GET
-    public ReaderLogin getLogin(@QueryParam(ConstantesLoginRest.USERNAME) String user, @QueryParam(ConstantesLoginRest.PASSWORD) String pass) {
-        ReaderLogin login = servicios.getLogin(user, pass);
+    public ReaderLogin getLogin() {
+        //usar securityContext
         request.getSession().setAttribute(ConstantesLoginRest.LOGIN, true);
-        return login;
+        return new ReaderLogin();
     }
 
     @POST

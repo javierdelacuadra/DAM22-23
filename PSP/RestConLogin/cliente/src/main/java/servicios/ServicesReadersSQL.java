@@ -6,6 +6,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Reader;
 import model.ReaderLogin;
+import okhttp3.Credentials;
 import retrofit2.Response;
 
 import java.util.List;
@@ -37,7 +38,8 @@ public class ServicesReadersSQL {
 
 
     public Single<Either<String, ReaderLogin>> login(ReaderLogin readerLogin) {
-        return daoReadersSQL.login(readerLogin);
+        String credentials = Credentials.basic(readerLogin.getUsername(), readerLogin.getPassword());
+        return daoReadersSQL.login(credentials);
     }
 
     public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {

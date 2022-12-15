@@ -37,7 +37,7 @@ public interface NewspapersApi {
     Single<Response<Object>> deleteReader(@Path(ConstantesAPI.ID) String id);
 
     @GET(ConstantesAPI.LOGIN)
-    Single<ReaderLogin> loginReader(@Query(ConstantesAPI.USERNAME) String username, @Query(ConstantesAPI.PASSWORD) String password);
+    Single<ReaderLogin> loginReader(@Header(ConstantesAPI.AUTHORIZATION) String authorization);
 
     @POST(ConstantesAPI.LOGIN)
     Single<ReaderLogin> registerReader(@Body ReaderLogin reader);

@@ -36,8 +36,8 @@ public class DaoReadersSQL extends DaoGenerics {
         return createSafeSingleDeleteCall(newspapersApi.deleteReader(id));
     }
 
-    public Single<Either<String, ReaderLogin>> login(ReaderLogin readerLogin) {
-        return createSafeSingleApiCall(newspapersApi.loginReader(readerLogin.getUsername(), readerLogin.getPassword()));
+    public Single<Either<String, ReaderLogin>> login(String authorization) {
+        return createSafeSingleApiCall(newspapersApi.loginReader(authorization));
     }
 
     public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {
