@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/teal_200">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tarjetasTextField"
+        android:layout_width="139dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="2dp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Tarjetas:" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/nombreTextField"
+        android:layout_width="124dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_200"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/emailTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="Nombre" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/emailTextField"
+        android:layout_width="250dp"
+        android:layout_height="39dp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nombreTextField"
+        tools:text="Email" />
+
+    <ImageButton
+        android:id="@+id/buttonDelete"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:contentDescription="@string/delete"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintStart_toEndOf="@+id/buttonUpdate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/buttonUpdate"
+        android:layout_width="129dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:contentDescription="@string/update"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

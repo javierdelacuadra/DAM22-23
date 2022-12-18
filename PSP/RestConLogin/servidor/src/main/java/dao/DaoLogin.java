@@ -80,6 +80,7 @@ public class DaoLogin {
                 preparedStatement.setString(5, activationCode);
                 preparedStatement.setInt(6, 0);
                 preparedStatement.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+                preparedStatement.setString(8, ConstantesDaoLogin.ROLE_USER);
                 preparedStatement.executeUpdate();
                 mandarMail.generateAndSendEmail(login.getEmail(), generateActivationMessage(activationCode), ConstantesDaoLogin.ACTIVACION_DE_CUENTA);
             } catch (SQLException e) {

@@ -6,6 +6,7 @@ public class ConstantesDaoLogin {
     }
 
     public static final String ROLE = "role";
+    public static final String ROLE_USER = "user";
     public static final String PASSWORD = "password";
     public static final String ACTIVE = "active";
     public static final String EL_USUARIO_NO_ESTA_ACTIVADO_REVISA_TU_CORREO = "El usuario no está activado, revisa tu correo";

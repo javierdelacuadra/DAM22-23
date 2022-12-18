@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mundialnavigation"
+    app:startDestination="@id/InicioFragment">
+
+    <fragment
+        android:id="@+id/InicioFragment"
+        android:name="com.example.recyclerview.ui.mainactivity.InicioFragment"
+        android:label="@string/Inicio"
+        tools:layout="@layout/fragment_inicio">
+
+<!--        <action-->
+<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
+<!--            app:destination="@id/SecondFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/CalendarioFragment"
+        android:name="com.example.recyclerview.ui.mainactivity.CalendarioFragment"
+        android:label="@string/Calendario"
+        tools:layout="@layout/fragment_calendario">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EquiposFragment"
+        android:name="com.example.recyclerview.ui.mainactivity.EquiposFragment"
+        android:label="@string/Equipos"
+        tools:layout="@layout/fragment_equipos">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ApuestasFragment"
+        android:name="com.example.recyclerview.ui.mainactivity.ApuestasFragment"
+        android:label="@string/Apuestas"
+        tools:layout="@layout/fragment_apuestas">
+
+    </fragment>
+</navigation>

@@ -1,13 +1,13 @@
 package data.retrofit.common;
 
 public class ConstantesAPI {
-    public static final String AUTHORIZATION = "Authorization";
-    public static final String ACCION_NO_AUTORIZADA = "Acción no autorizada";
-    public static final String ERROR_403 = "Página o acción no disponible, debes iniciar sesión\npara acceder a ella";
 
     public ConstantesAPI() {
     }
 
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String ACCION_NO_AUTORIZADA = "Acción no autorizada";
+    public static final String ERROR_403 = "Página o acción no disponible, debes iniciar sesión\npara acceder a ella";
     public static final String NEWSPAPERS = "newspapers";
     public static final String NEWSPAPERS_ID = "newspapers/{id}";
     public static final String ID = "id";

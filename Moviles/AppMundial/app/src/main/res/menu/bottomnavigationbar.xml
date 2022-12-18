@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:title="@string/Inicio"/>
+<!--        android:icon="@drawable/icon_1"-->
+    <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:title="@string/Calendario"/>
+    <!--        android:icon="@drawable/icon_2"-->
+
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:title="@string/Equipos"/>
+    <!--        android:icon="@drawable/icon_3"-->
+
+    <item
+        android:id="@+id/page_4"
+        android:enabled="true"
+        android:title="@string/Apuestas"/>
+    <!--        android:icon="@drawable/icon_4"/>-->
+</menu>

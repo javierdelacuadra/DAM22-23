@@ -31,7 +31,7 @@ public class SQLQueries {
     public static final String SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER = "select article.id, article.name_article, article.id_type, newspaper.name from article, newspaper where article.id_newspaper = newspaper.id and article.id_type in (select id from type where description = ?)";
     public static final String SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS = "select a.id, a.name_article, r.id_reader, r.rating, (select count(*) from readarticle where id_reader = r.id_reader and rating < 5) as bad_ratings from article a left join readarticle r on a.id = r.id_article where a.id_newspaper = ? and r.rating < 5";
     public static final String SELECT_LOGIN = "select * from loginOscar where username = ?";
-    public static final String INSERT_LOGIN = "insert into loginOscar (username, password, email, id_reader, activation_code, active, registration_date) values (?, ?, ?, ?, ?, ?, ?)";
+    public static final String INSERT_LOGIN = "insert into loginOscar (username, password, email, id_reader, activation_code, active, registration_date, role) values (?, ?, ?, ?, ?, ?, ?, ?)";
     public static final String ACTIVATE_USER = "UPDATE loginOscar SET active = 1 WHERE activation_code = ? AND registration_date >= NOW() - INTERVAL 5 MINUTE;";
     public static final String SELECT_USER_BY_EMAIL = "select * from loginOscar where email = ?";
     public static final String UPDATE_REGISTER_DATE = "UPDATE loginOscar SET registration_date = ? WHERE email = ?";
