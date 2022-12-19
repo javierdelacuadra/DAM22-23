@@ -72,7 +72,7 @@ public class AddArticleScreenController extends BasePantallaController implement
                     nameText.getText(),
                     typeIDComboBox.getSelectionModel().getSelectedItem().getId(),
                     newspaperIDComboBox.getSelectionModel().getSelectedItem().getId());
-            if (viewModel.addArticle(article).isRight()) {
+            if (viewModel.addArticle(article) == 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(viewModel.getArticles());
             } else {

@@ -1,6 +1,6 @@
 package servicios;
 
-import data.DaoArticlesSQL;
+import data.DaoArticles;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.*;
@@ -9,46 +9,46 @@ import java.util.List;
 
 public class ServicesArticlesSQL {
 
-    private final DaoArticlesSQL daoArticlesSQL;
+    private final DaoArticles daoArticles;
 
     @Inject
-    public ServicesArticlesSQL(DaoArticlesSQL daoArticlesSQL) {
-        this.daoArticlesSQL = daoArticlesSQL;
+    public ServicesArticlesSQL(DaoArticles daoArticles) {
+        this.daoArticles = daoArticles;
     }
 
     public Either<Integer, List<Article>> getArticles() {
-        return daoArticlesSQL.getAll();
+        return daoArticles.getAll();
     }
 
     public Either<Integer, List<Article>> getArticlesByReaderID(Reader reader) {
-        return daoArticlesSQL.getAll(reader.getId());
+        return daoArticles.getAll(reader.getId());
     }
 
     public Either<Integer, List<ArticleType>> getArticleTypes() {
-        return daoArticlesSQL.getAllArticleTypes();
+        return daoArticles.getAllArticleTypes();
     }
 
     public Either<Integer, List<Article>> addRating(Article article, Integer rating, Integer idReader) {
-        return daoArticlesSQL.saveReadArticle(article, rating, idReader);
+        return daoArticles.saveReadArticle(article, rating, idReader);
     }
 
     public Either<Integer, List<Query1>> getArticlesQuery() {
-        return daoArticlesSQL.getArticlesQuery();
+        return daoArticles.getArticlesQuery();
     }
 
-    public Either<Integer, List<Article>> addArticle(Article article) {
-        return daoArticlesSQL.add(article);
+    public Integer addArticle(Article article) {
+        return daoArticles.add(article);
     }
 
     public Either<Integer, List<Article>> getArticlesByType(String type) {
-        return daoArticlesSQL.getAll(type);
+        return daoArticles.getAll(type);
     }
 
     public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
-        return daoArticlesSQL.getArticlesByTypeAndNameNewspaper(type, nameNewspaper);
+        return daoArticles.getArticlesByTypeAndNameNewspaper(type, nameNewspaper);
     }
 
     public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
-        return daoArticlesSQL.getArticlesByNewspaperWithBadRatings(idNewspaper);
+        return daoArticles.getArticlesByNewspaperWithBadRatings(idNewspaper);
     }
 }

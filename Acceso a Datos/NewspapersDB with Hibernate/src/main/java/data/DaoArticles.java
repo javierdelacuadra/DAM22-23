@@ -2,8 +2,12 @@ package data;
 
 import common.Constantes;
 import data.common.SQLQueries;
+import data.hibernate.JPAUtil;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
 import model.*;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -15,25 +19,36 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DaoArticlesSQL {
+public class DaoArticles {
 
+    private JPAUtil jpaUtil;
+    private EntityManager em;
     private final DBConnection db;
 
     @Inject
-    public DaoArticlesSQL(DBConnection db) {
+    public DaoArticles(JPAUtil jpaUtil, DBConnection db) {
+        this.jpaUtil = jpaUtil;
+        this.em = jpaUtil.getEntityManager();
         this.db = db;
     }
 
     public Either<Integer, List<Article>> getAll() {
-        List<Article> articles = new ArrayList<>();
+        List<Article> list = null;
+        em = jpaUtil.getEntityManager();
+
         try {
-            String query = SQLQueries.SELECT_ARTICLES;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class));
-        } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            list = em
+                    .createNamedQuery("HQL_GET_ALL_ARTICLES", Article.class)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+
+        assert list != null;
+        return list.isEmpty() ? Either.left(-1) : Either.right(list);
     }
 
     public Either<Integer, List<Article>> getAll(Integer id) {
@@ -43,7 +58,7 @@ public class DaoArticlesSQL {
             JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
             articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), id);
         } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
@@ -55,7 +70,7 @@ public class DaoArticlesSQL {
             JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
             articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), type);
         } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
@@ -70,7 +85,7 @@ public class DaoArticlesSQL {
             types = readRSArticleType(rs);
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
         }
         return types.isEmpty() ? Either.left(-1) : Either.right(types);
     }
@@ -84,7 +99,7 @@ public class DaoArticlesSQL {
             ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS);
             articles = readRSQuery(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
@@ -100,7 +115,7 @@ public class DaoArticlesSQL {
                 articles.add(article);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
         }
         return articles;
     }
@@ -117,7 +132,7 @@ public class DaoArticlesSQL {
                 articles.add(article);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).
+            Logger.getLogger(DaoArticles.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
         return articles;
@@ -133,7 +148,7 @@ public class DaoArticlesSQL {
             ResultSet rs = preparedStatement.executeQuery();
             readArticles = readRSReadArticle(rs);
         } catch (SQLException e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
         }
         if (readArticles.isEmpty()) {
             try (Connection con = db.getConnection();
@@ -144,7 +159,7 @@ public class DaoArticlesSQL {
                 preparedStatement.executeUpdate();
                 articles = getAll(readerId).get();
             } catch (SQLException ex) {
-                Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             return Either.left(-2);
@@ -163,7 +178,7 @@ public class DaoArticlesSQL {
                 types.add(type);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
         }
         return types;
     }
@@ -175,7 +190,7 @@ public class DaoArticlesSQL {
             JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
             articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query2.class), type, nameNewspaper);
         } catch (Exception e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
@@ -187,22 +202,68 @@ public class DaoArticlesSQL {
             JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
             articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query3.class), idNewspaper);
         } catch (Exception e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
         }
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
 
-    public Either<Integer, List<Article>> add(Article article) {
-        List<Article> articles = new ArrayList<>();
+    public Integer add(Article article) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction tx = null;
+
         try {
-            String query = SQLQueries.INSERT_ARTICLE;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            jdbc.update(query, article.getName_article(), article.getId_type(), article.getId_newspaper());
-            articles = getAll().get();
-        } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticlesSQL.class.getName()).log(Level.SEVERE, null, e);
+            tx = em.getTransaction();
+            tx.begin();
+            em.persist(article);
+            tx.commit();
+            return 1;
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            return -1;
         }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+        finally {
+            if (em != null)  em.close();
+        }
+    }
+
+    public Integer deleteArticle(Integer id) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        try {
+            Article article = em.find(Article.class, id);
+            em.remove(em.merge(article));
+            tx.commit();
+            return 1;
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            return -1;
+        }
+        finally {
+            if (em != null)  em.close();
+        }
+    }
+
+    public Integer updateArticle(Article article) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction tx = null;
+
+        try {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(article);
+            tx.commit();
+            return 1;
+        } catch (PersistenceException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (em != null) em.close();
+        }
     }
 }
