@@ -1,6 +1,7 @@
 package jakarta.rest;
 
 import domain.servicios.ServiciosLogin;
+import domain.servicios.ServiciosReaders;
 import jakarta.inject.Inject;
 import jakarta.rest.common.ConstantesLoginRest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
+import model.Reader;
 import model.ReaderLogin;
 
 @Path(ConstantesLoginRest.RUTA_LOGIN)
@@ -17,22 +19,24 @@ import model.ReaderLogin;
 public class LoginRest {
 
     @Context
-    HttpServletRequest request;
+    public HttpServletRequest request;
 
     @Context
-    SecurityContext securityContext;
+    public SecurityContext securityContext;
 
     private final ServiciosLogin servicios;
+    private final ServiciosReaders serviciosReaders;
 
     @Inject
-    public LoginRest(ServiciosLogin servicios) {
+    public LoginRest(ServiciosLogin servicios, ServiciosReaders serviciosReaders) {
         this.servicios = servicios;
+        this.serviciosReaders = serviciosReaders;
     }
 
     @GET
-    public ReaderLogin getLogin() {
+    public Reader getLogin() {
         request.getSession().setAttribute(ConstantesLoginRest.LOGIN, true);
-        return new ReaderLogin();
+        return serviciosReaders.getReaderByName(securityContext.getUserPrincipal().getName());
     }
 
     @POST
@@ -47,7 +51,7 @@ public class LoginRest {
     public Response logout() {
         request.getSession().removeAttribute(ConstantesLoginRest.LOGIN);
         request.getSession().removeAttribute(ConstantesLoginRest.CREDENTIAL);
-        return Response.status(Response.Status.NO_CONTENT)
+        return Response.status(Response.Status.OK)
                 .entity(ConstantesLoginRest.SESION_CERRADA_CORRECTAMENTE)
                 .build();
     }
@@ -55,16 +59,16 @@ public class LoginRest {
     @GET
     @Path(ConstantesLoginRest.PASSWORD_RECOVERY)
     public Response passwordRecovery(@QueryParam(ConstantesLoginRest.EMAIL) String email) {
+        servicios.passwordRecovery(email);
         return Response.status(Response.Status.NO_CONTENT)
-                .entity(servicios.passwordRecovery(email))
                 .build();
     }
 
     @GET
     @Path(ConstantesLoginRest.EMAIL_RESEND)
     public Response emailResend(@QueryParam(ConstantesLoginRest.EMAIL) String email) {
+        servicios.emailResend(email);
         return Response.status(Response.Status.NO_CONTENT)
-                .entity(servicios.emailResend(email))
                 .build();
     }
 }

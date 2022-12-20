@@ -4,6 +4,7 @@ import data.DaoLogin;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import model.Reader;
 import model.ReaderLogin;
 import okhttp3.Credentials;
 import retrofit2.Response;
@@ -16,7 +17,7 @@ public class ServiciosLogin {
         this.daoLogin = daoLogin;
     }
 
-    public Single<Either<String, ReaderLogin>> login(ReaderLogin readerLogin) {
+    public Single<Either<String, Reader>> login(ReaderLogin readerLogin) {
         String credentials = Credentials.basic(readerLogin.getUsername(), readerLogin.getPassword());
         return daoLogin.login(credentials);
     }

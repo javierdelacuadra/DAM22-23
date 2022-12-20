@@ -9,14 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
-import model.Reader;
 import model.ReaderLogin;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -79,8 +77,8 @@ public class PantallaLoginController extends BasePantallaController implements I
             }
             if (newState.readerLogin != null) {
                 Platform.runLater(() -> {
-                    getPrincipalController().setReader(new Reader(newState.readerLogin.getId_reader(), newState.readerLogin.getUsername(), LocalDate.now()));
-                    getPrincipalController().onLoginHecho(newState.readerLogin.getId_reader() <= 0);
+                    getPrincipalController().setReader(newState.readerLogin);
+                    getPrincipalController().onLoginHecho(newState.readerLogin.getId() <= 0);
                 });
             }
         });

@@ -1,9 +1,11 @@
-package domain.servicios.common;
+package domain.utils.common;
 
-public class ConstantesMandarMail {
-    public ConstantesMandarMail() {
+public class ConstantesUtils {
+
+    public ConstantesUtils() {
     }
 
+    //constantes email
     public static final String MAIL_SMTP_PORT = "mail.smtp.port";
     public static final String PORT_NUMBER = "587";
     public static final String MAIL_SMTP_AUTH = "mail.smtp.auth";
@@ -15,4 +17,10 @@ public class ConstantesMandarMail {
     public static final String SMTP = "smtp";
     public static final String ALUMNOSDAMQUEVEDO_GMAIL_COM = "alumnosdamquevedo@gmail.com";
     public static final String AYUAKLCKGXBBOOPH = "ayuaklckgxbbooph";
+
+    //constantes generacion de mensajes
+    public static final String PARA_ACTIVAR_SU_CUENTA_HAGA_CLICK_EN_EL_SIGUIENTE_ENLACE = "Para activar su cuenta, haga click en el siguiente enlace: ";
+    public static final String ACTIVATION_URL = "http://localhost:8080/RestLogin-1.0-SNAPSHOT/activar?code=";
+    public static final String PARA_RECUPERAR_SU_PASSWORD_HAGA_CLICK_EN_EL_SIGUIENTE_ENLACE = "Para recuperar su contraseña, haga click en el siguiente enlace: ";
+    public static final String PASSWORD_RECOVERY_URL = "http://localhost:8080/RestLogin-1.0-SNAPSHOT/passwordRecovery.jsp?code=";
 }

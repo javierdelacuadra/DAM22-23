@@ -42,4 +42,8 @@ public class ServiciosReaders {
     public List<Reader> getReadersByNewspaper(String idNewspaper) {
         return dao.getReadersByNewspaper(idNewspaper);
     }
+
+    public Reader getReaderByName(String name) {
+        return dao.getReaderByName(name);
+    }
 }

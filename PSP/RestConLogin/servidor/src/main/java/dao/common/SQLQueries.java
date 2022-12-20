@@ -1,6 +1,7 @@
 package dao.common;
 
 public class SQLQueries {
+
     public SQLQueries() {
     }
 
@@ -9,6 +10,8 @@ public class SQLQueries {
     public static final String DELETE_READER = "DELETE FROM readers WHERE id = ?";
     public static final String INSERT_READER = "INSERT INTO readers (name, date_of_birth) VALUES (?, ?)";
     public static final String SELECT_READER_BY_ID = "SELECT * FROM readers WHERE id = ?";
+    public static final String SELECT_READER_BY_NAME = "SELECT * FROM readers WHERE name = ?";
+    public static final String SELECT_READERLOGIN_BY_NAME = "SELECT * FROM loginOscar WHERE username = ?";
     public static final String SELECT_NEWSPAPERS = "SELECT * FROM newspaper";
     public static final String INSERT_NEWSPAPER = "INSERT INTO newspaper (name, release_date) VALUES (?, ?)";
     public static final String UPDATE_NEWSPAPER = "UPDATE newspaper SET name = ?, release_date = ? WHERE id = ?";
@@ -30,7 +33,6 @@ public class SQLQueries {
     public static final String SELECT_ARTICLES_BY_TYPE = "select * from article where id_type in (select id from type where description = ?)";
     public static final String SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER = "select article.id, article.name_article, article.id_type, newspaper.name from article, newspaper where article.id_newspaper = newspaper.id and article.id_type in (select id from type where description = ?)";
     public static final String SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS = "select a.id, a.name_article, r.id_reader, r.rating, (select count(*) from readarticle where id_reader = r.id_reader and rating < 5) as bad_ratings from article a left join readarticle r on a.id = r.id_article where a.id_newspaper = ? and r.rating < 5";
-    public static final String SELECT_LOGIN = "select * from loginOscar where username = ?";
     public static final String INSERT_LOGIN = "insert into loginOscar (username, password, email, id_reader, activation_code, active, registration_date, role) values (?, ?, ?, ?, ?, ?, ?, ?)";
     public static final String ACTIVATE_USER = "UPDATE loginOscar SET active = 1 WHERE activation_code = ? AND registration_date >= NOW() - INTERVAL 5 MINUTE;";
     public static final String SELECT_USER_BY_EMAIL = "select * from loginOscar where email = ?";

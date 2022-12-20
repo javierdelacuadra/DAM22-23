@@ -1,10 +1,10 @@
 package ui.pantallas.pantallalogin;
 
 import lombok.AllArgsConstructor;
-import model.ReaderLogin;
+import model.Reader;
 
 @AllArgsConstructor
 public class LoginState {
     public String mensaje;
-    public ReaderLogin readerLogin;
+    public Reader readerLogin;
 }

@@ -141,4 +141,17 @@ public class DaoReaders {
         }
         return readers;
     }
+
+    public Reader getReaderByName(String name) {
+        Reader reader;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_NAME)) {
+            preparedStatement.setString(1, name);
+            ResultSet rs = preparedStatement.executeQuery();
+            reader = readRS(rs).get(0);
+        } catch (SQLException | IndexOutOfBoundsException e) {
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_READERS);
+        }
+        return reader;
+    }
 }

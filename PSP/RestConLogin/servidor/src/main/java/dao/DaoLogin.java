@@ -1,67 +1,41 @@
 package dao;
 
-import dao.common.Constantes;
 import dao.common.ConstantesDaoLogin;
 import dao.common.SQLQueries;
 import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
-import domain.servicios.MandarMail;
 import jakarta.inject.Inject;
-import jakarta.mail.MessagingException;
-import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import model.Reader;
 import model.ReaderLogin;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.security.SecureRandom;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Base64;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DaoLogin {
     private final DBConnection db;
-    private final Pbkdf2PasswordHash passwordHash;
 
     @Inject
-    public DaoLogin(DBConnection db, Pbkdf2PasswordHash passwordHash) {
+    public DaoLogin(DBConnection db) {
         this.db = db;
-        this.passwordHash = passwordHash;
     }
 
-    public ReaderLogin checkLogin(String user, char[] pass) {
-        ReaderLogin readerLogin = new ReaderLogin();
-        try (Connection connection = db.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_LOGIN)) {
-            preparedStatement.setString(1, user);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                if (passwordHash.verify(pass, rs.getString(ConstantesDaoLogin.PASSWORD))) {
-                    if (rs.getInt(ConstantesDaoLogin.ACTIVE) == 0) {
-                        throw new ObjectNotFoundException(ConstantesDaoLogin.EL_USUARIO_NO_ESTA_ACTIVADO_REVISA_TU_CORREO);
-                    } else {
-                        readerLogin.setId_reader(rs.getInt(ConstantesDaoLogin.ID_READER));
-                        readerLogin.setUsername(rs.getString(ConstantesDaoLogin.USERNAME));
-                        readerLogin.setRole(rs.getString(ConstantesDaoLogin.ROLE));
-                    }
-                } else {
-                    throw new ObjectNotFoundException(ConstantesDaoLogin.PASSWORD_INCORRECTA);
-                }
-            } else {
-                throw new ObjectNotFoundException(ConstantesDaoLogin.USUARIO_O_PASSWORD_INCORRECTOS);
-            }
-        } catch (SQLException e) {
+    public ReaderLogin checkLogin(String username) {
+        List<ReaderLogin> readers;
+        try {
+            String query = SQLQueries.SELECT_READERLOGIN_BY_NAME;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            readers = jdbc.query(query, BeanPropertyRowMapper.newInstance(ReaderLogin.class), username);
+            return readers.isEmpty() ? null : readers.get(0);
+        } catch (DataAccessException e) {
             throw new DatabaseException(ConstantesDaoLogin.ERROR_EN_LA_BASE_DE_DATOS);
         }
-        return readerLogin;
-    }
-
-    private String generateUniqueToken() {
-        SecureRandom sr = new SecureRandom();
-        byte[] bits = new byte[32];
-        sr.nextBytes(bits);
-        return Base64.getUrlEncoder().encodeToString(bits);
     }
 
     public ReaderLogin addLogin(ReaderLogin login) {
@@ -69,31 +43,22 @@ public class DaoLogin {
         if (readerId == -1) {
             throw new DatabaseException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_NOMBRE);
         } else {
-            MandarMail mandarMail = new MandarMail();
-            String activationCode = generateUniqueToken();
             try (Connection connection = db.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_LOGIN)) {
                 preparedStatement.setString(1, login.getUsername());
-                preparedStatement.setString(2, passwordHash.generate(login.getPassword().toCharArray()));
+                preparedStatement.setString(2, login.getPassword());
                 preparedStatement.setString(3, login.getEmail());
                 preparedStatement.setInt(4, readerId);
-                preparedStatement.setString(5, activationCode);
+                preparedStatement.setString(5, login.getActivation_code());
                 preparedStatement.setInt(6, 0);
                 preparedStatement.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
                 preparedStatement.setString(8, ConstantesDaoLogin.ROLE_USER);
                 preparedStatement.executeUpdate();
-                mandarMail.generateAndSendEmail(login.getEmail(), generateActivationMessage(activationCode), ConstantesDaoLogin.ACTIVACION_DE_CUENTA);
             } catch (SQLException e) {
                 throw new DatabaseException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_EMAIL);
-            } catch (MessagingException e) {
-                throw new DatabaseException(ConstantesDaoLogin.ERROR_AL_ENVIAR_EL_CORREO_DE_ACTIVACION);
             }
             return login;
         }
-    }
-
-    public String generateActivationMessage(String activationCode) {
-        return ConstantesDaoLogin.PARA_ACTIVAR_SU_CUENTA_HAGA_CLICK_EN_EL_SIGUIENTE_ENLACE + Constantes.ACTIVATION_URL + activationCode;
     }
 
     private Integer getGeneratedReaderID(Reader reader) {
@@ -125,31 +90,24 @@ public class DaoLogin {
     }
 
     public String passwordRecovery(String email) {
-        MandarMail mandarMail = new MandarMail();
+        String activationCode;
         try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_USER_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                String activationCode = rs.getString(ConstantesDaoLogin.ACTIVATION_CODE);
-                mandarMail.generateAndSendEmail(email, generatePasswordRecoveryMessage(activationCode), ConstantesDaoLogin.RECUPERACION_DE_PASSWORD);
+                activationCode = rs.getString(ConstantesDaoLogin.ACTIVATION_CODE);
             } else {
                 throw new ObjectNotFoundException(ConstantesDaoLogin.NO_EXISTE_NINGUN_USUARIO_CON_ESE_EMAIL);
             }
         } catch (SQLException e) {
             throw new DatabaseException(ConstantesDaoLogin.ERROR_EN_LA_BASE_DE_DATOS);
-        } catch (MessagingException e) {
-            throw new DatabaseException(ConstantesDaoLogin.ERROR_AL_ENVIAR_EL_CORREO_DE_RECUPERACION);
         }
-        return ConstantesDaoLogin.REVISAR_CORREO;
-    }
-
-    public String generatePasswordRecoveryMessage(String activationCode) {
-        return ConstantesDaoLogin.PARA_RECUPERAR_SU_PASSWORD_HAGA_CLICK_EN_EL_SIGUIENTE_ENLACE + Constantes.PASSWORD_RECOVERY_URL + activationCode;
+        return activationCode;
     }
 
     public String emailResend(String email) {
-        MandarMail mandarMail = new MandarMail();
+        String activationCode;
         try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_USER_BY_EMAIL)) {
             preparedStatement.setString(1, email);
@@ -160,24 +118,20 @@ public class DaoLogin {
                     preparedStatement2.setString(2, email);
                     preparedStatement2.executeUpdate();
                 }
-                String activationCode = rs.getString(ConstantesDaoLogin.ACTIVATION_CODE);
-                mandarMail.generateAndSendEmail(email, generateActivationMessage(activationCode), ConstantesDaoLogin.ACTIVACION_DE_CUENTA);
+                activationCode = rs.getString(ConstantesDaoLogin.ACTIVATION_CODE);
             } else {
                 throw new ObjectNotFoundException(ConstantesDaoLogin.NO_EXISTE_NINGUN_USUARIO_CON_ESE_EMAIL);
             }
         } catch (SQLException e) {
             throw new DatabaseException(ConstantesDaoLogin.ERROR_EN_LA_BASE_DE_DATOS);
-        } catch (MessagingException e) {
-            throw new DatabaseException(ConstantesDaoLogin.ERROR_AL_ENVIAR_EL_CORREO_DE_ACTIVACION);
         }
-        return ConstantesDaoLogin.CORREO_REENVIADO;
+        return activationCode;
     }
 
     public void crearNuevaPassword(String password, String code) {
-        String passwordHasheada = passwordHash.generate(password.toCharArray());
         try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_PASSWORD)) {
-            preparedStatement.setString(1, passwordHasheada);
+            preparedStatement.setString(1, password);
             preparedStatement.setString(2, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

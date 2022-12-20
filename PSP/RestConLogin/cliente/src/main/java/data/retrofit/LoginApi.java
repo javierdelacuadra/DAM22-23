@@ -2,13 +2,14 @@ package data.retrofit;
 
 import data.retrofit.common.ConstantesAPI;
 import io.reactivex.rxjava3.core.Single;
+import model.Reader;
 import model.ReaderLogin;
 import retrofit2.Response;
 import retrofit2.http.*;
 
 public interface LoginApi {
     @GET(ConstantesAPI.LOGIN)
-    Single<ReaderLogin> loginReader(@Header(ConstantesAPI.AUTHORIZATION) String authorization);
+    Single<Reader> loginReader(@Header(ConstantesAPI.AUTHORIZATION) String authorization);
 
     @POST(ConstantesAPI.LOGIN)
     Single<ReaderLogin> registerReader(@Body ReaderLogin reader);

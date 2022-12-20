@@ -1,6 +1,6 @@
 package jakarta.errores;
 
-import domain.exceptions.ObjectNotFoundException;
+import domain.exceptions.EmailServicesFailedException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -9,9 +9,9 @@ import jakarta.ws.rs.ext.Provider;
 import java.time.LocalDate;
 
 @Provider
-public class ObjectNotFoundExceptionMapper implements ExceptionMapper<ObjectNotFoundException> {
+public class EmailServicesFailedExceptionMapper implements ExceptionMapper<EmailServicesFailedException> {
 
-    public Response toResponse(ObjectNotFoundException exception) {
+    public Response toResponse(EmailServicesFailedException exception) {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(APIError.builder()
                                 .mensaje(exception.getMessage())
                                 .fecha(LocalDate.now()).build())

@@ -7,4 +7,6 @@ module ServidorRest {
     requires domain;
     requires io.vavr;
     requires jakarta.mail;
+    requires spring.jdbc;
+    requires spring.tx;
 }

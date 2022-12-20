@@ -1,6 +1,6 @@
-package domain.servicios;
+package domain.utils;
 
-import domain.servicios.common.ConstantesMandarMail;
+import domain.utils.common.ConstantesUtils;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
@@ -20,11 +20,11 @@ public class MandarMail {
         // Step1
 
         mailServerProperties = System.getProperties();
-        mailServerProperties.put(ConstantesMandarMail.MAIL_SMTP_PORT, Integer.parseInt(ConstantesMandarMail.PORT_NUMBER));
-        mailServerProperties.put(ConstantesMandarMail.MAIL_SMTP_AUTH, ConstantesMandarMail.TRUE);
-        mailServerProperties.put(ConstantesMandarMail.MAIL_SMTP_SSL_TRUST, ConstantesMandarMail.SMTP_GMAIL_COM);
+        mailServerProperties.put(ConstantesUtils.MAIL_SMTP_PORT, Integer.parseInt(ConstantesUtils.PORT_NUMBER));
+        mailServerProperties.put(ConstantesUtils.MAIL_SMTP_AUTH, ConstantesUtils.TRUE);
+        mailServerProperties.put(ConstantesUtils.MAIL_SMTP_SSL_TRUST, ConstantesUtils.SMTP_GMAIL_COM);
 //        mailServerProperties.put("mail.smtp.ssl.trust", "smtp01.educa.madrid.org");
-        mailServerProperties.put(ConstantesMandarMail.MAIL_SMTP_STARTTLS_ENABLE, ConstantesMandarMail.TRUE);
+        mailServerProperties.put(ConstantesUtils.MAIL_SMTP_STARTTLS_ENABLE, ConstantesUtils.TRUE);
 
         // Step2
 
@@ -33,18 +33,18 @@ public class MandarMail {
         generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
         generateMailMessage.setSubject(subject);
         String emailBody = msg;
-        generateMailMessage.setContent(emailBody, ConstantesMandarMail.TEXT_HTML);
+        generateMailMessage.setContent(emailBody, ConstantesUtils.TEXT_HTML);
 
 
         // Step3
 
-        Transport transport = getMailSession.getTransport(ConstantesMandarMail.SMTP);
+        Transport transport = getMailSession.getTransport(ConstantesUtils.SMTP);
 
         // Enter your correct gmail UserID and Password
         // if you have 2FA enabled then provide App Specific Password
-        transport.connect(ConstantesMandarMail.SMTP_GMAIL_COM,
-                ConstantesMandarMail.ALUMNOSDAMQUEVEDO_GMAIL_COM,
-                ConstantesMandarMail.AYUAKLCKGXBBOOPH);
+        transport.connect(ConstantesUtils.SMTP_GMAIL_COM,
+                ConstantesUtils.ALUMNOSDAMQUEVEDO_GMAIL_COM,
+                ConstantesUtils.AYUAKLCKGXBBOOPH);
 
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();

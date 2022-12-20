@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import model.Reader;
 import model.ReaderLogin;
 import servicios.ServiciosLogin;
 import ui.common.ConstantesUI;
@@ -31,7 +32,7 @@ public class LoginViewModel {
                     if (either.isLeft()) {
                         state.set(new LoginState(either.getLeft(), null));
                     } else {
-                        ReaderLogin reader = either.get();
+                        Reader reader = either.get();
                         state.set(new LoginState(null, reader));
                     }
                 });
@@ -42,7 +43,7 @@ public class LoginViewModel {
                 .observeOn(Schedulers.from(Platform::runLater))
                 .subscribe(either -> {
                     if (either.isRight()) {
-                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, readerLogin));
+                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, null));
                     } else {
                         state.set(new LoginState(either.getLeft(), null));
                     }
