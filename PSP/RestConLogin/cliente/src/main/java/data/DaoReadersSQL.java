@@ -1,58 +1,36 @@
 package data;
 
 import com.google.gson.Gson;
-import data.retrofit.NewspapersApi;
+import data.retrofit.ReadersApi;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Reader;
-import model.ReaderLogin;
-import retrofit2.Response;
 
 import java.util.List;
 
 public class DaoReadersSQL extends DaoGenerics {
-    private final NewspapersApi newspapersApi;
+    private final ReadersApi readersApi;
 
     @Inject
-    public DaoReadersSQL(NewspapersApi newspapersApi, Gson gson) {
+    public DaoReadersSQL(ReadersApi readersApi, Gson gson) {
         super(gson);
-        this.newspapersApi = newspapersApi;
+        this.readersApi = readersApi;
     }
 
     public Single<Either<String, List<Reader>>> getAll() {
-        return createSafeSingleApiCall(newspapersApi.getReaders());
+        return createSafeSingleApiCall(readersApi.getReaders());
     }
 
     public Single<Either<String, Reader>> add(Reader reader) {
-        return createSafeSingleApiCall(newspapersApi.addReader(reader));
+        return createSafeSingleApiCall(readersApi.addReader(reader));
     }
 
     public Single<Either<String, Reader>> update(Reader reader) {
-        return createSafeSingleApiCall(newspapersApi.updateReader(reader));
+        return createSafeSingleApiCall(readersApi.updateReader(reader));
     }
 
     public Single<Either<String, Boolean>> delete(String id) {
-        return createSafeSingleDeleteCall(newspapersApi.deleteReader(id));
-    }
-
-    public Single<Either<String, ReaderLogin>> login(String authorization) {
-        return createSafeSingleApiCall(newspapersApi.loginReader(authorization));
-    }
-
-    public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {
-        return createSafeSingleApiCall(newspapersApi.registerReader(reader));
-    }
-
-    public Single<Response<String>> recoverPassword(String email) {
-        return newspapersApi.recoverPassword(email);
-    }
-
-    public Single<Response<String>> sendEmail(String email) {
-        return newspapersApi.sendEmail(email);
-    }
-
-    public Single<Response<String>> logout() {
-        return newspapersApi.logout();
+        return createSafeSingleDeleteCall(readersApi.deleteReader(id));
     }
 }

@@ -5,17 +5,17 @@ import jakarta.inject.Inject;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import servicios.ServicesReadersSQL;
+import servicios.ServiciosLogin;
 import ui.common.ConstantesUI;
 
 public class PantallaMainViewModel {
 
-    private final ServicesReadersSQL servicesReadersSQL;
+    private final ServiciosLogin serviciosLogin;
     private final ObjectProperty<PantallaMainState> state;
 
     @Inject
-    public PantallaMainViewModel(ServicesReadersSQL servicesReadersSQL) {
-        this.servicesReadersSQL = servicesReadersSQL;
+    public PantallaMainViewModel(ServiciosLogin serviciosLogin) {
+        this.serviciosLogin = serviciosLogin;
         state = new SimpleObjectProperty<>(new PantallaMainState(null));
     }
 
@@ -24,7 +24,7 @@ public class PantallaMainViewModel {
     }
 
     public void logout() {
-        servicesReadersSQL.logout()
+        serviciosLogin.logout()
                 .observeOn(Schedulers.from(Platform::runLater))
                 .subscribe(stringResponse ->
                                 state.set(new PantallaMainState(stringResponse.body())),

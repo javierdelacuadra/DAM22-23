@@ -3,7 +3,9 @@ package di;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import config.common.Constantes;
+import data.retrofit.LoginApi;
 import data.retrofit.NewspapersApi;
+import data.retrofit.ReadersApi;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
 import okhttp3.ConnectionPool;
@@ -35,7 +37,6 @@ public class NewspaperApiProducer {
                 .connectTimeout(Duration.of(10, ChronoUnit.MINUTES))
                 //.addInterceptor(new AuthorizationInterceptor(cache))
                 .connectionPool(new ConnectionPool(1, 1, TimeUnit.SECONDS))
-                // necesario para la sesion
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();
     }
@@ -63,5 +64,15 @@ public class NewspaperApiProducer {
     @Produces
     public NewspapersApi getNewspapersApi(Retrofit retro) {
         return retro.create(NewspapersApi.class);
+    }
+
+    @Produces
+    public LoginApi getLoginApi(Retrofit retro) {
+        return retro.create(LoginApi.class);
+    }
+
+    @Produces
+    public ReadersApi getReadersApi(Retrofit retro) {
+        return retro.create(ReadersApi.class);
     }
 }
