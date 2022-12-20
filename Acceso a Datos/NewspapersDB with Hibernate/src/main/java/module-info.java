@@ -37,6 +37,8 @@ module MercadonaFX {
     exports ui.pantallas.springqueryscreen;
     exports ui.pantallas.addnewspaperscreen;
     exports ui.pantallas.updatenewspaperscreen;
+    exports ui.pantallas.deletearticlescreen;
+    exports ui.pantallas.updatearticlescreen;
     exports ui.pantallas.common;
     exports servicios;
     exports config;
@@ -68,5 +70,7 @@ module MercadonaFX {
     opens ui.pantallas.springqueryscreen to javafx.fxml;
     opens ui.pantallas.addnewspaperscreen to javafx.fxml;
     opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
+    opens ui.pantallas.deletearticlescreen to javafx.fxml;
+    opens ui.pantallas.updatearticlescreen to javafx.fxml;
     opens ui.pantallas.common;
 }

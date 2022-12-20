@@ -8,6 +8,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import model.Newspaper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DaoNewspaper {
@@ -21,11 +22,11 @@ public class DaoNewspaper {
     }
 
     public Either<Integer, List<Newspaper>> getAll() {
-        List list = null;
+        List<Newspaper> newspapers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 
         try {
-            list = em
+            newspapers = em
                     .createNamedQuery("HQL_GET_ALL_NEWSPAPERS", Newspaper.class)
                     .getResultList();
 
@@ -35,30 +36,30 @@ public class DaoNewspaper {
             if (em != null) em.close();
         }
 
-        return list.isEmpty() ? Either.left(-1) : Either.right(list);
+        return newspapers.isEmpty() ? Either.left(-1) : Either.right(newspapers);
     }
 
-    public Integer addNewspaper(Newspaper newspaper) {
+    public Integer add(Newspaper newspaper) {
         em = jpaUtil.getEntityManager();
-        EntityTransaction tx = null;
+        EntityTransaction transaction = null;
 
         try {
-            tx = em.getTransaction();
-            tx.begin();
+            transaction = em.getTransaction();
+            transaction.begin();
             em.persist(newspaper);
-            tx.commit();
+            transaction.commit();
             return 1;
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
+        } catch (PersistenceException e) {
+            assert transaction != null;
+            if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
             return -1;
-        }
-        finally {
-            if (em != null)  em.close();
+        } finally {
+            if (em != null) em.close();
         }
     }
 
-    public Integer deleteNewspaper(Integer id) {
+    public Integer delete(Integer id) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -72,13 +73,13 @@ public class DaoNewspaper {
             if (tx.isActive()) tx.rollback();
             e.printStackTrace();
             return -1;
+        } finally {
+            if (em != null) em.close();
         }
-        finally {
-            if (em != null)  em.close();
-        }
+        //TODO: investigar transaction para el deleteNewspaper
     }
 
-    public Integer updateNewspaper(Newspaper newspaper) {
+    public Integer update(Newspaper newspaper) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
 

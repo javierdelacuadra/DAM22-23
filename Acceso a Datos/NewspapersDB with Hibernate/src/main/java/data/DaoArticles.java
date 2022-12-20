@@ -33,11 +33,11 @@ public class DaoArticles {
     }
 
     public Either<Integer, List<Article>> getAll() {
-        List<Article> list = null;
+        List<Article> articles = null;
         em = jpaUtil.getEntityManager();
 
         try {
-            list = em
+            articles = em
                     .createNamedQuery("HQL_GET_ALL_ARTICLES", Article.class)
                     .getResultList();
 
@@ -47,31 +47,46 @@ public class DaoArticles {
             if (em != null) em.close();
         }
 
-        assert list != null;
-        return list.isEmpty() ? Either.left(-1) : Either.right(list);
+        assert articles != null;
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
     public Either<Integer, List<Article>> getAll(Integer id) {
-        List<Article> articles = new ArrayList<>();
+        List<Article> articles = null;
+        em = jpaUtil.getEntityManager();
+
         try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_READER;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), id);
-        } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
+            articles = em
+                    .createNamedQuery("HQL_GET_ARTICLE_BY_ID", Article.class)
+                    .setParameter("id", id)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
+
+        assert articles != null;
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
     public Either<Integer, List<Article>> getAll(String type) {
         List<Article> articles = new ArrayList<>();
+        em = jpaUtil.getEntityManager();
+
         try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Article.class), type);
-        } catch (DataAccessException e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
+            articles = em
+                    .createNamedQuery("HQL_GET_ARTICLES_BY_TYPE", Article.class)
+                    .setParameter("description", type)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
+
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
@@ -210,16 +225,15 @@ public class DaoArticles {
 
     public Integer add(Article article) {
         em = jpaUtil.getEntityManager();
-        EntityTransaction tx = null;
+        EntityTransaction transaction = em.getTransaction();
 
         try {
-            tx = em.getTransaction();
-            tx.begin();
+            transaction.begin();
             em.persist(article);
-            tx.commit();
+            transaction.commit();
             return 1;
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
+            if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
             return -1;
         }

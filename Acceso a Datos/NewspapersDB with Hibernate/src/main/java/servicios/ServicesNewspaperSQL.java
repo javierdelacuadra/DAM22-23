@@ -20,14 +20,14 @@ public class ServicesNewspaperSQL {
     }
 
     public Integer addNewspaper(Newspaper newspaper) {
-        return daoNewspaper.addNewspaper(newspaper);
+        return daoNewspaper.add(newspaper);
     }
 
     public Integer deleteNewspaper(Integer id) {
-        return daoNewspaper.deleteNewspaper(id);
+        return daoNewspaper.delete(id);
     }
 
     public Integer updateNewspaper(Newspaper newspaper) {
-        return daoNewspaper.updateNewspaper(newspaper);
+        return daoNewspaper.update(newspaper);
     }
 }

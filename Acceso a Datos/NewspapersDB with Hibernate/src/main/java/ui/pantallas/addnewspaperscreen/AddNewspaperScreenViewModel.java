@@ -24,7 +24,7 @@ public class AddNewspaperScreenViewModel {
     }
 
     public Integer addNewspaper(String name, LocalDate date) {
-        Newspaper newspaper = new Newspaper(-1, name, date.toString());
+        Newspaper newspaper = new Newspaper(name, date.toString());
         return servicesNewspaperSQL.addNewspaper(newspaper);
     }
 }

@@ -26,6 +26,11 @@ public class Newspaper {
     @Column(name = "release_date")
     private String release_date;
 
+    public Newspaper(String name, String release_date) {
+        this.name = name;
+        this.release_date = release_date;
+    }
+
     @Override
     public String toString() {
         return id +

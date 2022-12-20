@@ -29,11 +29,11 @@ public class DaoReaders {
     }
 
     public Either<Integer, List<Reader>> getAll() {
-        List list = null;
+        List<Reader> readers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 
         try {
-            list = em
+            readers = em
                     .createNamedQuery("HQL_GET_ALL_READERS", Reader.class)
                     .getResultList();
 
@@ -43,32 +43,44 @@ public class DaoReaders {
             if (em != null) em.close();
         }
 
-        return list.isEmpty() ? Either.left(-1) : Either.right(list);
+        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
     public Either<Integer, List<Reader>> getAll(int id) {
         List<Reader> readers = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_NEWSPAPER)) {
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            readers = readRS(rs);
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+        em = jpaUtil.getEntityManager();
+
+        try {
+            readers = em
+                    .createNamedQuery("HQL_GET_READER_BY_ID", Reader.class)
+                    .setParameter("id", id)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
+
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
     public Either<Integer, List<Reader>> getAll(String articleType) {
         List<Reader> readers = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_ARTICLE_TYPE)) {
-            preparedStatement.setString(1, articleType);
-            ResultSet rs = preparedStatement.executeQuery();
-            readers = readRS(rs);
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+        em = jpaUtil.getEntityManager();
+
+        try {
+            readers = em
+                    .createNamedQuery("HQL_GET_READERS_BY_ARTICLE_TYPE", Reader.class)
+                    .setParameter("description", articleType)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
+
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
@@ -194,22 +206,6 @@ public class DaoReaders {
         }
     }
 
-    private List<Reader> readRS(ResultSet rs) {
-        List<Reader> readers = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                Reader reader = new Reader();
-                reader.setId(rs.getInt(Constantes.ID));
-                reader.setName(rs.getString(Constantes.NAME));
-                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
-                readers.add(reader);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return readers;
-    }
-
     public Integer login(String name, String password) {
         Integer code = null;
         try (Connection con = db.getConnection();
@@ -235,18 +231,20 @@ public class DaoReaders {
     }
 
     public Reader get(int id) {
-        Reader reader = new Reader();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                reader.setId(rs.getInt(Constantes.ID));
-                reader.setName(rs.getString(Constantes.NAME));
-                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
+        em = jpaUtil.getEntityManager();
+        EntityTransaction tx = null;
+        Reader reader = null;
+
+        try {
+            tx = em.getTransaction();
+            tx.begin();
+            reader = em.find(Reader.class, id);
+            tx.commit();
+        } catch (PersistenceException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
         }
         return reader;
     }

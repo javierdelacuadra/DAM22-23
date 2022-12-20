@@ -53,6 +53,26 @@ public class UpdateArticleController extends BasePantallaController implements I
     }
 
     public void updateArticle() {
+        if (articlesTable.getSelectionModel().getSelectedItem() != null) {
+            Article article = new Article();
+            article.setId(articlesTable.getSelectionModel().getSelectedItem().getId());
+            article.setName_article(nameTextField.getText());
+            try {
+                article.setId_type(Integer.parseInt(typeTextField.getText()));
+            } catch (NumberFormatException e) {
+                this.getPrincipalController().createAlert("QUE TE CREES QUE ES UNA LETRA? UN NUMERO ES!");
+                //TODO: diarios de copilot capítulo 1 se le ha ido la cabeza
+            }
+            article.setId_newspaper(articlesTable.getSelectionModel().getSelectedItem().getId_newspaper());
+            if (viewModel.updateArticle(article) == 1) {
+                articlesTable.getSelectionModel().getSelectedItem().setName_article(nameTextField.getText());
+                articlesTable.getSelectionModel().getSelectedItem().setId_type(Integer.parseInt(typeTextField.getText()));
+                articlesTable.refresh();
+                this.getPrincipalController().createAlert("Article updated successfully!");
+            } else {
+                this.getPrincipalController().createAlert("Article not updated!");
+            }
+        }
 
     }
 

@@ -1,4 +1,4 @@
-package ui.pantallas.updatearticlescreen;
+package ui.pantallas.deletearticlescreen;
 
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
@@ -6,12 +6,11 @@ import javafx.collections.ObservableList;
 import model.Article;
 import servicios.ServicesArticlesSQL;
 
-public class UpdateArticleViewModel {
-
+public class DeleteArticleViewModel {
     private final ServicesArticlesSQL servicesArticlesSQL;
 
     @Inject
-    public UpdateArticleViewModel(ServicesArticlesSQL servicesArticlesSQL) {
+    public DeleteArticleViewModel(ServicesArticlesSQL servicesArticlesSQL) {
         this.servicesArticlesSQL = servicesArticlesSQL;
     }
 
@@ -19,7 +18,7 @@ public class UpdateArticleViewModel {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public Integer updateArticle(Article article) {
-        return servicesArticlesSQL.updateArticle(article);
+    public Integer deleteArticle(Integer id) {
+        return servicesArticlesSQL.deleteArticle(id);
     }
 }

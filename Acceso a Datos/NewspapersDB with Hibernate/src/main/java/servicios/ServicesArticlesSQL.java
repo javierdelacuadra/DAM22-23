@@ -40,6 +40,14 @@ public class ServicesArticlesSQL {
         return daoArticles.add(article);
     }
 
+    public Integer deleteArticle(Integer id) {
+        return daoArticles.deleteArticle(id);
+    }
+
+    public Integer updateArticle(Article article) {
+        return daoArticles.updateArticle(article);
+    }
+
     public Either<Integer, List<Article>> getArticlesByType(String type) {
         return daoArticles.getAll(type);
     }
