@@ -13,8 +13,8 @@ public class ObjectNotFoundExceptionMapper implements ExceptionMapper<ObjectNotF
 
     public Response toResponse(ObjectNotFoundException exception) {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(APIError.builder()
-                                .mensaje(exception.getMessage())
-                                .fecha(LocalDate.now()).build())
+                        .mensaje(exception.getMessage())
+                        .fecha(LocalDate.now()).build())
                 .type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 }

@@ -3,6 +3,7 @@ package dao;
 import dao.common.Constantes;
 import dao.common.SQLQueries;
 import domain.exceptions.DatabaseException;
+import domain.exceptions.ObjectAlreadyExistsException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 import model.Newspaper;
@@ -67,10 +68,10 @@ public class DaoNewspapers {
                 return newspaper;
             } catch (SQLException ex) {
                 Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_NEWSPAPER);
+                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_NEWSPAPER);
             }
         }
-        throw new DatabaseException(Constantes.YA_EXISTE_UN_NEWSPAPER_CON_ESE_NOMBRE);
+        throw new ObjectAlreadyExistsException(Constantes.YA_EXISTE_UN_NEWSPAPER_CON_ESE_NOMBRE);
     }
 
     public Newspaper update(Newspaper newspaper) {
@@ -83,7 +84,7 @@ public class DaoNewspapers {
             return newspaper;
         } catch (Exception ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER);
+            throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER);
         }
     }
 
@@ -94,7 +95,7 @@ public class DaoNewspapers {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_NEWSPAPER);
+            throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_NEWSPAPER);
         }
         return true;
     }

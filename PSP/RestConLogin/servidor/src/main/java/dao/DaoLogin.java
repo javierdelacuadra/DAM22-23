@@ -3,6 +3,7 @@ package dao;
 import dao.common.ConstantesDaoLogin;
 import dao.common.SQLQueries;
 import domain.exceptions.DatabaseException;
+import domain.exceptions.ObjectAlreadyExistsException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 import model.Reader;
@@ -41,7 +42,7 @@ public class DaoLogin {
     public ReaderLogin addLogin(ReaderLogin login) {
         Integer readerId = getGeneratedReaderID(new Reader(login.getUsername(), LocalDate.now()));
         if (readerId == -1) {
-            throw new DatabaseException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_NOMBRE);
+            throw new ObjectAlreadyExistsException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_NOMBRE);
         } else {
             try (Connection connection = db.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_LOGIN)) {
@@ -55,7 +56,7 @@ public class DaoLogin {
                 preparedStatement.setString(8, ConstantesDaoLogin.ROLE_USER);
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
-                throw new DatabaseException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_EMAIL);
+                throw new ObjectAlreadyExistsException(ConstantesDaoLogin.YA_EXISTE_UN_USUARIO_CON_ESE_EMAIL);
             }
             return login;
         }

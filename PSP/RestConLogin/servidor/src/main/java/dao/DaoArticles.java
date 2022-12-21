@@ -3,6 +3,7 @@ package dao;
 import dao.common.Constantes;
 import dao.common.SQLQueries;
 import domain.exceptions.DatabaseException;
+import domain.exceptions.ObjectAlreadyExistsException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 import model.Article;
@@ -28,7 +29,6 @@ public class DaoArticles {
             articles = readRS(rs);
         } catch (SQLException e) {
             throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_ARTICLES);
-
         }
         return articles;
     }
@@ -77,11 +77,11 @@ public class DaoArticles {
                     article.setId(rs.getInt(1));
                 }
             } catch (SQLException e) {
-                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_ARTICLE);
+                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_ARTICLE);
             }
             return true;
         }
-        throw new ObjectNotFoundException(Constantes.YA_EXISTE_UN_ARTICLE_CON_ESE_NOMBRE);
+        throw new ObjectAlreadyExistsException(Constantes.YA_EXISTE_UN_ARTICLE_CON_ESE_NOMBRE);
     }
 
     public boolean update(Article article) {
@@ -95,7 +95,7 @@ public class DaoArticles {
                 preparedStatement.setInt(4, article.getId());
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
-                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_ARTICLE);
+                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_ARTICLE);
             }
             return true;
         }
@@ -110,7 +110,7 @@ public class DaoArticles {
                 preparedStatement.setInt(1, Integer.parseInt(id));
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
-                throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_ARTICLE);
+                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_ARTICLE);
             }
             return true;
         }
