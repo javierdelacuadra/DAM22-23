@@ -35,9 +35,9 @@ public class InMemoryIdentityStore implements IdentityStore {
             ReaderLogin login = servicios.getLogin(user.getCaller(), user.getPassword().getValue());
             return switch (login.getRole().toLowerCase()) {
                 case ConstantesSecurity.ADMIN ->
-                        new CredentialValidationResult(ConstantesSecurity.ADMIN, Set.of(ConstantesSecurity.ADMIN));
+                        new CredentialValidationResult(login.getUsername(), Set.of(ConstantesSecurity.ADMIN));
                 case ConstantesSecurity.USER ->
-                        new CredentialValidationResult(ConstantesSecurity.USER, Collections.singleton(ConstantesSecurity.USER));
+                        new CredentialValidationResult(login.getUsername(), Collections.singleton(ConstantesSecurity.USER));
                 default -> INVALID_RESULT;
             };
         }
