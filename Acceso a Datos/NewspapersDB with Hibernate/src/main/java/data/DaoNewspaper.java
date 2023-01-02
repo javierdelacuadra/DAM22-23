@@ -97,4 +97,23 @@ public class DaoNewspaper {
             if (em != null) em.close();
         }
     }
+
+    public List<Newspaper> getFromSpecificNewspaper(int newspaperID) {
+        List<Newspaper> newspapers = new ArrayList<>();
+        em = jpaUtil.getEntityManager();
+
+        try {
+            newspapers = em
+                    .createNamedQuery("HQL_GET_ALL_ARTICLES_OF_SPECIFIC_NEWSPAPER", Newspaper.class)
+                    .setParameter("id", newspaperID)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
+        }
+
+        return newspapers;
+    }
 }

@@ -58,15 +58,15 @@ public class UpdateArticleController extends BasePantallaController implements I
             article.setId(articlesTable.getSelectionModel().getSelectedItem().getId());
             article.setName_article(nameTextField.getText());
             try {
-                article.setId_type(Integer.parseInt(typeTextField.getText()));
+                article.getType().setId(Integer.parseInt(typeTextField.getText()));
             } catch (NumberFormatException e) {
                 this.getPrincipalController().createAlert("QUE TE CREES QUE ES UNA LETRA? UN NUMERO ES!");
                 //TODO: diarios de copilot capítulo 1 se le ha ido la cabeza
             }
-            article.setId_newspaper(articlesTable.getSelectionModel().getSelectedItem().getId_newspaper());
+            article.getNewspaper().setId(articlesTable.getSelectionModel().getSelectedItem().getNewspaper().getId());
             if (viewModel.updateArticle(article) == 1) {
                 articlesTable.getSelectionModel().getSelectedItem().setName_article(nameTextField.getText());
-                articlesTable.getSelectionModel().getSelectedItem().setId_type(Integer.parseInt(typeTextField.getText()));
+                articlesTable.getSelectionModel().getSelectedItem().getType().setId(Integer.parseInt(typeTextField.getText()));
                 articlesTable.refresh();
                 this.getPrincipalController().createAlert("Article updated successfully!");
             } else {
@@ -80,7 +80,7 @@ public class UpdateArticleController extends BasePantallaController implements I
         if (articlesTable.getSelectionModel().getSelectedItem() != null) {
             Article article = articlesTable.getSelectionModel().getSelectedItem();
             nameTextField.setText(article.getName_article());
-            typeTextField.setText(String.valueOf(article.getId_type()));
+            typeTextField.setText(String.valueOf(article.getType().getId()));
         }
     }
 }

@@ -41,12 +41,12 @@ public class DeleteReaderController extends BasePantallaController {
     public void deleteReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
-            if (viewModel.deleteReader(reader).isRight()) {
+            if (viewModel.deleteReader(reader) == 1) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());
-            } else if (viewModel.deleteReader(reader).getLeft() == -1) {
+            } else if (viewModel.deleteReader(reader) == -1) {
                 this.getPrincipalController().createAlert(ConstantesUI.ERROR_DELETING_READER);
-            } else if (viewModel.deleteReader(reader).getLeft() == -2) {
+            } else if (viewModel.deleteReader(reader) == -2) {
                 this.getPrincipalController().createAlert(ConstantesUI.READER_NOT_FOUND);
             }
         } else {

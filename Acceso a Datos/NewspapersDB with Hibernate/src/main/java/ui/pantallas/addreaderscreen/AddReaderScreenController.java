@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Login;
 import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
@@ -58,13 +59,13 @@ public class AddReaderScreenController extends BasePantallaController implements
             this.getPrincipalController().createAlert(ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS);
         } else {
             if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty() || birthDatePicker.getValue() != null) {
-                Reader reader = new Reader(0, nameTextField.getText(), birthDatePicker.getValue());
-                String password = passwordField.getText();
-                if (viewModel.addReader(reader, password).isRight()) {
+                Login login = new Login(nameTextField.getText(), passwordField.getText());
+                Reader reader = new Reader(nameTextField.getText(), birthDatePicker.getValue(), login);
+                if (viewModel.addReader(reader) == 1) {
                     readersTable.getItems().clear();
                     readersTable.setItems(viewModel.getReaders());
                 } else {
-                    int error = viewModel.addReader(reader, password).getLeft();
+                    int error = viewModel.addReader(reader);
                     if (error == -1) {
                         this.getPrincipalController().createAlert(ConstantesUI.SOMETHING_UNEXPECTED_HAPPENED);
                     } else if (error == -2) {

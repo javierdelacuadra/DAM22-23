@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
+import model.Login;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -42,7 +43,8 @@ public class PantallaLoginController extends BasePantallaController implements I
         if (nombre == null || nombre.isEmpty() || password == null || password.isEmpty()) {
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
-            Integer id = viewModel.login(nombre, password);
+            Login login = new Login(nombre, password);
+            Integer id = viewModel.login(login);
             if (id == -2) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ConstantesUI.ERROR);

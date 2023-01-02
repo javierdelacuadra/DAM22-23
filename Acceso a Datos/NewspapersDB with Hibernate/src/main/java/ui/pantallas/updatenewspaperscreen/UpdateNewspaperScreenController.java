@@ -56,8 +56,7 @@ public class UpdateNewspaperScreenController extends BasePantallaController impl
             Newspaper newspaper = new Newspaper(
                     newspaperTable.getSelectionModel().getSelectedItem().getId(),
                     nameTextField.getText(),
-                    releaseDatePicker.getValue().toString()
-            );
+                    releaseDatePicker.getValue().toString());
             if (viewModel.updateNewspaper(newspaper) == 1) {
                 newspaperTable.getItems().clear();
                 newspaperTable.setItems(viewModel.getNewspapers());

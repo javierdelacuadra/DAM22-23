@@ -1,17 +1,18 @@
 package model;
 
 import common.Constantes;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "type")
@@ -20,10 +21,16 @@ public class ArticleType {
     private int id;
     @Column(name = "description")
     private String description;
+    @OneToMany(mappedBy = "type")
+    private List<Article> articles;
 
     public ArticleType(String line) {
         String[] split = line.split(Constantes.PUNTO_Y_COMA);
         this.id = Integer.parseInt(split[0]);
         this.description = split[1];
+    }
+
+    public ArticleType(int id) {
+        this.id = id;
     }
 }

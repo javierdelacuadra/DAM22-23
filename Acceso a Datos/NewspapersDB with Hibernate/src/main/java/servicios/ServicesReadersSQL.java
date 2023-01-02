@@ -3,6 +3,7 @@ package servicios;
 import data.DaoReaders;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import model.Login;
 import model.Reader;
 
 import java.util.List;
@@ -16,15 +17,15 @@ public class ServicesReadersSQL {
         this.daoReaders = daoReaders;
     }
 
-    public Either<Integer, List<Reader>> saveReader(Reader reader, String password) {
-        return daoReaders.save(reader, password);
+    public int saveReader(Reader reader) {
+        return daoReaders.save(reader);
     }
 
     public Either<Integer, List<Reader>> getAllReaders() {
         return daoReaders.getAll();
     }
 
-    public Either<Integer, List<Reader>> deleteReader(Reader reader) {
+    public int deleteReader(Reader reader) {
         return daoReaders.delete(reader);
     }
 
@@ -40,8 +41,8 @@ public class ServicesReadersSQL {
         return daoReaders.getAll(articleType);
     }
 
-    public Integer login(String name, String password) {
-        return daoReaders.login(name, password);
+    public Integer login(Login login) {
+        return daoReaders.login(login);
     }
 
     public Reader getReadersById(int id) {

@@ -27,4 +27,18 @@ public class Reader {
     private String name;
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+    @OneToOne(mappedBy = "reader", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    private Login login;
+
+    public Reader(String name, LocalDate dateOfBirth, Login login) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.login = login;
+    }
+
+    public Reader(int id, String text, LocalDate value) {
+        this.id = id;
+        this.name = text;
+        this.dateOfBirth = value;
+    }
 }

@@ -68,9 +68,9 @@ public class AddArticleScreenController extends BasePantallaController implement
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS, ButtonType.OK);
             alert.showAndWait();
         } else {
-            Article article = new Article(nameText.getText(),
-                    typeIDComboBox.getSelectionModel().getSelectedItem().getId(),
-                    newspaperIDComboBox.getSelectionModel().getSelectedItem().getId());
+            Article article = new Article(0, nameText.getText(),
+                    new ArticleType(typeIDComboBox.getSelectionModel().getSelectedItem().getId()),
+                    new Newspaper(newspaperIDComboBox.getSelectionModel().getSelectedItem().getId()));
             if (viewModel.addArticle(article) == 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(viewModel.getArticles());

@@ -1,6 +1,7 @@
 package ui.pantallas.pantallalogin;
 
 import jakarta.inject.Inject;
+import model.Login;
 import model.Reader;
 import servicios.ServicesReadersSQL;
 
@@ -13,8 +14,8 @@ public class LoginViewModel {
         this.servicesReadersSQL = servicesReadersSQL;
     }
 
-    public Integer login(String nombre, String password) {
-        return servicesReadersSQL.login(nombre, password);
+    public Integer login(Login login) {
+        return servicesReadersSQL.login(login);
     }
 
     public Reader getReader(int id) {

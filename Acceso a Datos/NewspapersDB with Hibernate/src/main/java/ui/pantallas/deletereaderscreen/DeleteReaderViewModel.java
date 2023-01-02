@@ -1,13 +1,10 @@
 package ui.pantallas.deletereaderscreen;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Reader;
 import servicios.ServicesReadersSQL;
-
-import java.util.List;
 
 public class DeleteReaderViewModel {
 
@@ -22,7 +19,7 @@ public class DeleteReaderViewModel {
         return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().get());
     }
 
-    public Either<Integer, List<Reader>> deleteReader(Reader reader) {
+    public int deleteReader(Reader reader) {
         return servicesReadersSQL.deleteReader(reader);
     }
 }
