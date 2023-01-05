@@ -1,13 +1,10 @@
 package ui.pantallas.updatenewspaperscreen;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Newspaper;
 import servicios.ServicesNewspaperSQL;
-
-import java.util.List;
 
 public class UpdateNewspaperScreenViewModel {
 

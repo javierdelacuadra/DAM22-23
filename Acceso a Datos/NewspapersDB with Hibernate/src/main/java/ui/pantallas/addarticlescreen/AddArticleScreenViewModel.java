@@ -1,6 +1,5 @@
 package ui.pantallas.addarticlescreen;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +8,6 @@ import model.ArticleType;
 import model.Newspaper;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaperSQL;
-
-import java.util.List;
 
 public class AddArticleScreenViewModel {
     private final ServicesArticlesSQL servicesArticlesSQL;
