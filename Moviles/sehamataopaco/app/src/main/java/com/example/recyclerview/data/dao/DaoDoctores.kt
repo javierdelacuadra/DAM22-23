@@ -30,4 +30,10 @@ interface DaoDoctores {
     @Transaction
     @Query("SELECT * FROM doctores")
     suspend fun getDoctoresWithHospitales(): List<DoctorWithHospitales>
+
+    @Query("SELECT DISTINCT especialidad FROM doctores")
+    suspend fun getEspecialidades(): List<String>
+
+    @Query("SELECT hora FROM citas, doctores WHERE doctores.nombre = :nombreDoctor AND citas.emailDoctor = :nombreDoctor AND fecha = CURDATE() AND hora >= CURTIME()")
+    suspend fun getHoras(nombreDoctor: String): List<String>
 }

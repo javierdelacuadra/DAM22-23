@@ -21,4 +21,21 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
     suspend fun getDoctorWithHospitales() = dao.getDoctoresWithHospitales().map { it.toDoctor() }
 
     suspend fun getDoctorWithCitas() = dao.getDoctoresWithCitas().map { it.toDoctor() }
+
+    suspend fun getEspecialidades() = dao.getEspecialidades()
+
+    suspend fun getHoras(nombreDoctor: String): MutableList<String> {
+        val horasDisponibles = mutableListOf<String>()
+        for (hora in 9..19) {
+            horasDisponibles.add(hora.toString())
+        }
+
+        val horasNoDisponibles = dao.getHoras(nombreDoctor)
+        horasDisponibles.removeAll(horasNoDisponibles)
+        horasDisponibles.forEachIndexed { index, s ->
+            horasDisponibles[index] = "$s:00"
+        }
+
+        return horasDisponibles
+    }
 }

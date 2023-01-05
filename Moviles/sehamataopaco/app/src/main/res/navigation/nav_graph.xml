@@ -3,26 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/InicioFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.recyclerview.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/InicioFragment"
+        android:name="com.example.recyclerview.ui.fragments.inicio.InicioFragment"
+        android:label="@string/Inicio"
+        tools:layout="@layout/fragment_inicio">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_InicioFragment_to_PedirCitaFragment"
+            app:destination="@id/PedirCitaFragment" />
+        <action
+            android:id="@+id/action_InicioFragment_to_VerCitasFragment"
+            app:destination="@id/verCitasFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.recyclerview.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/PedirCitaFragment"
+        android:name="com.example.recyclerview.ui.fragments.pedircita.PedirCitaFragment"
+        android:label="@string/pedir_cita"
+        tools:layout="@layout/fragment_pedir_cita">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_PedirCitaFragment_to_InicioFragment"
+            app:destination="@id/InicioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verCitasFragment"
+        android:name="com.example.recyclerview.ui.fragments.vercitas.VerCitasFragment"
+        android:label="@string/ver_citas"
+        tools:layout="@layout/fragment_ver_citas">
+
+        <action
+            android:id="@+id/action_VerCitasFragment_to_InicioFragment"
+            app:destination="@id/InicioFragment" />
     </fragment>
 </navigation>

@@ -51,4 +51,11 @@
     <string name="formato_tarjeta_incorrecto">Alguno de los campos es incorrecto</string>
     <string name="n_tarjeta_helper">Longitud: 16 caracteres</string>
     <string name="cvv_helper">Ejemplo: 123</string>
+    <string name="pedir_cita">Pedir cita</string>
+    <string name="ver_citas">Ver citas</string>
+    <string name="configuracion">Configuración</string>
+    <string name="compartir">Compartir</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="opciones">Opciones</string>
+    <string name="Inicio">Inicio</string>
 </resources>
