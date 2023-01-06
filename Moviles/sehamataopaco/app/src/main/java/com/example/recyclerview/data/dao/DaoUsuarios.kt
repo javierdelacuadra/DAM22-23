@@ -1,6 +1,7 @@
 package com.example.recyclerview.data.dao
 
 import androidx.room.*
+import com.example.recyclerview.data.modelo.LoginEntity
 import com.example.recyclerview.data.modelo.UsuarioEntity
 import com.example.recyclerview.data.modelo.UsuarioWithCitas
 
@@ -25,4 +26,16 @@ interface DaoUsuarios {
     @Transaction
     @Query("SELECT * FROM usuarios")
     suspend fun getUsuariosWithCitas(): List<UsuarioWithCitas>
+
+    @Query("SELECT EXISTS(SELECT * FROM usuarios WHERE nombre = :nombre AND password = :password)")
+    suspend fun checkLogin(nombre: String, password: String): Boolean
+
+    @Insert
+    suspend fun addUsuarioLogin(usuario: LoginEntity)
+
+    @Query("SELECT * FROM usuarios WHERE nombre = :nombre")
+    suspend fun getUsuarioByNombre(nombre: String): UsuarioEntity
+
+    @Query("SELECT * FROM login LIMIT 1")
+    suspend fun getUsuarioActual(): LoginEntity
 }

@@ -7,6 +7,12 @@
         android:id="@+id/drawer_actions"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/inicioFragment"
+            android:contentDescription="@string/Inicio"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/Inicio"
+            app:showAsAction="never" />
+        <item
             android:id="@+id/pedirCitaFragment"
             android:contentDescription="@string/pedir_cita"
             android:icon="@drawable/ic_baseline_add_card_24"
@@ -24,6 +30,7 @@
         <menu>
             <item
                 android:id="@+id/configFragment"
+                android:icon="@drawable/ic_baseline_settings_24"
                 android:title="@string/configuracion" />
             <item
                 android:id="@+id/compartir"

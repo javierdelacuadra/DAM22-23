@@ -1,8 +1,9 @@
 package com.example.recyclerview.ui.common
 
 object ConstantesUI {
+    const val CITA_CANCELADA = "Cita cancelada"
+    const val ERROR_CANCELAR_CITA = "Error al cancelar la cita"
     const val ERROR_CARGAR_PERSONAS = "Error al cargar las personas"
-    const val ERROR_CARGAR_TARJETAS = "Error al cargar las tarjetas"
     const val PERSONA_ACTUALIZADA = "Persona actualizada"
     const val PERSONA_BORRADA = "Persona borrada"
     const val ERROR_BORRAR_PERSONA = "No se puede borrar porque tiene tarjetas"
@@ -19,8 +20,4 @@ object ConstantesUI {
     const val DESEA_AGREGAR_UNA_PERSONA = "¿Desea agregar una persona?"
     const val NO_HAY_TARJETA = "Tarjetas: 0"
     const val TARJETAS = "Tarjetas: "
-    const val NO_HAY_PERSONAS = "No hay personas"
-    const val NO_HAY_PERSONAS_PARA_TARJETAS = "No hay personas para añadir tarjetas"
-    const val SELECCIONA_UNA_PERSONA = "Selecciona una persona"
-    const val OK = "OK"
 }

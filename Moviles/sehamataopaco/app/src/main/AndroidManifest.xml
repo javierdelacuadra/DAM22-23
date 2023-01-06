@@ -4,24 +4,23 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".timber.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".timber.App"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.Formulario"
         android:supportsRtl="true"
+        android:theme="@style/Theme.Formulario"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.launch.LaunchActivity"
+            android:name=".ui.splashscreen.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -31,9 +30,21 @@
         </activity>
 
         <activity
-            android:theme="@style/Theme.Formulario.NoActionBar"
+            android:name=".ui.loginactivity.LoginActivity"
+            android:parentActivityName=".ui.splashscreen.SplashActivity" />
+
+        <activity
+            android:name=".ui.usuarioactivity.LaunchActivity"
+            android:parentActivityName=".ui.loginactivity.LoginActivity" />
+
+        <activity
+            android:name=".ui.doctoractivity.DoctorActivity"
+            android:parentActivityName=".ui.loginactivity.LoginActivity" />
+
+        <activity
             android:name=".ui.listactivity.ListActivity"
-            android:parentActivityName=".ui.listactivity.ListActivity" />
+            android:parentActivityName=".ui.listactivity.ListActivity"
+            android:theme="@style/Theme.Formulario.NoActionBar" />
 
         <activity
             android:name=".ui.updateactivity.UpdateActivity"
@@ -42,14 +53,6 @@
         <activity
             android:name=".ui.addactivity.AddActivity"
             android:parentActivityName=".ui.listactivity.ListActivity" />
-
-        <activity
-            android:name=".ui.addtarjeta.AddTarjetaActivity"
-            android:parentActivityName=".ui.listactivity.ListActivity" />
-
-        <activity
-            android:name=".ui.listtarjetas.ListTarjetasActivity"
-            android:parentActivityName=".ui.addtarjeta.AddTarjetaActivity" />
 
     </application>
 

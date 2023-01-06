@@ -1,6 +1,7 @@
 package com.example.recyclerview.data.repositories
 
 import com.example.recyclerview.data.dao.DaoDoctores
+import com.example.recyclerview.data.modelo.LoginEntity
 import com.example.recyclerview.data.modelo.toDoctor
 import com.example.recyclerview.data.modelo.toDoctorEntity
 import com.example.recyclerview.domain.modelo.Doctor
@@ -30,7 +31,7 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
             horasDisponibles.add(hora.toString())
         }
 
-        val horasNoDisponibles = dao.getHoras(nombreDoctor)
+        val horasNoDisponibles = dao.getHoras()
         horasDisponibles.removeAll(horasNoDisponibles)
         horasDisponibles.forEachIndexed { index, s ->
             horasDisponibles[index] = "$s:00"
@@ -38,4 +39,16 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
 
         return horasDisponibles
     }
+
+    suspend fun checkLogin(nombre: String, email: String): Boolean {
+        val loginCorrecto = dao.checkLogin(nombre, email)
+        if (loginCorrecto) {
+            val doctor = getDoctor(email)
+            val doctorLogin = LoginEntity(doctor.nombre, doctor.email, "doctor")
+            addDoctorLogin(doctorLogin)
+        }
+        return loginCorrecto
+    }
+
+    suspend fun addDoctorLogin(doctor: LoginEntity) = dao.addDoctorLogin(doctor)
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RoomDatabase</string>
+    <string name="app_name">HospitalGeneral</string>
     <string name="name">name</string>
     <string name="suffixCorreo">\@gmail.com</string>
     <string name="nombre">Nombre</string>
@@ -58,4 +58,10 @@
     <string name="acerca_de">Acerca de</string>
     <string name="opciones">Opciones</string>
     <string name="Inicio">Inicio</string>
+    <string name="inicio_sesion">Iniciar Sesión</string>
+    <string name="logo_salud_madrid">Logo Salud Madrid</string>
+    <string name="salud_madrid">Aplicación</string>
+    <string name="hora_de_la_cita">Hora de la cita</string>
+    <string name="fecha_de_la_cita">Fecha de la cita</string>
+    <string name="idcita">IDCita</string>
 </resources>

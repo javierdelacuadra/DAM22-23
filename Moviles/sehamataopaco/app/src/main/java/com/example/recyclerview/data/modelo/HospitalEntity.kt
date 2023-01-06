@@ -11,5 +11,5 @@ data class HospitalEntity(
     @ColumnInfo(name = "direccion")
     val direccion: String,
     @ColumnInfo(name = "telefono")
-    val telefono: String,
+    val telefono: Int,
 )

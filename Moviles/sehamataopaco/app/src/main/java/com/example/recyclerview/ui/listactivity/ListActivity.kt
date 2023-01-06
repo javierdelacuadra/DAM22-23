@@ -12,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
 import com.example.recyclerview.domain.modelo.Persona
 import com.example.recyclerview.ui.addactivity.AddActivity
-import com.example.recyclerview.ui.addtarjeta.AddTarjetaActivity
 import com.example.recyclerview.ui.common.ConstantesUI
-import com.example.recyclerview.ui.listtarjetas.ListTarjetasActivity
 import com.example.recyclerview.ui.updateactivity.UpdateActivity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -90,34 +87,11 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun loadPantallaAddTarjeta() {
-        if (viewModel.uiState.value?.lista?.isEmpty() == true) {
-            MaterialAlertDialogBuilder(this)
-                .setTitle(ConstantesUI.NO_HAY_PERSONAS)
-                .setMessage(ConstantesUI.NO_HAY_PERSONAS_PARA_TARJETAS)
-                .setPositiveButton(ConstantesUI.OK) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        } else {
-            val builder = MaterialAlertDialogBuilder(this)
-            builder.setTitle(ConstantesUI.SELECCIONA_UNA_PERSONA)
-            val personas = viewModel.uiState.value?.lista
-            val nombres = personas?.map { it.nombre }
-            builder.setItems(nombres?.toTypedArray()) { _, which ->
-                val persona = personas?.get(which)
-                val intent = Intent(this, AddTarjetaActivity::class.java)
-                if (persona != null) {
-                    intent.putExtra(ConstantesUI.EMAIL, persona.email)
-                }
-                startActivity(intent)
-            }
-            builder.show()
-        }
+
     }
 
     private fun loadPantallaVerTarjetas() {
-        val intent = Intent(this, ListTarjetasActivity::class.java)
-        startActivity(intent)
+
     }
 
     private fun borrarPersona(persona: Persona) {

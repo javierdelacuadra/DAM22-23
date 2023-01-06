@@ -20,4 +20,7 @@ interface DaoCitas {
 
     @Query("SELECT * FROM citas WHERE id = :id")
     suspend fun getCita(id: Int): CitaEntity
+
+    @Query("SELECT * FROM citas WHERE emailUsuario = :emailUsuario AND realizada = 0")
+    suspend fun getCitasByUsuario(emailUsuario: String): List<CitaEntity>
 }

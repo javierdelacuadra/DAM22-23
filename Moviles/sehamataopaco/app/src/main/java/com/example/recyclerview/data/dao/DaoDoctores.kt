@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.recyclerview.data.modelo.DoctorEntity
 import com.example.recyclerview.data.modelo.DoctorWithCitas
 import com.example.recyclerview.data.modelo.DoctorWithHospitales
+import com.example.recyclerview.data.modelo.LoginEntity
 
 @Dao
 interface DaoDoctores {
@@ -34,6 +35,15 @@ interface DaoDoctores {
     @Query("SELECT DISTINCT especialidad FROM doctores")
     suspend fun getEspecialidades(): List<String>
 
-    @Query("SELECT hora FROM citas, doctores WHERE doctores.nombre = :nombreDoctor AND citas.emailDoctor = :nombreDoctor AND fecha = CURDATE() AND hora >= CURTIME()")
-    suspend fun getHoras(nombreDoctor: String): List<String>
+    @Query("SELECT EXISTS(SELECT * FROM doctores WHERE nombre = :nombre AND email = :email)")
+    suspend fun checkLogin(nombre: String, email: String): Boolean
+
+    @Insert
+    suspend fun addDoctorLogin(doctor: LoginEntity)
+
+    @Query("SELECT nombre FROM doctores")
+    suspend fun getHoras(): List<String>
+
+//    @Query("SELECT hora FROM doctores, citas WHERE doctores.nombre = :nombreDoctor AND citas.emailDoctor = :nombreDoctor AND citas.fecha = CURDATE() AND hora >= CURTIME()")
+//
 }

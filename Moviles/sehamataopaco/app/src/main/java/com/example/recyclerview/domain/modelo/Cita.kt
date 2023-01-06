@@ -6,4 +6,5 @@ data class Cita(
     val hora: String,
     val emailUsuario: String,
     val emailDoctor: String,
+    val realizada: Int,
 )

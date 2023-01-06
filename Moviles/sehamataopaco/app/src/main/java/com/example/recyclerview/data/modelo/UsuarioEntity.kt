@@ -13,7 +13,7 @@ data class UsuarioEntity(
     @PrimaryKey
     val email: String,
     @ColumnInfo(name = "telefono")
-    val telefono: String,
+    val telefono: Int,
     @ColumnInfo(name = "fecha")
     val fecha: String,
 )

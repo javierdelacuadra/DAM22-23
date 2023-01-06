@@ -18,5 +18,6 @@ class HospitalesRepository @Inject constructor(private val dao: DaoHospitales) {
 
     suspend fun updateHospital(hospital: Hospital) = dao.updateHospital(hospital.toHospitalEntity())
 
-    suspend fun getHospitalesWithDoctores() = dao.getHospitalesWithDoctores().map { it.toHospital() }
+    suspend fun getHospitalesWithDoctores() =
+        dao.getHospitalesWithDoctores().map { it.toHospital() }
 }

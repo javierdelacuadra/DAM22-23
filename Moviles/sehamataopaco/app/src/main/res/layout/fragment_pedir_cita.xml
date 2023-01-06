@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.inicio.InicioFragment">
+    tools:context=".ui.usuarioactivity.fragments.inicio.InicioFragment">
 
     <!--    another textinputlayout for hours-->
 
@@ -51,11 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Seleccione un doctor"
-        app:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.247">
 
         <AutoCompleteTextView
             android:id="@+id/actvDoctores"
@@ -71,11 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Seleccione una hora"
-        app:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.573">
 
         <AutoCompleteTextView
             android:id="@+id/actvHoras"

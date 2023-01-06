@@ -1,8 +1,6 @@
 package com.example.recyclerview.data.modelo
 
 import com.example.recyclerview.domain.modelo.*
-import java.time.LocalDate
-import java.time.LocalTime
 
 fun PersonaEntity.toPersona(): Persona {
     return Persona(
@@ -52,14 +50,13 @@ fun PersonaWithTarjetas.toPersona(): Persona {
 fun CitaEntity.toCita(): Cita {
     return Cita(
         this.id,
-        LocalDate.parse(this.fecha.toString()),
-        LocalTime.parse(this.hora.toString()),
+        this.fecha,
+        this.hora,
         this.emailUsuario,
         this.emailDoctor,
+        this.realizada,
     )
 }
-
-//TODO: comprobar como vienen las fechas y horas
 
 fun Cita.toCitaEntity(): CitaEntity {
     return CitaEntity(
@@ -68,6 +65,7 @@ fun Cita.toCitaEntity(): CitaEntity {
         this.hora,
         this.emailUsuario,
         this.emailDoctor,
+        this.realizada,
     )
 }
 
@@ -76,7 +74,7 @@ fun DoctorEntity.toDoctor(): Doctor {
         this.nombre,
         this.especialidad,
         this.email,
-        LocalDate.parse(this.fecha.toString()),
+        this.fecha,
     )
 }
 
@@ -94,7 +92,7 @@ fun DoctorWithHospitales.toDoctor(): Doctor {
         this.doctor.nombre,
         this.doctor.especialidad,
         this.doctor.email,
-        LocalDate.parse(this.doctor.fecha.toString()),
+        this.doctor.fecha,
         emptyList(),
         this.hospitales.map { it.toHospital() },
     )
@@ -113,7 +111,7 @@ fun DoctorWithCitas.toDoctor(): Doctor {
         this.doctor.nombre,
         this.doctor.especialidad,
         this.doctor.email,
-        LocalDate.parse(this.doctor.fecha.toString()),
+        this.doctor.fecha,
         this.citas.map { it.toCita() },
         emptyList(),
     )

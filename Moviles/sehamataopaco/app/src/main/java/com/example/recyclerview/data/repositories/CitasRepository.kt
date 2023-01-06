@@ -17,4 +17,8 @@ class CitasRepository @Inject constructor(private val daoCitas: DaoCitas) {
     suspend fun updateCita(cita: Cita) = daoCitas.updateCita(cita.toCitaEntity())
 
     suspend fun getCita(id: Int) = daoCitas.getCita(id).toCita()
+
+    suspend fun getCitasByUsuario(email: String): List<Cita> =
+        daoCitas.getCitasByUsuario(email).map { it.toCita() }
+
 }

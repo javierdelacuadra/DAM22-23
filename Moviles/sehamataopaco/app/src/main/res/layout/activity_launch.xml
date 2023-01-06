@@ -29,14 +29,14 @@
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/menu"
                 app:title="Hospital" />
-<!--            TODO: remove toolbar if not used-->
+            <!--            TODO: remove toolbar if not used-->
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.launch.LaunchActivity">
+            tools:context=".ui.usuarioactivity.LaunchActivity">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
