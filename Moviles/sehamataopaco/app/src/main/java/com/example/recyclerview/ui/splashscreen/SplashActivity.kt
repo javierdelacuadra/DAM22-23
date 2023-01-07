@@ -10,7 +10,7 @@ import coil.load
 import com.example.recyclerview.databinding.ActivitySplashBinding
 import com.example.recyclerview.ui.doctoractivity.DoctorActivity
 import com.example.recyclerview.ui.loginactivity.LoginActivity
-import com.example.recyclerview.ui.usuarioactivity.LaunchActivity
+import com.example.recyclerview.ui.usuarioactivity.UsuarioActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
         binding.logoSaludMadrid.load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/SaludMadrid.svg/1200px-SaludMadrid.svg.png")
 
         val handler = Handler(Looper.getMainLooper())
-        viewModel.handleEvent(SplashEvent.checkActualUser)
+        viewModel.handleEvent(SplashEvent.CheckActualUser)
 
         viewModel.uiState.observe(this) { state ->
             state.rol?.let {
@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
                 when (it) {
                     "usuario" -> {
                         handler.postDelayed({
-                            val intent = Intent(this, LaunchActivity::class.java)
+                            val intent = Intent(this, UsuarioActivity::class.java)
                             startActivity(intent)
                             finish()
                         }, 1000)

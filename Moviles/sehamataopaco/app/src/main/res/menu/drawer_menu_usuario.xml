@@ -15,7 +15,7 @@
         <item
             android:id="@+id/pedirCitaFragment"
             android:contentDescription="@string/pedir_cita"
-            android:icon="@drawable/ic_baseline_add_card_24"
+            android:icon="@drawable/ic_baseline_add_box_24"
             android:title="@string/pedir_cita"
             app:showAsAction="never" />
         <item
@@ -29,15 +29,15 @@
     <item android:title="@string/opciones">
         <menu>
             <item
-                android:id="@+id/configFragment"
+                android:id="@+id/repositorioAccess"
                 android:icon="@drawable/ic_baseline_settings_24"
-                android:title="@string/configuracion" />
+                android:title="@string/verRepositorio" />
             <item
-                android:id="@+id/compartir"
-                android:icon="@drawable/ic_baseline_share_24"
-                android:title="@string/compartir" />
+                android:id="@+id/cerrarSesion"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="@string/cerrarSesion" />
             <item
-                android:id="@+id/acercaDeFragment"
+                android:id="@+id/acercaDe"
                 android:icon="@drawable/ic_baseline_info_24"
                 android:title="@string/acerca_de" />
         </menu>

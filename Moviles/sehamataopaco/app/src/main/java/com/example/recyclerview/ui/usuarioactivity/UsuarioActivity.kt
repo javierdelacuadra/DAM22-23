@@ -1,7 +1,10 @@
 package com.example.recyclerview.ui.usuarioactivity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -13,15 +16,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.ActivityLaunchBinding
+import com.example.recyclerview.ui.loginactivity.LoginActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LaunchActivity : AppCompatActivity() {
+class UsuarioActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLaunchBinding
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private val viewModel: LaunchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +48,9 @@ class LaunchActivity : AppCompatActivity() {
                     R.id.InicioFragment,
                     R.id.PedirCitaFragment,
                     R.id.verCitasFragment,
-                    R.id.configFragment,
-                    R.id.acercaDeFragment
+                    R.id.repositorioAccess,
+                    R.id.cerrarSesion,
+                    R.id.acercaDe
                 ), drawerLayout
             )
 
@@ -58,26 +66,41 @@ class LaunchActivity : AppCompatActivity() {
             navView.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.inicioFragment -> {
-                        navController.navigate(R.id.action_global_InicioFragment)
+                        navController.navigate(R.id.action_global_iniciofragment)
                         drawerLayout.close()
                     }
                     R.id.pedirCitaFragment -> {
-                        navController.navigate(R.id.action_global_PedirCitaFragment)
+                        navController.navigate(R.id.action_global_pedircitafragment)
                         drawerLayout.close()
                     }
                     R.id.verCitasFragment -> {
-                        navController.navigate(R.id.action_global_verCitasFragment)
+                        navController.navigate(R.id.action_global_vercitasfragment)
                         drawerLayout.close()
                     }
-                    R.id.configFragment -> {
-                        navController.navigate(R.id.configFragment)
+                    R.id.repositorioAccess -> {
+                        val myProfileURI = Uri.parse("https://github.com/javierdelacuadra")
+                        val intent = Intent(Intent.ACTION_VIEW, myProfileURI)
+                        startActivity(intent)
                         drawerLayout.close()
                     }
-                    R.id.acercaDeFragment -> {
-                        navController.navigate(R.id.acercaDeFragment)
+                    R.id.cerrarSesion -> {
                         drawerLayout.close()
+                        viewModel.handleEvent(LaunchEvent.CerrarSesion)
+                        val intent = Intent(this@UsuarioActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
-                    //TODO: agregar el logout + implementar acciones globales
+                    R.id.acercaDe -> {
+                        drawerLayout.close()
+                        val dialog = MaterialAlertDialogBuilder(this@UsuarioActivity)
+                            .setTitle("Acerca de")
+                            .setMessage("Versión 1.0.0")
+                            .setPositiveButton("Aceptar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .create()
+                        dialog.show()
+                    }
                 }
                 true
             }
@@ -101,21 +124,8 @@ class LaunchActivity : AppCompatActivity() {
                         topAppBar.title = "Ver Citas"
                         topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back_24)
                     }
-                    R.id.configFragment -> {
-                        topAppBar.title = "Configuración"
-                        topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back_24)
-                    }
-                    R.id.acercaDeFragment -> {
-                        topAppBar.title = "Acerca de"
-                        topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back_24)
-                    }
                 }
             }
-
-//            supportActionBar?.setHomeButtonEnabled(true)
-//            topAppBar.visibility = View.GONE
-
-
         }
     }
 

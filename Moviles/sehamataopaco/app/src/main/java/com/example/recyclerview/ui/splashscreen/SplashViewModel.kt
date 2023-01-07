@@ -19,7 +19,7 @@ class SplashViewModel @Inject constructor(
 
     fun handleEvent(event: SplashEvent) {
         when (event) {
-            is SplashEvent.checkActualUser -> getActualUser()
+            is SplashEvent.CheckActualUser -> getActualUser()
         }
     }
 

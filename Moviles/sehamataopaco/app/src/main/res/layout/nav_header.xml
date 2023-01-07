@@ -10,13 +10,13 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_info_24"
-        android:contentDescription="bueno" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Información"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/saludmadrid" />
 </LinearLayout>

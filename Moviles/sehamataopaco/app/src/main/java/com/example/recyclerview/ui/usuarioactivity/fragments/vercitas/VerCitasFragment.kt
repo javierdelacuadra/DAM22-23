@@ -33,20 +33,22 @@ class VerCitasFragment : Fragment() {
 
         viewModel.handleEvent(VerCitasEvent.GetCitas)
 
-        val adapter = AdapterCitas(ArrayList(),
-            object : AdapterCitas.CitaActions {
-                override fun cancelarCita(cita: Cita) {
-                    eliminarCita(cita)
-                }
-            })
+        val adapter = AdapterCitas(ArrayList())
 
         listaCitas = binding.listaCitasUsuario
         listaCitas.adapter = adapter
         listaCitas.layoutManager = GridLayoutManager(requireContext(), 1)
 
+        binding.noCitasPorVer.visibility = View.GONE
+
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             state.citas.let { listaCitas ->
-                adapter.cambiarLista(listaCitas)
+                if (listaCitas.isEmpty()) {
+                    binding.noCitasPorVer.visibility = View.VISIBLE
+                } else {
+                    adapter.cambiarLista(listaCitas)
+                    binding.noCitasPorVer.visibility = View.GONE
+                }
             }
             state.mensaje?.let {
                 Timber.i(it)

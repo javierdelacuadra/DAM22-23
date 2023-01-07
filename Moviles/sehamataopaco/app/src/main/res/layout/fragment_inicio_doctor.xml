@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.usuarioactivity.fragments.inicio.InicioFragment">
+    tools:context=".ui.doctoractivity.fragments.iniciodoctor.InicioDoctorFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:cardBackgroundColor="@color/light_violet"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/light_violet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:padding="10dp"
-                    android:text="@string/noticias"
+                    android:text="@string/comunicado"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
 
@@ -44,14 +44,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:padding="10dp"
-                    android:text="@string/noticiaUsuario"
+                    android:text="@string/noticiaDoctor"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
+
             </LinearLayout>
         </ScrollView>
-
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

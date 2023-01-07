@@ -1,20 +1,21 @@
 package com.example.recyclerview.ui.usuarioactivity.fragments.pedircita
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentPedirCitaBinding
 import com.example.recyclerview.domain.modelo.Cita
+import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.time.LocalDate
 
 @AndroidEntryPoint
 class PedirCitaFragment : Fragment() {
@@ -32,53 +33,87 @@ class PedirCitaFragment : Fragment() {
         _binding = FragmentPedirCitaBinding.inflate(inflater, container, false)
 
         viewModel.handleEvent(PedirCitaEvent.GetEspecialidades)
+        handleOnClickEvents()
+        handleEnabledObjects()
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            state.listaEspecialidades.let {
+            state.listaEspecialidades?.let {
                 val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it)
-                binding.actvEspecialidad.setAdapter(adapter)
-                adapter.notifyDataSetChanged()
+                (binding.actvEspecialidad.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            }
+            state.listaDoctores?.let {
+                val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it)
+                (binding.actvDoctores.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            }
+            state.listaFechas?.let {
+                val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it)
+                (binding.actvFecha.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            }
+            state.listaHoras?.let {
+                val adapter = ArrayAdapter(requireContext(), R.layout.list_item, it)
+                (binding.actvHoras.editText as? AutoCompleteTextView)?.setAdapter(adapter)
             }
             state.mensaje?.let {
                 Timber.i(it)
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                if (it == ConstantesUI.CITA_PEDIDA) {
+                    findNavController().navigate(R.id.action_global_vercitasfragment)
+                }
             }
         }
+        return binding.root
+    }
 
-        binding.actvEspecialidad.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem = parent.getItemAtPosition(position).toString()
+    private fun handleEnabledObjects() {
+        binding.actvDoctores.editText?.isEnabled = false
+        binding.actvFecha.editText?.isEnabled = false
+        binding.actvHoras.editText?.isEnabled = false
+        binding.btnPedirCita.isEnabled = false
+    }
+
+    private fun handleOnClickEvents() {
+
+        binding.listaEspecialidad.setOnItemClickListener() { parent, _, position, _ ->
+            val especialidad = parent.getItemAtPosition(position).toString()
+            viewModel.handleEvent(PedirCitaEvent.ClearStateButEspecialidad)
+            viewModel.handleEvent(PedirCitaEvent.GetDoctores(especialidad))
             binding.actvDoctores.isEnabled = true
-            viewModel.handleEvent(PedirCitaEvent.GetDoctores(selectedItem))
-            val doctorItems = viewModel.uiState.value?.listaDoctores
-            val doctorAdapter = ArrayAdapter(requireContext(), R.layout.list_item, doctorItems!!)
-            binding.actvDoctores.setAdapter(doctorAdapter)
+            binding.actvFecha.isEnabled = false
+            binding.actvHoras.isEnabled = false
+            binding.btnPedirCita.isEnabled = false
+            binding.actvDoctores.editText?.setText("")
+            binding.actvFecha.editText?.setText("")
+            binding.actvHoras.editText?.setText("")
         }
-
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, year, month, dayOfMonth ->
-                val date = LocalDate.of(year, month + 1, dayOfMonth)
-                binding.actvFecha.setText(date.toString())
-            },
-            LocalDate.now().year,
-            LocalDate.now().monthValue - 1,
-            LocalDate.now().dayOfMonth
-        )
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-
-        viewModel.handleEvent(PedirCitaEvent.GetHours(binding.actvDoctores.text.toString()))
-        val hours = viewModel.uiState.value?.listaHoras
-        val hoursAdapter = ArrayAdapter(requireContext(), R.layout.list_item, hours!!)
-        binding.actvHoras.setAdapter(hoursAdapter)
+        binding.listaDoctores.setOnItemClickListener() { parent, _, position, _ ->
+            val nombreDoctor = parent.getItemAtPosition(position).toString()
+            viewModel.handleEvent(PedirCitaEvent.ClearStateButEspecialidadAndDoctor)
+            viewModel.handleEvent(PedirCitaEvent.GetFechas(nombreDoctor))
+            binding.actvFecha.isEnabled = true
+            binding.actvHoras.isEnabled = false
+            binding.btnPedirCita.isEnabled = false
+            binding.actvFecha.editText?.setText("")
+            binding.actvHoras.editText?.setText("")
+        }
+        binding.listaFechas.setOnItemClickListener() { parent, _, position, _ ->
+            val fecha = parent.getItemAtPosition(position).toString()
+            val nombreDoctor = binding.actvDoctores.editText?.text.toString()
+            viewModel.handleEvent(PedirCitaEvent.ClearStateButEspecialidadAndDoctorAndFecha)
+            viewModel.handleEvent(PedirCitaEvent.GetHours(fecha, nombreDoctor))
+            binding.actvHoras.isEnabled = true
+            binding.btnPedirCita.isEnabled = false
+            binding.actvHoras.editText?.setText("")
+        }
+        binding.listaHoras.setOnItemClickListener() { _, _, _, _ ->
+            binding.btnPedirCita.isEnabled = true
+        }
 
         binding.btnPedirCita.setOnClickListener {
-            binding.actvEspecialidad.text.toString()
-            val doctor = binding.actvDoctores.text.toString()
-            val fecha = binding.actvFecha.text.toString()
-            val hora = binding.actvHoras.text.toString()
-            val cita = Cita(0, fecha, hora, "userPlaceHolder", doctor, 0)
+            val nombreDoctor = binding.actvDoctores.editText?.text.toString()
+            val fecha = binding.actvFecha.editText?.text.toString()
+            val hora = binding.actvHoras.editText?.text.toString()
+            val cita = Cita(0, fecha, hora, "userPlaceHolder", nombreDoctor, 0)
+            viewModel.handleEvent(PedirCitaEvent.PedirCita(cita))
         }
-
-        return binding.root
     }
 }

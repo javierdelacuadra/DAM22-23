@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.example.recyclerview.R.layout.activity_login)
         setUpTabs()
+        supportActionBar?.hide()
     }
 
     private fun setUpTabs() {

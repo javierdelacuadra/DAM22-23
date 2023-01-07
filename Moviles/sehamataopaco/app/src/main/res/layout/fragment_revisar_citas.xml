@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.usuarioactivity.fragments.vercitas.VerCitasFragment">
+    tools:context=".ui.doctoractivity.fragments.revisarcitas.RevisarCitasFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaCitasUsuario"
+        android:id="@+id/listaCitasDoctor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="parent"
@@ -16,12 +16,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/noCitasPorVer"
+        android:id="@+id/noCitasPorRevisar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="10dp"
-        android:text="@string/noCitas"
+        android:text="@string/noCitasRevisar"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"

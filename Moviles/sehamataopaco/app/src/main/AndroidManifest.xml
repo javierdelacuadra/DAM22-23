@@ -34,7 +34,7 @@
             android:parentActivityName=".ui.splashscreen.SplashActivity" />
 
         <activity
-            android:name=".ui.usuarioactivity.LaunchActivity"
+            android:name=".ui.usuarioactivity.UsuarioActivity"
             android:parentActivityName=".ui.loginactivity.LoginActivity" />
 
         <activity

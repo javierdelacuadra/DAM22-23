@@ -10,7 +10,16 @@ class CitasRepository @Inject constructor(private val daoCitas: DaoCitas) {
 
     suspend fun getCitas() = daoCitas.getCitas().map { it.toCita() }
 
-    suspend fun addCita(cita: Cita) = daoCitas.addCita(cita.toCitaEntity())
+    suspend fun addCita(cita: Cita) {
+        val citaEntity = cita.toCitaEntity()
+        return daoCitas.addCita(
+            citaEntity.fecha,
+            citaEntity.hora,
+            citaEntity.emailUsuario,
+            citaEntity.emailDoctor,
+            citaEntity.realizada
+        )
+    }
 
     suspend fun deleteCita(cita: Cita) = daoCitas.deleteCita(cita.toCitaEntity())
 
@@ -21,4 +30,8 @@ class CitasRepository @Inject constructor(private val daoCitas: DaoCitas) {
     suspend fun getCitasByUsuario(email: String): List<Cita> =
         daoCitas.getCitasByUsuario(email).map { it.toCita() }
 
+    suspend fun marcarCita(cita: Cita) = daoCitas.marcarCita(cita.toCitaEntity().id)
+
+    suspend fun getCitasByDoctorEmail(email: String): List<Cita> =
+        daoCitas.getCitasByDoctorEmail(email).map { it.toCita() }
 }

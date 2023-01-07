@@ -1,6 +1,9 @@
 package com.example.recyclerview.ui.common
 
 object ConstantesUI {
+    const val CITA_CONFIRMADA = "Cita confirmada"
+    const val CITA_PEDIDA = "Cita pedida"
+    const val SESION_CERRADA = "Sesión cerrada"
     const val CITA_CANCELADA = "Cita cancelada"
     const val ERROR_CANCELAR_CITA = "Error al cancelar la cita"
     const val ERROR_CARGAR_PERSONAS = "Error al cargar las personas"

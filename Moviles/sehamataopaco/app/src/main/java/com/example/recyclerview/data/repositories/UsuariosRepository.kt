@@ -34,7 +34,9 @@ class UsuariosRepository @Inject constructor(private val dao: DaoUsuarios) {
         return loginCorrecto
     }
 
-    suspend fun addUsuarioLogin(usuario: LoginEntity) = dao.addUsuarioLogin(usuario)
+    private suspend fun addUsuarioLogin(usuario: LoginEntity) = dao.addUsuarioLogin(usuario)
 
     suspend fun getUsuarioActual() = dao.getUsuarioActual()
+
+    suspend fun cerrarSesion() = dao.cerrarSesion()
 }

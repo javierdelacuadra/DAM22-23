@@ -34,4 +34,4 @@ data class CitaEntity(
     val emailDoctor: String,
     @ColumnInfo(name = "realizada")
     val realizada: Int,
-)
+) 

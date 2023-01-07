@@ -11,7 +11,7 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
 
     suspend fun getDoctores() = dao.getDoctores().map { it.toDoctor() }
 
-    suspend fun getDoctor(email: String) = dao.getDoctor(email).toDoctor()
+    private suspend fun getDoctor(email: String) = dao.getDoctor(email).toDoctor()
 
     suspend fun addDoctor(doctor: Doctor) = dao.addDoctor(doctor.toDoctorEntity())
 
@@ -25,21 +25,6 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
 
     suspend fun getEspecialidades() = dao.getEspecialidades()
 
-    suspend fun getHoras(nombreDoctor: String): MutableList<String> {
-        val horasDisponibles = mutableListOf<String>()
-        for (hora in 9..19) {
-            horasDisponibles.add(hora.toString())
-        }
-
-        val horasNoDisponibles = dao.getHoras()
-        horasDisponibles.removeAll(horasNoDisponibles)
-        horasDisponibles.forEachIndexed { index, s ->
-            horasDisponibles[index] = "$s:00"
-        }
-
-        return horasDisponibles
-    }
-
     suspend fun checkLogin(nombre: String, email: String): Boolean {
         val loginCorrecto = dao.checkLogin(nombre, email)
         if (loginCorrecto) {
@@ -50,5 +35,7 @@ class DoctoresRepository @Inject constructor(private val dao: DaoDoctores) {
         return loginCorrecto
     }
 
-    suspend fun addDoctorLogin(doctor: LoginEntity) = dao.addDoctorLogin(doctor)
+    private suspend fun addDoctorLogin(doctor: LoginEntity) = dao.addDoctorLogin(doctor)
+
+    suspend fun getDoctorByName(nombre: String) = dao.getDoctorByName(nombre).toDoctor()
 }

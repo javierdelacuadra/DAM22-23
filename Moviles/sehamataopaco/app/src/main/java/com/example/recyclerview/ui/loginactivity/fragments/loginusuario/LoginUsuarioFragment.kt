@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.recyclerview.databinding.FragmentLoginUsuarioBinding
-import com.example.recyclerview.ui.usuarioactivity.LaunchActivity
+import com.example.recyclerview.ui.usuarioactivity.UsuarioActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -55,7 +55,7 @@ class LoginUsuarioFragment : Fragment() {
     }
 
     private fun loadInicioUsuario() {
-        val intent = Intent(requireContext(), LaunchActivity::class.java)
+        val intent = Intent(requireContext(), UsuarioActivity::class.java)
         startActivity(intent)
     }
 

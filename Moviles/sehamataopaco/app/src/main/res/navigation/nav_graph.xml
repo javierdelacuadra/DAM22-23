@@ -39,12 +39,12 @@
             app:destination="@id/PedirCitaFragment" />
     </fragment>
     <action
-        android:id="@+id/action_global_InicioFragment"
+        android:id="@+id/action_global_iniciofragment"
         app:destination="@id/InicioFragment" />
     <action
-        android:id="@+id/action_global_PedirCitaFragment"
+        android:id="@+id/action_global_pedircitafragment"
         app:destination="@id/PedirCitaFragment" />
     <action
-        android:id="@+id/action_global_verCitasFragment"
+        android:id="@+id/action_global_vercitasfragment"
         app:destination="@id/verCitasFragment" />
 </navigation>

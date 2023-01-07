@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.recyclerview.databinding.FragmentLoginDoctorBinding
-import com.example.recyclerview.ui.usuarioactivity.LaunchActivity
+import com.example.recyclerview.ui.doctoractivity.DoctorActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -56,8 +56,7 @@ class LoginDoctorFragment : Fragment() {
     }
 
     private fun loadInicioDoctor() {
-        //TODO: Cargar el inicio del doctor
-        val intent = Intent(requireContext(), LaunchActivity::class.java)
+        val intent = Intent(requireContext(), DoctorActivity::class.java)
         startActivity(intent)
     }
 

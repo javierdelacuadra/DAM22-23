@@ -41,9 +41,7 @@ interface DaoDoctores {
     @Insert
     suspend fun addDoctorLogin(doctor: LoginEntity)
 
-    @Query("SELECT nombre FROM doctores")
-    suspend fun getHoras(): List<String>
+    @Query("SELECT * FROM doctores WHERE nombre = :nombre")
+    suspend fun getDoctorByName(nombre: String): DoctorEntity
 
-//    @Query("SELECT hora FROM doctores, citas WHERE doctores.nombre = :nombreDoctor AND citas.emailDoctor = :nombreDoctor AND citas.fecha = CURDATE() AND hora >= CURTIME()")
-//
 }

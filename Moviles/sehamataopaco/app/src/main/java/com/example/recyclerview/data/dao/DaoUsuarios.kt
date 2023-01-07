@@ -38,4 +38,7 @@ interface DaoUsuarios {
 
     @Query("SELECT * FROM login LIMIT 1")
     suspend fun getUsuarioActual(): LoginEntity
+
+    @Query("DELETE FROM login")
+    suspend fun cerrarSesion()
 }
