@@ -33,14 +33,6 @@ fun DoctorEntity.toDoctor(): Doctor {
     )
 }
 
-fun Doctor.toDoctorEntity(): DoctorEntity {
-    return DoctorEntity(
-        this.nombre,
-        this.especialidad,
-        this.email,
-        this.fecha,
-    )
-}
 
 fun DoctorWithHospitales.toDoctor(): Doctor {
     return Doctor(
@@ -91,16 +83,6 @@ fun Hospital.toHospitalEntity(): HospitalEntity {
 
 fun UsuarioEntity.toUsuario(): Usuario {
     return Usuario(
-        this.nombre,
-        this.password,
-        this.email,
-        this.telefono,
-        this.fecha
-    )
-}
-
-fun Usuario.toUsuarioEntity(): UsuarioEntity {
-    return UsuarioEntity(
         this.nombre,
         this.password,
         this.email,
