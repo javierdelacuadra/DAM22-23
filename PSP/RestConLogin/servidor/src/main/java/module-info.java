@@ -9,4 +9,6 @@ module ServidorRest {
     requires jakarta.mail;
     requires spring.jdbc;
     requires spring.tx;
+    requires jjwt.api;
+    requires jjwt.impl;
 }
