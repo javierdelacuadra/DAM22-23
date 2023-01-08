@@ -78,4 +78,9 @@
     <string name="seleccione_una_fecha">Select a date</string>
     <string name="seleccione_un_doctor">Select a doctor</string>
     <string name="seleccione_una_hora">Select a time</string>
+    <string name="dra_isabel">Dra. Isabel</string>
+    <string name="dr_juan">Dr. Juan</string>
+    <string name="dr_nefario">Dr. Nefario</string>
+    <string name="info">Information</string>
+    <string name="conoce_a_nuestros_doctores">Know our doctors</string>
 </resources>
