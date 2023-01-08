@@ -3,6 +3,8 @@ package ui.pantallas.addarticlescreen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -56,8 +58,16 @@ public class AddArticleScreenController extends BasePantallaController implement
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id_type"));
-        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("id_newspaper"));
+        typeColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            ArticleType type = article.getType();
+            return new SimpleStringProperty(type.getDescription());
+        });
+        newspaperIDColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            Newspaper newspaper = article.getNewspaper();
+            return new SimpleIntegerProperty(newspaper.getId()).asObject();
+        });
         articlesTable.setItems(viewModel.getArticles());
         typeIDComboBox.setItems(viewModel.getArticleTypes());
         newspaperIDComboBox.setItems(viewModel.getNewspapers());

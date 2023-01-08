@@ -59,4 +59,12 @@ public class ServicesArticlesSQL {
     public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
         return daoArticles.getArticlesByNewspaperWithBadRatings(idNewspaper);
     }
+
+    public Either<Integer, List<Article>> getArticlesByNameNewspaper(Newspaper newspaper) {
+        return daoArticles.getArticlesByNameNewspaper(newspaper);
+    }
+
+    public List<Article> getArticlesAndTypes() {
+        return daoArticles.getArticlesAndTypes();
+    }
 }

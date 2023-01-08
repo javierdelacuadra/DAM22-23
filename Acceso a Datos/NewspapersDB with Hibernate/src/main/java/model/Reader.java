@@ -1,13 +1,13 @@
 package model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -22,6 +22,7 @@ import java.time.LocalDate;
         @NamedQuery(name = "HQL_GET_READERS_BY_ARTICLE_TYPE", query = "SELECT r FROM Reader r WHERE r.id IN (SELECT ra.id_reader FROM ReadArticle ra WHERE ra.id IN ( SELECT a.id FROM Article a WHERE a.id IN (SELECT t.id FROM ArticleType t WHERE t.description = :description)))")})
 public class Reader {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;

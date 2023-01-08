@@ -9,8 +9,9 @@
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://dam2.mysql.iesquevedo.es:3335/JavierdelaCuadra-Newspapers"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://dam2.mysql.iesquevedo.es:3335/JavierdelaCuadra-Newspapers"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="quevedo2dam"/>
         </properties>

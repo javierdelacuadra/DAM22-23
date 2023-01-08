@@ -2,6 +2,8 @@ package ui.pantallas.listarticlescreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -9,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
 import model.ArticleType;
+import model.Newspaper;
 import model.Query1;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
@@ -59,8 +62,16 @@ public class ListArticleScreenController extends BasePantallaController implemen
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id_type"));
-        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("id_newspaper"));
+        typeColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            ArticleType type = article.getType();
+            return new SimpleStringProperty(type.getDescription());
+        });
+        newspaperIDColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            Newspaper newspaper = article.getNewspaper();
+            return new SimpleIntegerProperty(newspaper.getId()).asObject();
+        });
         articlesTable.setItems(viewModel.getArticles());
         articlesQueryTable.setVisible(false);
         nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));

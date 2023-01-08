@@ -2,12 +2,15 @@ package ui.pantallas.updatearticlescreen;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
+import model.ArticleType;
+import model.Newspaper;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -32,7 +35,7 @@ public class UpdateArticleController extends BasePantallaController implements I
     private TableColumn<Article, String> nameColumn;
 
     @FXML
-    private TableColumn<Article, String> typeColumn;
+    private TableColumn<Article, Integer> typeColumn;
 
     @FXML
     private TableColumn<Article, Integer> newspaperIDColumn;
@@ -47,8 +50,16 @@ public class UpdateArticleController extends BasePantallaController implements I
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id_type"));
-        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("id_newspaper"));
+        typeColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            ArticleType type = article.getType();
+            return new SimpleIntegerProperty(type.getId()).asObject();
+        });
+        newspaperIDColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            Newspaper newspaper = article.getNewspaper();
+            return new SimpleIntegerProperty(newspaper.getId()).asObject();
+        });
         articlesTable.setItems(viewModel.getArticles());
     }
 
@@ -58,12 +69,11 @@ public class UpdateArticleController extends BasePantallaController implements I
             article.setId(articlesTable.getSelectionModel().getSelectedItem().getId());
             article.setName_article(nameTextField.getText());
             try {
-                article.getType().setId(Integer.parseInt(typeTextField.getText()));
+                article.setType(new ArticleType(Integer.parseInt(typeTextField.getText())));
             } catch (NumberFormatException e) {
-                this.getPrincipalController().createAlert("QUE TE CREES QUE ES UNA LETRA? UN NUMERO ES!");
-                //TODO: diarios de copilot capítulo 1 se le ha ido la cabeza
+                this.getPrincipalController().createAlert("The type must be a number");
             }
-            article.getNewspaper().setId(articlesTable.getSelectionModel().getSelectedItem().getNewspaper().getId());
+            article.setNewspaper(articlesTable.getSelectionModel().getSelectedItem().getNewspaper());
             if (viewModel.updateArticle(article) == 1) {
                 articlesTable.getSelectionModel().getSelectedItem().setName_article(nameTextField.getText());
                 articlesTable.getSelectionModel().getSelectedItem().getType().setId(Integer.parseInt(typeTextField.getText()));

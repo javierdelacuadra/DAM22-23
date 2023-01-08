@@ -235,9 +235,8 @@ public class DaoArticles {
             if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
             return -1;
-        }
-        finally {
-            if (em != null)  em.close();
+        } finally {
+            if (em != null) em.close();
         }
     }
 
@@ -255,9 +254,8 @@ public class DaoArticles {
             if (tx.isActive()) tx.rollback();
             e.printStackTrace();
             return -1;
-        }
-        finally {
-            if (em != null)  em.close();
+        } finally {
+            if (em != null) em.close();
         }
     }
 
@@ -278,5 +276,41 @@ public class DaoArticles {
         } finally {
             if (em != null) em.close();
         }
+    }
+
+    public Either<Integer, List<Article>> getArticlesByNameNewspaper(Newspaper newspaper) {
+        List<Article> articles = new ArrayList<>();
+        em = jpaUtil.getEntityManager();
+
+        try {
+            articles = em
+                    .createNamedQuery("HQL_GET_ARTICLES_BY_NEWSPAPER", Article.class)
+                    .setParameter("newspaperID", newspaper.getId())
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
+        }
+
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    public List<Article> getArticlesAndTypes() {
+        em = jpaUtil.getEntityManager();
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            articles = em
+                    .createNamedQuery("HQL_GET_ALL_ARTICLES_AND_TYPES", Article.class)
+                    .getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
+        }
+        return articles;
     }
 }

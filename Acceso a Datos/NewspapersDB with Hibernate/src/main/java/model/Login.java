@@ -1,13 +1,14 @@
 package model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"reader"})
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name = "login")
 @NamedQueries({
@@ -18,8 +19,9 @@ public class Login {
     private String name;
     @Column(name = "password")
     private String password;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_reader")
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "id_reader", referencedColumnName = "id", nullable = false)
     private Reader reader;
 
     public Login(String name, String password) {

@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Login;
 import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
@@ -56,7 +55,7 @@ public class UpdateReaderController extends BasePantallaController implements In
             Reader reader = new Reader(
                     readersTable.getSelectionModel().getSelectedItem().getId(),
                     nameTextField.getText(),
-                    birthDatePicker.getValue(), new Login(nameTextField.getText()));
+                    birthDatePicker.getValue(), readersTable.getSelectionModel().getSelectedItem().getLogin());
             if (viewModel.updateReader(reader) == 1) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());

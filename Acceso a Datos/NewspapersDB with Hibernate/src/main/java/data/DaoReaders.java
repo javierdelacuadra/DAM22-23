@@ -89,14 +89,16 @@ public class DaoReaders {
     }
 
     public int save(Reader reader) {
+        Login login = reader.getLogin();
+        login.setReader(reader);
+
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
 
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.persist(reader);
-            em.persist(reader.getLogin());
+            em.persist(login);
             tx.commit();
         } catch (PersistenceException e) {
             if (tx != null) tx.rollback();
@@ -135,8 +137,10 @@ public class DaoReaders {
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.remove(reader.getLogin());
-            em.remove(reader);
+            Reader readerToDelete = em.find(Reader.class, reader.getId());
+            Login loginToDelete = readerToDelete.getLogin();
+            loginToDelete.setReader(readerToDelete);
+            em.remove(em.merge(loginToDelete));
             tx.commit();
         } catch (PersistenceException e) {
             if (tx != null) tx.rollback();
@@ -157,7 +161,6 @@ public class DaoReaders {
             tx = em.getTransaction();
             tx.begin();
             em.merge(reader);
-            em.merge(reader.getLogin());
             tx.commit();
             return 1;
         } catch (PersistenceException e) {
