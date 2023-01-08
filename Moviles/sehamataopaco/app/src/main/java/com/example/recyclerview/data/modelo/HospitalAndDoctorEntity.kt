@@ -1,20 +1,21 @@
 package com.example.recyclerview.data.modelo
 
 import androidx.room.Entity
+import com.example.recyclerview.data.common.Constantes
 
 @Entity(
-    tableName = "hospitalesDoctores",
-    primaryKeys = ["nombre", "email"],
+    tableName = Constantes.HOSPITALES_DOCTORES,
+    primaryKeys = [Constantes.NOMBRE, Constantes.EMAIL],
     foreignKeys = [
         androidx.room.ForeignKey(
             entity = HospitalEntity::class,
-            parentColumns = ["nombre"],
-            childColumns = ["nombre"],
+            parentColumns = [Constantes.NOMBRE],
+            childColumns = [Constantes.NOMBRE],
         ),
         androidx.room.ForeignKey(
             entity = DoctorEntity::class,
-            parentColumns = ["email"],
-            childColumns = ["email"],
+            parentColumns = [Constantes.EMAIL],
+            childColumns = [Constantes.EMAIL],
         ),
     ]
 )

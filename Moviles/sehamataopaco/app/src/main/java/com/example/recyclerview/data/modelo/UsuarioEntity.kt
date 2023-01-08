@@ -3,17 +3,18 @@ package com.example.recyclerview.data.modelo
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.recyclerview.data.common.Constantes
 
-@Entity(tableName = "usuarios")
+@Entity(tableName = Constantes.USUARIOS)
 data class UsuarioEntity(
-    @ColumnInfo(name = "nombre")
+    @ColumnInfo(name = Constantes.NOMBRE)
     val nombre: String,
-    @ColumnInfo(name = "password")
+    @ColumnInfo(name = Constantes.PASSWORD)
     val password: String,
     @PrimaryKey
     val email: String,
-    @ColumnInfo(name = "telefono")
+    @ColumnInfo(name = Constantes.TELEFONO)
     val telefono: Int,
-    @ColumnInfo(name = "fecha")
+    @ColumnInfo(name = Constantes.FECHA)
     val fecha: String,
 )

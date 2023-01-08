@@ -1,10 +1,11 @@
-package com.example.recyclerview.ui.splashscreen
+package com.example.recyclerview.ui.splashactivity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.domain.usecases.login.GetActualUserUseCase
+import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,13 +28,13 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val actualUser = checkActualUser.invoke()
-                if (actualUser.rol == "usuario") {
+                if (actualUser.rol == ConstantesUI.USUARIO) {
                     _uiState.value = _uiState.value?.copy(rol = actualUser.rol)
-                } else if (actualUser.rol == "doctor") {
+                } else if (actualUser.rol == ConstantesUI.DOCTOR) {
                     _uiState.value = _uiState.value?.copy(rol = actualUser.rol)
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value?.copy(rol = "Nada")
+                _uiState.value = _uiState.value?.copy(rol = ConstantesUI.ROL_NADA)
             }
         }
     }

@@ -11,15 +11,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LaunchViewModel @Inject constructor(
+class UsuarioViewModel @Inject constructor(
     private val cerrarSesion: CerrarSesionUseCase,
 ) : ViewModel() {
-    private val _uiState = MutableLiveData(LaunchState(null))
-    val uiState: LiveData<LaunchState> get() = _uiState
+    private val _uiState = MutableLiveData(UsuarioState(null))
+    val uiState: LiveData<UsuarioState> get() = _uiState
 
-    fun handleEvent(event: LaunchEvent) {
+    fun handleEvent(event: UsuarioEvent) {
         when (event) {
-            is LaunchEvent.CerrarSesion -> cerrarSesion()
+            is UsuarioEvent.CerrarSesion -> cerrarSesion()
         }
     }
 

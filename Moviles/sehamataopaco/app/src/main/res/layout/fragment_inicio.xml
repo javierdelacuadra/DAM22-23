@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         app:cardBackgroundColor="@color/light_violet"
@@ -30,23 +30,51 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/titulonoticia1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:padding="10dp"
-                    android:text="@string/noticias"
-                    android:textColor="@color/black"
-                    android:textSize="36sp" />
+                    android:text="@string/conoce_a_nuestros_doctores"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/dr_juan"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/dr_juan" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:padding="10dp"
-                    android:text="@string/noticiaUsuario"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:text="@string/dr_juan"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/dra_isabel"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/dra_isabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/dra_isabel"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/dr_nefario"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/dr_nefario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/dr_nefario"
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </ScrollView>

@@ -7,13 +7,13 @@
         android:id="@+id/drawer_actions"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/inicioFragment"
+            android:id="@+id/doctoriniciofragment"
             android:contentDescription="@string/Inicio"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/Inicio"
             app:showAsAction="never" />
         <item
-            android:id="@+id/RevisarCitasFragment"
+            android:id="@+id/revisarcitasFragment"
             android:contentDescription="@string/revisar_citas"
             android:icon="@drawable/ic_baseline_calendar_month_24"
             android:title="@string/revisar_citas"

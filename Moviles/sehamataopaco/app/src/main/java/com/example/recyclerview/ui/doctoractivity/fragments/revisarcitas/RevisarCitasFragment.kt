@@ -27,7 +27,6 @@ class RevisarCitasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentRevisarCitasBinding.inflate(inflater, container, false)
 
         viewModel.handleEvent(RevisarCitasEvent.GetCitas)
@@ -50,15 +49,14 @@ class RevisarCitasFragment : Fragment() {
                 if (listaCitas.isEmpty()) {
                     binding.noCitasPorRevisar.visibility = View.VISIBLE
                 } else {
-                    adapter.cambiarLista(listaCitas)
                     binding.noCitasPorRevisar.visibility = View.GONE
                 }
+                adapter.cambiarLista(listaCitas)
             }
             state.mensaje?.let {
                 Timber.i(it)
                 if (it == ConstantesUI.CITA_CONFIRMADA) {
-                    //TODO: remove the item from the list
-
+                    viewModel.handleEvent(RevisarCitasEvent.GetCitas)
                 }
             }
         }

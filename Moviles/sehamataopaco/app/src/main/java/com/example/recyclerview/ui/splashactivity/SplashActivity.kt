@@ -1,4 +1,4 @@
-package com.example.recyclerview.ui.splashscreen
+package com.example.recyclerview.ui.splashactivity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.recyclerview.databinding.ActivitySplashBinding
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.doctoractivity.DoctorActivity
 import com.example.recyclerview.ui.loginactivity.LoginActivity
 import com.example.recyclerview.ui.usuarioactivity.UsuarioActivity
@@ -28,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        binding.logoSaludMadrid.load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/SaludMadrid.svg/1200px-SaludMadrid.svg.png")
+        binding.logoSaludMadrid.load(ConstantesUI.SPLASH_LOGO_URL)
 
         val handler = Handler(Looper.getMainLooper())
         viewModel.handleEvent(SplashEvent.CheckActualUser)
@@ -37,14 +38,14 @@ class SplashActivity : AppCompatActivity() {
             state.rol?.let {
                 Timber.d("Role: $it")
                 when (it) {
-                    "usuario" -> {
+                    ConstantesUI.USUARIO -> {
                         handler.postDelayed({
                             val intent = Intent(this, UsuarioActivity::class.java)
                             startActivity(intent)
                             finish()
                         }, 1000)
                     }
-                    "doctor" -> {
+                    ConstantesUI.DOCTOR -> {
                         handler.postDelayed({
                             val intent = Intent(this, DoctorActivity::class.java)
                             startActivity(intent)

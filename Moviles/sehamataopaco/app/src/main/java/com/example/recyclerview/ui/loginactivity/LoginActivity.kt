@@ -3,6 +3,7 @@ package com.example.recyclerview.ui.loginactivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.loginactivity.fragments.logindoctor.LoginDoctorFragment
 import com.example.recyclerview.ui.loginactivity.fragments.loginusuario.LoginUsuarioFragment
 import com.google.android.material.tabs.TabLayout
@@ -21,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
     private fun setUpTabs() {
         val viewPager = findViewById<ViewPager>(com.example.recyclerview.R.id.viewPager)
         val pagerAdapter = MyPagerAdapter(supportFragmentManager)
-        pagerAdapter.addFragment(LoginUsuarioFragment(), "Acceso Usuario")
-        pagerAdapter.addFragment(LoginDoctorFragment(), "Acceso Doctor")
+        pagerAdapter.addFragment(LoginUsuarioFragment(), ConstantesUI.ACCESO_USUARIO)
+        pagerAdapter.addFragment(LoginDoctorFragment(), ConstantesUI.ACCESO_DOCTOR)
         viewPager.adapter = pagerAdapter
         val tabLayout = findViewById<TabLayout>(com.example.recyclerview.R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)

@@ -21,8 +21,14 @@ interface DaoCitas {
     @Update
     suspend fun updateCita(cita: CitaEntity)
 
-    @Delete
-    suspend fun deleteCita(cita: CitaEntity)
+    @Query("DELETE FROM citas WHERE fecha = :fecha AND hora = :hora AND emailUsuario = :emailUsuario AND emailDoctor = :emailDoctor AND realizada = :realizada")
+    suspend fun deleteCita(
+        fecha: String,
+        hora: String,
+        emailUsuario: String,
+        emailDoctor: String,
+        realizada: Int
+    )
 
     @Query("SELECT * FROM citas WHERE id = :id")
     suspend fun getCita(id: Int): CitaEntity
@@ -32,9 +38,6 @@ interface DaoCitas {
 
     @Query("UPDATE citas SET realizada = 1 WHERE id = :id")
     suspend fun marcarCita(id: Int): Int
-
-    @Query("SELECT * FROM citas WHERE emailDoctor = :email AND realizada = 0")
-    suspend fun getCitasByDoctor(email: String): List<CitaEntity>
 
     @Query("SELECT * FROM citas WHERE emailDoctor = :email AND realizada = 0")
     suspend fun getCitasByDoctorEmail(email: String): List<CitaEntity>

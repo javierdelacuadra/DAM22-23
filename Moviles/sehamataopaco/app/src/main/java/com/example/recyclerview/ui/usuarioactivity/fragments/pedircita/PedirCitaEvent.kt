@@ -9,6 +9,7 @@ sealed interface PedirCitaEvent {
     data class GetHours(val fecha: String, val nombreDoctor: String) : PedirCitaEvent
 
     data class PedirCita(val cita: Cita) : PedirCitaEvent
+    data class DeshacerCita(val cita: Cita) : PedirCitaEvent
 
     object ClearStateButEspecialidad : PedirCitaEvent
     object ClearStateButEspecialidadAndDoctor : PedirCitaEvent

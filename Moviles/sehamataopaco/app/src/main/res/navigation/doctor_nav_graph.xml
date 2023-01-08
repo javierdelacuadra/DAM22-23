@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/doctor_nav_graph"
-    app:startDestination="@id/DoctorInicioFragment">
+    app:startDestination="@id/doctoriniciofragment">
 
     <fragment
-        android:id="@+id/DoctorInicioFragment"
+        android:id="@+id/doctoriniciofragment"
         android:name="com.example.recyclerview.ui.doctoractivity.fragments.iniciodoctor.InicioDoctorFragment"
         android:label="@string/Inicio"
         tools:layout="@layout/fragment_inicio_doctor" />
     <fragment
-        android:id="@+id/RevisarCitasFragment"
+        android:id="@+id/revisarcitasFragment"
         android:name="com.example.recyclerview.ui.doctoractivity.fragments.revisarcitas.RevisarCitasFragment"
         android:label="@string/revisar_citas"
         tools:layout="@layout/fragment_revisar_citas" />
     <action
         android:id="@+id/action_global_doctoriniciofragment"
-        app:destination="@id/DoctorInicioFragment" />
+        app:destination="@id/doctoriniciofragment" />
     <action
         android:id="@+id/action_global_revisarcitasfragment"
-        app:destination="@id/RevisarCitasFragment" />
+        app:destination="@id/revisarcitasFragment" />
 </navigation>

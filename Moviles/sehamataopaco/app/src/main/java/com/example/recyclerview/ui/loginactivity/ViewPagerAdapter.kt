@@ -21,7 +21,7 @@ class MyPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter(f
         return mFragmentList.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mFragmentTitleList[position]
     }
 }

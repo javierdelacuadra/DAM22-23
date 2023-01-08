@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.domain.modelo.Cita
+import com.example.recyclerview.domain.usecases.citas.CancelarCitaUseCase
 import com.example.recyclerview.domain.usecases.citas.PedirCitaUseCase
 import com.example.recyclerview.domain.usecases.doctores.*
 import com.example.recyclerview.domain.usecases.login.GetActualUserUseCase
@@ -21,7 +22,8 @@ class PedirCitaViewModel @Inject constructor(
     private val getHoras: GetHoursUseCase,
     private val pedirCita: PedirCitaUseCase,
     private val getUsuarioActual: GetActualUserUseCase,
-    private val getDoctorByName: GetDoctorByNameUseCase
+    private val getDoctorByName: GetDoctorByNameUseCase,
+    private val cancelarCita: CancelarCitaUseCase
 ) : ViewModel() {
     private val _uiState = MutableLiveData(PedirCitaState(null))
     val uiState: LiveData<PedirCitaState> get() = _uiState
@@ -33,6 +35,7 @@ class PedirCitaViewModel @Inject constructor(
             is PedirCitaEvent.GetFechas -> cargarFechas(event.nombreDoctor)
             is PedirCitaEvent.GetHours -> cargarHoras(event.fecha, event.nombreDoctor)
             is PedirCitaEvent.PedirCita -> pedirCita(event.cita)
+            is PedirCitaEvent.DeshacerCita -> deshacerCita(event.cita)
             is PedirCitaEvent.ClearStateButEspecialidad -> clearStateButEspecialidad()
             is PedirCitaEvent.ClearStateButEspecialidadAndDoctor -> clearStateButEspecialidadAndDoctor()
             is PedirCitaEvent.ClearStateButEspecialidadAndDoctorAndFecha -> clearStateButEspecialidadAndDoctorAndFecha()
@@ -90,6 +93,18 @@ class PedirCitaViewModel @Inject constructor(
                 val doctor = getDoctorByName.invoke(cita.emailDoctor)
                 cita.emailDoctor = doctor.email
                 pedirCita.invoke(cita)
+                _uiState.value = _uiState.value?.copy(cita = cita)
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.ERROR_CARGAR_PERSONAS)
+            }
+        }
+    }
+
+    private fun deshacerCita(cita: Cita) {
+        viewModelScope.launch {
+            try {
+                cancelarCita.invoke(cita)
+                _uiState.value = _uiState.value?.copy(cita = cita)
                 _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.CITA_PEDIDA)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value?.copy(mensaje = ConstantesUI.ERROR_CARGAR_PERSONAS)
@@ -98,7 +113,6 @@ class PedirCitaViewModel @Inject constructor(
     }
 
     private fun clearStateButEspecialidad() {
-
         _uiState.value = _uiState.value?.copy(listaDoctores = null)
         _uiState.value = _uiState.value?.copy(listaFechas = null)
         _uiState.value = _uiState.value?.copy(listaHoras = null)

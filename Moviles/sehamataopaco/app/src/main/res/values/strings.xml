@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HospitalGeneral</string>
+    <string name="app_name">Hospital Quevedo</string>
     <string name="name">name</string>
     <string name="suffixCorreo">\@gmail.com</string>
     <string name="nombre">Nombre</string>
@@ -100,4 +100,9 @@ Director del hospital</string>
     <string name="seleccione_una_fecha">Seleccione una fecha</string>
     <string name="seleccione_un_doctor">Seleccione un doctor</string>
     <string name="seleccione_una_hora">Seleccione una hora</string>
+    <string name="dra_isabel">Dra. Isabel</string>
+    <string name="dr_juan">Dr. Juan</string>
+    <string name="dr_nefario">Dr. Nefario</string>
+    <string name="info">Información</string>
+    <string name="conoce_a_nuestros_doctores">Conoce a nuestros doctores</string>
 </resources>

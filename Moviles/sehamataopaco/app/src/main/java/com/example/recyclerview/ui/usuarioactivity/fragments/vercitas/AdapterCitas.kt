@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.ListCitasUsuarioBinding
 import com.example.recyclerview.domain.modelo.Cita
+import com.example.recyclerview.ui.common.ConstantesUI
 
 class AdapterCitas(
     private var citas: List<Cita>,
@@ -38,9 +39,9 @@ class CitasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     ) {
 
         with(binding) {
-            idCita.text = "ID de la cita = " + cita.id.toString()
-            fechaCita.text = "Fecha de la cita = " + cita.fecha
-            horaCita.text = "Hora de la cita = " + cita.hora
+            idCita.text = ConstantesUI.ID_DE_LA_CITA + cita.id.toString()
+            fechaCita.text = ConstantesUI.FECHA_DE_LA_CITA + cita.fecha
+            horaCita.text = ConstantesUI.HORA_DE_LA_CITA + cita.hora
         }
     }
 }

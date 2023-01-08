@@ -21,11 +21,16 @@ class CitasRepository @Inject constructor(private val daoCitas: DaoCitas) {
         )
     }
 
-    suspend fun deleteCita(cita: Cita) = daoCitas.deleteCita(cita.toCitaEntity())
-
-    suspend fun updateCita(cita: Cita) = daoCitas.updateCita(cita.toCitaEntity())
-
-    suspend fun getCita(id: Int) = daoCitas.getCita(id).toCita()
+    suspend fun deleteCita(cita: Cita) {
+        val citaABorrar = cita.toCitaEntity()
+        return daoCitas.deleteCita(
+            citaABorrar.fecha,
+            citaABorrar.hora,
+            citaABorrar.emailUsuario,
+            citaABorrar.emailDoctor,
+            citaABorrar.realizada
+        )
+    }
 
     suspend fun getCitasByUsuario(email: String): List<Cita> =
         daoCitas.getCitasByUsuario(email).map { it.toCita() }

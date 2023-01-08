@@ -14,6 +14,7 @@ import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentPedirCitaBinding
 import com.example.recyclerview.domain.modelo.Cita
 import com.example.recyclerview.ui.common.ConstantesUI
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -29,7 +30,6 @@ class PedirCitaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentPedirCitaBinding.inflate(inflater, container, false)
 
         viewModel.handleEvent(PedirCitaEvent.GetEspecialidades)
@@ -56,9 +56,23 @@ class PedirCitaFragment : Fragment() {
             state.mensaje?.let {
                 Timber.i(it)
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                if (it == ConstantesUI.CITA_PEDIDA) {
-                    findNavController().navigate(R.id.action_global_vercitasfragment)
-                }
+            }
+            state.cita?.let { cita ->
+                binding.actvEspecialidad.isEnabled = false
+                binding.actvDoctores.isEnabled = false
+                binding.actvFecha.isEnabled = false
+                binding.actvHoras.isEnabled = false
+                binding.btnPedirCita.isEnabled = false
+                Snackbar.make(
+                    binding.root,
+                    ConstantesUI.CITA_PEDIDA_CON_EXITO,
+                    Snackbar.LENGTH_LONG
+                )
+                    .setAction(ConstantesUI.DESHACER) {
+                        viewModel.handleEvent(PedirCitaEvent.DeshacerCita(cita))
+                        findNavController().navigate(R.id.action_global_pedircitafragment)
+                    }
+                    .show()
             }
         }
         return binding.root
@@ -81,9 +95,9 @@ class PedirCitaFragment : Fragment() {
             binding.actvFecha.isEnabled = false
             binding.actvHoras.isEnabled = false
             binding.btnPedirCita.isEnabled = false
-            binding.actvDoctores.editText?.setText("")
-            binding.actvFecha.editText?.setText("")
-            binding.actvHoras.editText?.setText("")
+            binding.actvDoctores.editText?.setText(ConstantesUI.NADA)
+            binding.actvFecha.editText?.setText(ConstantesUI.NADA)
+            binding.actvHoras.editText?.setText(ConstantesUI.NADA)
         }
         binding.listaDoctores.setOnItemClickListener() { parent, _, position, _ ->
             val nombreDoctor = parent.getItemAtPosition(position).toString()
@@ -92,8 +106,8 @@ class PedirCitaFragment : Fragment() {
             binding.actvFecha.isEnabled = true
             binding.actvHoras.isEnabled = false
             binding.btnPedirCita.isEnabled = false
-            binding.actvFecha.editText?.setText("")
-            binding.actvHoras.editText?.setText("")
+            binding.actvFecha.editText?.setText(ConstantesUI.NADA)
+            binding.actvHoras.editText?.setText(ConstantesUI.NADA)
         }
         binding.listaFechas.setOnItemClickListener() { parent, _, position, _ ->
             val fecha = parent.getItemAtPosition(position).toString()
@@ -102,7 +116,7 @@ class PedirCitaFragment : Fragment() {
             viewModel.handleEvent(PedirCitaEvent.GetHours(fecha, nombreDoctor))
             binding.actvHoras.isEnabled = true
             binding.btnPedirCita.isEnabled = false
-            binding.actvHoras.editText?.setText("")
+            binding.actvHoras.editText?.setText(ConstantesUI.NADA)
         }
         binding.listaHoras.setOnItemClickListener() { _, _, _, _ ->
             binding.btnPedirCita.isEnabled = true
@@ -112,7 +126,7 @@ class PedirCitaFragment : Fragment() {
             val nombreDoctor = binding.actvDoctores.editText?.text.toString()
             val fecha = binding.actvFecha.editText?.text.toString()
             val hora = binding.actvHoras.editText?.text.toString()
-            val cita = Cita(0, fecha, hora, "userPlaceHolder", nombreDoctor, 0)
+            val cita = Cita(0, fecha, hora, ConstantesUI.EMAIL_USUARIO_PLACEHOLDER, nombreDoctor, 0)
             viewModel.handleEvent(PedirCitaEvent.PedirCita(cita))
         }
     }

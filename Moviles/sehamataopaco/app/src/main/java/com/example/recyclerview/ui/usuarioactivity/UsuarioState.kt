@@ -1,5 +1,5 @@
 package com.example.recyclerview.ui.usuarioactivity
 
-data class LaunchState(
+data class UsuarioState(
     val mensaje: String? = null,
 )

@@ -17,7 +17,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.splashscreen.SplashActivity"
+            android:name=".ui.splashactivity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
 
         <activity
             android:name=".ui.loginactivity.LoginActivity"
-            android:parentActivityName=".ui.splashscreen.SplashActivity" />
+            android:parentActivityName=".ui.splashactivity.SplashActivity" />
 
         <activity
             android:name=".ui.usuarioactivity.UsuarioActivity"
@@ -40,19 +40,6 @@
         <activity
             android:name=".ui.doctoractivity.DoctorActivity"
             android:parentActivityName=".ui.loginactivity.LoginActivity" />
-
-        <activity
-            android:name=".ui.listactivity.ListActivity"
-            android:parentActivityName=".ui.listactivity.ListActivity"
-            android:theme="@style/Theme.Formulario.NoActionBar" />
-
-        <activity
-            android:name=".ui.updateactivity.UpdateActivity"
-            android:parentActivityName=".ui.listactivity.ListActivity" />
-
-        <activity
-            android:name=".ui.addactivity.AddActivity"
-            android:parentActivityName=".ui.listactivity.ListActivity" />
 
     </application>
 

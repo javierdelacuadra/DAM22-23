@@ -15,7 +15,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.recyclerview.R
-import com.example.recyclerview.databinding.ActivityLaunchBinding
+import com.example.recyclerview.databinding.ActivityUsuarioBinding
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.loginactivity.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,21 +24,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class UsuarioActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLaunchBinding
+    private lateinit var binding: ActivityUsuarioBinding
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    private val viewModel: LaunchViewModel by viewModels()
+    private val viewModel: UsuarioViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLaunchBinding.inflate(layoutInflater)
+        binding = ActivityUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding) {
 
-            //setSupportActionBar(topAppBar)
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
             navController = navHostFragment.findNavController()
@@ -59,7 +59,7 @@ class UsuarioActivity : AppCompatActivity() {
             navView.setupWithNavController(navController)
 
             topAppBar.setNavigationOnClickListener {
-                Log.i("TAG", navController.currentDestination?.id.toString())
+                Log.i(ConstantesUI.TAG, navController.currentDestination?.id.toString())
                 drawerLayout.open()
             }
 
@@ -78,14 +78,14 @@ class UsuarioActivity : AppCompatActivity() {
                         drawerLayout.close()
                     }
                     R.id.repositorioAccess -> {
-                        val myProfileURI = Uri.parse("https://github.com/javierdelacuadra")
+                        val myProfileURI = Uri.parse(ConstantesUI.LINK_GITHUB)
                         val intent = Intent(Intent.ACTION_VIEW, myProfileURI)
                         startActivity(intent)
                         drawerLayout.close()
                     }
                     R.id.cerrarSesion -> {
                         drawerLayout.close()
-                        viewModel.handleEvent(LaunchEvent.CerrarSesion)
+                        viewModel.handleEvent(UsuarioEvent.CerrarSesion)
                         val intent = Intent(this@UsuarioActivity, LoginActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -93,9 +93,9 @@ class UsuarioActivity : AppCompatActivity() {
                     R.id.acercaDe -> {
                         drawerLayout.close()
                         val dialog = MaterialAlertDialogBuilder(this@UsuarioActivity)
-                            .setTitle("Acerca de")
-                            .setMessage("Versión 1.0.0")
-                            .setPositiveButton("Aceptar") { dialog, _ ->
+                            .setTitle(ConstantesUI.ACERCA_DE)
+                            .setMessage(ConstantesUI.MENSAJE_ACERCA_DE)
+                            .setPositiveButton(ConstantesUI.ACEPTAR) { dialog, _ ->
                                 dialog.dismiss()
                             }
                             .create()
@@ -108,20 +108,20 @@ class UsuarioActivity : AppCompatActivity() {
             topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_menu_24)
 
             navController.addOnDestinationChangedListener { _, destination, arguments ->
-                topAppBar.isVisible = arguments?.getBoolean("ShowAppBar", false) == true
+                topAppBar.isVisible = arguments?.getBoolean(ConstantesUI.SHOWAPPBAR, false) == true
                 topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_menu_24)
 
                 when (destination.id) {
                     R.id.InicioFragment -> {
-                        topAppBar.title = "Inicio"
+                        topAppBar.title = ConstantesUI.INICIO
                         topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_menu_24)
                     }
                     R.id.PedirCitaFragment -> {
-                        topAppBar.title = "Pedir Cita"
+                        topAppBar.title = ConstantesUI.PEDIR_CITA
                         topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back_24)
                     }
                     R.id.verCitasFragment -> {
-                        topAppBar.title = "Ver Citas"
+                        topAppBar.title = ConstantesUI.VER_CITAS
                         topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back_24)
                     }
                 }

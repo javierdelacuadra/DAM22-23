@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.recyclerview.databinding.FragmentLoginDoctorBinding
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.doctoractivity.DoctorActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +26,6 @@ class LoginDoctorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentLoginDoctorBinding.inflate(layoutInflater)
 
         with(binding) {
@@ -37,15 +37,15 @@ class LoginDoctorFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             state.loginSuccess?.let {
                 if (it) {
-                    Timber.i("Login correcto como doctor")
-                    Snackbar.make(requireView(), "Inicio de sesión correcto", Snackbar.LENGTH_SHORT)
+                    Timber.i(ConstantesUI.LOGIN_CORRECTO_COMO_DOCTOR)
+                    Snackbar.make(requireView(), ConstantesUI.INICIO_DE_SESION_CORRECTO, Snackbar.LENGTH_SHORT)
                         .show()
                     loadInicioDoctor()
                 } else {
-                    Timber.i("Login incorrecto como doctor")
+                    Timber.i(ConstantesUI.LOGIN_INCORRECTO_COMO_DOCTOR)
                     Snackbar.make(
                         requireView(),
-                        "El nombre o el email son incorrectos",
+                        ConstantesUI.EL_NOMBRE_O_EL_EMAIL_SON_INCORRECTOS,
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.splashscreen.SplashActivity">
+    tools:context=".ui.splashactivity.SplashActivity">
 
     <ImageView
         android:id="@+id/logoSaludMadrid"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/salud_madrid"
+        android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"

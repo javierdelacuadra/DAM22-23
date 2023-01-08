@@ -49,7 +49,4 @@ object RoomModule {
     fun providesUsuarioDao(personasDatabase: DatabaseRoom): DaoUsuarios =
         personasDatabase.daoUsuarios()
 
-    @Provides
-    fun providesPersonaDao(personasDatabase: DatabaseRoom): DaoPersonas =
-        personasDatabase.daoPersonas()
 }

@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.databinding.FragmentVerCitasBinding
-import com.example.recyclerview.domain.modelo.Cita
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -28,7 +27,6 @@ class VerCitasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentVerCitasBinding.inflate(inflater, container, false)
 
         viewModel.handleEvent(VerCitasEvent.GetCitas)
@@ -56,9 +54,5 @@ class VerCitasFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    private fun eliminarCita(cita: Cita) {
-        viewModel.handleEvent(VerCitasEvent.CancelarCita(cita))
     }
 }

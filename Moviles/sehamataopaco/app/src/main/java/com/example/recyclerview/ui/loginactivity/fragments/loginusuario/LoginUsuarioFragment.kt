@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.recyclerview.databinding.FragmentLoginUsuarioBinding
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.example.recyclerview.ui.usuarioactivity.UsuarioActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -25,27 +27,29 @@ class LoginUsuarioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentLoginUsuarioBinding.inflate(layoutInflater)
 
         with(binding) {
             btnLogin.setOnClickListener {
                 checkLogin()
             }
+            botonInfo.setOnClickListener{
+                mostrarInfo()
+            }
         }
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             state.loginSuccess?.let {
                 if (it) {
-                    Timber.i("Login correcto como usuario")
-                    Snackbar.make(requireView(), "Inicio de sesión correcto", Snackbar.LENGTH_SHORT)
+                    Timber.i(ConstantesUI.LOGIN_CORRECTO_COMO_USUARIO)
+                    Snackbar.make(requireView(), ConstantesUI.INICIO_DE_SESION_CORRECTO, Snackbar.LENGTH_SHORT)
                         .show()
                     loadInicioUsuario()
                 } else {
-                    Timber.i("Login incorrecto como usuario")
+                    Timber.i(ConstantesUI.LOGIN_INCORRECTO_COMO_USUARIO)
                     Snackbar.make(
                         requireView(),
-                        "El nombre o la contraseña son incorrectos",
+                        ConstantesUI.EL_NOMBRE_O_LA_CONTRASENA_SON_INCORRECTOS,
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
@@ -63,5 +67,15 @@ class LoginUsuarioFragment : Fragment() {
         val nombre = binding.nombreUsuario.editText?.text.toString()
         val password = binding.passwordUsuario.editText?.text.toString()
         viewModel.handleEvent(LoginUsuarioEvent.Login(nombre, password))
+    }
+
+    private fun mostrarInfo() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(ConstantesUI.INFORMACION)
+            .setMessage(ConstantesUI.INFORMACION_LOGIN)
+            .setPositiveButton(ConstantesUI.ACEPTAR) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
