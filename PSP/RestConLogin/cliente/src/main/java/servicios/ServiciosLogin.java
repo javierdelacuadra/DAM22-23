@@ -8,17 +8,22 @@ import model.Reader;
 import model.ReaderLogin;
 import okhttp3.Credentials;
 import retrofit2.Response;
+import servicios.modelo.CacheAuthorization;
 
 public class ServiciosLogin {
     private final DaoLogin daoLogin;
+    private CacheAuthorization ca;
 
     @Inject
-    public ServiciosLogin(DaoLogin daoLogin) {
+    public ServiciosLogin(DaoLogin daoLogin, CacheAuthorization ca) {
         this.daoLogin = daoLogin;
+        this.ca = ca;
     }
 
     public Single<Either<String, Reader>> login(ReaderLogin readerLogin) {
         String credentials = Credentials.basic(readerLogin.getUsername(), readerLogin.getPassword());
+        ca.setUser(readerLogin.getUsername());
+        ca.setPass(readerLogin.getPassword());
         return daoLogin.login(credentials);
     }
 

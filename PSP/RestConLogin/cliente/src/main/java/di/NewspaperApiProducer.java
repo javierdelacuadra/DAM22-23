@@ -3,10 +3,12 @@ package di;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import config.common.Constantes;
+import data.network.AuthorizationInterceptor;
 import data.retrofit.LoginApi;
 import data.retrofit.NewspapersApi;
 import data.retrofit.ReadersApi;
 import jakarta.enterprise.inject.Produces;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
@@ -14,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import servicios.modelo.CacheAuthorization;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -25,6 +28,13 @@ import java.util.concurrent.TimeUnit;
 
 public class NewspaperApiProducer {
 
+    private final CacheAuthorization cache;
+
+    @Inject
+    public NewspaperApiProducer(CacheAuthorization cache) {
+        this.cache = cache;
+    }
+
     @Produces
     @Singleton
     public OkHttpClient getOkHttpClient() {
@@ -35,7 +45,7 @@ public class NewspaperApiProducer {
                 .readTimeout(Duration.of(10, ChronoUnit.MINUTES))
                 .callTimeout(Duration.of(10, ChronoUnit.MINUTES))
                 .connectTimeout(Duration.of(10, ChronoUnit.MINUTES))
-                //.addInterceptor(new AuthorizationInterceptor(cache))
+                .addInterceptor(new AuthorizationInterceptor(cache))
                 .connectionPool(new ConnectionPool(1, 1, TimeUnit.SECONDS))
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();

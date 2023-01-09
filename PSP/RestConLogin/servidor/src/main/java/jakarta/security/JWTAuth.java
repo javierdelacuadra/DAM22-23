@@ -3,7 +3,7 @@ package jakarta.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import jakarta.di.KeyProvider;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.security.common.ConstantesSecurity;
@@ -17,11 +17,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.core.HttpHeaders;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.Key;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @ApplicationScoped
 public class JWTAuth implements HttpAuthenticationMechanism {
@@ -42,29 +41,29 @@ public class JWTAuth implements HttpAuthenticationMechanism {
             if (valores[0].equalsIgnoreCase(ConstantesSecurity.BASIC)) {
                 c = identity.validate(new BasicAuthenticationCredential(valores[1]));
                 if (c.getStatus() == CredentialValidationResult.Status.VALID) {
-                    httpServletRequest.getSession().setAttribute(ConstantesSecurity.CREDENTIAL, c);
+                    KeyProvider keyProvider = new KeyProvider();
+                    Key key = keyProvider.key();
+                    String jws = Jwts.builder()
+                            .setSubject("token")
+                            .setIssuer("ServidorRest")
+                            .setExpiration(Date
+                                    .from(LocalDateTime.now().plusSeconds(60).atZone(ZoneId.systemDefault())
+                                            .toInstant()))
+                            .claim("user", c.getCallerPrincipal().getName())
+                            .claim("group", c.getCallerGroups())
+                            .signWith(key).compact();
+                    httpServletResponse.addHeader("Authorization", "Bearer " + jws);
                 }
             } else if (valores[0].equalsIgnoreCase("Bearer")) {
-                String authHeader = httpServletRequest.getHeader("Authorization");
-                String token = null;
-                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                    token = authHeader.substring(7);
-                }
-                final MessageDigest digest;
-                try {
-                    digest = MessageDigest.getInstance("SHA-512");
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                }
-                digest.update("clave".getBytes(StandardCharsets.UTF_8));
-                final SecretKeySpec key2 = new SecretKeySpec(
-                        digest.digest(), 0, 64, "AES");
-                SecretKey key22 = Keys.hmacShaKeyFor(key2.getEncoded());
+                KeyProvider keyProvider = new KeyProvider();
+                Key key = keyProvider.key();
 
                 Jws<Claims> jws = Jwts.parserBuilder()
-                        .setSigningKey(key22)
+                        .setSigningKey(key)
                         .build()
-                        .parseClaimsJws(token);
+                        .parseClaimsJws(valores[1]);
+
+                httpServletResponse.setHeader("Authorization", "Bearer " + jws);
             }
 
 //            } else if (valores[0].equalsIgnoreCase("Logout")) {
@@ -78,7 +77,6 @@ public class JWTAuth implements HttpAuthenticationMechanism {
         }
 
         if (c.getStatus().equals(CredentialValidationResult.Status.INVALID)) {
-
             return httpMessageContext.doNothing();
         }
         return httpMessageContext.notifyContainerAboutLogin(c);
