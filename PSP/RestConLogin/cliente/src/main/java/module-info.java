@@ -36,9 +36,11 @@ module MercadonaFX {
     exports ui.pantallas.pantallalogin;
     exports ui.pantallas.common;
     exports servicios;
+    exports servicios.modelo;
     exports config;
     exports data;
     exports data.common;
+    exports data.network;
     exports di;
     exports di.common;
     exports data.retrofit;
