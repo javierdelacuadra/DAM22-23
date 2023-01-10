@@ -1,8 +1,9 @@
 package ui.pantallas.addreadarticlescreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,11 +11,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
+import model.ArticleType;
+import model.Newspaper;
+import model.ReadArticle;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddReadArticleController extends BasePantallaController implements Initializable {
@@ -48,8 +51,16 @@ public class AddReadArticleController extends BasePantallaController implements 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id_type"));
-        newspaperIDColumn.setCellValueFactory(new PropertyValueFactory<>("id_newspaper"));
+        typeColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            ArticleType type = article.getType();
+            return new SimpleStringProperty(type.getDescription());
+        });
+        newspaperIDColumn.setCellValueFactory(cellData -> {
+            Article article = cellData.getValue();
+            Newspaper newspaper = article.getNewspaper();
+            return new SimpleIntegerProperty(newspaper.getId()).asObject();
+        });
         ratingComboBox.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
     }
 
@@ -65,16 +76,18 @@ public class AddReadArticleController extends BasePantallaController implements 
 
     public void addRating() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
-            Either<Integer, List<Article>> result = viewModel.addRating(articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem(), this.getPrincipalController().getReader().getId());
-            if (result.isRight()) {
+            ReadArticle readArticle = new ReadArticle(this.getPrincipalController().getReader(), articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem());
+            int result = viewModel.addRating(readArticle);
+            if (result == 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                 this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);
-            } else if (result.getLeft() == -1) {
+            } else if (result == -1) {
                 this.getPrincipalController().createAlert(ConstantesUI.ERROR_ADDING_RATING);
-            } else if (result.getLeft() == -2) {
-                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_ALREADY_RATED_THIS_ARTICLE);
             }
+//            } else if (result.getLeft() == -2) {
+//                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_ALREADY_RATED_THIS_ARTICLE);
+//            }
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.SELECT_AN_ARTICLE_AND_A_RATING);
         }

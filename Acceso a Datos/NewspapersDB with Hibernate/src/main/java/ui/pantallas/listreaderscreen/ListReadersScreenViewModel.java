@@ -10,18 +10,21 @@ import model.Reader;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaperSQL;
 import servicios.ServicesReadersSQL;
+import servicios.ServicesTypes;
 
 public class ListReadersScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
     private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesReadersSQL servicesReadersSQL;
+    private final ServicesTypes servicesTypes;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL) {
+    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL, ServicesTypes servicesTypes) {
         this.servicesNewspaperSQL = servicesNewspaperSQL;
         this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesReadersSQL = servicesReadersSQL;
+        this.servicesTypes = servicesTypes;
     }
 
     public ObservableList<Reader> getReaders() {
@@ -41,7 +44,7 @@ public class ListReadersScreenViewModel {
     }
 
     public ObservableList<ArticleType> getArticleTypes() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+        return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 
     public Either<Integer, ObservableList<Reader>> getOldestSubscribers() {

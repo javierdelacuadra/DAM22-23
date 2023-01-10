@@ -29,7 +29,4 @@ public class Login {
         this.password = password;
     }
 
-    public Login(String name) {
-        this.name = name;
-    }
 }

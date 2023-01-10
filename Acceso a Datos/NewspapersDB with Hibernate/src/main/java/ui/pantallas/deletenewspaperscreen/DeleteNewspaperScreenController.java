@@ -46,11 +46,14 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
     public void deleteNewspaper() {
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
         if (newspaper != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ConstantesUI.NEWSPAPER_DELETED_SUCCESSFULLY, ButtonType.YES, ButtonType.NO);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES) {
-                viewModel.deleteNewspaper(newspaper);
+            int result = viewModel.deleteNewspaper(newspaper);
+            if (result == 1) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Newspaper deleted successfully", ButtonType.OK);
+                alert.showAndWait();
                 newspaperTable.setItems(viewModel.getNewspapers());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has articles", ButtonType.OK);
+                alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.PLEASE_SELECT_A_NEWSPAPER, ButtonType.OK);

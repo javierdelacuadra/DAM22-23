@@ -24,14 +24,6 @@ public class ServicesArticlesSQL {
         return daoArticles.getAll(reader.getId());
     }
 
-    public Either<Integer, List<ArticleType>> getArticleTypes() {
-        return daoArticles.getAllArticleTypes();
-    }
-
-    public Either<Integer, List<Article>> addRating(Article article, Integer rating, Integer idReader) {
-        return daoArticles.saveReadArticle(article, rating, idReader);
-    }
-
     public Either<Integer, List<Query1>> getArticlesQuery() {
         return daoArticles.getArticlesQuery();
     }

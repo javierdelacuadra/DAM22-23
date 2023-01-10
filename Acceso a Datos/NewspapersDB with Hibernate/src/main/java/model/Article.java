@@ -30,10 +30,4 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "id_newspaper")
     private Newspaper newspaper;
-
-//    public Article(String name, int id_type, int id_newspaper) {
-//        this.name_article = name;
-//        this.id_type = id_type;
-//        this.id_newspaper = id_newspaper;
-//    }
 }

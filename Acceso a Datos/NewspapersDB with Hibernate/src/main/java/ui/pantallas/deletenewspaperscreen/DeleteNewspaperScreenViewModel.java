@@ -18,7 +18,7 @@ public class DeleteNewspaperScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
-    public void deleteNewspaper(Newspaper newspaper) {
-        servicesNewspaperSQL.deleteNewspaper(newspaper.getId());
+    public int deleteNewspaper(Newspaper newspaper) {
+        return servicesNewspaperSQL.deleteNewspaper(newspaper.getId());
     }
 }

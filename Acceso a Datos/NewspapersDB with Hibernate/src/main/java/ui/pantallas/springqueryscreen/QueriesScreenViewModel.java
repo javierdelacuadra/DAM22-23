@@ -10,6 +10,7 @@ import model.Query2;
 import model.Query3;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaperSQL;
+import servicios.ServicesTypes;
 
 import java.util.List;
 
@@ -17,11 +18,13 @@ public class QueriesScreenViewModel {
 
     private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesNewspaperSQL servicesNewspaperSQL;
+    private final ServicesTypes servicesTypes;
 
     @Inject
-    public QueriesScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesNewspaperSQL servicesNewspaperSQL) {
+    public QueriesScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesNewspaperSQL servicesNewspaperSQL, ServicesTypes servicesTypes) {
         this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesNewspaperSQL = servicesNewspaperSQL;
+        this.servicesTypes = servicesTypes;
     }
 
     public ObservableList<Query2> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
@@ -43,7 +46,7 @@ public class QueriesScreenViewModel {
     }
 
     public ObservableList<ArticleType> getArticleTypes() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+        return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 
     public ObservableList<Newspaper> getNewspapers() {

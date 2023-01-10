@@ -4,8 +4,6 @@ import common.Constantes;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,13 +12,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "type")
+
+@NamedQueries({
+        @NamedQuery(name = "HQL_GET_ALL_TYPES", query = "SELECT t FROM ArticleType t"),
+})
 public class ArticleType {
     @Id
     private int id;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "type")
-    private List<Article> articles;
 
     public ArticleType(String line) {
         String[] split = line.split(Constantes.PUNTO_Y_COMA);

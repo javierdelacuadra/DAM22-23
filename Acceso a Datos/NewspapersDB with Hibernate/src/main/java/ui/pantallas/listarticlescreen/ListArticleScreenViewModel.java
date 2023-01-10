@@ -7,13 +7,16 @@ import model.Article;
 import model.ArticleType;
 import model.Query1;
 import servicios.ServicesArticlesSQL;
+import servicios.ServicesTypes;
 
 public class ListArticleScreenViewModel {
     private final ServicesArticlesSQL servicesArticlesSQL;
+    private final ServicesTypes servicesTypes;
 
     @Inject
-    public ListArticleScreenViewModel(ServicesArticlesSQL servicesArticlesSQL) {
+    public ListArticleScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesTypes servicesTypes) {
         this.servicesArticlesSQL = servicesArticlesSQL;
+        this.servicesTypes = servicesTypes;
     }
 
     public ObservableList<Article> getArticles() {
@@ -29,6 +32,6 @@ public class ListArticleScreenViewModel {
     }
 
     public ObservableList<ArticleType> getArticleTypes() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+        return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 }

@@ -8,15 +8,18 @@ import model.ArticleType;
 import model.Newspaper;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaperSQL;
+import servicios.ServicesTypes;
 
 public class AddArticleScreenViewModel {
     private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesNewspaperSQL servicesNewspaperSQL;
+    private final ServicesTypes servicesTypes;
 
     @Inject
-    public AddArticleScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesNewspaperSQL servicesNewspaperSQL) {
+    public AddArticleScreenViewModel(ServicesArticlesSQL servicesArticlesSQL, ServicesNewspaperSQL servicesNewspaperSQL, ServicesTypes servicesTypes) {
         this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesNewspaperSQL = servicesNewspaperSQL;
+        this.servicesTypes = servicesTypes;
     }
 
     public ObservableList<Article> getArticles() {
@@ -28,7 +31,7 @@ public class AddArticleScreenViewModel {
     }
 
     public ObservableList<ArticleType> getArticleTypes() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticleTypes().get());
+        return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 
     public ObservableList<Newspaper> getNewspapers() {

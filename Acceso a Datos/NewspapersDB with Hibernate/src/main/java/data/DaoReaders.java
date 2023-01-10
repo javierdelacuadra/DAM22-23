@@ -65,7 +65,7 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
-
+        //TODO: hacer modelo subscription & coger solo los suscriptores activos (delete subscription añade cancellation date)
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
@@ -110,26 +110,6 @@ public class DaoReaders {
         return 1;
     }
 
-    private void deleteSubscriptions(int id) {
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_FROM_SUBSCRIPTIONS)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    private void deleteReadArticles(int id) {
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_FROM_READARTICLES)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
     public int delete(Reader reader) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
@@ -137,10 +117,7 @@ public class DaoReaders {
         try {
             tx = em.getTransaction();
             tx.begin();
-            Reader readerToDelete = em.find(Reader.class, reader.getId());
-            Login loginToDelete = readerToDelete.getLogin();
-            loginToDelete.setReader(readerToDelete);
-            em.remove(em.merge(loginToDelete));
+            em.remove(em.merge(reader));
             tx.commit();
         } catch (PersistenceException e) {
             if (tx != null) tx.rollback();
@@ -149,6 +126,8 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
+
+        //TODO:traer reader de controller y quitar find
 
         return 1;
     }
@@ -170,6 +149,7 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
+        //TODO: update contraseña
     }
 
     public Integer login(Login login) {
@@ -188,6 +168,8 @@ public class DaoReaders {
             if (em != null) em.close();
         }
         return user.getReader().getId();
+
+        //TODO: mover a daologin
     }
 
     public Reader get(int id) {

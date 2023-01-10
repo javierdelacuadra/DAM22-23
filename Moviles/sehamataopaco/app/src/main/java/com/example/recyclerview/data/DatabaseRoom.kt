@@ -13,7 +13,7 @@ import com.example.recyclerview.data.modelo.*
         CitaEntity::class,
         LoginEntity::class,
         HospitalAndDoctorEntity::class],
-    version = 2, exportSchema = true
+    version = 3, exportSchema = true
 )
 abstract class DatabaseRoom : RoomDatabase() {
 

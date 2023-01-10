@@ -1,16 +1,31 @@
 package model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
+
+@Entity
+@Table(name = "subscription")
+
 public class Subscription {
-    private int id;
+    @Id
+    @Column(name = "id_reader")
     private int id_reader;
+    @Id
+    @Column(name = "id_newspaper")
     private int id_newspaper;
+    @Column(name = "signingDate")
     private LocalDate signingDate;
+    @Column(name = "cancellationDate")
     private LocalDate cancellationDate;
 }

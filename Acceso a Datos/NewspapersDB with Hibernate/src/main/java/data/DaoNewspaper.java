@@ -69,14 +69,13 @@ public class DaoNewspaper {
             em.remove(em.merge(newspaper));
             tx.commit();
             return 1;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             if (tx.isActive()) tx.rollback();
             e.printStackTrace();
             return -1;
         } finally {
             if (em != null) em.close();
         }
-        //TODO: investigar transaction para el deleteNewspaper
     }
 
     public Integer update(Newspaper newspaper) {
@@ -96,24 +95,5 @@ public class DaoNewspaper {
         } finally {
             if (em != null) em.close();
         }
-    }
-
-    public List<Newspaper> getFromSpecificNewspaper(int newspaperID) {
-        List<Newspaper> newspapers = new ArrayList<>();
-        em = jpaUtil.getEntityManager();
-
-        try {
-            newspapers = em
-                    .createNamedQuery("HQL_GET_ALL_ARTICLES_OF_SPECIFIC_NEWSPAPER", Newspaper.class)
-                    .setParameter("id", newspaperID)
-                    .getResultList();
-
-        } catch (PersistenceException e) {
-            e.printStackTrace();
-        } finally {
-            if (em != null) em.close();
-        }
-
-        return newspapers;
     }
 }

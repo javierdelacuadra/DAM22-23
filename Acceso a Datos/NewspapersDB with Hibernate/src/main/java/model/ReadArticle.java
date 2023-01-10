@@ -1,14 +1,11 @@
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -16,11 +13,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "readarticle")
 public class ReadArticle {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "id_reader")
-    private int id_reader;
-    @Column(name = "id_article")
-    private int id_article;
+    @ManyToOne
+    @JoinColumn(name = "id_reader")
+    private Reader reader;
+    @ManyToOne
+    @JoinColumn(name = "id_article")
+    private Article article;
     @Column(name = "rating")
     private int rating;
+
+    public ReadArticle(Reader reader, Article article, int rating) {
+        this.reader = reader;
+        this.article = article;
+        this.rating = rating;
+    }
 }
