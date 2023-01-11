@@ -3,9 +3,9 @@ package jakarta.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import jakarta.di.KeyProvider;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.security.common.ConstantesSecurity;
 import jakarta.security.enterprise.AuthenticationException;
 import jakarta.security.enterprise.AuthenticationStatus;
@@ -21,12 +21,17 @@ import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Set;
 
 @ApplicationScoped
 public class JWTAuth implements HttpAuthenticationMechanism {
 
     @Inject
     private InMemoryIdentityStore identity;
+
+    @Inject
+    @Named("JWT")
+    private Key key;
 
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest httpServletRequest,
@@ -41,29 +46,29 @@ public class JWTAuth implements HttpAuthenticationMechanism {
             if (valores[0].equalsIgnoreCase(ConstantesSecurity.BASIC)) {
                 c = identity.validate(new BasicAuthenticationCredential(valores[1]));
                 if (c.getStatus() == CredentialValidationResult.Status.VALID) {
-                    KeyProvider keyProvider = new KeyProvider();
-                    Key key = keyProvider.key();
                     String jws = Jwts.builder()
                             .setSubject("token")
                             .setIssuer("ServidorRest")
                             .setExpiration(Date
-                                    .from(LocalDateTime.now().plusSeconds(60).atZone(ZoneId.systemDefault())
+                                    .from(LocalDateTime.now().plusSeconds(600).atZone(ZoneId.systemDefault())
                                             .toInstant()))
                             .claim("user", c.getCallerPrincipal().getName())
-                            .claim("group", c.getCallerGroups())
+                            .claim("group", c.getCallerGroups().toArray()[0])
                             .signWith(key).compact();
                     httpServletResponse.addHeader("Authorization", "Bearer " + jws);
                 }
             } else if (valores[0].equalsIgnoreCase("Bearer")) {
-                KeyProvider keyProvider = new KeyProvider();
-                Key key = keyProvider.key();
 
                 Jws<Claims> jws = Jwts.parserBuilder()
                         .setSigningKey(key)
                         .build()
                         .parseClaimsJws(valores[1]);
 
-                httpServletResponse.setHeader("Authorization", "Bearer " + jws);
+                c = new CredentialValidationResult(jws.getBody().get("user").toString(),
+                        Set.of(jws.getBody().get("group").toString()));
+
+                httpServletResponse.addHeader("Authorization", "Bearer " + valores[1]);
+
             }
 
 //            } else if (valores[0].equalsIgnoreCase("Logout")) {

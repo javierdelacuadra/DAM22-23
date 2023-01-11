@@ -30,17 +30,34 @@ public class AuthorizationInterceptor implements Interceptor {
         }
 
         Response response = chain.proceed(request);
-        if (response.header("Authorization") != null)
-            ca.setJwt(response.header("Authorization"));
+        if (response.header("Authorization") != null) {
+            String header = response.header("Authorization");
+            String[] values = new String[0];
+            if (header != null) {
+                values = header.split(" ");
+            }
+            if (values[0].equals("Bearer") && values.length == 2) {
+                ca.setJwt(values[1]);
+            }
+        }
 
+        int code = response.code();
 
-        if (!response.isSuccessful()) {
+        if (!(code >= 200 && code < 300) && code != 401 && code != 403) {
             response.close();
             request = original.newBuilder()
                     .header("Authorization", Credentials.basic(ca.getUser(), ca.getPass())).build();
             response = chain.proceed(request);
-            if (response.header("Authorization") != null)
-                ca.setJwt(response.header("Authorization"));
+            if (response.header("Authorization") != null) {
+                String header = response.header("Authorization");
+                String[] values = new String[0];
+                if (header != null) {
+                    values = header.split(" ");
+                }
+                if (values[0].equals("Bearer") && values.length == 2) {
+                    ca.setJwt(values[1]);
+                }
+            }
         }
 
         return response;

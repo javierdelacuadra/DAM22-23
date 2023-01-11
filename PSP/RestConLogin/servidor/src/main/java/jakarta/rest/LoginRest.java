@@ -35,7 +35,6 @@ public class LoginRest {
 
     @GET
     public Reader getLogin() {
-        request.getSession().setAttribute(ConstantesLoginRest.LOGIN, true);
         return serviciosReaders.getReaderByName(securityContext.getUserPrincipal().getName());
     }
 
