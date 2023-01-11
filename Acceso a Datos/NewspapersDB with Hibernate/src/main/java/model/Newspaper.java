@@ -15,10 +15,8 @@ import java.util.List;
 @Table(name = "newspaper")
 
 @NamedQueries({
-        @NamedQuery(name = "HQL_GET_ALL_NEWSPAPERS", query = "from Newspaper"),
-        @NamedQuery(name = "HQL_GET_NEWSPAPER_BY_ID", query = "from Newspaper n where n.id = :id"),
-        @NamedQuery(name = "HQL_DELETE_NEWSPAPER_BY_ID", query = "delete from Newspaper n where n.id = :id"),
-        @NamedQuery(name = "HQL_UPDATE_NEWSPAPER_BY_ID", query = "update Newspaper n set n.name = :name, n.release_date = :release_date where n.id = :id"),
+        @NamedQuery(name = "HQL_GET_ALL_NEWSPAPERS", query = "select n from Newspaper n LEFT JOIN FETCH n.articles"),
+        @NamedQuery(name = "HQL_GET_NEWSPAPER_BY_ID", query = "from Newspaper n left join fetch n.articles where n.id = :id"),
         @NamedQuery(name = "HQL_GET_ALL_ARTICLES_OF_SPECIFIC_NEWSPAPER", query = "SELECT a.id, a.name_article, t.description FROM Newspaper n, Article a, ArticleType t WHERE n.id = :newspaperId")})
 
 public class Newspaper {

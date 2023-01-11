@@ -22,6 +22,7 @@ public class ArticleType {
     @Column(name = "description")
     private String description;
 
+
     public ArticleType(String line) {
         String[] split = line.split(Constantes.PUNTO_Y_COMA);
         this.id = Integer.parseInt(split[0]);

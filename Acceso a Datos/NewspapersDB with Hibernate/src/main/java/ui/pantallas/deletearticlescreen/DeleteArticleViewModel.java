@@ -18,7 +18,7 @@ public class DeleteArticleViewModel {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public Integer deleteArticle(Integer id) {
-        return servicesArticlesSQL.deleteArticle(id);
+    public Integer deleteArticle(Article article) {
+        return servicesArticlesSQL.deleteArticle(article);
     }
 }

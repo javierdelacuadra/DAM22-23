@@ -51,7 +51,10 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Newspaper deleted successfully", ButtonType.OK);
                 alert.showAndWait();
                 newspaperTable.setItems(viewModel.getNewspapers());
-            } else {
+            } else if (result == -1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper couldn't be deleted", ButtonType.OK);
+                alert.showAndWait();
+            } else if (result == -2) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has articles", ButtonType.OK);
                 alert.showAndWait();
             }

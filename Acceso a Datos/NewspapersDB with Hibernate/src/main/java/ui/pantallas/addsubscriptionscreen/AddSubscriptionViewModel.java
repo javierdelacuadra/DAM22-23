@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Newspaper;
+import model.Subscription;
 import servicios.ServicesNewspaperSQL;
 import servicios.ServicesSubscription;
 
@@ -22,11 +23,11 @@ public class AddSubscriptionViewModel {
         return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
-    public Integer addSubscription(Newspaper newspaper, int id) {
-        return servicesSubscription.addSubscription(newspaper, id);
+    public Integer addSubscription(Subscription subscription) {
+        return servicesSubscription.addSubscription(subscription);
     }
 
-    public Integer removeSubscription(Newspaper newspaper, int id) {
-        return servicesSubscription.removeSubscription(newspaper, id);
+    public Integer removeSubscription(Subscription subscription) {
+        return servicesSubscription.removeSubscription(subscription);
     }
 }

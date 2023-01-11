@@ -8,7 +8,10 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
-import model.*;
+import model.Article;
+import model.Query1;
+import model.Query2;
+import model.Query3;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -165,13 +168,12 @@ public class DaoArticles {
         }
     }
 
-    public Integer deleteArticle(Integer id) {
+    public Integer delete(Article article) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Article article = em.find(Article.class, id);
             em.remove(em.merge(article));
             tx.commit();
             return 1;
@@ -184,7 +186,7 @@ public class DaoArticles {
         }
     }
 
-    public Integer updateArticle(Article article) {
+    public Integer update(Article article) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
 
@@ -201,27 +203,6 @@ public class DaoArticles {
         } finally {
             if (em != null) em.close();
         }
-    }
-
-    public Either<Integer, List<Article>> getArticlesByNameNewspaper(Newspaper newspaper) {
-        List<Article> articles = new ArrayList<>();
-        em = jpaUtil.getEntityManager();
-
-        try {
-            articles = em
-                    .createNamedQuery("HQL_GET_ARTICLES_BY_NEWSPAPER", Article.class)
-                    .setParameter("newspaperID", newspaper.getId())
-                    .getResultList();
-
-        } catch (PersistenceException e) {
-            e.printStackTrace();
-        } finally {
-            if (em != null) em.close();
-        }
-
-        //TODO: mover a daonewspaper y devolver newspaper que tiene la lista dentro
-
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
     public List<Article> getArticlesAndTypes() {

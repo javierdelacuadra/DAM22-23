@@ -16,9 +16,7 @@ import java.time.LocalDate;
 
 @NamedQueries({
         @NamedQuery(name = "HQL_GET_ALL_READERS", query = "from Reader"),
-        @NamedQuery(name = "HQL_GET_READER_BY_ID", query = "from Reader n where n.id = :id"),
-        @NamedQuery(name = "HQL_DELETE_READER_BY_ID", query = "delete from Reader n where n.id = :id"),
-        @NamedQuery(name = "HQL_UPDATE_READER_BY_ID", query = "update Reader n set n.name = :name, n.dateOfBirth = :date_of_birth where n.id = :id"),
+        @NamedQuery(name = "HQL_GET_READERS_BY_ID_NEWSPAPER", query = "SELECT r FROM Reader r JOIN Subscription s ON r.id = s.id_reader WHERE s.id_newspaper = :id_newspaper AND s.cancellationDate IS NULL"),
         @NamedQuery(name = "HQL_GET_READERS_BY_ARTICLE_TYPE", query = "SELECT DISTINCT ra.reader FROM ReadArticle ra WHERE ra.article.type.description = :description")})
 public class Reader {
     @Id

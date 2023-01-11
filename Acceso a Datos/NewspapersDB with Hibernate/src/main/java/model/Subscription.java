@@ -24,8 +24,8 @@ public class Subscription {
     @Id
     @Column(name = "id_newspaper")
     private int id_newspaper;
-    @Column(name = "signingDate")
+    @Column(name = "start_date")
     private LocalDate signingDate;
-    @Column(name = "cancellationDate")
+    @Column(name = "cancellation_date")
     private LocalDate cancellationDate;
 }

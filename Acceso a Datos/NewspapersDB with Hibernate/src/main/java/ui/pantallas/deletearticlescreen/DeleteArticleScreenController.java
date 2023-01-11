@@ -59,8 +59,8 @@ public class DeleteArticleScreenController extends BasePantallaController implem
 
     public void deleteArticle() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null) {
-            Integer id = articlesTable.getSelectionModel().getSelectedItem().getId();
-            if (viewModel.deleteArticle(id) == 1) {
+            Article article = articlesTable.getSelectionModel().getSelectedItem();
+            if (viewModel.deleteArticle(article) == 1) {
                 articlesTable.getItems().remove(articlesTable.getSelectionModel().getSelectedItem());
             } else {
                 this.getPrincipalController().createAlert("Error al eliminar el artículo");

@@ -1,6 +1,5 @@
 package ui.pantallas.listnewspaperscreen;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,7 +14,6 @@ import model.Newspaper;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListNewspaperScreenController extends BasePantallaController implements Initializable {
@@ -61,8 +59,8 @@ public class ListNewspaperScreenController extends BasePantallaController implem
 
     public void getArticlesOfNewspaper() {
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
-        Either<Integer, List<Article>> articles = viewModel.getArticlesFromNewspaper(newspaper);
-        if (articles.isRight()) {
+        Newspaper newspaperWithArticles = viewModel.getArticlesFromNewspaper(newspaper);
+        if (!newspaperWithArticles.getArticles().isEmpty()) {
             idArticleColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
             nameTypeColumn.setCellValueFactory(cellData -> {
@@ -70,7 +68,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
                 ArticleType type = article.getType();
                 return new SimpleStringProperty(type.getDescription());
             });
-            articlesTable.setItems(FXCollections.observableArrayList(articles.get()));
+            articlesTable.setItems(FXCollections.observableArrayList(newspaperWithArticles.getArticles()));
         } else {
             articlesTable.setItems(FXCollections.emptyObservableList());
             this.getPrincipalController().createAlert("This newspaper has no articles");

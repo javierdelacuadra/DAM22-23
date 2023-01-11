@@ -32,12 +32,12 @@ public class ServicesArticlesSQL {
         return daoArticles.add(article);
     }
 
-    public Integer deleteArticle(Integer id) {
-        return daoArticles.deleteArticle(id);
+    public Integer deleteArticle(Article article) {
+        return daoArticles.delete(article);
     }
 
     public Integer updateArticle(Article article) {
-        return daoArticles.updateArticle(article);
+        return daoArticles.update(article);
     }
 
     public Either<Integer, List<Article>> getArticlesByType(String type) {
@@ -50,10 +50,6 @@ public class ServicesArticlesSQL {
 
     public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
         return daoArticles.getArticlesByNewspaperWithBadRatings(idNewspaper);
-    }
-
-    public Either<Integer, List<Article>> getArticlesByNameNewspaper(Newspaper newspaper) {
-        return daoArticles.getArticlesByNameNewspaper(newspaper);
     }
 
     public List<Article> getArticlesAndTypes() {

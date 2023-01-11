@@ -16,15 +16,23 @@ public class ServicesNewspaperSQL {
     }
 
     public Either<Integer, List<Newspaper>> getNewspapers() {
-        return daoNewspaper.getAll();
+        return daoNewspaper.get();
+    }
+
+    public Newspaper getArticlesByNameNewspaper(Newspaper newspaper) {
+        return daoNewspaper.get(newspaper);
     }
 
     public Integer addNewspaper(Newspaper newspaper) {
         return daoNewspaper.add(newspaper);
     }
 
-    public Integer deleteNewspaper(Integer id) {
-        return daoNewspaper.delete(id);
+    public Integer deleteNewspaper(Newspaper newspaper) {
+        if (newspaper.getArticles().isEmpty()) {
+            return daoNewspaper.delete(newspaper);
+        } else {
+            return -2;
+        }
     }
 
     public Integer updateNewspaper(Newspaper newspaper) {

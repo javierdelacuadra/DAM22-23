@@ -17,6 +17,6 @@ public class ServicesTypes {
     }
 
     public Either<Integer, List<ArticleType>> getArticleTypes() {
-        return daoTypes.getAllArticleTypes();
+        return daoTypes.getAll();
     }
 }

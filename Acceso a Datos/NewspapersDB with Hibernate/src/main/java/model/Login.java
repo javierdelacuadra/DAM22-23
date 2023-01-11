@@ -20,7 +20,7 @@ public class Login {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.ALL})
     @JoinColumn(name = "id_reader", referencedColumnName = "id", nullable = false)
     private Reader reader;
 

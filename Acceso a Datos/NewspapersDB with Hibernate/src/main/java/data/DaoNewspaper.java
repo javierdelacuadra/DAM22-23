@@ -21,7 +21,7 @@ public class DaoNewspaper {
         this.em = jpaUtil.getEntityManager();
     }
 
-    public Either<Integer, List<Newspaper>> getAll() {
+    public Either<Integer, List<Newspaper>> get() {
         List<Newspaper> newspapers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 
@@ -37,6 +37,23 @@ public class DaoNewspaper {
         }
 
         return newspapers.isEmpty() ? Either.left(-1) : Either.right(newspapers);
+    }
+
+    public Newspaper get(Newspaper newspaper) {
+        em = jpaUtil.getEntityManager();
+
+        try {
+            newspaper = em
+                    .createNamedQuery("HQL_GET_NEWSPAPER_BY_ID", Newspaper.class)
+                    .setParameter("id", newspaper.getId())
+                    .getSingleResult();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) em.close();
+        }
+        return newspaper;
     }
 
     public Integer add(Newspaper newspaper) {
@@ -59,13 +76,12 @@ public class DaoNewspaper {
         }
     }
 
-    public Integer delete(Integer id) {
+    public Integer delete(Newspaper newspaper) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Newspaper newspaper = em.find(Newspaper.class, id);
             em.remove(em.merge(newspaper));
             tx.commit();
             return 1;

@@ -2,7 +2,7 @@ package servicios;
 
 import data.DaoSubscriptions;
 import jakarta.inject.Inject;
-import model.Newspaper;
+import model.Subscription;
 
 public class ServicesSubscription {
 
@@ -13,11 +13,11 @@ public class ServicesSubscription {
         this.daoSubscriptions = daoSubscriptions;
     }
 
-    public Integer addSubscription(Newspaper newspaper, int id) {
-        return daoSubscriptions.save(newspaper, id);
+    public Integer addSubscription(Subscription subscription) {
+        return daoSubscriptions.save(subscription);
     }
 
-    public Integer removeSubscription(Newspaper newspaper, int id) {
-        return daoSubscriptions.remove(newspaper, id);
+    public Integer removeSubscription(Subscription subscription) {
+        return daoSubscriptions.update(subscription);
     }
 }

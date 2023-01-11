@@ -1,46 +1,60 @@
 package data;
 
-import data.common.SQLQueries;
+import data.hibernate.JPAUtil;
 import jakarta.inject.Inject;
-import model.Newspaper;
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
+import model.Subscription;
 
 public class DaoSubscriptions {
-    private final DBConnection db;
+    private JPAUtil jpaUtil;
+    private EntityManager em;
 
     @Inject
-    public DaoSubscriptions(DBConnection db) {
-        this.db = db;
+    public DaoSubscriptions(JPAUtil jpaUtil) {
+        this.jpaUtil = jpaUtil;
+        this.em = jpaUtil.getEntityManager();
     }
 
-    public Integer save(Newspaper newspaper, Integer id) {
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_SUBSCRIPTION)) {
-            preparedStatement.setInt(1, newspaper.getId());
-            preparedStatement.setInt(2, id);
-            preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
-            preparedStatement.setDate(4, null);
-            preparedStatement.executeUpdate();
+    public Integer save(Subscription subscription) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+            em.persist(subscription);
+            transaction.commit();
             return 1;
-        } catch (SQLException e) {
+        } catch (PersistenceException e) {
+            assert transaction != null;
+            if (transaction.isActive()) transaction.rollback();
+            e.printStackTrace();
             return -1;
+        } finally {
+            if (em != null) em.close();
         }
     }
 
-    public Integer remove(Newspaper newspaper, Integer id) {
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_SUBSCRIPTION)) {
-            preparedStatement.setInt(1, newspaper.getId());
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
+    public Integer update(Subscription subscription) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+            em.merge(subscription);
+            transaction.commit();
             return 1;
-        } catch (SQLException e) {
+        } catch (PersistenceException e) {
+            assert transaction != null;
+            if (transaction.isActive()) transaction.rollback();
+            e.printStackTrace();
             return -1;
+        } finally {
+            if (em != null) em.close();
         }
+        //TODO: check si mantiene la fecha de registro original
     }
 }

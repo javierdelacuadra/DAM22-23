@@ -56,8 +56,8 @@ public class DaoReaders {
 
         try {
             readers = em
-                    .createNamedQuery("HQL_GET_READER_BY_ID", Reader.class)
-                    .setParameter("id", id)
+                    .createNamedQuery("HQL_GET_READERS_BY_ID_NEWSPAPER", Reader.class)
+                    .setParameter("id_newspaper", id)
                     .getResultList();
 
         } catch (PersistenceException e) {
@@ -65,7 +65,6 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
-        //TODO: hacer modelo subscription & coger solo los suscriptores activos (delete subscription añade cancellation date)
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
@@ -126,9 +125,6 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
-
-        //TODO:traer reader de controller y quitar find
-
         return 1;
     }
 
@@ -136,10 +132,14 @@ public class DaoReaders {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
 
+        Reader managedReader = em.find(Reader.class, reader.getId());
+        managedReader.setDateOfBirth(reader.getDateOfBirth());
+        managedReader.getLogin().setPassword(reader.getLogin().getPassword());
+
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.merge(reader);
+            em.merge(managedReader);
             tx.commit();
             return 1;
         } catch (PersistenceException e) {
@@ -149,7 +149,6 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
-        //TODO: update contraseña
     }
 
     public Integer login(Login login) {

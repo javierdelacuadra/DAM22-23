@@ -20,7 +20,7 @@ public class DaoTypes {
         this.em = jpaUtil.getEntityManager();
     }
 
-    public Either<Integer, List<ArticleType>> getAllArticleTypes() {
+    public Either<Integer, List<ArticleType>> getAll() {
         List<ArticleType> types = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 

@@ -19,6 +19,6 @@ public class DeleteNewspaperScreenViewModel {
     }
 
     public int deleteNewspaper(Newspaper newspaper) {
-        return servicesNewspaperSQL.deleteNewspaper(newspaper.getId());
+        return servicesNewspaperSQL.deleteNewspaper(newspaper);
     }
 }

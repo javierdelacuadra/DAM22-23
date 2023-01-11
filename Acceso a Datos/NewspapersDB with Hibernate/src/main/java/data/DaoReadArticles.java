@@ -17,9 +17,8 @@ public class DaoReadArticles {
         this.em = jpaUtil.getEntityManager();
     }
 
-    public int saveReadArticle(ReadArticle readArticle) {
-        //TODO: check si ha rateado ya el articulo devuelve -2
-
+    public int save(ReadArticle readArticle) {
+        //TODO: modificar rating + query para comprobar duplicados + borrar reader (F)
         em = jpaUtil.getEntityManager();
         EntityTransaction transaction = null;
 

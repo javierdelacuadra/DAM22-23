@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Login;
 import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
@@ -37,7 +38,7 @@ public class UpdateReaderController extends BasePantallaController implements In
     private TableColumn<Reader, String> birthDateColumn;
 
     @FXML
-    private MFXTextField nameTextField;
+    private MFXTextField passwordTextField;
 
     @FXML
     private MFXDatePicker birthDatePicker;
@@ -52,14 +53,18 @@ public class UpdateReaderController extends BasePantallaController implements In
 
     public void updateReader() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
+            Login login = readersTable.getSelectionModel().getSelectedItem().getLogin();
+            login.setPassword(passwordTextField.getText());
             Reader reader = new Reader(
                     readersTable.getSelectionModel().getSelectedItem().getId(),
-                    nameTextField.getText(),
-                    birthDatePicker.getValue(), readersTable.getSelectionModel().getSelectedItem().getLogin());
-            if (viewModel.updateReader(reader) == 1) {
+                    readersTable.getSelectionModel().getSelectedItem().getName(),
+                    birthDatePicker.getValue(), login);
+            login.setReader(reader);
+            int result = viewModel.updateReader(reader);
+            if (result == 1) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());
-            } else if (viewModel.updateReader(reader) == -1) {
+            } else if (result == -1) {
                 this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_UPDATING_THE_READER);
             } else {
                 this.getPrincipalController().createAlert(ConstantesUI.THE_READER_DOES_NOT_EXIST);
@@ -67,15 +72,15 @@ public class UpdateReaderController extends BasePantallaController implements In
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
-        nameTextField.setText(ConstantesUI.ANY);
         birthDatePicker.setValue(null);
+        passwordTextField.setText(ConstantesUI.ANY);
     }
 
     public void fillTextFields() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = readersTable.getSelectionModel().getSelectedItem();
-            nameTextField.setText(reader.getName());
             birthDatePicker.setValue(reader.getDateOfBirth());
+            passwordTextField.setText(reader.getLogin().getPassword());
         }
     }
 }
