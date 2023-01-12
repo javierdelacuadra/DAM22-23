@@ -40,6 +40,9 @@ public class ServiciosLogin {
     }
 
     public Single<Response<String>> logout() {
+        ca.setUser(null);
+        ca.setPass(null);
+        ca.setJwt(null);
         return daoLogin.logout();
     }
 }
