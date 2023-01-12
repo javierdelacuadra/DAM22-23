@@ -1,6 +1,7 @@
 package dao.common;
 
 public class Constantes {
+
     public Constantes() {
     }
 
@@ -46,6 +47,7 @@ public class Constantes {
     public static final String USER_NAME = "user_name";
     public static final String PASSWORD = "password";
     public static final String DRIVER = "driver";
-    public static final String ACTIVATION_URL = "http://localhost:8080/RestLogin-1.0-SNAPSHOT/activar?code=";
-    public static final String PASSWORD_RECOVERY_URL = "http://localhost:8080/RestLogin-1.0-SNAPSHOT/passwordRecovery.jsp?code=";
+    public static final String MAX_CALLS = "maxCalls";
+    public static final String CALL_LIMIT_COOLDOWN = "callLimitCooldown";
+    public static final String CALLS = "count(*)";
 }

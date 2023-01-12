@@ -2,3 +2,5 @@ urlDB: jdbc:mysql://dam2.mysql.iesquevedo.es:3335/JavierdelaCuadra-Newspapers?us
 user_name: root
 password: quevedo2dam
 driver: com.mysql.cj.jdbc.Driver
+maxCalls: 10
+callLimitCooldown: 600

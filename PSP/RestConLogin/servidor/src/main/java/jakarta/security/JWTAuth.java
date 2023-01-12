@@ -30,7 +30,7 @@ public class JWTAuth implements HttpAuthenticationMechanism {
     private InMemoryIdentityStore identity;
 
     @Inject
-    @Named("JWT")
+    @Named(ConstantesSecurity.JWT)
     private Key key;
 
     @Override
@@ -47,27 +47,27 @@ public class JWTAuth implements HttpAuthenticationMechanism {
                 c = identity.validate(new BasicAuthenticationCredential(valores[1]));
                 if (c.getStatus() == CredentialValidationResult.Status.VALID) {
                     String jws = Jwts.builder()
-                            .setSubject("token")
-                            .setIssuer("ServidorRest")
+                            .setSubject(ConstantesSecurity.TOKEN_SUBJECT)
+                            .setIssuer(ConstantesSecurity.TOKEN_ISSUER)
                             .setExpiration(Date
                                     .from(LocalDateTime.now().plusSeconds(600).atZone(ZoneId.systemDefault())
                                             .toInstant()))
-                            .claim("user", c.getCallerPrincipal().getName())
-                            .claim("group", c.getCallerGroups().toArray()[0])
+                            .claim(ConstantesSecurity.USER_CLAIM_NAME, c.getCallerPrincipal().getName())
+                            .claim(ConstantesSecurity.GROUP_CLAIM_NAME, c.getCallerGroups().toArray()[0])
                             .signWith(key).compact();
-                    httpServletResponse.addHeader("Authorization", "Bearer " + jws);
+                    httpServletResponse.addHeader(ConstantesSecurity.AUTHORIZATION, ConstantesSecurity.BEARER_HEADER + jws);
                 }
-            } else if (valores[0].equalsIgnoreCase("Bearer")) {
+            } else if (valores[0].equalsIgnoreCase(ConstantesSecurity.BEARER)) {
 
                 Jws<Claims> jws = Jwts.parserBuilder()
                         .setSigningKey(key)
                         .build()
                         .parseClaimsJws(valores[1]);
 
-                c = new CredentialValidationResult(jws.getBody().get("user").toString(),
-                        Set.of(jws.getBody().get("group").toString()));
+                c = new CredentialValidationResult(jws.getBody().get(ConstantesSecurity.USER_CLAIM_NAME).toString(),
+                        Set.of(jws.getBody().get(ConstantesSecurity.GROUP_CLAIM_NAME).toString()));
 
-                httpServletResponse.addHeader("Authorization", "Bearer " + valores[1]);
+                httpServletResponse.addHeader(ConstantesSecurity.AUTHORIZATION, ConstantesSecurity.BEARER_HEADER + valores[1]);
 
             }
 

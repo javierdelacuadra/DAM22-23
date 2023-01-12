@@ -38,4 +38,6 @@ public class SQLQueries {
     public static final String SELECT_USER_BY_EMAIL = "select * from loginOscar where email = ?";
     public static final String UPDATE_REGISTER_DATE = "UPDATE loginOscar SET registration_date = ? WHERE email = ?";
     public static final String UPDATE_PASSWORD = "UPDATE loginOscar SET password = ? WHERE activation_code = ?";
+    public static final String SELECT_CALLS_BY_NAME = "select count(*) from calls where username = ? and fecha >= NOW() - INTERVAL 10 MINUTE";
+    public static final String INSERT_CALL = "INSERT INTO calls (fecha, username) VALUES (?, ?)";
 }

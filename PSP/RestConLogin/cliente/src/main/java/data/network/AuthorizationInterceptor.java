@@ -1,5 +1,6 @@
 package data.network;
 
+import data.common.ConstantesDao;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -23,43 +24,38 @@ public class AuthorizationInterceptor implements Interceptor {
 
         if (ca.getJwt() == null) {
             request = original.newBuilder()
-                    .header("Authorization", Credentials.basic(ca.getUser(), ca.getPass())).build();
+                    .header(ConstantesDao.AUTHORIZATION, Credentials.basic(ca.getUser(), ca.getPass())).build();
         } else {
             request = original.newBuilder()
-                    .header("Authorization", "Bearer " + ca.getJwt()).build();
+                    .header(ConstantesDao.AUTHORIZATION, ConstantesDao.BEARER_HEADER + ca.getJwt()).build();
         }
 
         Response response = chain.proceed(request);
-        if (response.header("Authorization") != null) {
-            String header = response.header("Authorization");
-            String[] values = new String[0];
-            if (header != null) {
-                values = header.split(" ");
-            }
-            if (values[0].equals("Bearer") && values.length == 2) {
-                ca.setJwt(values[1]);
-            }
-        }
+        saveTokenOnCache(response);
 
         int code = response.code();
 
         if (!(code >= 200 && code < 300) && code != 401 && code != 403) {
             response.close();
             request = original.newBuilder()
-                    .header("Authorization", Credentials.basic(ca.getUser(), ca.getPass())).build();
+                    .header(ConstantesDao.AUTHORIZATION, Credentials.basic(ca.getUser(), ca.getPass())).build();
             response = chain.proceed(request);
-            if (response.header("Authorization") != null) {
-                String header = response.header("Authorization");
-                String[] values = new String[0];
-                if (header != null) {
-                    values = header.split(" ");
-                }
-                if (values[0].equals("Bearer") && values.length == 2) {
-                    ca.setJwt(values[1]);
-                }
-            }
+            saveTokenOnCache(response);
         }
 
         return response;
+    }
+
+    private void saveTokenOnCache(Response response) {
+        if (response.header(ConstantesDao.AUTHORIZATION) != null) {
+            String header = response.header(ConstantesDao.AUTHORIZATION);
+            String[] values = new String[0];
+            if (header != null) {
+                values = header.split(" ");
+            }
+            if (values[0].equals(ConstantesDao.BEARER) && values.length == 2) {
+                ca.setJwt(values[1]);
+            }
+        }
     }
 }

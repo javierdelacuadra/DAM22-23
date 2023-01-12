@@ -47,7 +47,9 @@ public abstract class DaoGenerics {
                 either = Either.left(ConstantesAPI.ACCION_NO_AUTORIZADA);
             } else if (code == 403) {
                 either = Either.left(ConstantesAPI.ERROR_403);
-            } else
+            } else if (code == 429) {
+                either = Either.left(ConstantesAPI.ERROR_429);
+            } else {
                 try (ResponseBody responseBody = Objects.requireNonNull(httpException.response()).errorBody()) {
                     if (Objects.equals(Objects.requireNonNull(responseBody).contentType(),
                             MediaType.get(ConstantesDao.APPLICATION_JSON))) {
@@ -59,6 +61,7 @@ public abstract class DaoGenerics {
                 } catch (IOException e) {
                     either = Either.left(e.getMessage());
                 }
+            }
         }
         return either;
     }

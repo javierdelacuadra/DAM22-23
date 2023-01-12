@@ -14,6 +14,8 @@ public class Configuracion {
     private final String user_name;
     private final String password;
     private final String driver;
+    private final int maxCalls;
+    private final int callLimitCooldown;
 
     private Configuracion() {
         Yaml yaml = new Yaml();
@@ -25,6 +27,8 @@ public class Configuracion {
         this.user_name = (String) obj.get(Constantes.USER_NAME);
         this.password = (String) obj.get(Constantes.PASSWORD);
         this.driver = (String) obj.get(Constantes.DRIVER);
+        this.maxCalls = (int) obj.get(Constantes.MAX_CALLS);
+        this.callLimitCooldown = (int) obj.get(Constantes.CALL_LIMIT_COOLDOWN);
     }
 
     public String getProperty(String property) {
@@ -33,6 +37,8 @@ public class Configuracion {
             case Constantes.USER_NAME -> user_name;
             case Constantes.PASSWORD -> password;
             case Constantes.DRIVER -> driver;
+            case Constantes.MAX_CALLS -> String.valueOf(maxCalls);
+            case Constantes.CALL_LIMIT_COOLDOWN -> String.valueOf(callLimitCooldown);
             default -> null;
         };
     }
