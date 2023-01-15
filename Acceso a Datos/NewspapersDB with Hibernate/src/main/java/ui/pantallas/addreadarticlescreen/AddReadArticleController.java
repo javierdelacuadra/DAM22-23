@@ -7,6 +7,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -78,16 +80,31 @@ public class AddReadArticleController extends BasePantallaController implements 
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
             ReadArticle readArticle = new ReadArticle(this.getPrincipalController().getReader(), articlesTable.getSelectionModel().getSelectedItem(), ratingComboBox.getSelectionModel().getSelectedItem());
             int result = viewModel.addRating(readArticle);
-            if (result == 1) {
+            if (result >= 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                 this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);
             } else if (result == -1) {
-                this.getPrincipalController().createAlert(ConstantesUI.ERROR_ADDING_RATING);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("You have already rated this article");
+                alert.setContentText("Do you want to update the rating?");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        readArticle.setId(result);
+                        int resultUpdate = viewModel.updateRating(readArticle);
+                        if (resultUpdate >= 1) {
+                            articlesTable.getItems().clear();
+                            articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
+                            this.getPrincipalController().createAlert("The rating has been updated successfully");
+                        } else {
+                            this.getPrincipalController().createAlert("The rating could not be updated");
+                        }
+                    }
+                });
+            } else if (result == -2) {
+                this.getPrincipalController().createAlert("The rating could not be submitted");
             }
-//            } else if (result.getLeft() == -2) {
-//                this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVE_ALREADY_RATED_THIS_ARTICLE);
-//            }
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.SELECT_AN_ARTICLE_AND_A_RATING);
         }

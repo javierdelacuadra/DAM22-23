@@ -1,9 +1,6 @@
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,6 +14,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "subscription")
 
+@NamedQueries({
+        @NamedQuery(name = "HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_NEWSPAPER", query = "FROM Subscription s WHERE s.id_newspaper = :id AND cancellationDate IS NULL"),
+        @NamedQuery(name = "HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_READER", query = "FROM Subscription s WHERE s.id_reader = :id AND cancellationDate IS NULL")})
 public class Subscription {
     @Id
     @Column(name = "id_reader")

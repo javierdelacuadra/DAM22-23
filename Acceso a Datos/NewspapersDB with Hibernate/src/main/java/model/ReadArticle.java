@@ -11,6 +11,15 @@ import lombok.*;
 
 @Entity
 @Table(name = "readarticle")
+
+@NamedQueries({
+        @NamedQuery(name = "HQL_GET_READARTICLE_BY_ID", query = "SELECT r FROM ReadArticle r WHERE r.id = :id"),
+        @NamedQuery(name = "HQL_GET_READARTICLE_BY_READER", query = "SELECT r FROM ReadArticle r WHERE r.reader.id = :id"),
+        @NamedQuery(name = "HQL_GET_READARTICLE_BY_ARTICLE", query = "SELECT r FROM ReadArticle r WHERE r.article.id = :id"),
+        @NamedQuery(name = "HQL_GET_READARTICLE_BY_READER_AND_ARTICLE", query = "FROM ReadArticle r WHERE r.reader.id = :idReader AND r.article.id = :idArticle"),
+        @NamedQuery(name = "HQL_GET_ALL_READARTICLE", query = "SELECT r FROM ReadArticle r"),
+        @NamedQuery(name = "HQL_UPDATE_READARTICLE", query = "UPDATE ReadArticle r SET r.rating = :rating WHERE r.reader.id = :idReader AND r.article.id = :idArticle"),
+})
 public class ReadArticle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

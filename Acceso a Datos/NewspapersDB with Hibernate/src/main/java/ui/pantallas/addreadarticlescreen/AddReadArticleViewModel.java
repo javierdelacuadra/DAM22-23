@@ -28,4 +28,8 @@ public class AddReadArticleViewModel {
     public int addRating(ReadArticle readArticle) {
         return servicesReadArticles.addRating(readArticle);
     }
+
+    public int updateRating(ReadArticle readArticle) {
+        return servicesReadArticles.updateRating(readArticle);
+    }
 }

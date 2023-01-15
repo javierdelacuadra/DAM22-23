@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
+import jakarta.persistence.Query;
 import model.Login;
 import model.Reader;
 
@@ -113,14 +114,22 @@ public class DaoReaders {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;
 
+        Reader managedReader = em.find(Reader.class, reader.getId());
+        managedReader.setDateOfBirth(reader.getDateOfBirth());
+        managedReader.getLogin().setPassword(reader.getLogin().getPassword());
+
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.remove(em.merge(reader));
+            em.remove(managedReader);
+            String hql = "DELETE FROM Subscription WHERE id_reader = :id";
+            Query query = em.createQuery(hql);
+            query.setParameter("id", reader.getId());
+            query.executeUpdate();
             tx.commit();
         } catch (PersistenceException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
+            assert tx != null;
+            if (tx.isActive()) tx.rollback();
             return -1;
         } finally {
             if (em != null) em.close();
@@ -149,26 +158,6 @@ public class DaoReaders {
         } finally {
             if (em != null) em.close();
         }
-    }
-
-    public Integer login(Login login) {
-        em = jpaUtil.getEntityManager();
-        Login user;
-
-        try {
-            user = em
-                    .createNamedQuery("HQL_GET_LOGIN", Login.class)
-                    .setParameter("name", login.getName())
-                    .setParameter("password", login.getPassword())
-                    .getSingleResult();
-        } catch (PersistenceException e) {
-            return -2;
-        } finally {
-            if (em != null) em.close();
-        }
-        return user.getReader().getId();
-
-        //TODO: mover a daologin
     }
 
     public Reader get(int id) {

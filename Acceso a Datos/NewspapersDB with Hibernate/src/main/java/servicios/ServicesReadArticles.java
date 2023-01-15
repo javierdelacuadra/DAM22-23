@@ -16,4 +16,8 @@ public class ServicesReadArticles {
     public int addRating(ReadArticle readArticle) {
         return daoReadArticles.save(readArticle);
     }
+
+    public int updateRating(ReadArticle readArticle) {
+        return daoReadArticles.update(readArticle);
+    }
 }

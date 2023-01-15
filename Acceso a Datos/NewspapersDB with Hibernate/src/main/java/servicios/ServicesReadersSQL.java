@@ -3,7 +3,6 @@ package servicios;
 import data.DaoReaders;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Login;
 import model.Reader;
 
 import java.util.List;
@@ -39,10 +38,6 @@ public class ServicesReadersSQL {
 
     public Either<Integer, List<Reader>> getReadersByArticleType(String articleType) {
         return daoReaders.getAll(articleType);
-    }
-
-    public Integer login(Login login) {
-        return daoReaders.login(login);
     }
 
     public Reader getReadersById(int id) {

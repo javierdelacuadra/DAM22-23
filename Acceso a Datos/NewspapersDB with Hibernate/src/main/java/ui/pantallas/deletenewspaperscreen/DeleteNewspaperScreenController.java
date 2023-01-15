@@ -57,6 +57,9 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
             } else if (result == -2) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has articles", ButtonType.OK);
                 alert.showAndWait();
+            } else if (result == -3) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has subscriptions", ButtonType.OK);
+                alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.PLEASE_SELECT_A_NEWSPAPER, ButtonType.OK);

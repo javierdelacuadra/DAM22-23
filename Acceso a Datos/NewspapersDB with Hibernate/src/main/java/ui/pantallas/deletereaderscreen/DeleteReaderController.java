@@ -3,6 +3,8 @@ package ui.pantallas.deletereaderscreen;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,13 +43,34 @@ public class DeleteReaderController extends BasePantallaController {
     public void deleteReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
-            if (viewModel.deleteReader(reader) == 1) {
-                readersTable.getItems().clear();
-                readersTable.setItems(viewModel.getReaders());
-            } else if (viewModel.deleteReader(reader) == -1) {
-                this.getPrincipalController().createAlert(ConstantesUI.ERROR_DELETING_READER);
-            } else if (viewModel.deleteReader(reader) == -2) {
-                this.getPrincipalController().createAlert(ConstantesUI.READER_NOT_FOUND);
+            if (viewModel.getSubscriptions(reader).get().isEmpty()) {
+                int result = viewModel.deleteReader(reader);
+                if (result == 1) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "The reader was deleted successfully", ButtonType.OK);
+                    alert.showAndWait();
+                    readersTable.setItems(viewModel.getReaders());
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "There was an error deleting the reader", ButtonType.OK);
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Reader has subscriptions");
+                alert.setContentText("Do you want to delete reader and subscriptions?");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        int result = viewModel.deleteReader(reader);
+                        if (result == 1) {
+                            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The reader and the subscriptions were deleted successfully", ButtonType.OK);
+                            alert2.showAndWait();
+                            readersTable.setItems(viewModel.getReaders());
+                        } else {
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR, "There was an error deleting the reader", ButtonType.OK);
+                            alert2.showAndWait();
+                        }
+                    }
+                });
             }
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
