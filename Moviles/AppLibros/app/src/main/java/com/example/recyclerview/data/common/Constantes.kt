@@ -1,0 +1,28 @@
+package com.example.recyclerview.data.common
+
+object Constantes {
+    const val NOMBRE = "nombre"
+    const val PASSWORD = "password"
+    const val EMAIL = "email"
+    const val DATABASE_PATH = "database/personas.db"
+    const val ITEM_DATABASE = "item_database"
+    const val ASSET_DB = "assetDB"
+    const val CITAS = "citas"
+    const val FECHA = "fecha"
+    const val HORA = "hora"
+    const val EMAIL_USUARIO = "emailUsuario"
+    const val EMAIL_DOCTOR = "emailDoctor"
+    const val REALIZADA = "realizada"
+    const val ID = "id"
+    const val DOCTORES = "doctores"
+    const val ESPECIALIDAD = "especialidad"
+    const val HOSPITALES_DOCTORES = "hospitalesDoctores"
+    const val HOSPITALES = "hospitales"
+    const val DIRECCION = "direccion"
+    const val TELEFONO = "telefono"
+    const val LOGIN = "login"
+    const val ROL = "rol"
+    const val USUARIOS = "usuarios"
+    const val DOCTOR = "doctor"
+    const val USUARIO = "usuario"
+}

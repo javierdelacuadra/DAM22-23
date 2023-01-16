@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pelis_nav_graph"
+    app:startDestination="@id/PelisInicioFragment">
+    <fragment
+        android:id="@+id/PelisInicioFragment"
+        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.inicio.PelisInicioFragment"
+        android:label="@string/Inicio"
+        tools:layout="@layout/fragment_pelis_inicio">
+    </fragment>
+    <fragment
+        android:id="@+id/BuscarFragment"
+        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.buscar.BuscarFragment"
+        android:label="@string/buscar"
+        tools:layout="@layout/fragment_buscar">
+    </fragment>
+    <fragment
+        android:id="@+id/TopRatedFragment"
+        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.toprated.TopRatedFragment"
+        android:label="@string/top_rated"
+        tools:layout="@layout/fragment_top_rated">
+    </fragment>
+    <fragment
+        android:id="@+id/TrendingFragment"
+        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.trending.TrendingFragment"
+        android:label="@string/trending"
+        tools:layout="@layout/fragment_trending">
+    </fragment>
+    <fragment
+        android:id="@+id/UpcomingFragment"
+        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.upcoming.UpcomingFragment"
+        android:label="@string/upcoming"
+        tools:layout="@layout/fragment_upcoming">
+    </fragment>
+    <action
+        android:id="@+id/action_global_pelisiniciofragment"
+        app:destination="@id/PelisInicioFragment" />
+    <action
+        android:id="@+id/action_global_buscarfragment"
+        app:destination="@id/BuscarFragment" />
+    <action
+        android:id="@+id/action_global_topratedfragment"
+        app:destination="@id/TopRatedFragment" />
+    <action
+        android:id="@+id/action_global_trendingfragment"
+        app:destination="@id/TrendingFragment" />
+    <action
+        android:id="@+id/action_global_upcomingfragment"
+        app:destination="@id/UpcomingFragment" />
+</navigation>

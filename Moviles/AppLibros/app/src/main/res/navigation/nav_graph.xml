@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/InicioFragment">
+
+    <fragment
+        android:id="@+id/InicioFragment"
+        android:name="com.example.recyclerview.ui.usuarioactivity.fragments.inicio.InicioFragment"
+        android:label="@string/Inicio"
+        tools:layout="@layout/fragment_inicio">
+        <action
+            android:id="@+id/action_InicioFragment_to_PedirCitaFragment"
+            app:destination="@id/PedirCitaFragment" />
+        <action
+            android:id="@+id/action_InicioFragment_to_verCitasFragment"
+            app:destination="@id/verCitasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PedirCitaFragment"
+        android:name="com.example.recyclerview.ui.usuarioactivity.fragments.pedircita.PedirCitaFragment"
+        android:label="@string/pedir_cita"
+        tools:layout="@layout/fragment_pedir_cita">
+        <action
+            android:id="@+id/action_PedirCitaFragment_to_InicioFragment"
+            app:destination="@id/InicioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verCitasFragment"
+        android:name="com.example.recyclerview.ui.usuarioactivity.fragments.vercitas.VerCitasFragment"
+        android:label="@string/ver_citas"
+        tools:layout="@layout/fragment_ver_citas">
+        <action
+            android:id="@+id/action_verCitasFragment_to_InicioFragment2"
+            app:destination="@id/InicioFragment" />
+        <action
+            android:id="@+id/action_verCitasFragment_to_PedirCitaFragment"
+            app:destination="@id/PedirCitaFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_iniciofragment"
+        app:destination="@id/InicioFragment" />
+    <action
+        android:id="@+id/action_global_pedircitafragment"
+        app:destination="@id/PedirCitaFragment" />
+    <action
+        android:id="@+id/action_global_vercitasfragment"
+        app:destination="@id/verCitasFragment" />
+</navigation>

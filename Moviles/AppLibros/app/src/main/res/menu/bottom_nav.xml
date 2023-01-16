@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/inicio"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/Inicio" />
+    <item
+        android:id="@+id/buscar"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/buscar" />
+    <item
+        android:id="@+id/topRated"
+        android:icon="@drawable/baseline_star_24"
+        android:title="@string/top_rated" />
+    <item
+        android:id="@+id/trending"
+        android:icon="@drawable/baseline_trending_up_24"
+        android:title="@string/trending" />
+    <item
+        android:id="@+id/upcoming"
+        android:icon="@drawable/baseline_calendar_today_24"
+        android:title="@string/upcoming" />
+</menu>
