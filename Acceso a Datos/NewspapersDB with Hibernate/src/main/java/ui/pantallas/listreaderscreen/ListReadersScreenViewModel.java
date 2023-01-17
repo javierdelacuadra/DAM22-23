@@ -7,22 +7,23 @@ import javafx.collections.ObservableList;
 import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
-import servicios.*;
+import servicios.ServicesNewspaperSQL;
+import servicios.ServicesReadArticles;
+import servicios.ServicesReadersSQL;
+import servicios.ServicesTypes;
 
 import java.util.Map;
 
 public class ListReadersScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
-    private final ServicesArticlesSQL servicesArticlesSQL;
     private final ServicesReadersSQL servicesReadersSQL;
     private final ServicesReadArticles servicesReadArticles;
     private final ServicesTypes servicesTypes;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesArticlesSQL servicesArticlesSQL, ServicesReadersSQL servicesReadersSQL, ServicesReadArticles servicesReadArticles, ServicesTypes servicesTypes) {
+    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesReadersSQL servicesReadersSQL, ServicesReadArticles servicesReadArticles, ServicesTypes servicesTypes) {
         this.servicesNewspaperSQL = servicesNewspaperSQL;
-        this.servicesArticlesSQL = servicesArticlesSQL;
         this.servicesReadersSQL = servicesReadersSQL;
         this.servicesReadArticles = servicesReadArticles;
         this.servicesTypes = servicesTypes;
@@ -52,7 +53,7 @@ public class ListReadersScreenViewModel {
         return servicesReadersSQL.getOldestSubscribers().map(FXCollections::observableArrayList);
     }
 
-    public Map<Double, Integer> getAvgRating(Integer idReader) {
+    public Map<Double, String> getAvgRating(Integer idReader) {
         return servicesReadArticles.getAvgRating(idReader);
     }
 }

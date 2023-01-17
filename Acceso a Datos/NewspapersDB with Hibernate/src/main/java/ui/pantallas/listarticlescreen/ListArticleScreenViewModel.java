@@ -1,5 +1,6 @@
 package ui.pantallas.listarticlescreen;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,5 +34,9 @@ public class ListArticleScreenViewModel {
 
     public ObservableList<ArticleType> getArticleTypes() {
         return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
+    }
+
+    public Either<Integer, ArticleType> getMostReadType() {
+        return servicesTypes.getMostReadType();
     }
 }

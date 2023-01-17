@@ -37,4 +37,26 @@ public class DaoTypes {
 
         return types.isEmpty() ? Either.left(-1) : Either.right(types);
     }
+
+    public Either<Integer, ArticleType> get() {
+        ArticleType type;
+        em = jpaUtil.getEntityManager();
+
+        try {
+            type = em
+                    .createNamedQuery("HQL_GET_MOST_READ_TYPE", ArticleType.class)
+                    .getSingleResult();
+
+        } catch (PersistenceException e) {
+            String message = e.getMessage();
+            int amount = 0;
+            if (message.contains("query did not return a unique result")) {
+                amount = Integer.parseInt(message.substring(message.length() - 1));
+            }
+            return Either.left(amount);
+        } finally {
+            if (em != null) em.close();
+        }
+        return Either.right(type);
+    }
 }

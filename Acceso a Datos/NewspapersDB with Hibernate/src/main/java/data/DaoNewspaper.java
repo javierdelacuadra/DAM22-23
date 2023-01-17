@@ -121,7 +121,7 @@ public class DaoNewspaper {
 
         try {
             return em.createNamedQuery("HQL_GET_NUMBER_ARTICLES_BY_NEWSPAPER", Tuple.class)
-                    .setParameter("id", newspaper)
+                    .setParameter("newspaperID", newspaper)
                     .getResultStream()
                     .collect(Collectors.toMap(
                             tuple -> tuple.get("type").toString(),

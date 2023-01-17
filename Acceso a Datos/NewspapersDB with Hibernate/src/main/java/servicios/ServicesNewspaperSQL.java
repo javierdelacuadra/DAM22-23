@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import model.Newspaper;
 
 import java.util.List;
+import java.util.Map;
 
 public class ServicesNewspaperSQL {
     private final DaoNewspaper daoNewspaper;
@@ -40,9 +41,14 @@ public class ServicesNewspaperSQL {
         } else {
             return -2;
         }
+        //TODO: simplify checks, if exception is thrown, return -1
     }
 
     public Integer updateNewspaper(Newspaper newspaper) {
         return daoNewspaper.update(newspaper);
+    }
+
+    public Map<String, Integer> getNbrArticles(int idNewspaper) {
+        return daoNewspaper.getNbrArticles(idNewspaper);
     }
 }
