@@ -3,6 +3,8 @@ package servicios;
 import data.DaoReaders;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import model.ArticleType;
+import model.Newspaper;
 import model.Reader;
 
 import java.util.List;
@@ -32,12 +34,12 @@ public class ServicesReadersSQL {
         return daoReaders.update(reader);
     }
 
-    public Either<Integer, List<Reader>> getReadersByNewspaper(int id) {
-        return daoReaders.getAll(id);
+    public Either<Integer, List<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+        return daoReaders.getAll(newspaper);
     }
 
-    public Either<Integer, List<Reader>> getReadersByArticleType(String articleType) {
-        return daoReaders.getAll(articleType);
+    public Either<Integer, List<Reader>> getReadersByArticleType(ArticleType type) {
+        return daoReaders.getAll(type);
     }
 
     public Reader getReadersById(int id) {

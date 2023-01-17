@@ -9,7 +9,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
+import model.ArticleType;
 import model.Login;
+import model.Newspaper;
 import model.Reader;
 
 import java.sql.Connection;
@@ -51,14 +53,14 @@ public class DaoReaders {
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
-    public Either<Integer, List<Reader>> getAll(int id) {
+    public Either<Integer, List<Reader>> getAll(Newspaper newspaper) {
         List<Reader> readers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 
         try {
             readers = em
                     .createNamedQuery("HQL_GET_READERS_BY_ID_NEWSPAPER", Reader.class)
-                    .setParameter("id_newspaper", id)
+                    .setParameter("id_newspaper", newspaper.getId())
                     .getResultList();
 
         } catch (PersistenceException e) {
@@ -69,14 +71,14 @@ public class DaoReaders {
         return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
     }
 
-    public Either<Integer, List<Reader>> getAll(String articleType) {
+    public Either<Integer, List<Reader>> getAll(ArticleType type) {
         List<Reader> readers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 
         try {
             readers = em
                     .createNamedQuery("HQL_GET_READERS_BY_ARTICLE_TYPE", Reader.class)
-                    .setParameter("description", articleType)
+                    .setParameter("description", type.getDescription())
                     .getResultList();
 
         } catch (PersistenceException e) {
@@ -121,11 +123,11 @@ public class DaoReaders {
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.remove(managedReader);
             String hql = "DELETE FROM Subscription WHERE id_reader = :id";
             Query query = em.createQuery(hql);
             query.setParameter("id", reader.getId());
             query.executeUpdate();
+            em.remove(managedReader);
             tx.commit();
         } catch (PersistenceException e) {
             assert tx != null;

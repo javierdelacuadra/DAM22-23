@@ -6,10 +6,13 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
+import jakarta.persistence.Tuple;
 import model.Newspaper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DaoNewspaper {
     private JPAUtil jpaUtil;
@@ -108,6 +111,25 @@ public class DaoNewspaper {
             if (tx != null) tx.rollback();
             e.printStackTrace();
             return -1;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
+    public Map<String, Integer> getNbrArticles(int newspaper) {
+        em = jpaUtil.getEntityManager();
+
+        try {
+            return em.createNamedQuery("HQL_GET_NUMBER_ARTICLES_BY_NEWSPAPER", Tuple.class)
+                    .setParameter("id", newspaper)
+                    .getResultStream()
+                    .collect(Collectors.toMap(
+                            tuple -> tuple.get("type").toString(),
+                            tuple -> ((Number) tuple.get("numberArticles")).intValue())
+                    );
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             if (em != null) em.close();
         }

@@ -2,6 +2,7 @@ package ui.pantallas.listreaderscreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,8 +45,13 @@ public class ListReadersScreenController extends BasePantallaController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         readersTable.setItems(viewModel.getReaders());
-        newspaperComboBox.setItems(viewModel.getNewspapers());
-        articleTypeComboBox.setItems(viewModel.getArticleTypes());
+        newspaperComboBox.setItems(
+                FXCollections.observableArrayList(viewModel.getNewspapers().stream().peek(newspaper -> newspaper.setName(newspaper.getName())).toList())
+        );
+        articleTypeComboBox.setItems(
+                FXCollections.observableArrayList(viewModel.getArticleTypes().stream().peek(articleType -> articleType.setDescription(articleType.getDescription())).toList())
+        );
+        //TODO:mostrar solo los nombres
     }
 
 
@@ -60,7 +66,7 @@ public class ListReadersScreenController extends BasePantallaController {
     }
 
     public void filterByArticleType() {
-        String articleType = articleTypeComboBox.getSelectionModel().getSelectedItem().getDescription();
+        ArticleType articleType = articleTypeComboBox.getSelectionModel().getSelectedItem();
         if (viewModel.getReadersByArticleType(articleType).isRight()) {
             readersTable.setItems(viewModel.getReadersByArticleType(articleType).get());
         } else {
@@ -75,6 +81,19 @@ public class ListReadersScreenController extends BasePantallaController {
         } else {
             readersTable.setItems(viewModel.getReaders());
             this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_SUBSCRIBED_TO_EL_HOLA_MUNDO);
+        }
+    }
+
+    public void getAvgRatingByReader() {
+        Reader reader = readersTable.getSelectionModel().getSelectedItem();
+        if (reader != null) {
+            if (viewModel.getAvgRating(reader.getId()) != null) {
+
+            } else {
+                this.getPrincipalController().createAlert("The reader " + reader.getName() + " hasn't rated any article yet");
+            }
+        } else {
+            this.getPrincipalController().createAlert("Please select a reader");
         }
     }
 

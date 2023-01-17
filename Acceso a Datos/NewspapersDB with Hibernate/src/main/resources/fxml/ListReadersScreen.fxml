@@ -25,4 +25,6 @@
     <MFXButton layoutX="172.0" layoutY="436.0" mnemonicParsing="false" onAction="#resetFilters" text="Reset Filters"/>
     <MFXButton layoutX="380.0" layoutY="436.0" mnemonicParsing="false" onAction="#filterOldestSubscribers"
                text="Get 5 oldest subscribers of El Hola Mundo"/>
+    <MFXButton layoutX="480.0" layoutY="436.0" mnemonicParsing="false" onAction="#getAvgRatingByReader"
+               text="Get avg rating by reader"/>
 </AnchorPane>

@@ -36,6 +36,10 @@ public class ServicesArticlesSQL {
         return daoArticles.delete(article);
     }
 
+    public Integer deleteArticleFromNewspaper(Integer id) {
+        return daoArticles.delete(id);
+    }
+
     public Integer updateArticle(Article article) {
         return daoArticles.update(article);
     }

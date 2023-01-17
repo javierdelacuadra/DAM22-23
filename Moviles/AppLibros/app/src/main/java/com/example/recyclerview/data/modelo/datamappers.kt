@@ -101,3 +101,15 @@ fun UsuarioWithCitas.toUsuario(): Usuario {
         this.citas.map { it.toCita() },
     )
 }
+
+fun PeliculaEntity.toPelicula(): Pelicula {
+    return Pelicula(
+        this.id,
+        this.title,
+        this.vote_count,
+        this.vote_average,
+        this.release_date,
+        this.popularity,
+        this.overview,
+    )
+}

@@ -109,4 +109,7 @@ Director del hospital</string>
     <string name="trending">Trending</string>
     <string name="buscar">Buscar</string>
     <string name="upcoming">Estrenos</string>
+    <string name="fecha_estreno">Fecha de estreno</string>
+    <string name="rating">Rating</string>
+    <string name="imagen">imagen</string>
 </resources>

@@ -2,13 +2,12 @@ package data;
 
 import data.hibernate.JPAUtil;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import model.ReadArticle;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DaoReadArticles {
     private JPAUtil jpaUtil;
@@ -70,6 +69,25 @@ public class DaoReadArticles {
             assert transaction != null;
             if (transaction.isActive()) transaction.rollback();
             return -1;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
+    public Map<Double, Integer> getAvgRating(int idReader) {
+        em = jpaUtil.getEntityManager();
+
+        try {
+            return em.createNamedQuery("HQL_GET_AVG_RATING_BY_READER", Tuple.class)
+                    .setParameter("idReader", idReader)
+                    .getResultStream()
+                    .collect(Collectors.toMap(
+                            tuple -> ((Number) tuple.get("avgRating")).doubleValue(),
+                            tuple -> ((Number) tuple.get("newspaperID")).intValue())
+                    );
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             if (em != null) em.close();
         }

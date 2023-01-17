@@ -186,6 +186,30 @@ public class DaoArticles {
         }
     }
 
+    public Integer delete(Integer id) {
+        em = jpaUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        try {
+            em.createNamedQuery("HQL_DELETE_ARTICLE_BY_NEWSPAPER_ID")
+                    .setParameter("id", id)
+                    .executeUpdate();
+//            em.createNamedQuery("HQL_DELETE_READ_ARTICLE_BY_NEWSPAPER_ID")
+//                    .setParameter("id", id)
+//                    .executeUpdate();
+            //TODO: encontrar los readarticles de alguna manera
+            tx.commit();
+            return 1;
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
     public Integer update(Article article) {
         em = jpaUtil.getEntityManager();
         EntityTransaction tx = null;

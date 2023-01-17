@@ -31,35 +31,6 @@ class SplashActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper())
         viewModel.handleEvent(SplashEvent.CheckActualUser)
 
-//        viewModel.uiState.observe(this) { state ->
-//            state.rol?.let {
-//                Timber.d("Role: $it")
-//                when (it) {
-//                    ConstantesUI.USUARIO -> {
-//                        handler.postDelayed({
-//                            val intent = Intent(this, UsuarioActivity::class.java)
-//                            startActivity(intent)
-//                            finish()
-//                        }, 1000)
-//                    }
-//                    ConstantesUI.DOCTOR -> {
-//                        handler.postDelayed({
-//                            val intent = Intent(this, DoctorActivity::class.java)
-//                            startActivity(intent)
-//                            finish()
-//                        }, 1000)
-//                    }
-//                    else -> {
-//                        handler.postDelayed({
-//                            val intent = Intent(this, LoginActivity::class.java)
-//                            startActivity(intent)
-//                            finish()
-//                        }, 1000)
-//                    }
-//                }
-//            }
-//        }
-
         handler.postDelayed({
             val intent = Intent(this, PeliculasActivity::class.java)
             startActivity(intent)
