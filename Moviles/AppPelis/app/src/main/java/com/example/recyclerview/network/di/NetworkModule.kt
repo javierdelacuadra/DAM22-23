@@ -1,5 +1,6 @@
 package com.example.recyclerview.network.di
 
+import com.example.recyclerview.BuildConfig.API_KEY
 import com.example.recyclerview.network.AuthInterceptor
 import com.example.recyclerview.network.service.MovieService
 import com.example.recyclerview.network.utils.NetworkUtils
@@ -31,9 +32,8 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(AuthInterceptor("5dd3bf9476e31b36842654c9286176c6"))
+            .addInterceptor(AuthInterceptor(API_KEY))
             .build()
-        //TODO: cambiar
     }
 
     @Provides

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.recyclerview.databinding.FragmentBuscarBinding
-import com.example.recyclerview.databinding.FragmentPelisInicioBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

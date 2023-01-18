@@ -38,7 +38,11 @@ class LoginDoctorFragment : Fragment() {
             state.loginSuccess?.let {
                 if (it) {
                     Timber.i(ConstantesUI.LOGIN_CORRECTO_COMO_DOCTOR)
-                    Snackbar.make(requireView(), ConstantesUI.INICIO_DE_SESION_CORRECTO, Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        requireView(),
+                        ConstantesUI.INICIO_DE_SESION_CORRECTO,
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                     loadInicioDoctor()
                 } else {

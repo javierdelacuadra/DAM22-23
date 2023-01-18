@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentTopRatedBinding
+import com.example.recyclerview.ui.peliculasactivity.fragments.detalle.DetalleFragment
 import com.example.recyclerview.ui.peliculasactivity.fragments.trending.AdapterPeliculas
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +36,18 @@ class TopRatedFragment : Fragment() {
 
         viewModel.handleEvent(TopRatedEvent.Eventos.LoadPeliculas)
 
-        val adapter = AdapterPeliculas(ArrayList())
+        val adapter = AdapterPeliculas(ArrayList(), object : AdapterPeliculas.PeliculaActions {
+            override fun verDetalle(peliculaID: Int) {
+                val bundle = Bundle()
+                bundle.putInt("id", peliculaID)
+                val fragment = DetalleFragment()
+                fragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentPelisContainerView, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        })
 
         listaPeliculas = binding.listaPelisTopRated
         listaPeliculas.adapter = adapter

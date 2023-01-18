@@ -114,3 +114,17 @@ fun PeliculaEntity.toPelicula(): Pelicula {
         this.poster_path,
     )
 }
+
+fun MovieResponse.toIndividualMovie(): IndividualMovie {
+    return IndividualMovie(
+        this.poster_path,
+        this.id,
+        this.original_title,
+        this.overview,
+        this.release_date,
+        this.revenue,
+        this.runtime,
+        this.vote_average,
+        this.vote_count,
+    )
+}

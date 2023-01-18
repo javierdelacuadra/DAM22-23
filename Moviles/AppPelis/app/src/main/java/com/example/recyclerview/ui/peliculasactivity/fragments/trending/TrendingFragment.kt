@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentTrendingBinding
+import com.example.recyclerview.ui.peliculasactivity.fragments.detalle.DetalleFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -34,7 +36,18 @@ class TrendingFragment : Fragment() {
 
         viewModel.handleEvent(TrendingEvent.Eventos.LoadPeliculas)
 
-        val adapter = AdapterPeliculas(ArrayList())
+        val adapter = AdapterPeliculas(ArrayList(), object : AdapterPeliculas.PeliculaActions {
+            override fun verDetalle(peliculaID: Int) {
+                val bundle = Bundle()
+                bundle.putInt("id", peliculaID)
+                val fragment = DetalleFragment()
+                fragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentPelisContainerView, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        })
 
         listaPeliculas = binding.listaPelisTrending
         listaPeliculas.adapter = adapter

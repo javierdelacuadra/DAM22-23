@@ -5,7 +5,10 @@ import retrofit2.Response
 
 abstract class BaseApiResponse {
 
-    suspend fun <T,R> safeApiCall(apiCall: suspend () -> Response<R>, transform :(R) -> T ): NetworkResult<T> {
+    suspend fun <T, R> safeApiCall(
+        apiCall: suspend () -> Response<R>,
+        transform: (R) -> T
+    ): NetworkResult<T> {
         try {
             val response = apiCall()
             if (response.isSuccessful) {

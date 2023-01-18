@@ -2,7 +2,10 @@ package com.example.recyclerview.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.recyclerview.data.dao.*
+import com.example.recyclerview.data.dao.DaoCitas
+import com.example.recyclerview.data.dao.DaoDoctores
+import com.example.recyclerview.data.dao.DaoHospitales
+import com.example.recyclerview.data.dao.DaoUsuarios
 import com.example.recyclerview.data.modelo.*
 
 @Database(

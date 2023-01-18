@@ -33,7 +33,7 @@ class LoginUsuarioFragment : Fragment() {
             btnLogin.setOnClickListener {
                 checkLogin()
             }
-            botonInfo.setOnClickListener{
+            botonInfo.setOnClickListener {
                 mostrarInfo()
             }
         }
@@ -42,7 +42,11 @@ class LoginUsuarioFragment : Fragment() {
             state.loginSuccess?.let {
                 if (it) {
                     Timber.i(ConstantesUI.LOGIN_CORRECTO_COMO_USUARIO)
-                    Snackbar.make(requireView(), ConstantesUI.INICIO_DE_SESION_CORRECTO, Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        requireView(),
+                        ConstantesUI.INICIO_DE_SESION_CORRECTO,
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                     loadInicioUsuario()
                 } else {

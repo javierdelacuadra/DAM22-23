@@ -112,4 +112,10 @@ Director del hospital</string>
     <string name="fecha_estreno" translatable="false">Fecha de estreno</string>
     <string name="rating" translatable="false">Rating</string>
     <string name="imagen" translatable="false">imagen</string>
+    <string name="detalle">Detalle</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="revenue">Dinero recaudado</string>
+    <string name="duracion">Duración</string>
+    <string name="media_votos">Media de votos</string>
+    <string name="contador_votos">Contador de votos</string>
 </resources>
