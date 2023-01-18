@@ -1,0 +1,115 @@
+<resources>
+    <string name="app_name">AppPelisSeries</string>
+    <string name="name">name</string>
+    <string name="suffixCorreo">\@gmail.com</string>
+    <string name="nombre">Nombre</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="emailConfirmation">Confirmo que quiero recibir información por correo electrónico</string>
+    <string name="add">Añadir</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="anterior">ANTERIOR</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="_uno">1</string>
+    <string name="formatoIncorrectoEmail">Formato incorrecto en el email</string>
+    <string name="camposVaciosError">No puede haber campos vacíos</string>
+    <string name="errorEmail">Error: El email especificado ya corresponde a una persona registrada</string>
+    <string name="error_campos_vacios">No se han rellenado todos los campos</string>
+    <string name="error_formato_email">El formato del email es incorrecto</string>
+    <string name="error_al_guardar_persona">Error al añadir persona</string>
+    <string name="persona_guardada">Persona agregada correctamente</string>
+    <string name="error_persona_no_existe">La persona que intenta borrar no existe</string>
+    <string name="error_al_eliminar_persona">No se ha podido eliminar la persona</string>
+    <string name="persona_eliminada">Persona eliminada correctamente</string>
+    <string name="error_no_hay_mas_personas">No hay más personas</string>
+    <string name="title_activity_recicler">ReciclerActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="verLista">Ver lista</string>
+    <string name="SI">Sí</string>
+    <string name="update_message">¿Quieres actualizar esta persona?</string>
+    <string name="no">No</string>
+    <string name="persona_no_actualizada">Persona no actualizada</string>
+    <string name="empty_fields">Debes rellenar todos los campos</string>
+    <string name="empty_password">Si dejas la contraseña vacía se mantendrá la actual</string>
+    <string name="tarjeta_guardada">Tarjeta añadida con éxito</string>
+    <string name="error_al_guardar_tarjeta">Error al guardar tarjeta</string>
+    <string name="numero_tarjeta">NºTarjeta</string>
+    <string name="fecha_caducidad">Fecha de Caducidad</string>
+    <string name="CVV">CVV</string>
+    <string name="addTarjeta">Añadir Tarjeta</string>
+    <string name="verTarjetas">Ver Tarjetas</string>
+    <string name="mes">Mes</string>
+    <string name="year">Año</string>
+    <string name="formato_tarjeta_incorrecto">Alguno de los campos es incorrecto</string>
+    <string name="n_tarjeta_helper">Longitud: 16 caracteres</string>
+    <string name="cvv_helper">Ejemplo: 123</string>
+    <string name="pedir_cita">Pedir cita</string>
+    <string name="ver_citas">Ver citas</string>
+    <string name="configuracion">Configuración</string>
+    <string name="compartir">Compartir</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="opciones">Opciones</string>
+    <string name="Inicio">Inicio</string>
+    <string name="inicio_sesion">Iniciar Sesión</string>
+    <string name="logo_salud_madrid">Logo Salud Madrid</string>
+    <string name="salud_madrid">Aplicación</string>
+    <string name="hora_de_la_cita">Hora de la cita</string>
+    <string name="fecha_de_la_cita">Fecha de la cita</string>
+    <string name="idcita">IDCita</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="verRepositorio">Ver Repositorio</string>
+    <string name="revisar_citas">Revisar Citas</string>
+    <string name="marcar_cita">Marcar cita</string>
+    <string name="seleccione_una_especialidad">Seleccione una especialidad</string>
+    <string name="noticiaUsuario">Una noticia que ha estado muy presente en los últimos meses en relación con la salud es la pandemia de la COVID-19. Se trata de una enfermedad infecciosa causada por el coronavirus SARS-CoV-2, que se transmitió por primera vez a humanos en Wuhan, China, en 2019. Desde entonces, la pandemia se ha extendido a nivel mundial, afectando a millones de personas y provocando miles de muertes.
+
+Para combatir la pandemia, los gobiernos y las autoridades sanitarias han adoptado medidas como el confinamiento, el distanciamiento social y el uso de mascarillas. Además, se han desarrollado varias vacunas contra el coronavirus, que se han distribuido en diferentes partes del mundo. A pesar de esto, la pandemia sigue siendo un problema global y continúan apareciendo nuevos casos y variantes del virus.
+
+La COVID-19 ha tenido un gran impacto en la salud mental de la población, ya que el aislamiento y el miedo a contraer la enfermedad pueden provocar ansiedad, depresión y otros trastornos mentales. Por eso, es importante que las personas cuiden de su salud mental durante la pandemia y busquen apoyo profesional si lo necesitan.
+
+En resumen, la pandemia de la COVID-19 ha sido una de las mayores crisis de salud de los últimos tiempos, que ha afectado tanto a la salud física como a la mental de las personas. Aunque se han desarrollado vacunas y se han tomado medidas para controlar el virus, aún queda mucho trabajo por hacer para superar esta crisis y proteger la salud de la población.</string>
+    <string name="noticias">Noticias</string>
+    <string name="noticiaDoctor">Queridos colegas,
+
+Espero que este comunicado les encuentre bien. Quería informarles de algunos cambios que se están implementando en nuestro hospital a partir de la próxima semana.
+
+En primer lugar, hemos decidido ampliar el horario de atención de nuestro servicio de urgencias. A partir de ahora, estará disponible las 24 horas del día, los 7 días de la semana. Esta medida se ha tomado con el objetivo de mejorar la atención a nuestros pacientes y poder atender cualquier emergencia de forma rápida y eficiente.
+
+En segundo lugar, hemos contratado a dos nuevos médicos para reforzar nuestro equipo. Se trata de dos profesionales con amplia experiencia en el campo de la medicina interna y que estarán dispuestos a colaborar con todos ustedes en cualquier proyecto en el que puedan necesitar su ayuda.
+
+Por último, quería recordarles la importancia de mantener actualizados sus conocimientos y de seguir formándose en su área de especialización. Sabemos que el mundo de la medicina es muy dinámico y que constantemente surgen nuevos avances y técnicas. Por eso, es fundamental que estemos siempre al tanto de las últimas novedades y que sigamos aprendiendo para poder ofrecer la mejor atención a nuestros pacientes.
+
+Espero que estas medidas contribuyan a mejorar la calidad de la atención que brindamos en nuestro hospital y a hacer nuestro trabajo más eficiente y satisfactorio. Si tienen alguna sugerencia o idea que crean que pueda ser útil, no duden en compartirla con nosotros.
+
+Gracias por su dedicación y esfuerzo en estos tiempos tan complicados. Juntos podemos seguir haciendo una gran labor en beneficio de nuestros pacientes.
+
+Atentamente,
+Director del hospital</string>
+    <string name="comunicado">Comunicado Oficial</string>
+    <string name="noCitas">No has reservado ninguna cita.</string>
+    <string name="noCitasRevisar">No tienes ninguna cita por revisar.</string>
+    <string name="marcar_como_atendida">Marcar como atendida</string>
+    <string name="seleccione_una_fecha">Seleccione una fecha</string>
+    <string name="seleccione_un_doctor">Seleccione un doctor</string>
+    <string name="seleccione_una_hora">Seleccione una hora</string>
+    <string name="dra_isabel">Dra. Isabel</string>
+    <string name="dr_juan">Dr. Juan</string>
+    <string name="dr_nefario">Dr. Nefario</string>
+    <string name="info">Información</string>
+    <string name="conoce_a_nuestros_doctores">Conoce a nuestros doctores</string>
+    <string name="top_rated" translatable="false">Top Rated</string>
+    <string name="trending" translatable="false">Trending</string>
+    <string name="buscar" translatable="false">Buscar</string>
+    <string name="upcoming" translatable="false">Estrenos</string>
+    <string name="fecha_estreno" translatable="false">Fecha de estreno</string>
+    <string name="rating" translatable="false">Rating</string>
+    <string name="imagen" translatable="false">imagen</string>
+</resources>
