@@ -62,7 +62,6 @@ public class ListReadersScreenController extends BasePantallaController {
         articleTypeComboBox.setItems(
                 FXCollections.observableArrayList(viewModel.getArticleTypes().stream().peek(articleType -> articleType.setDescription(articleType.getDescription())).toList())
         );
-        //TODO:mostrar solo los nombres
     }
 
 

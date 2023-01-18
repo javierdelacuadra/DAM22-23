@@ -43,26 +43,23 @@ public class DeleteReaderController extends BasePantallaController {
     public void deleteReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
-            if (viewModel.getSubscriptions(reader).get().isEmpty()) {
-                //TODO: check the subscriptions in services
-                int result = viewModel.deleteReader(reader);
-                if (result == 1) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "The reader was deleted successfully", ButtonType.OK);
-                    alert.showAndWait();
-                    readersTable.setItems(viewModel.getReaders());
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "There was an error deleting the reader", ButtonType.OK);
-                    alert.showAndWait();
-                }
-            } else {
+            int result = viewModel.deleteReader(reader, false);
+            if (result == 1) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The reader was deleted successfully", ButtonType.OK);
+                alert.showAndWait();
+                readersTable.setItems(viewModel.getReaders());
+            } else if (result == -1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "There was an error deleting the reader", ButtonType.OK);
+                alert.showAndWait();
+            } else if (result == -2) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation");
                 alert.setHeaderText("Reader has subscriptions");
                 alert.setContentText("Do you want to delete reader and subscriptions?");
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        int result = viewModel.deleteReader(reader);
-                        if (result == 1) {
+                        int resultado = viewModel.deleteReader(reader, true);
+                        if (resultado == 1) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The reader and the subscriptions were deleted successfully", ButtonType.OK);
                             alert2.showAndWait();
                             readersTable.setItems(viewModel.getReaders());

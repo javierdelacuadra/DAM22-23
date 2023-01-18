@@ -144,7 +144,6 @@ public class DaoArticles {
 //            em.createNamedQuery("HQL_DELETE_READ_ARTICLE_BY_NEWSPAPER_ID")
 //                    .setParameter("id", id)
 //                    .executeUpdate();
-            //TODO: encontrar los readarticles de alguna manera
             tx.commit();
             return 1;
         } catch (Exception e) {

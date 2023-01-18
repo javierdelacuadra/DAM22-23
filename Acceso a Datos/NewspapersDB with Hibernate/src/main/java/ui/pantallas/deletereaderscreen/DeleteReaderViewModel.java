@@ -26,8 +26,8 @@ public class DeleteReaderViewModel {
         return FXCollections.observableArrayList(servicesReadersSQL.getAllReaders().get());
     }
 
-    public int deleteReader(Reader reader) {
-        return servicesReadersSQL.deleteReader(reader);
+    public int deleteReader(Reader reader, boolean delete) {
+        return servicesReadersSQL.deleteReader(reader, delete);
     }
 
     public Either<Integer, List<Subscription>> getSubscriptions(Reader reader) {

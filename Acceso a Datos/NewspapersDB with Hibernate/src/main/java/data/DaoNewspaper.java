@@ -90,7 +90,6 @@ public class DaoNewspaper {
             return 1;
         } catch (PersistenceException e) {
             if (tx.isActive()) tx.rollback();
-            e.printStackTrace();
             return -1;
         } finally {
             if (em != null) em.close();

@@ -11,12 +11,10 @@ import java.util.Map;
 
 public class ServicesNewspaperSQL {
     private final DaoNewspaper daoNewspaper;
-    private final DaoSubscriptions daoSubscriptions;
 
     @Inject
-    public ServicesNewspaperSQL(DaoNewspaper daoNewspaper, DaoSubscriptions daoSubscriptions) {
+    public ServicesNewspaperSQL(DaoNewspaper daoNewspaper) {
         this.daoNewspaper = daoNewspaper;
-        this.daoSubscriptions = daoSubscriptions;
     }
 
     public Either<Integer, List<Newspaper>> getNewspapers() {
@@ -32,16 +30,7 @@ public class ServicesNewspaperSQL {
     }
 
     public Integer deleteNewspaper(Newspaper newspaper) {
-        if (newspaper.getArticles().isEmpty()) {
-            if (daoSubscriptions.get(newspaper).get().isEmpty()) {
-                return daoNewspaper.delete(newspaper);
-            } else {
-                return -3;
-            }
-        } else {
-            return -2;
-        }
-        //TODO: simplify checks, if exception is thrown, return -1
+        return daoNewspaper.delete(newspaper);
     }
 
     public Integer updateNewspaper(Newspaper newspaper) {

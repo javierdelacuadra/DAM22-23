@@ -52,13 +52,7 @@ public class DeleteNewspaperScreenController extends BasePantallaController impl
                 alert.showAndWait();
                 newspaperTable.setItems(viewModel.getNewspapers());
             } else if (result == -1) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper couldn't be deleted", ButtonType.OK);
-                alert.showAndWait();
-            } else if (result == -2) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has articles", ButtonType.OK);
-                alert.showAndWait();
-            } else if (result == -3) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper wasn't deleted because it has subscriptions", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "The newspaper couldn't be deleted because it has subscriptions", ButtonType.OK);
                 alert.showAndWait();
             }
         } else {
