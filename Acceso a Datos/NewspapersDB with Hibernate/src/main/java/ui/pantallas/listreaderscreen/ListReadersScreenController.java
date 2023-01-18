@@ -2,6 +2,7 @@ package ui.pantallas.listreaderscreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -12,6 +13,10 @@ import model.Newspaper;
 import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ListReadersScreenController extends BasePantallaController {
 
@@ -39,6 +44,12 @@ public class ListReadersScreenController extends BasePantallaController {
 
     @FXML
     public MFXComboBox<ArticleType> articleTypeComboBox;
+
+    @FXML
+    public TableView<String> ratingsTable;
+
+    @FXML
+    public TableColumn<String, String> newspapernameColumn;
 
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -87,8 +98,14 @@ public class ListReadersScreenController extends BasePantallaController {
     public void getAvgRatingByReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
-            if (viewModel.getAvgRating(reader.getId()) != null) {
-
+            Map<Double, String> avgRatings = viewModel.getAvgRating(reader.getId());
+            if (!avgRatings.isEmpty()) {
+                List<String> dataList = new ArrayList<>();
+                for (Map.Entry<Double, String> entry : avgRatings.entrySet()) {
+                    dataList.add(entry.getValue() + " - " + String.format("%.2f", entry.getKey()));
+                }
+                ratingsTable.setItems(FXCollections.observableArrayList(dataList));
+                newspapernameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
             } else {
                 this.getPrincipalController().createAlert("The reader " + reader.getName() + " hasn't rated any article yet");
             }

@@ -1,6 +1,7 @@
 package ui.pantallas.listarticlescreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -103,6 +104,15 @@ public class ListArticleScreenController extends BasePantallaController implemen
             articlesQueryTable.setVisible(false);
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_ARTICLE_TYPE);
+        }
+    }
+
+    public void showMostReadType() {
+        Either<Integer, ArticleType> mostReadType = viewModel.getMostReadType();
+        if (mostReadType.isRight()) {
+            this.getPrincipalController().createAlert("The most read type is: " + mostReadType.get().getDescription());
+        } else {
+            this.getPrincipalController().createAlert("There are " + mostReadType.getLeft() + " article types that have been read the same number of times");
         }
     }
 }

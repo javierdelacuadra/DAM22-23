@@ -23,7 +23,7 @@ public class ServicesReadArticles {
         return daoReadArticles.update(readArticle);
     }
 
-    public Map<Double, Integer> getAvgRating(Integer idReader) {
+    public Map<Double, String> getAvgRating(Integer idReader) {
         return daoReadArticles.getAvgRating(idReader);
     }
 }

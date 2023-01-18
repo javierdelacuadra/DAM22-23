@@ -7,6 +7,8 @@ import model.Newspaper;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesNewspaperSQL;
 
+import java.util.Map;
+
 public class ListNewspaperScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
@@ -28,5 +30,9 @@ public class ListNewspaperScreenViewModel {
 
     public int deleteArticlesFromNewspaper(Newspaper newspaper) {
         return servicesArticlesSQL.deleteArticleFromNewspaper(newspaper.getId());
+    }
+
+    public Map<String, Integer> getNbrArticles(int idNewspaper) {
+        return servicesNewspaperSQL.getNbrArticles(idNewspaper);
     }
 }

@@ -74,7 +74,7 @@ public class DaoReadArticles {
         }
     }
 
-    public Map<Double, Integer> getAvgRating(int idReader) {
+    public Map<Double, String> getAvgRating(int idReader) {
         em = jpaUtil.getEntityManager();
 
         try {
@@ -83,7 +83,7 @@ public class DaoReadArticles {
                     .getResultStream()
                     .collect(Collectors.toMap(
                             tuple -> ((Number) tuple.get("avgRating")).doubleValue(),
-                            tuple -> ((Number) tuple.get("newspaperID")).intValue())
+                            tuple -> (tuple.get("name")).toString())
                     );
         } catch (PersistenceException e) {
             e.printStackTrace();

@@ -19,4 +19,8 @@ public class ServicesTypes {
     public Either<Integer, List<ArticleType>> getArticleTypes() {
         return daoTypes.getAll();
     }
+
+    public Either<Integer, ArticleType> getMostReadType() {
+        return daoTypes.get();
+    }
 }

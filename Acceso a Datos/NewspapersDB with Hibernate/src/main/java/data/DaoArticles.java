@@ -95,60 +95,6 @@ public class DaoArticles {
         return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 
-    public Either<Integer, List<Query1>> getArticlesQuery() {
-        List<Query1> articles = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_READ_ONLY)) {
-
-            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS);
-            articles = readRSQuery(rs);
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-    }
-
-    private List<Query1> readRSQuery(ResultSet rs) {
-        List<Query1> articles = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                Query1 article = new Query1();
-                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
-                article.setCount(rs.getInt(Constantes.READERS));
-                article.setDescription(rs.getString(Constantes.DESCRIPTION));
-                articles.add(article);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return articles;
-    }
-
-    public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
-        List<Query2> articles = new ArrayList<>();
-        try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query2.class), type, nameNewspaper);
-        } catch (Exception e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-    }
-
-    public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
-        List<Query3> articles = new ArrayList<>();
-        try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query3.class), idNewspaper);
-        } catch (Exception e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-    }
-
 
     public Integer add(Article article) {
         em = jpaUtil.getEntityManager();
@@ -244,5 +190,59 @@ public class DaoArticles {
             if (em != null) em.close();
         }
         return articles;
+    }
+
+    public Either<Integer, List<Query1>> getArticlesQuery() {
+        List<Query1> articles = new ArrayList<>();
+        try (Connection con = db.getConnection();
+             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                     ResultSet.CONCUR_READ_ONLY)) {
+
+            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS);
+            articles = readRSQuery(rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    private List<Query1> readRSQuery(ResultSet rs) {
+        List<Query1> articles = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Query1 article = new Query1();
+                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
+                article.setCount(rs.getInt(Constantes.READERS));
+                article.setDescription(rs.getString(Constantes.DESCRIPTION));
+                articles.add(article);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return articles;
+    }
+
+    public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
+        List<Query2> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query2.class), type, nameNewspaper);
+        } catch (Exception e) {
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
+    }
+
+    public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
+        List<Query3> articles = new ArrayList<>();
+        try {
+            String query = SQLQueries.SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS;
+            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
+            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query3.class), idNewspaper);
+        } catch (Exception e) {
+            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 }
