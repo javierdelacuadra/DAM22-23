@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".timber.App"
         android:allowBackup="true"
@@ -33,18 +34,6 @@
         <activity
             android:name=".ui.peliculasactivity.PeliculasActivity"
             android:parentActivityName=".ui.splashactivity.SplashActivity" />
-
-        <activity
-            android:name=".ui.loginactivity.LoginActivity"
-            android:parentActivityName=".ui.splashactivity.SplashActivity" />
-
-        <activity
-            android:name=".ui.usuarioactivity.UsuarioActivity"
-            android:parentActivityName=".ui.loginactivity.LoginActivity" />
-
-        <activity
-            android:name=".ui.doctoractivity.DoctorActivity"
-            android:parentActivityName=".ui.loginactivity.LoginActivity" />
 
     </application>
 

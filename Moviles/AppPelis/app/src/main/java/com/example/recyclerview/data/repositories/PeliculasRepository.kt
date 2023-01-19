@@ -39,8 +39,7 @@ class PeliculasRepository @Inject constructor(
             val result = movieDataSource.fetchTopRatedMovies()
             emit(result)
             if (result is NetworkResult.Success) {
-                result.data?.let { it ->
-
+                result.data?.let { _ ->
                 }
             }
         }.flowOn(Dispatchers.IO)
@@ -52,8 +51,7 @@ class PeliculasRepository @Inject constructor(
             val result = movieDataSource.fetchPeliculaByID(id)
             emit(result)
             if (result is NetworkResult.Success) {
-                result.data?.let { it ->
-
+                result.data?.let { _ ->
                 }
             }
         }.flowOn(Dispatchers.IO)

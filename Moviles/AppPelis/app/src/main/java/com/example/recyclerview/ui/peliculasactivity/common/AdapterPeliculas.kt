@@ -1,4 +1,4 @@
-package com.example.recyclerview.ui.peliculasactivity.fragments.trending
+package com.example.recyclerview.ui.peliculasactivity.common
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import coil.load
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.ListPeliculasBinding
 import com.example.recyclerview.domain.modelo.Pelicula
+import com.example.recyclerview.ui.common.ConstantesUI
 import com.google.android.material.card.MaterialCardView
 
 class AdapterPeliculas(
@@ -47,8 +48,8 @@ class PeliculasViewHolder(private val view: View) : RecyclerView.ViewHolder(view
 
         with(binding) {
             textoNombrePelicula.text = pelicula.title
-            fechaEstreno.text = "Fecha de salida:\n" + pelicula.release_date
-            textorating.text = "\u2605" + pelicula.vote_average.toString() + "/10"
+            fechaEstreno.text = ConstantesUI.FECHA_DE_SALIDA + pelicula.release_date
+            textorating.text = ConstantesUI.ESTRELLA + pelicula.vote_average.toString() + ConstantesUI.DE_DIEZ
             posterPelicula.load("https://image.tmdb.org/t/p/w500${pelicula.poster_path}")
         }
 

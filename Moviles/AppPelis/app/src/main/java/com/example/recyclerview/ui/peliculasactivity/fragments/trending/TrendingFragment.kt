@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentTrendingBinding
 import com.example.recyclerview.network.utils.ConnectionUtils
+import com.example.recyclerview.ui.common.ConstantesUI
+import com.example.recyclerview.ui.peliculasactivity.common.AdapterPeliculas
 import com.example.recyclerview.ui.peliculasactivity.fragments.detalle.DetalleFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +45,7 @@ class TrendingFragment : Fragment() {
                 ConnectionUtils.hasInternetConnection(requireContext()).let { hasInternet ->
                     if (hasInternet) {
                         val bundle = Bundle()
-                        bundle.putInt("id", peliculaID)
+                        bundle.putInt(ConstantesUI.ID, peliculaID)
                         val fragment = DetalleFragment()
                         fragment.arguments = bundle
                         parentFragmentManager.beginTransaction()
@@ -53,7 +55,7 @@ class TrendingFragment : Fragment() {
                     } else {
                         Snackbar.make(
                             binding.root,
-                            "Conéctate a internet para ver los detalles",
+                            ConstantesUI.CONECTATE_A_INTERNET_PARA_VER_DETALLES,
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }

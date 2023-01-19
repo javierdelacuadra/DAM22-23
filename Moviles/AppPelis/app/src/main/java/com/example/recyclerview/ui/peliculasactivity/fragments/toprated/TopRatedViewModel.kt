@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.data.repositories.PeliculasRepository
 import com.example.recyclerview.network.NetworkResult
+import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -40,7 +41,7 @@ class TopRatedViewModel @Inject constructor(
                         is NetworkResult.Error -> {
                             _uiTopRatedState.update {
                                 it.copy(
-                                    error = "Conéctate a internet para ver las películas",
+                                    error = ConstantesUI.CONECTATE_A_INTERNET_PARA_VER_PELICULAS,
                                     cargando = false
                                 )
                             }

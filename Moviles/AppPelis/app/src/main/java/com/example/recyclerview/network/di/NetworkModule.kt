@@ -2,7 +2,7 @@ package com.example.recyclerview.network.di
 
 import com.example.recyclerview.BuildConfig.API_KEY
 import com.example.recyclerview.network.AuthInterceptor
-import com.example.recyclerview.network.service.MovieService
+import com.example.recyclerview.network.service.PeliculasService
 import com.example.recyclerview.network.utils.NetworkUtils
 import dagger.Module
 import dagger.Provides
@@ -46,7 +46,7 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideMovieService(retrofit: Retrofit): MovieService {
-        return retrofit.create(MovieService::class.java)
+    fun provideMovieService(retrofit: Retrofit): PeliculasService {
+        return retrofit.create(PeliculasService::class.java)
     }
 }

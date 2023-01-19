@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pelis_nav_graph"
-    app:startDestination="@id/pelisiniciofragment">
-    <fragment
-        android:id="@+id/pelisiniciofragment"
-        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.inicio.PelisInicioFragment"
-        android:label="@string/Inicio"
-        tools:layout="@layout/fragment_pelis_inicio"></fragment>
-    <fragment
-        android:id="@+id/buscarfragment"
-        android:name="com.example.recyclerview.ui.peliculasactivity.fragments.buscar.BuscarFragment"
-        android:label="@string/buscar"
-        tools:layout="@layout/fragment_buscar"></fragment>
+    app:startDestination="@id/topratedfragment">
     <fragment
         android:id="@+id/topratedfragment"
         android:name="com.example.recyclerview.ui.peliculasactivity.fragments.toprated.TopRatedFragment"
@@ -29,12 +19,6 @@
         android:name="com.example.recyclerview.ui.peliculasactivity.fragments.detalle.DetalleFragment"
         android:label="@string/detalle"
         tools:layout="@layout/fragment_detalle"></fragment>
-    <action
-        android:id="@+id/action_global_pelisiniciofragment"
-        app:destination="@id/pelisiniciofragment" />
-    <action
-        android:id="@+id/action_global_buscarfragment"
-        app:destination="@id/buscarfragment" />
     <action
         android:id="@+id/action_global_topratedfragment"
         app:destination="@id/topratedfragment" />

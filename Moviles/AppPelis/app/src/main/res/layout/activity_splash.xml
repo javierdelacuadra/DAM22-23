@@ -8,7 +8,7 @@
     tools:context=".ui.splashactivity.SplashActivity">
 
     <ImageView
-        android:id="@+id/logoSaludMadrid"
+        android:id="@+id/logo_movie_db"
         android:layout_width="311dp"
         android:layout_height="175dp"
         android:contentDescription="@string/logo_salud_madrid"
@@ -29,6 +29,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoSaludMadrid" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_movie_db" />
     <!--      TODO:cambiar nombre aplicación  -->
 </androidx.constraintlayout.widget.ConstraintLayout>
