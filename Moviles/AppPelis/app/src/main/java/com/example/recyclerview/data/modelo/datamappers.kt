@@ -115,6 +115,19 @@ fun PeliculaEntity.toPelicula(): Pelicula {
     )
 }
 
+fun Pelicula.toPeliculaEntity(): PeliculaEntity {
+    return PeliculaEntity(
+        this.id,
+        this.title,
+        this.vote_count,
+        this.vote_average,
+        this.release_date,
+        this.popularity,
+        this.overview,
+        this.poster_path,
+    )
+}
+
 fun MovieResponse.toIndividualMovie(): IndividualMovie {
     return IndividualMovie(
         this.poster_path,

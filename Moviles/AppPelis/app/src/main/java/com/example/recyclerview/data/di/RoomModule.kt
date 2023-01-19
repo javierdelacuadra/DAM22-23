@@ -49,4 +49,7 @@ object RoomModule {
     fun providesUsuarioDao(personasDatabase: DatabaseRoom): DaoUsuarios =
         personasDatabase.daoUsuarios()
 
+    @Provides
+    fun providesPeliculaDao(personasDatabase: DatabaseRoom): DaoPeliculas =
+        personasDatabase.daoPeliculas()
 }

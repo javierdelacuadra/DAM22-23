@@ -2,10 +2,7 @@ package com.example.recyclerview.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.recyclerview.data.dao.DaoCitas
-import com.example.recyclerview.data.dao.DaoDoctores
-import com.example.recyclerview.data.dao.DaoHospitales
-import com.example.recyclerview.data.dao.DaoUsuarios
+import com.example.recyclerview.data.dao.*
 import com.example.recyclerview.data.modelo.*
 
 @Database(
@@ -13,6 +10,7 @@ import com.example.recyclerview.data.modelo.*
         UsuarioEntity::class,
         DoctorEntity::class,
         HospitalEntity::class,
+        PeliculaEntity::class,
         CitaEntity::class,
         LoginEntity::class,
         HospitalAndDoctorEntity::class],
@@ -24,5 +22,6 @@ abstract class DatabaseRoom : RoomDatabase() {
     abstract fun daoHospitales(): DaoHospitales
     abstract fun daoCitas(): DaoCitas
     abstract fun daoUsuarios(): DaoUsuarios
+    abstract fun daoPeliculas(): DaoPeliculas
 
 }

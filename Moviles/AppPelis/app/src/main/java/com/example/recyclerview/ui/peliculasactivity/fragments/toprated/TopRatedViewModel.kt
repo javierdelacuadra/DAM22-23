@@ -40,7 +40,7 @@ class TopRatedViewModel @Inject constructor(
                         is NetworkResult.Error -> {
                             _uiTopRatedState.update {
                                 it.copy(
-                                    error = result.message,
+                                    error = "Conéctate a internet para ver las películas",
                                     cargando = false
                                 )
                             }

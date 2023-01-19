@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.FragmentTrendingBinding
+import com.example.recyclerview.network.utils.ConnectionUtils
 import com.example.recyclerview.ui.peliculasactivity.fragments.detalle.DetalleFragment
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -38,14 +40,24 @@ class TrendingFragment : Fragment() {
 
         val adapter = AdapterPeliculas(ArrayList(), object : AdapterPeliculas.PeliculaActions {
             override fun verDetalle(peliculaID: Int) {
-                val bundle = Bundle()
-                bundle.putInt("id", peliculaID)
-                val fragment = DetalleFragment()
-                fragment.arguments = bundle
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentPelisContainerView, fragment)
-                    .addToBackStack(null)
-                    .commit()
+                ConnectionUtils.hasInternetConnection(requireContext()).let { hasInternet ->
+                    if (hasInternet) {
+                        val bundle = Bundle()
+                        bundle.putInt("id", peliculaID)
+                        val fragment = DetalleFragment()
+                        fragment.arguments = bundle
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.fragmentPelisContainerView, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    } else {
+                        Snackbar.make(
+                            binding.root,
+                            "Conéctate a internet para ver los detalles",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         })
 
@@ -56,18 +68,17 @@ class TrendingFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiTrendingState.collect { value ->
-//                    when (value) {
-//                        is UiState.Failure -> {
-//                            Toast.makeText(this@MainActivity, value.mensaje, Toast.LENGTH_SHORT)
-//                                .show()
-//                            binding.loading.visibility = View.GONE
-//                        }
                     binding.loading.visibility = if (value.cargando) View.VISIBLE else View.GONE
                     value.movies?.let { adapter.cambiarLista(it) }
                     value.error.let {
-//                        Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                        value.error?.let { it1 ->
+                            Snackbar.make(
+                                binding.root,
+                                it1,
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
                     }
-//                    }
                 }
             }
         }

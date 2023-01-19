@@ -30,15 +30,14 @@
                 android:id="@+id/posterPelicula"
                 android:layout_width="156dp"
                 android:layout_height="292dp"
-                android:layout_margin="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_margin="20dp"
+                android:layout_marginTop="124dp"
                 android:contentDescription="@string/imagen"
                 android:src="@drawable/ic_launcher_background"
-                app:layout_constraintBottom_toTopOf="@+id/textoNombrePelicula"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textoNombrePelicula"
