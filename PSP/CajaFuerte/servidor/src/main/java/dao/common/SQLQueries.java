@@ -2,6 +2,8 @@ package dao.common;
 
 public class SQLQueries {
 
+    public static final String INSERT_FOLDER = "INSERT INTO carpetas (nombre, password, modoEdicion, nombreUsuario) VALUES (?, ?, ?, ?)";
+
     public SQLQueries() {
     }
 

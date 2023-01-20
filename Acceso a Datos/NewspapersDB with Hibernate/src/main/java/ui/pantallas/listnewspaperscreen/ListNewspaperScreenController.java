@@ -81,6 +81,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
                 if (result > 0) {
                     this.getPrincipalController().createAlert("Articles deleted successfully");
                     articlesTable.setItems(FXCollections.emptyObservableList());
+                    numberArticlesTable.setItems(FXCollections.emptyObservableList());
                     newspaperTable.setItems(viewModel.getNewspapers());
                     deleteArticlesButton.setVisible(false);
                 } else {

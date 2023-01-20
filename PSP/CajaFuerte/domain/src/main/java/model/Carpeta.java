@@ -9,6 +9,7 @@ public class Carpeta {
 
     private String nombre;
     private String password;
-    private int modo;
+    private boolean modoEdicion;
+    private String nombreUsuario;
     private List<Mensaje> mensajes;
 }
