@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppPelisSeries</string>
+    <string name="app_name">MovieDatabase</string>
     <string name="name">name</string>
     <string name="suffixCorreo">\@gmail.com</string>
     <string name="nombre">Nombre</string>

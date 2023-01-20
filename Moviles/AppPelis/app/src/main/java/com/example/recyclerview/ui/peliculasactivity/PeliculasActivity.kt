@@ -1,7 +1,7 @@
 package com.example.recyclerview.ui.peliculasactivity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -13,7 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.recyclerview.R
 import com.example.recyclerview.databinding.ActivityPeliculasBinding
 import com.example.recyclerview.ui.common.ConstantesUI
-import com.example.recyclerview.ui.usuarioactivity.UsuarioViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,8 +23,7 @@ class PeliculasActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    private val viewModel: UsuarioViewModel by viewModels()
-
+    @SuppressLint(ConstantesUI.USECOMPATLOADINGFORDRAWABLES)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPeliculasBinding.inflate(layoutInflater)
@@ -38,8 +36,6 @@ class PeliculasActivity : AppCompatActivity() {
 
             appBarConfiguration = AppBarConfiguration(
                 topLevelDestinationIds = setOf(
-                    R.id.pelisiniciofragment,
-                    R.id.buscarfragment,
                     R.id.trendingfragment,
                     R.id.topratedfragment,
                 )
@@ -50,14 +46,6 @@ class PeliculasActivity : AppCompatActivity() {
 
             bottomNavView.setOnItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.inicio -> {
-                        navController.navigate(R.id.action_global_pelisiniciofragment)
-                        true
-                    }
-                    R.id.buscar -> {
-                        navController.navigate(R.id.action_global_buscarfragment)
-                        true
-                    }
                     R.id.topRated -> {
                         navController.navigate(R.id.action_global_topratedfragment)
                         true
@@ -77,17 +65,11 @@ class PeliculasActivity : AppCompatActivity() {
                 topAppBar.navigationIcon = getDrawable(R.drawable.ic_baseline_menu_24)
 
                 when (destination.id) {
-                    R.id.pelisiniciofragment -> {
-                        topAppBar.title = "Inicio"
-                    }
-                    R.id.buscarfragment -> {
-                        topAppBar.title = "Buscar"
-                    }
                     R.id.trendingfragment -> {
-                        topAppBar.title = "Trending"
+                        topAppBar.title = ConstantesUI.TRENDING
                     }
                     R.id.topratedfragment -> {
-                        topAppBar.title = "Top Rated"
+                        topAppBar.title = ConstantesUI.TOP_RATED
                     }
                 }
             }

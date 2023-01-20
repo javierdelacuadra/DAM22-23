@@ -11,6 +11,5 @@ sealed interface TrendingEvent {
         val movies: List<Pelicula>? = emptyList(),
         val cargando: Boolean = false,
         val error: String? = null,
-
         )
 }
