@@ -77,7 +77,7 @@ public class PantallaLoginController extends BasePantallaController implements I
             }
             if (newState.readerLogin != null) {
                 Platform.runLater(() -> {
-                    getPrincipalController().setReader(newState.readerLogin);
+                    //TODO: getPrincipalController().setUsuario(newState.readerLogin);
                     getPrincipalController().onLoginHecho(newState.readerLogin.getId() <= 0);
                 });
             }

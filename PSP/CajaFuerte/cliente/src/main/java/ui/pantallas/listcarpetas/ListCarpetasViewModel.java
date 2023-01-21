@@ -7,17 +7,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Carpeta;
 import model.Mensaje;
+import servicios.ServiciosCarpetas;
 import servicios.ServiciosMensajes;
-import ui.pantallas.deletereaderscreen.DeleteReaderState;
 
 public class ListCarpetasViewModel {
 
     private final ServiciosMensajes servicios;
+    private final ServiciosCarpetas serviciosCarpetas;
     private final ObjectProperty<ListCarpetasState> state;
 
     @Inject
-    public ListCarpetasViewModel(ServiciosMensajes servicios) {
+    public ListCarpetasViewModel(ServiciosMensajes servicios, ServiciosCarpetas serviciosCarpetas) {
         this.servicios = servicios;
+        this.serviciosCarpetas = serviciosCarpetas;
         state = new SimpleObjectProperty<>(new ListCarpetasState(null, null, null));
     }
 
@@ -71,6 +73,17 @@ public class ListCarpetasViewModel {
                         ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(state.get().mensajes);
                         mensajes.removeIf(m -> m.getId() == mensaje.getId());
                         state.set(new ListCarpetasState(null, mensajes, null));
+                    } else {
+                        state.set(new ListCarpetasState(null, null, either.getLeft()));
+                    }
+                });
+    }
+
+    public void getCarpetas(int id) {
+        serviciosCarpetas.getCarpetas(String.valueOf(id))
+                .subscribe(either -> {
+                    if (either.isRight()) {
+                        state.set(new ListCarpetasState(either.get(), null, null));
                     } else {
                         state.set(new ListCarpetasState(null, null, either.getLeft()));
                     }

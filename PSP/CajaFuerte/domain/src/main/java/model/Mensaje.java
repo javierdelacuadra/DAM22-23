@@ -6,6 +6,6 @@ import lombok.Data;
 public class Mensaje {
 
     private int id;
-    private String nombreCarpeta;
+    private int IDCarpeta;
     private String contenido;
 }

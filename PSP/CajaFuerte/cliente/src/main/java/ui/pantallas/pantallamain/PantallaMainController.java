@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.Reader;
+import model.Usuario;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
@@ -123,14 +124,14 @@ public class PantallaMainController extends BasePantallaController implements In
         }
     }
 
-    public Reader reader;
+    public Usuario usuario;
 
-    public Reader getReader() {
-        return reader;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public void listNewspapersMenu() {

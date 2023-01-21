@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.Carpeta;
 import model.Mensaje;
@@ -47,6 +48,12 @@ public class ListCarpetasController extends BasePantallaController {
     private MFXTextField textoMensaje;
 
     public void initialize() {
+        viewModel.getCarpetas(this.getPrincipalController().getUsuario().getId());
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaModo.setCellValueFactory(new PropertyValueFactory<>("modo"));
+        columnaContenido.setCellValueFactory(new PropertyValueFactory<>("contenido"));
+        columnaAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        //TODO: cambiar acorde a los modelos
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.error != null) {
                 Platform.runLater(() -> {
