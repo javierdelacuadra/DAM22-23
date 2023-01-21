@@ -2,8 +2,6 @@ package jakarta.common;
 
 public class ConstantesREST {
 
-    public static final String CARPETAS_PATH = "/carpetas";
-
     public ConstantesREST() {
     }
 

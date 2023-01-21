@@ -7,7 +7,8 @@ import java.util.List;
 @Data
 public class Carpeta {
 
-    private String nombre;
+    private int id;
+    private String nombreCarpeta;
     private String password;
     private boolean modoEdicion;
     private String nombreUsuario;

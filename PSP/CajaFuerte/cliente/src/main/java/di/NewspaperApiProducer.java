@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import config.common.Constantes;
 import data.network.AuthorizationInterceptor;
 import data.retrofit.LoginApi;
+import data.retrofit.MensajesAPI;
 import data.retrofit.NewspapersApi;
 import data.retrofit.ReadersApi;
 import jakarta.enterprise.inject.Produces;
@@ -84,5 +85,10 @@ public class NewspaperApiProducer {
     @Produces
     public ReadersApi getReadersApi(Retrofit retro) {
         return retro.create(ReadersApi.class);
+    }
+
+    @Produces
+    public MensajesAPI getMensajesApi(Retrofit retro) {
+        return retro.create(MensajesAPI.class);
     }
 }

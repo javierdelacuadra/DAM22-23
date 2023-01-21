@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Mensaje {
 
-    private String contenido;
+    private int id;
     private String nombreCarpeta;
-    private String nombreUsuario;
+    private String contenido;
 }

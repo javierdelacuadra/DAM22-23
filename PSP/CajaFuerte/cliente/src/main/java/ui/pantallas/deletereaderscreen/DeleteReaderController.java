@@ -60,6 +60,5 @@ public class DeleteReaderController extends BasePantallaController {
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
-        //TODO: arreglar deletes + logout no va + sin rol no va tampoco (no deja ver nada)
     }
 }

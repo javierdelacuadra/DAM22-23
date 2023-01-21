@@ -6,7 +6,9 @@ import java.util.List;
 
 @Data
 public class Usuario {
-    private String username;
+    private int id;
+    private String nombre;
     private String password;
+    private String rol;
     private List<Carpeta> carpetas;
 }
