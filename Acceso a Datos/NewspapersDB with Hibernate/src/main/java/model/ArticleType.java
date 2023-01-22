@@ -15,7 +15,7 @@ import lombok.*;
 
 @NamedQueries({
         @NamedQuery(name = "HQL_GET_ALL_TYPES", query = "SELECT t FROM ArticleType t"),
-        @NamedQuery(name = "HQL_GET_MOST_READ_TYPE", query = "SELECT article.type FROM ReadArticle read JOIN read.article article GROUP BY article.type ORDER BY COUNT(*) DESC"),
+        @NamedQuery(name = "HQL_GET_MOST_READ_TYPE", query = "SELECT article.type FROM ReadArticle read JOIN read.article article GROUP BY article.type ORDER BY COUNT(*) DESC LIMIT 1"),
 })
 public class ArticleType {
     @Id

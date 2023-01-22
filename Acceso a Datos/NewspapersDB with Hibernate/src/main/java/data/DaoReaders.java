@@ -1,7 +1,5 @@
 package data;
 
-import common.Constantes;
-import data.common.SQLQueries;
 import data.hibernate.JPAUtil;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -14,25 +12,17 @@ import model.Login;
 import model.Newspaper;
 import model.Reader;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DaoReaders {
     private JPAUtil jpaUtil;
     private EntityManager em;
-    private final DBConnection db;
 
     @Inject
-    public DaoReaders(JPAUtil jpaUtil, DBConnection db) {
+    public DaoReaders(JPAUtil jpaUtil) {
         this.jpaUtil = jpaUtil;
         this.em = jpaUtil.getEntityManager();
-        this.db = db;
     }
 
     public Either<Integer, List<Reader>> getAll() {
@@ -179,35 +169,5 @@ public class DaoReaders {
             if (em != null) em.close();
         }
         return reader;
-    }
-
-    public Either<Integer, List<Reader>> getOldestSubscribers() {
-        List<Reader> readers = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_OLDEST_SUBSCRIBERS)) {
-            ResultSet rs = preparedStatement.executeQuery();
-            readers = readRS(rs, 5);
-        } catch (SQLException e) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
-    }
-
-    private List<Reader> readRS(ResultSet rs, Integer limit) {
-        List<Reader> readers = new ArrayList<>();
-        int count = 0;
-        try {
-            while (rs.next() && count < limit) {
-                Reader reader = new Reader();
-                reader.setId(rs.getInt(Constantes.ID));
-                reader.setName(rs.getString(Constantes.NAME));
-                reader.setDateOfBirth(rs.getDate(Constantes.DATE_OF_BIRTH).toLocalDate());
-                readers.add(reader);
-                count++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return readers;
     }
 }

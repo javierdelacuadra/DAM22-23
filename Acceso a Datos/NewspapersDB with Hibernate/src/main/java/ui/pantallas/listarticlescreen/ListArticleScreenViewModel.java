@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Article;
 import model.ArticleType;
-import model.Query1;
 import servicios.ServicesArticlesSQL;
 import servicios.ServicesTypes;
 
@@ -26,10 +25,6 @@ public class ListArticleScreenViewModel {
 
     public ObservableList<Article> getArticlesByType(String type) {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesByType(type).get());
-    }
-
-    public ObservableList<Query1> showArticlesQuery() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesQuery().get());
     }
 
     public ObservableList<ArticleType> getArticleTypes() {

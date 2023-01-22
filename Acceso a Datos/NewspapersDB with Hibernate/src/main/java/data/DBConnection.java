@@ -8,8 +8,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @Singleton
 public class DBConnection {
@@ -35,28 +33,6 @@ public class DBConnection {
         hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
 
         return new HikariDataSource(hikariConfig);
-    }
-
-    public DataSource getHikariDataSource() {
-        return hikariDataSource;
-    }
-
-    public Connection getConnection() throws SQLException {
-        Connection connection = null;
-        try {
-            connection = hikariDataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    public void closeConnection(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @PreDestroy

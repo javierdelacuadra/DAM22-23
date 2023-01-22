@@ -1,7 +1,5 @@
 package data;
 
-import common.Constantes;
-import data.common.SQLQueries;
 import data.hibernate.JPAUtil;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -9,32 +7,19 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import model.Article;
-import model.Query1;
-import model.Query2;
-import model.Query3;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DaoArticles {
 
     private JPAUtil jpaUtil;
     private EntityManager em;
-    private final DBConnection db;
 
     @Inject
-    public DaoArticles(JPAUtil jpaUtil, DBConnection db) {
+    public DaoArticles(JPAUtil jpaUtil) {
         this.jpaUtil = jpaUtil;
         this.em = jpaUtil.getEntityManager();
-        this.db = db;
     }
 
     public Either<Integer, List<Article>> getAll() {
@@ -141,9 +126,6 @@ public class DaoArticles {
             em.createNamedQuery("HQL_DELETE_ARTICLE_BY_NEWSPAPER_ID")
                     .setParameter("id", id)
                     .executeUpdate();
-//            em.createNamedQuery("HQL_DELETE_READ_ARTICLE_BY_NEWSPAPER_ID")
-//                    .setParameter("id", id)
-//                    .executeUpdate();
             tx.commit();
             return 1;
         } catch (Exception e) {
@@ -174,7 +156,7 @@ public class DaoArticles {
         }
     }
 
-    public List<Article> getArticlesAndTypes() {
+    public List<Article> getAllWithTypes() {
         em = jpaUtil.getEntityManager();
         List<Article> articles = new ArrayList<>();
 
@@ -189,59 +171,5 @@ public class DaoArticles {
             if (em != null) em.close();
         }
         return articles;
-    }
-
-    public Either<Integer, List<Query1>> getArticlesQuery() {
-        List<Query1> articles = new ArrayList<>();
-        try (Connection con = db.getConnection();
-             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_READ_ONLY)) {
-
-            ResultSet rs = statement.executeQuery(SQLQueries.SELECT_ARTICLE_TYPE_ARTICLE_NAME_AND_READERS);
-            articles = readRSQuery(rs);
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-    }
-
-    private List<Query1> readRSQuery(ResultSet rs) {
-        List<Query1> articles = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                Query1 article = new Query1();
-                article.setName_article(rs.getString(Constantes.NAME_ARTICLE));
-                article.setCount(rs.getInt(Constantes.READERS));
-                article.setDescription(rs.getString(Constantes.DESCRIPTION));
-                articles.add(article);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return articles;
-    }
-
-    public Either<Integer, List<Query2>> getArticlesByTypeAndNameNewspaper(String type, String nameNewspaper) {
-        List<Query2> articles = new ArrayList<>();
-        try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_TYPE_AND_NEWSPAPER;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query2.class), type, nameNewspaper);
-        } catch (Exception e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-    }
-
-    public Either<Integer, List<Query3>> getArticlesByNewspaperWithBadRatings(String idNewspaper) {
-        List<Query3> articles = new ArrayList<>();
-        try {
-            String query = SQLQueries.SELECT_ARTICLES_BY_NEWSPAPER_AND_BAD_RATINGS;
-            JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            articles = jdbc.query(query, BeanPropertyRowMapper.newInstance(Query3.class), idNewspaper);
-        } catch (Exception e) {
-            Logger.getLogger(DaoArticles.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
     }
 }

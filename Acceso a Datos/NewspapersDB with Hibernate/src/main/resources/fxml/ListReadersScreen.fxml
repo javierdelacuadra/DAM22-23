@@ -19,7 +19,6 @@
     <MFXComboBox fx:id="articleTypeComboBox" layoutX="256.0" layoutY="449.0" prefHeight="40.0" prefWidth="220.0" />
     <MFXButton layoutX="319.0" layoutY="513.0" mnemonicParsing="false" onAction="#filterByArticleType" text="Filter Readers" />
     <MFXButton layoutX="559.0" layoutY="456.0" mnemonicParsing="false" onAction="#resetFilters" text="Reset All Filters" />
-    <MFXButton layoutX="476.0" layoutY="525.0" mnemonicParsing="false" onAction="#filterOldestSubscribers" text="Get 5 oldest subscribers of El Hola Mundo" />
     <MFXButton layoutX="499.0" layoutY="389.0" mnemonicParsing="false" onAction="#getAvgRatingByReader" text="Get avg rating by reader" />
    <TableView fx:id="ratingsTable" layoutX="439.0" layoutY="102.0" prefHeight="270.0" prefWidth="272.0">
       <columns>

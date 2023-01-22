@@ -28,4 +28,14 @@ public class Subscription {
     private LocalDate signingDate;
     @Column(name = "cancellation_date")
     private LocalDate cancellationDate;
+    @ManyToOne
+    @JoinColumn(name = "id_reader", referencedColumnName = "id", insertable = false, updatable = false)
+    private Reader readerByIdReader;
+
+    public Subscription(int id_reader, int id_newspaper, LocalDate signingDate, LocalDate cancellationDate) {
+        this.id_reader = id_reader;
+        this.id_newspaper = id_newspaper;
+        this.signingDate = signingDate;
+        this.cancellationDate = cancellationDate;
+    }
 }

@@ -24,7 +24,7 @@ public class DaoNewspaper {
         this.em = jpaUtil.getEntityManager();
     }
 
-    public Either<Integer, List<Newspaper>> get() {
+    public Either<Integer, List<Newspaper>> getAll() {
         List<Newspaper> newspapers = new ArrayList<>();
         em = jpaUtil.getEntityManager();
 

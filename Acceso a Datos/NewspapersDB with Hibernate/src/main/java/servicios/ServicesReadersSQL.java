@@ -56,8 +56,4 @@ public class ServicesReadersSQL {
     public Reader getReadersById(int id) {
         return daoReaders.get(id);
     }
-
-    public Either<Integer, List<Reader>> getOldestSubscribers() {
-        return daoReaders.getOldestSubscribers();
-    }
 }

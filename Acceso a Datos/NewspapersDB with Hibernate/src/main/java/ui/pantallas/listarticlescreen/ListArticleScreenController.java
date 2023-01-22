@@ -81,15 +81,6 @@ public class ListArticleScreenController extends BasePantallaController implemen
         typeComboBox.setItems(viewModel.getArticleTypes());
     }
 
-    public void showArticlesQuery() {
-        if (!viewModel.showArticlesQuery().isEmpty()) {
-            articlesQueryTable.setItems(viewModel.showArticlesQuery());
-            articlesQueryTable.setVisible(true);
-            articlesTable.setVisible(false);
-            typeComboBox.getSelectionModel().clearSelection();
-        }
-    }
-
     public void showArticles() {
         articlesTable.setVisible(true);
         articlesTable.setItems(viewModel.getArticles());
@@ -112,7 +103,7 @@ public class ListArticleScreenController extends BasePantallaController implemen
         if (mostReadType.isRight()) {
             this.getPrincipalController().createAlert("The most read type is: " + mostReadType.get().getDescription());
         } else {
-            this.getPrincipalController().createAlert("There are " + mostReadType.getLeft() + " article types that have been read the same number of times");
+            this.getPrincipalController().createAlert("There are " + mostReadType.getLeft() + " article types that have been read \nthe same number of times");
         }
     }
 }

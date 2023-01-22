@@ -49,10 +49,6 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 
-    public Either<Integer, ObservableList<Reader>> getOldestSubscribers() {
-        return servicesReadersSQL.getOldestSubscribers().map(FXCollections::observableArrayList);
-    }
-
     public Map<Double, String> getAvgRating(Integer idReader) {
         return servicesReadArticles.getAvgRating(idReader);
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.listarticlescreen.ListArticleScreenController">
@@ -20,7 +21,6 @@
             <TableColumn fx:id="articleTypeColumn" prefWidth="87.0" text="Description" />
         </columns>
     </TableView>
-    <MFXButton fx:id="showArticlesQuery" layoutX="22.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#showArticlesQuery" text="Show description and number of readers" />
     <MFXButton fx:id="showArticles" layoutX="468.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#showArticles" text="Reset filters and show articles" />
     <MFXButton fx:id="showArticlesByType" layoutX="492.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#showArticlesByType" text="Show articles by type" />
     <MFXComboBox fx:id="typeComboBox" layoutX="459.0" layoutY="218.0" prefWidth="200.0" />

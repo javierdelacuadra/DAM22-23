@@ -202,10 +202,6 @@ public class PantallaMainController extends BasePantallaController implements In
         cargarPantalla(Pantallas.UPDATENEWSPAPERSCREEN);
     }
 
-    public void queriesMenu() {
-        cargarPantalla(Pantallas.QUERIESSCREEN);
-    }
-
     public void createAlert(String error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(error);

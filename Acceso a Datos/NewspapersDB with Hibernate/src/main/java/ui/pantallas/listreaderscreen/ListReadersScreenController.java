@@ -85,15 +85,6 @@ public class ListReadersScreenController extends BasePantallaController {
         }
     }
 
-    public void filterOldestSubscribers() {
-        if (viewModel.getOldestSubscribers().isRight()) {
-            readersTable.setItems(viewModel.getOldestSubscribers().get());
-        } else {
-            readersTable.setItems(viewModel.getReaders());
-            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_SUBSCRIBED_TO_EL_HOLA_MUNDO);
-        }
-    }
-
     public void getAvgRatingByReader() {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {

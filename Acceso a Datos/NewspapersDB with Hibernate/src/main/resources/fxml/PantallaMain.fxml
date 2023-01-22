@@ -22,7 +22,6 @@
                 <MenuItem mnemonicParsing="false" onAction="#addArticleMenu" text="Add"/>
                 <MenuItem mnemonicParsing="false" onAction="#updateArticleMenu" text="Update"/>
                 <MenuItem mnemonicParsing="false" onAction="#deleteArticleMenu" text="Delete"/>
-                <MenuItem mnemonicParsing="false" onAction="#queriesMenu" text="Spring Queries"/>
             </Menu>
             <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
                 <MenuItem mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>

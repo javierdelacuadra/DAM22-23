@@ -1,7 +1,6 @@
 package servicios;
 
 import data.DaoNewspaper;
-import data.DaoSubscriptions;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Newspaper;
@@ -18,7 +17,7 @@ public class ServicesNewspaperSQL {
     }
 
     public Either<Integer, List<Newspaper>> getNewspapers() {
-        return daoNewspaper.get();
+        return daoNewspaper.getAll();
     }
 
     public Newspaper getArticlesByNameNewspaper(Newspaper newspaper) {
