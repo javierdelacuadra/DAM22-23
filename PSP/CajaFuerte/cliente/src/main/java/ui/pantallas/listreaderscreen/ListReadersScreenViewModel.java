@@ -7,7 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Newspaper;
+import modelo.Newspaper;
 import servicios.ServicesNewspaperSQL;
 import servicios.ServicesReadersSQL;
 

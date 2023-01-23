@@ -14,7 +14,6 @@ import java.io.IOException;
 @WebServlet(name = ConstantesServlets.SERVLET_MAIL, urlPatterns = {ConstantesServlets.ACTIVAR})
 public class ServletActivacion extends HttpServlet {
 
-
     private final ServiciosLogin serviciosLogin;
 
     @Inject

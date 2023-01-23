@@ -9,7 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
-import model.ReaderLogin;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -75,10 +76,10 @@ public class PantallaLoginController extends BasePantallaController implements I
             if (newState.mensaje != null) {
                 Platform.runLater(() -> getPrincipalController().createAlert(newState.mensaje));
             }
-            if (newState.readerLogin != null) {
+            if (newState.usuario != null) {
                 Platform.runLater(() -> {
-                    //TODO: getPrincipalController().setUsuario(newState.readerLogin);
-                    getPrincipalController().onLoginHecho(newState.readerLogin.getId() <= 0);
+                    getPrincipalController().setUsuario(newState.usuario);
+                    getPrincipalController().onLoginHecho(newState.usuario.getId() <= 0);
                 });
             }
         });
@@ -99,7 +100,7 @@ public class PantallaLoginController extends BasePantallaController implements I
         if (nombre == null || nombre.isEmpty() || password == null || password.isEmpty()) {
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
-            ReaderLogin readerLogin = new ReaderLogin(nombre, password, ConstantesUI.ACTIVATION_CODE);
+            Usuario readerLogin = new Usuario(nombre, password);
             viewModel.login(readerLogin);
         }
     }
@@ -113,7 +114,8 @@ public class PantallaLoginController extends BasePantallaController implements I
             this.getPrincipalController().createAlert(ConstantesUI.PLEASE_CHECK_YOUR_CREDENTIALS);
         } else {
             ReaderLogin readerLogin = new ReaderLogin(nombre, password, email, 0, ConstantesUI.ACTIVATION_CODE, 0, LocalDateTime.now());
-            viewModel.register(readerLogin);
+            //viewModel.register(readerLogin);
+            //TODO: Hacer el registro
         }
     }
 

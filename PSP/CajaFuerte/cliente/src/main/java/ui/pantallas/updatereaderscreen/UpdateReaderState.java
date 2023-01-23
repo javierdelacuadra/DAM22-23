@@ -1,7 +1,7 @@
 package ui.pantallas.updatereaderscreen;
 
 import lombok.AllArgsConstructor;
-import model.Reader;
+import modelo.Reader;
 
 import java.util.List;
 

@@ -13,8 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import model.Reader;
-import model.Usuario;
+import modelo.Usuario;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
@@ -42,6 +41,9 @@ public class PantallaMainController extends BasePantallaController implements In
 
     @FXML
     private Menu readersMenu;
+
+    @FXML
+    private Menu carpetasMenu;
 
     @FXML
     private BorderPane root;
@@ -83,6 +85,7 @@ public class PantallaMainController extends BasePantallaController implements In
         newspapersMenu.setVisible(false);
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
+        carpetasMenu.setVisible(false);
         viewModel.logout();
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
@@ -92,6 +95,7 @@ public class PantallaMainController extends BasePantallaController implements In
             optionsMenu.setVisible(true);
             newspapersMenu.setVisible(true);
             readersMenu.setVisible(true);
+            carpetasMenu.setVisible(true);
             cargarPantalla(Pantallas.LISTNEWSPAPERSCREEN);
         } else {
             optionsMenu.setVisible(true);
@@ -171,5 +175,13 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.setTitle(error);
         alert.setContentText(error);
         alert.showAndWait();
+    }
+
+    public void listCarpetasMenu() {
+        cargarPantalla(Pantallas.LISTCARPETASSCREEN);
+    }
+
+    public void addCarpetaMenu() {
+        cargarPantalla(Pantallas.ADDCARPETASSCREEN);
     }
 }

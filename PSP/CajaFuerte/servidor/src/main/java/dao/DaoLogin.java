@@ -6,8 +6,9 @@ import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectAlreadyExistsException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
-import model.Reader;
-import model.ReaderLogin;
+import modelo.Reader;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,13 +28,13 @@ public class DaoLogin {
         this.db = db;
     }
 
-    public ReaderLogin checkLogin(String username) {
-        List<ReaderLogin> readers;
+    public Usuario checkLogin(String username) {
+        List<Usuario> usuarios;
         try {
-            String query = SQLQueries.SELECT_READERLOGIN_BY_NAME;
+            String query = SQLQueries.SELECT_USER_BY_NAME;
             JdbcTemplate jdbc = new JdbcTemplate(db.getHikariDataSource());
-            readers = jdbc.query(query, BeanPropertyRowMapper.newInstance(ReaderLogin.class), username);
-            return readers.isEmpty() ? null : readers.get(0);
+            usuarios = jdbc.query(query, BeanPropertyRowMapper.newInstance(Usuario.class), username);
+            return usuarios.isEmpty() ? null : usuarios.get(0);
         } catch (DataAccessException e) {
             throw new DatabaseException(ConstantesDaoLogin.ERROR_EN_LA_BASE_DE_DATOS);
         }
@@ -138,5 +139,22 @@ public class DaoLogin {
         } catch (SQLException e) {
             throw new DatabaseException(ConstantesDaoLogin.ERROR_AL_ACTUALIZAR_LA_PASSWORD);
         }
+    }
+
+    public Usuario getUsuarioByName(String name) {
+        Usuario usuario;
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.SELECT_USER_BY_NAME)) {
+            preparedStatement.setString(1, name);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                usuario = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("password"), rs.getString("rol"));
+            } else {
+                throw new ObjectNotFoundException("No existe ningún usuario con ese nombre");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(ConstantesDaoLogin.ERROR_EN_LA_BASE_DE_DATOS);
+        }
+        return usuario;
     }
 }

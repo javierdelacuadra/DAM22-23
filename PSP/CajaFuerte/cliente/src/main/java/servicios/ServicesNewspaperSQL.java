@@ -4,7 +4,7 @@ import data.DaoNewspaperSQL;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Newspaper;
+import modelo.Newspaper;
 
 import java.util.List;
 

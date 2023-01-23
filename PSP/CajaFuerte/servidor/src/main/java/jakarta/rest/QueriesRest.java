@@ -5,10 +5,10 @@ import jakarta.common.ConstantesREST;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import model.Query1;
-import model.Query2;
-import model.Query3;
-import model.Reader;
+import modelo.Query1;
+import modelo.Query2;
+import modelo.Query3;
+import modelo.Reader;
 
 import java.util.List;
 

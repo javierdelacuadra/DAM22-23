@@ -5,8 +5,8 @@ import data.retrofit.LoginApi;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Reader;
-import model.ReaderLogin;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 import retrofit2.Response;
 
 public class DaoLogin extends DaoGenerics {
@@ -19,7 +19,7 @@ public class DaoLogin extends DaoGenerics {
         this.loginApi = loginApi;
     }
 
-    public Single<Either<String, Reader>> login(String authorization) {
+    public Single<Either<String, Usuario>> login(String authorization) {
         return createSafeSingleApiCall(loginApi.loginReader(authorization));
     }
 

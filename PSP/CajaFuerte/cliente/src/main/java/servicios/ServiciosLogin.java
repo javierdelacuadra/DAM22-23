@@ -4,8 +4,8 @@ import data.DaoLogin;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Reader;
-import model.ReaderLogin;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 import okhttp3.Credentials;
 import retrofit2.Response;
 import servicios.modelo.CacheAuthorization;
@@ -20,15 +20,17 @@ public class ServiciosLogin {
         this.ca = ca;
     }
 
-    public Single<Either<String, Reader>> login(ReaderLogin readerLogin) {
-        String credentials = Credentials.basic(readerLogin.getUsername(), readerLogin.getPassword());
-        ca.setUser(readerLogin.getUsername());
-        ca.setPass(readerLogin.getPassword());
+    public Single<Either<String, Usuario>> login(Usuario usuario) {
+        String credentials = Credentials.basic(usuario.getNombre(), usuario.getPassword());
+        ca.setUser(usuario.getNombre());
+        ca.setPass(usuario.getPassword());
         return daoLogin.login(credentials);
     }
 
-    public Single<Either<String, ReaderLogin>> register(ReaderLogin reader) {
-        return daoLogin.register(reader);
+    public Single<Either<String, ReaderLogin>> register(Usuario usuario) {
+        ReaderLogin readerLogin = new ReaderLogin();
+        return daoLogin.register(readerLogin);
+        //TODO: Implementar
     }
 
     public Single<Response<String>> recoverPassword(String email) {

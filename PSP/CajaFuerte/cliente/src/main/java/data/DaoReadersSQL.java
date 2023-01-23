@@ -5,7 +5,7 @@ import data.retrofit.ReadersApi;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Reader;
+import modelo.Reader;
 
 import java.util.List;
 

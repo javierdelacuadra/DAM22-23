@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Newspaper;
+import modelo.Newspaper;
 import servicios.ServicesNewspaperSQL;
 
 import java.util.concurrent.atomic.AtomicReference;

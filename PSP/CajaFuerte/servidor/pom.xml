@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>RestLogin</artifactId>
+    <artifactId>CajaFuerteArtifact</artifactId>
     <packaging>war</packaging>
 
     <properties>

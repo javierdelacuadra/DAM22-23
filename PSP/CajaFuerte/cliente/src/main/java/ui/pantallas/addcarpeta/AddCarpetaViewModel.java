@@ -1,7 +1,7 @@
 package ui.pantallas.addcarpeta;
 
 import jakarta.inject.Inject;
-import model.Carpeta;
+import modelo.Carpeta;
 import servicios.ServiciosCarpetas;
 
 import java.util.concurrent.atomic.AtomicReference;

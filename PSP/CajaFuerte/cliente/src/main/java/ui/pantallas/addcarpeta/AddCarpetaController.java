@@ -5,7 +5,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import model.Carpeta;
+import modelo.Carpeta;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;

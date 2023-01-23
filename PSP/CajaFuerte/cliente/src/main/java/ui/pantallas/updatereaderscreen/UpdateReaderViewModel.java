@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import model.Reader;
+import modelo.Reader;
 import servicios.ServicesReadersSQL;
 
 import java.util.List;

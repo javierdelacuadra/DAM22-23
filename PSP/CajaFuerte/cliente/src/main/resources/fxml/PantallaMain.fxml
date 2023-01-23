@@ -23,10 +23,8 @@
                 <MenuItem mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
             </Menu>
             <Menu fx:id="carpetasMenu" mnemonicParsing="false" text="Carpetas">
-                <MenuItem mnemonicParsing="false" onAction="#listCarpetasMenu" text="List"/>
-                <MenuItem mnemonicParsing="false" onAction="#addCarpetaMenu" text="Add"/>
-                <MenuItem mnemonicParsing="false" onAction="#updateCarpetaMenu" text="Update"/>
-                <MenuItem mnemonicParsing="false" onAction="#deleteCarpetaMenu" text="Delete"/>
+                <MenuItem mnemonicParsing="false" onAction="#listCarpetasMenu" text="Ver carpetas y mensajes"/>
+                <MenuItem mnemonicParsing="false" onAction="#addCarpetaMenu" text="Añadir una carpeta"/>
             </Menu>
         </MenuBar>
     </top>

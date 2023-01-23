@@ -4,7 +4,7 @@ import data.DaoMensajes;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Mensaje;
+import modelo.Mensaje;
 
 import java.util.List;
 

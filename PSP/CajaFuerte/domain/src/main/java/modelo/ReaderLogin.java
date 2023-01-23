@@ -1,4 +1,4 @@
-package model;
+package modelo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,12 +18,6 @@ public class ReaderLogin {
     private int active;
     private LocalDateTime registration_date;
     private String role;
-
-    public ReaderLogin(String nombre, String password, String email) {
-        this.username = nombre;
-        this.password = password;
-        this.email = email;
-    }
 
     public ReaderLogin(String username, String password, String email, int id_reader, String activation_code, int active, LocalDateTime registration_date) {
         this.username = username;

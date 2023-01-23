@@ -4,7 +4,7 @@ import dao.common.Constantes;
 import dao.common.SQLQueries;
 import domain.exceptions.DatabaseException;
 import jakarta.inject.Inject;
-import model.ReadArticle;
+import modelo.ReadArticle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

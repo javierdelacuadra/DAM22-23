@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cliente" />
         <module name="servidor" />
-        <module name="CajaFuerte (1)" />
         <module name="ServidorRest" />
         <module name="domain" />
       </profile>

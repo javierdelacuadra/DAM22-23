@@ -2,7 +2,7 @@ package domain.servicios;
 
 import dao.DaoReaders;
 import jakarta.inject.Inject;
-import model.Reader;
+import modelo.Reader;
 
 import java.util.List;
 

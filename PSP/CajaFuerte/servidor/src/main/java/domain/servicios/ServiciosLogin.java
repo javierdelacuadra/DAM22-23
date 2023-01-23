@@ -10,7 +10,8 @@ import domain.utils.MessageGenerator;
 import jakarta.inject.Inject;
 import jakarta.mail.MessagingException;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import model.ReaderLogin;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 
 public class ServiciosLogin {
 
@@ -23,15 +24,13 @@ public class ServiciosLogin {
         this.passwordHash = passwordHash;
     }
 
-    public ReaderLogin getLogin(String user, char[] pass) {
-        ReaderLogin readerLogin = daoLogin.checkLogin(user);
-        if (readerLogin == null) {
+    public Usuario getLogin(String user, char[] pass) {
+        Usuario usuario = daoLogin.checkLogin(user);
+        if (usuario == null) {
             throw new ObjectNotFoundException(ConstantesServicios.USUARIO_NO_ENCONTRADO);
-        } else if (readerLogin.getActive() == 0) {
-            throw new ObjectNotFoundException(ConstantesServicios.EL_USUARIO_NO_ESTA_ACTIVADO_REVISA_TU_CORREO);
         } else {
-            if (passwordHash.verify(pass, readerLogin.getPassword())) {
-                return readerLogin;
+            if (passwordHash.verify(pass, usuario.getPassword())) {
+                return usuario;
             } else {
                 throw new ObjectNotFoundException(ConstantesServicios.PASSWORD_INCORRECTA);
             }
@@ -82,5 +81,9 @@ public class ServiciosLogin {
     public void crearNuevaPassword(String password, String code) {
         String passwordHasheada = passwordHash.generate(password.toCharArray());
         daoLogin.crearNuevaPassword(passwordHasheada, code);
+    }
+
+    public Usuario getUsuarioByName(String name) {
+        return daoLogin.getUsuarioByName(name);
     }
 }

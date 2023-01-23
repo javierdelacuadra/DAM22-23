@@ -1,7 +1,7 @@
 package ui.pantallas.deletereaderscreen;
 
 import lombok.AllArgsConstructor;
-import model.Reader;
+import modelo.Reader;
 
 import java.util.List;
 

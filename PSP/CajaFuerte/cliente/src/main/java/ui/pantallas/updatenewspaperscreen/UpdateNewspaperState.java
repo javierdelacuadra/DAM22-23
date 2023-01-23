@@ -1,7 +1,7 @@
 package ui.pantallas.updatenewspaperscreen;
 
 import lombok.AllArgsConstructor;
-import model.Newspaper;
+import modelo.Newspaper;
 
 import java.util.List;
 

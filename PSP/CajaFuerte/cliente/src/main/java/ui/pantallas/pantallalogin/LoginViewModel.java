@@ -5,8 +5,7 @@ import jakarta.inject.Inject;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import model.Reader;
-import model.ReaderLogin;
+import modelo.Usuario;
 import servicios.ServiciosLogin;
 import ui.common.ConstantesUI;
 
@@ -25,29 +24,30 @@ public class LoginViewModel {
         return state;
     }
 
-    public void login(ReaderLogin readerLogin) {
-        serviciosLogin.login(readerLogin)
+    public void login(Usuario usuario) {
+        serviciosLogin.login(usuario)
                 .observeOn(Schedulers.from(Platform::runLater))
                 .subscribe(either -> {
                     if (either.isLeft()) {
                         state.set(new LoginState(either.getLeft(), null));
                     } else {
-                        Reader reader = either.get();
-                        state.set(new LoginState(null, reader));
+                        Usuario usuario1 = either.get();
+                        state.set(new LoginState(null, usuario1));
                     }
                 });
     }
 
-    public void register(ReaderLogin readerLogin) {
-        serviciosLogin.register(readerLogin)
-                .observeOn(Schedulers.from(Platform::runLater))
-                .subscribe(either -> {
-                    if (either.isRight()) {
-                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, null));
-                    } else {
-                        state.set(new LoginState(either.getLeft(), null));
-                    }
-                });
+    public void register(Usuario usuario) {
+//        serviciosLogin.register(usuario)
+//                .observeOn(Schedulers.from(Platform::runLater))
+//                .subscribe(either -> {
+//                    if (either.isRight()) {
+//                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, null));
+//                    } else {
+//                        state.set(new LoginState(either.getLeft(), null));
+//                    }
+//                });
+        //TODO: descomentar
     }
 
     public void recoverPassword(String email) {

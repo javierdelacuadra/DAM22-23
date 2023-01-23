@@ -4,7 +4,7 @@ import data.DaoCarpetas;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.Carpeta;
+import modelo.Carpeta;
 
 import java.util.List;
 

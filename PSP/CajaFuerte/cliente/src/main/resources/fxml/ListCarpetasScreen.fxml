@@ -14,7 +14,7 @@
     <TableView fx:id="tablaMensajes" layoutX="449.0" layoutY="112.0" prefHeight="269.0" prefWidth="277.0" onMouseClicked="#rellenarTextoMensaje">
       <columns>
           <TableColumn fx:id="columnaContenido" prefWidth="201.79995727539062" text="Contenido" />
-          <TableColumn fx:id="columnaAutor" prefWidth="76.5999755859375" text="Autor" />
+          <TableColumn fx:id="columnaIDMensaje" prefWidth="76.5999755859375" text="Autor" />
       </columns>
     </TableView>
     <Label layoutX="83.0" layoutY="71.0" text="Pulsa en una carpeta para ver sus mensajes" />

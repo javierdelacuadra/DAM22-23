@@ -11,4 +11,6 @@ public class ConstantesPantallas {
     public static final String FXML_ADD_NEWSPAPER_SCREEN_FXML = "/fxml/AddNewspaperScreen.fxml";
     public static final String FXML_UPDATE_NEWSPAPER_SCREEN_FXML = "/fxml/UpdateNewspaperScreen.fxml";
     public static final String FXML_PANTALLA_LOGIN_FXML = "/fxml/PantallaLogin.fxml";
+    public static final String FXML_LIST_CARPETAS_SCREEN_FXML = "/fxml/ListCarpetasScreen.fxml";
+    public static final String FXML_ADD_CARPETA_SCREEN_FXML = "/fxml/AddCarpetaScreen.fxml";
 }

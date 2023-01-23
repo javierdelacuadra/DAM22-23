@@ -2,7 +2,7 @@ package data.retrofit;
 
 import data.retrofit.common.ConstantesAPI;
 import io.reactivex.rxjava3.core.Single;
-import model.Newspaper;
+import modelo.Newspaper;
 import retrofit2.Response;
 import retrofit2.http.*;
 

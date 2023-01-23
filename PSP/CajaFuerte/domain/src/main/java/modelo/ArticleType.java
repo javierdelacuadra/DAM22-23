@@ -1,14 +1,14 @@
-package model;
+package modelo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Query1 {
-    private String name_article;
-    private int count;
+@NoArgsConstructor
+public class ArticleType {
+    private int id;
     private String description;
+
 }

@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import model.ClientAPIError;
+import modelo.ClientAPIError;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;

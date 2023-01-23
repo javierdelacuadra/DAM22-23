@@ -1,8 +1,8 @@
 package ui.pantallas.listcarpetas;
 
 import lombok.AllArgsConstructor;
-import model.Carpeta;
-import model.Mensaje;
+import modelo.Carpeta;
+import modelo.Mensaje;
 
 import java.util.List;
 

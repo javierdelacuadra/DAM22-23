@@ -6,7 +6,7 @@ import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectAlreadyExistsException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
-import model.Article;
+import modelo.Article;
 
 import java.sql.*;
 import java.util.ArrayList;

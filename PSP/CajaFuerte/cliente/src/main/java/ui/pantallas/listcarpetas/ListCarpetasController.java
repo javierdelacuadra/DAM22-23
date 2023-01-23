@@ -3,19 +3,15 @@ package ui.pantallas.listcarpetas;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import model.Carpeta;
-import model.Mensaje;
+import modelo.Carpeta;
+import modelo.Mensaje;
 import ui.pantallas.common.BasePantallaController;
-
-import java.util.List;
 
 public class ListCarpetasController extends BasePantallaController {
 
@@ -42,17 +38,16 @@ public class ListCarpetasController extends BasePantallaController {
     private TableColumn<Mensaje, String> columnaContenido;
 
     @FXML
-    private TableColumn<Mensaje, String> columnaAutor;
+    private TableColumn<Mensaje, String> columnaIDMensaje;
 
     @FXML
     private MFXTextField textoMensaje;
 
     public void initialize() {
-        viewModel.getCarpetas(this.getPrincipalController().getUsuario().getId());
-        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        columnaModo.setCellValueFactory(new PropertyValueFactory<>("modo"));
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCarpeta"));
+        columnaModo.setCellValueFactory(new PropertyValueFactory<>("modoEdicion"));
         columnaContenido.setCellValueFactory(new PropertyValueFactory<>("contenido"));
-        columnaAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        columnaIDMensaje.setCellValueFactory(new PropertyValueFactory<>("id"));
         //TODO: cambiar acorde a los modelos
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.error != null) {
@@ -73,6 +68,11 @@ public class ListCarpetasController extends BasePantallaController {
                 });
             }
         });
+    }
+
+    @Override
+    public void principalCargado() {
+        viewModel.getCarpetas(this.getPrincipalController().getUsuario().getId());
     }
 
     public void cargarMensajes() {

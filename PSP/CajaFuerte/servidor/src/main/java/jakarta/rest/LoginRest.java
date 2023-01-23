@@ -1,7 +1,6 @@
 package jakarta.rest;
 
 import domain.servicios.ServiciosLogin;
-import domain.servicios.ServiciosReaders;
 import jakarta.inject.Inject;
 import jakarta.rest.common.ConstantesLoginRest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,8 +9,8 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
-import model.Reader;
-import model.ReaderLogin;
+import modelo.ReaderLogin;
+import modelo.Usuario;
 
 @Path(ConstantesLoginRest.RUTA_LOGIN)
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,17 +24,15 @@ public class LoginRest {
     public SecurityContext securityContext;
 
     private final ServiciosLogin servicios;
-    private final ServiciosReaders serviciosReaders;
 
     @Inject
-    public LoginRest(ServiciosLogin servicios, ServiciosReaders serviciosReaders) {
+    public LoginRest(ServiciosLogin servicios) {
         this.servicios = servicios;
-        this.serviciosReaders = serviciosReaders;
     }
 
     @GET
-    public Reader getLogin() {
-        return serviciosReaders.getReaderByName(securityContext.getUserPrincipal().getName());
+    public Usuario getLogin() {
+        return servicios.getUsuarioByName(securityContext.getUserPrincipal().getName());
     }
 
     @POST

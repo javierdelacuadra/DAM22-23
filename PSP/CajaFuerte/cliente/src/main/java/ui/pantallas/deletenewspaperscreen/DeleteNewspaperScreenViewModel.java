@@ -5,7 +5,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import model.Newspaper;
+import modelo.Newspaper;
 import servicios.ServicesNewspaperSQL;
 
 import java.util.List;
