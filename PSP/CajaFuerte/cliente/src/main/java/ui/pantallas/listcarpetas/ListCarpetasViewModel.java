@@ -10,6 +10,8 @@ import modelo.Mensaje;
 import servicios.ServiciosCarpetas;
 import servicios.ServiciosMensajes;
 
+import java.util.List;
+
 public class ListCarpetasViewModel {
 
     private final ServiciosMensajes servicios;
@@ -31,8 +33,10 @@ public class ListCarpetasViewModel {
     public void cargarMensajes(Carpeta carpeta) {
         servicios.getMensajes(carpeta)
                 .subscribe(either -> {
-                    if (either.isRight()) {
+                    if (either.isRight() && either.get().size() != 0) {
                         state.set(new ListCarpetasState(null, either.get(), null));
+                    } else if (either.isRight() && either.get().size() == 0) {
+                        state.set(new ListCarpetasState(null, null,"No hay mensajes en esta carpeta"));
                     } else {
                         state.set(new ListCarpetasState(null, null, either.getLeft()));
                     }
@@ -43,7 +47,7 @@ public class ListCarpetasViewModel {
         servicios.addMensaje(mensaje)
                 .subscribe(either -> {
                     if (either.isRight()) {
-                        ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(state.get().mensajes);
+                        List<Mensaje> mensajes = state.get().mensajes;
                         mensajes.add(either.get());
                         state.set(new ListCarpetasState(null, mensajes, null));
                     } else {
@@ -56,7 +60,7 @@ public class ListCarpetasViewModel {
         servicios.updateMensaje(mensaje)
                 .subscribe(either -> {
                     if (either.isRight()) {
-                        ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(state.get().mensajes);
+                        List<Mensaje> mensajes = state.get().mensajes;
                         mensajes.removeIf(m -> m.getId() == mensaje.getId());
                         mensajes.add(either.get());
                         state.set(new ListCarpetasState(null, mensajes, null));

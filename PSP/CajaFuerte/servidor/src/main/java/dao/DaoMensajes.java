@@ -2,6 +2,7 @@ package dao;
 
 import dao.common.Constantes;
 import dao.common.SQLQueries;
+import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 import modelo.Mensaje;
@@ -31,7 +32,7 @@ public class DaoMensajes {
             mensajes = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException("No se han encontrado mensajes en la carpeta");
+            throw new ObjectNotFoundException("La contraseña es incorrecta");
             //TODO: check wrong password
         }
         return mensajes;
@@ -56,15 +57,15 @@ public class DaoMensajes {
     public Mensaje addMensaje(Mensaje mensaje) {
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_MENSAJE, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, mensaje.getContenido());
-            preparedStatement.setInt(2, mensaje.getIDCarpeta());
+            preparedStatement.setInt(1, mensaje.getIDCarpeta());
+            preparedStatement.setString(2, mensaje.getContenido());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
                 mensaje.setId(rs.getInt(1));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException("Error al insertar el mensaje");
         }
         return mensaje;
     }
