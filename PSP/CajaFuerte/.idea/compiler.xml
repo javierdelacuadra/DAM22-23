@@ -9,12 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cliente" />
         <module name="servidor" />
+        <module name="RestLogin" />
         <module name="ServidorRest" />
         <module name="domain" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="RestLogin" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

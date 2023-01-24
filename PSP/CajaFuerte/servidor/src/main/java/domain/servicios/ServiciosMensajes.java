@@ -15,7 +15,7 @@ public class ServiciosMensajes {
         this.dao = dao;
     }
 
-    public List<Mensaje> getMensajesByUsuario(String id) {
+    public List<Mensaje> getMensajesByUsuario(String id, String password) {
         int IDUsuario;
         try {
             IDUsuario = Integer.parseInt(id);
@@ -23,7 +23,7 @@ public class ServiciosMensajes {
             throw new NumberFormatException("El id del usuario debe ser un número");
             //TODO: Crear una excepción propia
         }
-        return dao.getMensajesByUsuario(IDUsuario);
+        return dao.getMensajesByCarpeta(IDUsuario, password);
     }
 
     public Mensaje addMensaje(Mensaje mensaje) {

@@ -21,9 +21,9 @@ public class MensajesRest {
     }
 
     @GET
-    @Path("mensajes/{id}")
-    public List<Mensaje> getMensajesByCarpeta(@PathParam("id") String id) {
-        return servicios.getMensajesByUsuario(id);
+    @Path("/{id}")
+    public List<Mensaje> getMensajesByCarpeta(@PathParam("id") String id, @QueryParam("password") String password) {
+        return servicios.getMensajesByUsuario(id, password);
     }
 
     @POST

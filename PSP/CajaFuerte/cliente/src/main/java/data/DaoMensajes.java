@@ -5,6 +5,7 @@ import data.retrofit.MensajesAPI;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import modelo.Carpeta;
 import modelo.Mensaje;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class DaoMensajes extends DaoGenerics {
         this.api = api;
     }
 
-    public Single<Either<String, List<Mensaje>>> getAll(String id) {
-        return createSafeSingleApiCall(api.getMensajesByCarpeta(id));
+    public Single<Either<String, List<Mensaje>>> getAll(Carpeta carpeta) {
+        return createSafeSingleApiCall(api.getMensajesByCarpeta(String.valueOf(carpeta.getId()), carpeta.getPassword()));
     }
 
     public Single<Either<String, Mensaje>> add(Mensaje mensaje) {

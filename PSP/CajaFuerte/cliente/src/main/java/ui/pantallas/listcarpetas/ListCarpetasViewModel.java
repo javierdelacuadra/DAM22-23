@@ -29,7 +29,7 @@ public class ListCarpetasViewModel {
 
 
     public void cargarMensajes(Carpeta carpeta) {
-        servicios.getMensajes(String.valueOf(carpeta.getId()))
+        servicios.getMensajes(carpeta)
                 .subscribe(either -> {
                     if (either.isRight()) {
                         state.set(new ListCarpetasState(null, either.get(), null));

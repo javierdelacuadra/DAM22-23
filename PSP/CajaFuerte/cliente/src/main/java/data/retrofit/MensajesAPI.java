@@ -10,7 +10,7 @@ import java.util.List;
 public interface MensajesAPI {
 
     @GET("mensajes/{id}")
-    Single<List<Mensaje>> getMensajesByCarpeta(@Path("id") String id);
+    Single<List<Mensaje>> getMensajesByCarpeta(@Path("id") String id, @Query("password") String password);
 
     @POST("mensajes")
     Single<Mensaje> addMensaje(@Body Mensaje mensaje);

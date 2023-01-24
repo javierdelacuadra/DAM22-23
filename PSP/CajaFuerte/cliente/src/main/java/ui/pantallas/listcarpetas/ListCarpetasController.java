@@ -98,8 +98,8 @@ public class ListCarpetasController extends BasePantallaController {
 
     public void addMensaje() {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
-        Mensaje mensaje = tablaMensajes.getSelectionModel().getSelectedItem();
-        if (carpetaSeleccionada != null && mensaje != null) {
+        Mensaje mensaje = new Mensaje();
+        if (carpetaSeleccionada != null) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Añadir mensaje");
             dialog.setHeaderText("Añadir mensaje");
@@ -107,6 +107,8 @@ public class ListCarpetasController extends BasePantallaController {
             dialog.showAndWait().ifPresent(passCarpeta -> {
                 try {
                     carpetaSeleccionada.setPassword(passCarpeta);
+                    mensaje.setIDCarpeta(carpetaSeleccionada.getId());
+                    mensaje.setContenido(textoMensaje.getText());
                     viewModel.addMensaje(mensaje);
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

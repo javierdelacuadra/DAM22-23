@@ -4,6 +4,7 @@ import data.DaoMensajes;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import modelo.Carpeta;
 import modelo.Mensaje;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class ServiciosMensajes {
         this.dao = dao;
     }
 
-    public Single<Either<String, List<Mensaje>>> getMensajes(String id) {
-        return dao.getAll(id);
+    public Single<Either<String, List<Mensaje>>> getMensajes(Carpeta carpeta) {
+        return dao.getAll(carpeta);
     }
 
     public Single<Either<String, Mensaje>> addMensaje(Mensaje mensaje) {

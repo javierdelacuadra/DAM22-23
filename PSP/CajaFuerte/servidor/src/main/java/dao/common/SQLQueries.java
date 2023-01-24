@@ -4,9 +4,9 @@ public class SQLQueries {
 
     public static final String SELECT_CARPETAS_BY_USUARIO = "SELECT * FROM carpeta WHERE IDUsuario = ?";
     public static final String INSERT_CARPETA = "INSERT INTO carpetas (nombreCarpeta, password, IDUsuario, modoEdicion) VALUES (?, ?, ?, ?)";
-    public static final String SELECT_MENSAJES_BY_CARPETA = "SELECT * FROM mensajes WHERE IDCarpeta = ?";
+    public static final String SELECT_MENSAJES_BY_CARPETA = "SELECT * FROM mensajes INNER JOIN carpeta ON mensajes.IDCarpeta = carpeta.id WHERE mensajes.IDCarpeta = ? AND carpeta.password = ?";
     public static final String INSERT_MENSAJE = "INSERT INTO mensajes (IDCarpeta, contenido) VALUES (?, ?)";
-    public static final String UPDATE_MENSAJE = "UPDATE mensajes SET contenido = ? WHERE ID = ?";
+    public static final String UPDATE_MENSAJE = "UPDATE mensajes SET contenido = ? WHERE id = ?";
     public static final String DELETE_MENSAJE = "DELETE FROM mensajes WHERE ID = ?";
     public static final String SELECT_USER_BY_NAME = "SELECT * FROM usuarios WHERE nombre = ?";
 

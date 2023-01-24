@@ -21,16 +21,18 @@ public class DaoMensajes {
         this.db = db;
     }
 
-    public List<Mensaje> getMensajesByUsuario(int id) {
+    public List<Mensaje> getMensajesByCarpeta(int id, String password) {
         List<Mensaje> mensajes;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_MENSAJES_BY_CARPETA)) {
             preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
             mensajes = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
             throw new ObjectNotFoundException("No se han encontrado mensajes en la carpeta");
+            //TODO: check wrong password
         }
         return mensajes;
     }
@@ -71,8 +73,7 @@ public class DaoMensajes {
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.UPDATE_MENSAJE)) {
             preparedStatement.setString(1, mensaje.getContenido());
-            preparedStatement.setInt(2, mensaje.getIDCarpeta());
-            preparedStatement.setInt(3, mensaje.getId());
+            preparedStatement.setInt(2, mensaje.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
