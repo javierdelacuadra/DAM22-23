@@ -20,19 +20,13 @@ module MercadonaFX {
     requires domain;
     requires retrofit2.converter.scalars;
     requires org.apache.logging.log4j;
+    requires seguridad;
 
     exports ui;
     exports ui.common;
     exports ui.pantallas.common.constantes;
     exports ui.pantallas.pantallamain;
-    exports ui.pantallas.deletenewspaperscreen;
-    exports ui.pantallas.listnewspaperscreen;
-    exports ui.pantallas.listreaderscreen;
-    exports ui.pantallas.deletereaderscreen;
     exports ui.pantallas.addreaderscreen;
-    exports ui.pantallas.updatereaderscreen;
-    exports ui.pantallas.addnewspaperscreen;
-    exports ui.pantallas.updatenewspaperscreen;
     exports ui.pantallas.pantallalogin;
     exports ui.pantallas.listcarpetas;
     exports ui.pantallas.addcarpeta;
@@ -55,14 +49,7 @@ module MercadonaFX {
     opens ui;
     opens ui.common;
     opens ui.pantallas.pantallamain to javafx.fxml;
-    opens ui.pantallas.deletenewspaperscreen to javafx.fxml;
-    opens ui.pantallas.listnewspaperscreen to javafx.fxml;
-    opens ui.pantallas.listreaderscreen to javafx.fxml;
-    opens ui.pantallas.deletereaderscreen to javafx.fxml;
     opens ui.pantallas.addreaderscreen to javafx.fxml;
-    opens ui.pantallas.updatereaderscreen to javafx.fxml;
-    opens ui.pantallas.addnewspaperscreen to javafx.fxml;
-    opens ui.pantallas.updatenewspaperscreen to javafx.fxml;
     opens ui.pantallas.pantallalogin to javafx.fxml;
     opens ui.pantallas.listcarpetas to javafx.fxml;
     opens ui.pantallas.addcarpeta to javafx.fxml;

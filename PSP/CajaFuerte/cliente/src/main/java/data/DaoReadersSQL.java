@@ -25,12 +25,4 @@ public class DaoReadersSQL extends DaoGenerics {
     public Single<Either<String, Reader>> add(Reader reader) {
         return createSafeSingleApiCall(readersApi.addReader(reader));
     }
-
-    public Single<Either<String, Reader>> update(Reader reader) {
-        return createSafeSingleApiCall(readersApi.updateReader(reader));
-    }
-
-    public Single<Either<String, Boolean>> delete(String id) {
-        return createSafeSingleDeleteCall(readersApi.deleteReader(id));
-    }
 }

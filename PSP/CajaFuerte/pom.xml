@@ -12,6 +12,7 @@
         <module>cliente</module>
         <module>domain</module>
         <module>servidor</module>
+        <module>seguridad</module>
     </modules>
 
     <properties>

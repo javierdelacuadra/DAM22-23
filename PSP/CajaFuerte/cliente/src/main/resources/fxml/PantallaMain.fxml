@@ -10,17 +10,8 @@
                 <MenuItem mnemonicParsing="false" onAction="#logout" text="Log out"/>
                 <MenuItem mnemonicParsing="false" onAction="#salir" text="Exit"/>
             </Menu>
-            <Menu fx:id="newspapersMenu" mnemonicParsing="false" text="Newspapers">
-                <MenuItem mnemonicParsing="false" onAction="#listNewspapersMenu" text="List"/>
-                <MenuItem mnemonicParsing="false" onAction="#addNewspaperMenu" text="Add"/>
-                <MenuItem mnemonicParsing="false" onAction="#updateNewspaperMenu" text="Update"/>
-                <MenuItem mnemonicParsing="false" onAction="#deleteNewspaperMenu" text="Delete"/>
-            </Menu>
-            <Menu fx:id="readersMenu" mnemonicParsing="false" text="Readers">
-                <MenuItem mnemonicParsing="false" onAction="#listReadersMenu" text="List"/>
-                <MenuItem mnemonicParsing="false" onAction="#addReaderMenu" text="Add"/>
-                <MenuItem mnemonicParsing="false" onAction="#updateReaderMenu" text="Update"/>
-                <MenuItem mnemonicParsing="false" onAction="#deleteReadersMenu" text="Delete"/>
+            <Menu fx:id="usuariosMenu" mnemonicParsing="false" text="Usuarios">
+                <MenuItem mnemonicParsing="false" onAction="#addUsuarioMenu" text="Añadir usuario"/>
             </Menu>
             <Menu fx:id="carpetasMenu" mnemonicParsing="false" text="Carpetas">
                 <MenuItem mnemonicParsing="false" onAction="#listCarpetasMenu" text="Ver carpetas y mensajes"/>

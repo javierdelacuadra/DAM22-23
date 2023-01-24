@@ -11,4 +11,5 @@ public class ListCarpetasState {
     public List<Carpeta> carpetas;
     public List<Mensaje> mensajes;
     public String error;
+    public Boolean isLoaded;
 }

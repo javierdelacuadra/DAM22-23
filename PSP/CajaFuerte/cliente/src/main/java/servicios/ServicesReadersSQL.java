@@ -25,11 +25,4 @@ public class ServicesReadersSQL {
         return daoReadersSQL.getAll();
     }
 
-    public Single<Either<String, Boolean>> deleteReader(String id) {
-        return daoReadersSQL.delete(id);
-    }
-
-    public Single<Either<String, Reader>> updateReader(Reader reader) {
-        return daoReadersSQL.update(reader);
-    }
 }

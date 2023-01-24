@@ -52,9 +52,7 @@ public class ListCarpetasController extends BasePantallaController {
         //TODO: cambiar acorde a los modelos
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.error != null) {
-                Platform.runLater(() -> {
-                    getPrincipalController().createAlert(newState.error);
-                });
+                Platform.runLater(() -> getPrincipalController().createAlert(newState.error));
             }
             if (newState.carpetas != null) {
                 Platform.runLater(() -> {
@@ -99,7 +97,7 @@ public class ListCarpetasController extends BasePantallaController {
     public void addMensaje() {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
         Mensaje mensaje = new Mensaje();
-        if (carpetaSeleccionada != null && tablaMensajes.getItems().size() > 0) {
+        if (carpetaSeleccionada != null) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Añadir mensaje");
             dialog.setHeaderText("Añadir mensaje");
@@ -109,7 +107,7 @@ public class ListCarpetasController extends BasePantallaController {
                     carpetaSeleccionada.setPassword(passCarpeta);
                     mensaje.setIDCarpeta(carpetaSeleccionada.getId());
                     mensaje.setContenido(textoMensaje.getText());
-                    viewModel.addMensaje(mensaje);
+                    viewModel.addMensaje(mensaje, carpetaSeleccionada.getNombreCarpeta());
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -122,7 +120,7 @@ public class ListCarpetasController extends BasePantallaController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada o no se ha introducido\nla contraseña de la carpeta seleccionada");
+            alert.setContentText("No hay ninguna carpeta seleccionada");
             alert.showAndWait();
         }
     }
@@ -130,7 +128,7 @@ public class ListCarpetasController extends BasePantallaController {
     public void updateMensaje() {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
         Mensaje mensaje = tablaMensajes.getSelectionModel().getSelectedItem();
-        if (carpetaSeleccionada != null && mensaje != null && tablaMensajes.getItems().size() > 0) {
+        if (carpetaSeleccionada != null && mensaje != null) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Modificar mensaje");
             dialog.setHeaderText("Modificar mensaje");
@@ -140,7 +138,7 @@ public class ListCarpetasController extends BasePantallaController {
                     carpetaSeleccionada.setPassword(passCarpeta);
                     mensaje.setIDCarpeta(carpetaSeleccionada.getId());
                     mensaje.setContenido(textoMensaje.getText());
-                    viewModel.updateMensaje(mensaje);
+                    viewModel.updateMensaje(mensaje, carpetaSeleccionada.getNombreCarpeta());
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -153,7 +151,7 @@ public class ListCarpetasController extends BasePantallaController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada o no se ha introducido\nla contraseña de la carpeta seleccionada");
+            alert.setContentText("No hay ninguna carpeta seleccionada");
             alert.showAndWait();
         }
     }
@@ -161,7 +159,7 @@ public class ListCarpetasController extends BasePantallaController {
     public void deleteMensaje() {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
         Mensaje mensaje = tablaMensajes.getSelectionModel().getSelectedItem();
-        if (carpetaSeleccionada != null && mensaje != null && tablaMensajes.getItems().size() > 0) {
+        if (carpetaSeleccionada != null && mensaje != null) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Eliminar mensaje");
             dialog.setHeaderText("Eliminar mensaje");
@@ -184,7 +182,7 @@ public class ListCarpetasController extends BasePantallaController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada o no se ha introducido\nla contraseña de la carpeta seleccionada");
+            alert.setContentText("No hay ninguna carpeta seleccionada");
             alert.showAndWait();
         }
     }
@@ -193,4 +191,8 @@ public class ListCarpetasController extends BasePantallaController {
         Mensaje mensajeSeleccionado = tablaMensajes.getSelectionModel().getSelectedItem();
         textoMensaje.setText(mensajeSeleccionado.getContenido());
     }
+
+    //TODO: añadir función de cambiar contraseña de carpeta
+    //TODO: añadir función de compartir carpeta
+
 }
