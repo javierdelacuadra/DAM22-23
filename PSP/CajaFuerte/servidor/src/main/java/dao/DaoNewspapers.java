@@ -31,7 +31,7 @@ public class DaoNewspapers {
             ResultSet rs = statement.executeQuery(SQLQueries.SELECT_NEWSPAPERS);
             newspapers = readRS(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_NEWSPAPERS);
         }
         return newspapers;
@@ -48,7 +48,7 @@ public class DaoNewspapers {
                 newspapers.add(newspaper);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         return newspapers;
     }
@@ -67,7 +67,7 @@ public class DaoNewspapers {
                 }
                 return newspaper;
             } catch (SQLException ex) {
-                Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                 throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_NEWSPAPER);
             }
         }
@@ -83,7 +83,7 @@ public class DaoNewspapers {
             preparedStatement.executeUpdate();
             return newspaper;
         } catch (Exception ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER);
         }
     }
@@ -94,7 +94,7 @@ public class DaoNewspapers {
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_NEWSPAPER);
         }
         return true;

@@ -36,10 +36,10 @@ public class ListCarpetasController extends BasePantallaController {
     private TableView<Mensaje> tablaMensajes;
 
     @FXML
-    private TableColumn<Mensaje, String> columnaContenido;
+    private TableColumn<Mensaje, String> columnaID;
 
     @FXML
-    private TableColumn<Mensaje, String> columnaIDMensaje;
+    private TableColumn<Mensaje, String> columnaContenido;
 
     @FXML
     private MFXTextField textoMensaje;
@@ -47,8 +47,8 @@ public class ListCarpetasController extends BasePantallaController {
     public void initialize() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCarpeta"));
         columnaModo.setCellValueFactory(new PropertyValueFactory<>("modoEdicion"));
+        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaContenido.setCellValueFactory(new PropertyValueFactory<>("contenido"));
-        columnaIDMensaje.setCellValueFactory(new PropertyValueFactory<>("id"));
         //TODO: cambiar acorde a los modelos
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.error != null) {
@@ -108,6 +108,7 @@ public class ListCarpetasController extends BasePantallaController {
                     mensaje.setIDCarpeta(carpetaSeleccionada.getId());
                     mensaje.setContenido(textoMensaje.getText());
                     viewModel.addMensaje(mensaje, carpetaSeleccionada.getNombreCarpeta());
+                    textoMensaje.clear();
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -139,6 +140,7 @@ public class ListCarpetasController extends BasePantallaController {
                     mensaje.setIDCarpeta(carpetaSeleccionada.getId());
                     mensaje.setContenido(textoMensaje.getText());
                     viewModel.updateMensaje(mensaje, carpetaSeleccionada.getNombreCarpeta());
+                    textoMensaje.clear();
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -170,6 +172,7 @@ public class ListCarpetasController extends BasePantallaController {
                     mensaje.setIDCarpeta(carpetaSeleccionada.getId());
                     mensaje.setContenido(textoMensaje.getText());
                     viewModel.deleteMensaje(mensaje);
+                    textoMensaje.clear();
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");

@@ -76,7 +76,7 @@ public class DaoLogin {
             }
             return idReader;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }

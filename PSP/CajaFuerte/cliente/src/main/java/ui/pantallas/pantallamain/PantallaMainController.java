@@ -90,17 +90,20 @@ public class PantallaMainController extends BasePantallaController implements In
         if (admin) {
             optionsMenu.setVisible(true);
             usuariosMenu.setVisible(true);
-            cargarPantalla(Pantallas.LISTCARPETASSCREEN);
+            cargarPantalla(Pantallas.ADDREADERSCREEN);
         } else {
             optionsMenu.setVisible(true);
             carpetasMenu.setVisible(true);
-            cargarPantalla(Pantallas.ADDREADERSCREEN);
+            cargarPantalla(Pantallas.LISTCARPETASSCREEN);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarPantalla(Pantallas.LOGINSCREEN);
+        usuariosMenu.setVisible(false);
+        optionsMenu.setVisible(false);
+        carpetasMenu.setVisible(false);
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.mensaje != null) {
                 Platform.runLater(() -> createAlert(newState.mensaje));

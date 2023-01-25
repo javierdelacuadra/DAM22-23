@@ -80,8 +80,8 @@ public class NewspaperApiProducer {
     }
 
     @Produces
-    public ReadersApi getReadersApi(Retrofit retro) {
-        return retro.create(ReadersApi.class);
+    public UsuariosAPI getReadersApi(Retrofit retro) {
+        return retro.create(UsuariosAPI.class);
     }
 
     @Produces

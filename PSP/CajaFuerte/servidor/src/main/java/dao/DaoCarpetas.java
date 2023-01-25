@@ -30,7 +30,7 @@ public class DaoCarpetas {
             ResultSet rs = preparedStatement.executeQuery();
             carpetas = readRS(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new ObjectNotFoundException("No se han encontrado carpetas");
         }
         return carpetas;
@@ -49,7 +49,7 @@ public class DaoCarpetas {
                 carpetas.add(carpeta);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         return carpetas;
     }
@@ -68,7 +68,7 @@ public class DaoCarpetas {
             }
             return carpeta;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException("Error al insertar la carpeta");
         }
     }

@@ -7,20 +7,20 @@
     <TableView fx:id="tablaCarpetas" layoutX="83.0" layoutY="123.0" onMouseClicked="#cargarMensajes" prefHeight="248.0" prefWidth="254.0">
       <columns>
           <TableColumn fx:id="columnaNombre" prefWidth="131.20000457763672" text="Nombre" />
-          <TableColumn fx:id="columnaModo" prefWidth="121.59998168945313" text="Modo" />
+          <TableColumn fx:id="columnaModo" prefWidth="121.59998168945313" text="Modo edición" />
       </columns>
     </TableView>
-    <TableView fx:id="tablaMensajes" layoutX="449.0" layoutY="112.0" prefHeight="269.0" prefWidth="277.0" onMouseClicked="#rellenarTextoMensaje">
+    <TableView fx:id="tablaMensajes" layoutX="449.0" layoutY="112.0" onMouseClicked="#rellenarTextoMensaje" prefHeight="269.0" prefWidth="277.0">
       <columns>
-          <TableColumn fx:id="columnaContenido" prefWidth="201.79995727539062" text="Contenido" />
-          <TableColumn fx:id="columnaIDMensaje" prefWidth="76.5999755859375" text="IDMensaje" />
+          <TableColumn fx:id="columnaID" prefWidth="55.0" text="ID" />
+          <TableColumn fx:id="columnaContenido" prefWidth="225.00003051757812" text="Contenido" />
       </columns>
     </TableView>
     <Label layoutX="83.0" layoutY="71.0" text="Pulsa en una carpeta para ver sus mensajes" />
     <Label layoutX="563.0" layoutY="71.0" text="Mensajes" />
-   <MFXButton layoutX="449.0" layoutY="496.0" mnemonicParsing="false" text="Añadir" onAction="#addMensaje" />
-   <MFXButton layoutX="559.0" layoutY="496.0" mnemonicParsing="false" text="Update" onAction="#updateMensaje"/>
-   <MFXButton layoutX="674.0" layoutY="496.0" mnemonicParsing="false" text="Delete" onAction="#deleteMensaje"/>
+   <MFXButton layoutX="449.0" layoutY="496.0" mnemonicParsing="false" onAction="#addMensaje" text="Añadir" />
+   <MFXButton layoutX="559.0" layoutY="496.0" mnemonicParsing="false" onAction="#updateMensaje" text="Update" />
+   <MFXButton layoutX="674.0" layoutY="496.0" mnemonicParsing="false" onAction="#deleteMensaje" text="Delete" />
    <MFXTextField fx:id="textoMensaje" layoutX="468.0" layoutY="407.0" prefHeight="50.0" prefWidth="239.0" />
    <MFXButton layoutX="151.0" layoutY="407.0" mnemonicParsing="false" text="Compartir carpeta" />
 </AnchorPane>

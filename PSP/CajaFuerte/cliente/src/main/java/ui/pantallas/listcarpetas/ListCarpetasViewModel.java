@@ -10,7 +10,10 @@ import modelo.Mensaje;
 import servicios.ServiciosCarpetas;
 import servicios.ServiciosMensajes;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class ListCarpetasViewModel {
 
@@ -50,7 +53,8 @@ public class ListCarpetasViewModel {
             servicios.addMensaje(mensaje, nombreCarpeta)
                     .subscribe(either -> {
                         if (either.isRight()) {
-                            List<Mensaje> mensajes = state.get().mensajes;
+                            List<Mensaje> mensajes;
+                            mensajes = Objects.requireNonNullElseGet(state.get().mensajes, ArrayList::new);
                             mensajes.add(either.get());
                             state.set(new ListCarpetasState(null, mensajes, null, state.get().isLoaded));
                         } else {
@@ -70,6 +74,7 @@ public class ListCarpetasViewModel {
                             List<Mensaje> mensajes = state.get().mensajes;
                             mensajes.removeIf(m -> m.getId() == mensaje.getId());
                             mensajes.add(either.get());
+                            mensajes.sort(Comparator.comparingInt(Mensaje::getId));
                             state.set(new ListCarpetasState(null, mensajes, null, state.get().isLoaded));
                         } else {
                             state.set(new ListCarpetasState(null, null, either.getLeft(), state.get().isLoaded));
@@ -87,6 +92,7 @@ public class ListCarpetasViewModel {
                         if (either.isRight()) {
                             ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(state.get().mensajes);
                             mensajes.removeIf(m -> m.getId() == mensaje.getId());
+                            mensajes.sort(Comparator.comparingInt(Mensaje::getId));
                             state.set(new ListCarpetasState(null, mensajes, null, state.get().isLoaded));
                         } else {
                             state.set(new ListCarpetasState(null, null, either.getLeft(), state.get().isLoaded));

@@ -31,7 +31,7 @@ public class DaoMensajes {
             ResultSet rs = preparedStatement.executeQuery();
             mensajes = readRS(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new ObjectNotFoundException("La contraseña es incorrecta");
             //TODO: check wrong password
         }
@@ -49,7 +49,7 @@ public class DaoMensajes {
                 mensajes.add(mensaje);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         return mensajes;
     }
@@ -77,7 +77,7 @@ public class DaoMensajes {
             preparedStatement.setInt(2, mensaje.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         return mensaje;
     }
@@ -88,7 +88,7 @@ public class DaoMensajes {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoReaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="NewspapersDB" />
         <module name="NewspapersDB with SQL" />
+        <module name="NewspapersDB with MongoDB" />
         <module name="Mercadona" />
         <module name="DB" />
         <module name="NewspapersDB with Hibernate" />
