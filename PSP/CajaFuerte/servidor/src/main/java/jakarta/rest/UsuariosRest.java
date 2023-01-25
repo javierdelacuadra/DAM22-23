@@ -22,16 +22,11 @@ public class UsuariosRest {
     }
 
     @GET
-//    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
-//    @MaxCallsCheck
     public List<Usuario> getAllUsers() {
         return servicios.getAllUsers();
     }
 
     @POST
-//    @RolesAllowed({ConstantesREST.ROLE_ADMIN})
-//    @MaxCallsCheck
-    //TODO:quitar al final :)
     public Response addUsuario(Usuario usuario) {
         return Response.status(Response.Status.CREATED)
                 .entity(servicios.addUsuario(usuario))

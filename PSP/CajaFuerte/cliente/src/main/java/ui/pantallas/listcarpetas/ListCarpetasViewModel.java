@@ -46,11 +46,11 @@ public class ListCarpetasViewModel {
                 });
     }
 
-    public void addMensaje(Mensaje mensaje, String nombreCarpeta) {
+    public void addMensaje(Mensaje mensaje, String passCarpeta) {
         if (state.get().isLoaded == null || !state.get().isLoaded) {
             state.set(new ListCarpetasState(null, null, "No se ha introducido la contraseña de esta carpeta", false));
         } else {
-            servicios.addMensaje(mensaje, nombreCarpeta)
+            servicios.addMensaje(mensaje, passCarpeta)
                     .subscribe(either -> {
                         if (either.isRight()) {
                             List<Mensaje> mensajes;
@@ -64,11 +64,11 @@ public class ListCarpetasViewModel {
         }
     }
 
-    public void updateMensaje(Mensaje mensaje, String nombreCarpeta) {
+    public void updateMensaje(Mensaje mensaje, String passCarpeta) {
         if (state.get().isLoaded == null || !state.get().isLoaded) {
             state.set(new ListCarpetasState(null, null, "No se ha introducido la contraseña de esta carpeta", false));
         } else {
-            servicios.updateMensaje(mensaje, nombreCarpeta)
+            servicios.updateMensaje(mensaje, passCarpeta)
                     .subscribe(either -> {
                         if (either.isRight()) {
                             List<Mensaje> mensajes = state.get().mensajes;
@@ -110,5 +110,17 @@ public class ListCarpetasViewModel {
                         state.set(new ListCarpetasState(null, null, either.getLeft(), null));
                     }
                 });
+    }
+
+    public void cambiarPasswordCarpeta(Carpeta carpeta, String nuevaPass) {
+        serviciosCarpetas.cambiarPasswordCarpeta(carpeta, nuevaPass)
+                .subscribe(either -> {
+                    if (either.isRight()) {
+                        state.set(new ListCarpetasState(serviciosCarpetas.getCarpetas(String.valueOf(carpeta.getIDUsuario())).blockingGet().getOrElse(() -> null), null, "Contraseña cambiada correctamente", null));
+                    } else {
+                        state.set(new ListCarpetasState(null, null, either.getLeft(), null));
+                    }
+                });
+
     }
 }

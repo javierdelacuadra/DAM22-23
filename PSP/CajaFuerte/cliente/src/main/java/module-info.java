@@ -30,6 +30,7 @@ module MercadonaFX {
     exports ui.pantallas.pantallalogin;
     exports ui.pantallas.listcarpetas;
     exports ui.pantallas.addcarpeta;
+    exports ui.pantallas.carpetascompartidas;
     exports ui.pantallas.common;
     exports servicios;
     exports servicios.modelo;
@@ -53,5 +54,6 @@ module MercadonaFX {
     opens ui.pantallas.pantallalogin to javafx.fxml;
     opens ui.pantallas.listcarpetas to javafx.fxml;
     opens ui.pantallas.addcarpeta to javafx.fxml;
+    opens ui.pantallas.carpetascompartidas to javafx.fxml;
     opens ui.pantallas.common;
 }

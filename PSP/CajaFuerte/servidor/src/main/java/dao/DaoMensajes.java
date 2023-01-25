@@ -26,14 +26,20 @@ public class DaoMensajes {
         List<Mensaje> mensajes;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_MENSAJES_BY_CARPETA)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, id);
             ResultSet rs = preparedStatement.executeQuery();
+            int passwordCorrecta = -1;
+            if (rs.next()) {
+                passwordCorrecta = rs.getInt("password_correcta");
+            }
+            if (passwordCorrecta != 1) {
+                throw new ObjectNotFoundException("La contraseña es incorrecta");
+            }
             mensajes = readRS(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException("La contraseña es incorrecta");
-            //TODO: check wrong password
+            Logger.getLogger(DaoMensajes.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ObjectNotFoundException("No se ha podido obtener los mensajes");
         }
         return mensajes;
     }

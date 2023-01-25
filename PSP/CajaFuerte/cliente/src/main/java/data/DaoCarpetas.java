@@ -26,4 +26,12 @@ public class DaoCarpetas extends DaoGenerics {
     public Single<Either<String, Carpeta>> add(Carpeta carpeta) {
         return createSafeSingleApiCall(api.addCarpeta(carpeta));
     }
+
+    public Single<Either<String, Carpeta>> cargarCarpetaCompartida(String nombreUsuario, String nombreCarpeta, String passwordCarpeta) {
+        return createSafeSingleApiCall(api.cargarCarpetaCompartida(nombreCarpeta, nombreUsuario, passwordCarpeta));
+    }
+
+    public Single<Either<String, Carpeta>> update(Carpeta carpeta) {
+        return createSafeSingleApiCall(api.updateCarpeta(carpeta));
+    }
 }

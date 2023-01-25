@@ -22,5 +22,5 @@
    <MFXButton layoutX="559.0" layoutY="496.0" mnemonicParsing="false" onAction="#updateMensaje" text="Update" />
    <MFXButton layoutX="674.0" layoutY="496.0" mnemonicParsing="false" onAction="#deleteMensaje" text="Delete" />
    <MFXTextField fx:id="textoMensaje" layoutX="468.0" layoutY="407.0" prefHeight="50.0" prefWidth="239.0" />
-   <MFXButton layoutX="151.0" layoutY="407.0" mnemonicParsing="false" text="Compartir carpeta" />
+   <MFXButton layoutX="145.0" layoutY="394.0" mnemonicParsing="false" onAction="#cambiarPasswordCarpeta" text="Cambiar contraseña" />
 </AnchorPane>

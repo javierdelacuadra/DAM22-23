@@ -16,6 +16,7 @@
             <Menu fx:id="carpetasMenu" mnemonicParsing="false" text="Carpetas">
                 <MenuItem mnemonicParsing="false" onAction="#listCarpetasMenu" text="Ver carpetas y mensajes"/>
                 <MenuItem mnemonicParsing="false" onAction="#addCarpetaMenu" text="Añadir una carpeta"/>
+                <MenuItem mnemonicParsing="false" onAction="#carpetaCompartidaMenu" text="Ver una carpeta compartida"/>
             </Menu>
         </MenuBar>
     </top>

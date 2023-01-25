@@ -154,4 +154,8 @@ public class PantallaMainController extends BasePantallaController implements In
         alert.setContentText(error);
         alert.showAndWait();
     }
+
+    public void carpetaCompartidaMenu() {
+        cargarPantalla(Pantallas.LISTCARPETASCOMPARTIDASSCREEN);
+    }
 }
