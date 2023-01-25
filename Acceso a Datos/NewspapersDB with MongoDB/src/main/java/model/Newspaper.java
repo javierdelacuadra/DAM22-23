@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ import java.util.List;
         @NamedQuery(name = "HQL_GET_ALL_ARTICLES_OF_SPECIFIC_NEWSPAPER", query = "SELECT a.id, a.name_article, t.description FROM Newspaper n, Article a, ArticleType t WHERE n.id = :newspaperId")})
 
 public class Newspaper {
+
+    private ObjectId _id;
     @Id
     private int id;
     @Column(name = "name")

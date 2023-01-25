@@ -19,6 +19,7 @@ module MercadonaFX {
     requires jakarta.persistence;
     requires jakarta.annotation;
     requires jakarta.cdi;
+    requires mongo.java.driver;
 
     exports ui;
     exports ui.common;
