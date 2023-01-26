@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.carpetascompartidas.CarpetasCompartidasController">
+    <TableView fx:id="tablaMensajes" layoutX="433.0" layoutY="118.0" prefHeight="269.0" prefWidth="277.0">
+        <columns>
+            <TableColumn fx:id="columnaID" prefWidth="55.0" text="ID" />
+            <TableColumn fx:id="columnaContenido" prefWidth="225.00003051757812" text="Contenido" />
+        </columns>
+    </TableView>
+   <MFXButton layoutX="145.0" layoutY="421.0" mnemonicParsing="false" onAction="#cargarCarpetaCompartida" text="Ver carpeta" />
+   <MFXTextField fx:id="textoNombreUsuario" layoutX="98.0" layoutY="135.0" prefHeight="49.0" prefWidth="174.0" />
+   <MFXTextField fx:id="textoNombreCarpeta" layoutX="98.0" layoutY="250.0" prefHeight="49.0" prefWidth="174.0" />
+   <MFXTextField fx:id="textoPasswordCarpeta" layoutX="98.0" layoutY="355.0" prefHeight="49.0" prefWidth="174.0" />
+   <Label layoutX="142.0" layoutY="100.0" text="Nombre usuario" />
+   <Label layoutX="142.0" layoutY="216.0" text="Nombre carpeta" />
+   <Label layoutX="134.0" layoutY="324.0" text="Contraseña carpeta" />
+   <MFXTextField fx:id="textoMensaje" layoutX="472.0" layoutY="421.0" prefHeight="49.0" prefWidth="199.0" />
+   <MFXButton fx:id="botonEnviarMensaje" layoutX="520.0" layoutY="496.0" mnemonicParsing="false" onAction="#addMensaje" text="Añadir mensaje" />
+</AnchorPane>

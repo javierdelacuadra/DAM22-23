@@ -21,7 +21,6 @@ public class ServiciosMensajes {
             IDUsuario = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("El id del usuario debe ser un número");
-            //TODO: Crear una excepción propia
         }
         return dao.getMensajesByCarpeta(IDUsuario, password);
     }

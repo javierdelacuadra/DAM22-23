@@ -27,7 +27,7 @@ public class ServiciosMensajes {
             if (either.isRight()) {
                 List<Mensaje> mensajesDesencriptados = either.get();
                 for (Mensaje mensaje : mensajesDesencriptados) {
-                    String contenidoDesencriptado = encriptacion.desencriptar(mensaje.getContenido(), carpeta.getNombreCarpeta());
+                    String contenidoDesencriptado = encriptacion.desencriptar(mensaje.getContenido(), carpeta.getPassword());
                     mensaje.setContenido(contenidoDesencriptado);
                 }
                 return Either.right(mensajesDesencriptados);
@@ -37,14 +37,14 @@ public class ServiciosMensajes {
         });
     }
 
-    public Single<Either<String, Mensaje>> addMensaje(Mensaje mensaje, String nombreCarpeta) {
-        String contenidoEncriptado = encriptacion.encriptar(mensaje.getContenido(), nombreCarpeta);
+    public Single<Either<String, Mensaje>> addMensaje(Mensaje mensaje, String passCarpeta) {
+        String contenidoEncriptado = encriptacion.encriptar(mensaje.getContenido(), passCarpeta);
         mensaje.setContenido(contenidoEncriptado);
         Single<Either<String, Mensaje>> mensajeEncriptado = dao.add(mensaje);
         return mensajeEncriptado.map(either -> {
             if (either.isRight()) {
                 Mensaje mensajeDesencriptado = either.get();
-                String contenidoDesencriptado = encriptacion.desencriptar(mensajeDesencriptado.getContenido(), nombreCarpeta);
+                String contenidoDesencriptado = encriptacion.desencriptar(mensajeDesencriptado.getContenido(), passCarpeta);
                 mensajeDesencriptado.setContenido(contenidoDesencriptado);
                 return Either.right(mensajeDesencriptado);
             } else {
@@ -53,14 +53,14 @@ public class ServiciosMensajes {
         });
     }
 
-    public Single<Either<String, Mensaje>> updateMensaje(Mensaje mensaje, String nombreCarpeta) {
-        String contenidoEncriptado = encriptacion.encriptar(mensaje.getContenido(), nombreCarpeta);
+    public Single<Either<String, Mensaje>> updateMensaje(Mensaje mensaje, String passCarpeta) {
+        String contenidoEncriptado = encriptacion.encriptar(mensaje.getContenido(), passCarpeta);
         mensaje.setContenido(contenidoEncriptado);
         Single<Either<String, Mensaje>> mensajeEncriptado = dao.update(mensaje);
         return mensajeEncriptado.map(either -> {
             if (either.isRight()) {
                 Mensaje mensajeDesencriptado = either.get();
-                String contenidoDesencriptado = encriptacion.desencriptar(mensajeDesencriptado.getContenido(), nombreCarpeta);
+                String contenidoDesencriptado = encriptacion.desencriptar(mensajeDesencriptado.getContenido(), passCarpeta);
                 mensajeDesencriptado.setContenido(contenidoDesencriptado);
                 return Either.right(mensajeDesencriptado);
             } else {

@@ -30,4 +30,14 @@ public class CarpetasRest {
     public Carpeta addCarpeta(Carpeta carpeta) {
         return servicios.addCarpeta(carpeta);
     }
+
+    @GET
+    public Carpeta cargarCarpetaCompartida(@QueryParam("nombreCarpeta") String nombreCarpeta, @QueryParam("nombreUsuario") String nombreUsuario, @QueryParam("passwordCarpeta") String passwordCarpeta) {
+        return servicios.cargarCarpetaCompartida(nombreCarpeta, nombreUsuario, passwordCarpeta);
+    }
+
+    @PUT
+    public Carpeta updateCarpeta(Carpeta carpeta) {
+        return servicios.updateCarpeta(carpeta);
+    }
 }

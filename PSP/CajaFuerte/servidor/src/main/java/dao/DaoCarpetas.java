@@ -6,6 +6,7 @@ import domain.exceptions.DatabaseException;
 import domain.exceptions.ObjectNotFoundException;
 import jakarta.inject.Inject;
 import modelo.Carpeta;
+import modelo.Mensaje;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -71,5 +72,74 @@ public class DaoCarpetas {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException("Error al insertar la carpeta");
         }
+    }
+
+    public Carpeta cargarCarpetaCompartida(String nombreCarpeta, String nombreUsuario, String passwordCarpeta) {
+        Carpeta carpeta;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_CARPETA_COMPARTIDA)) {
+            preparedStatement.setString(1, nombreCarpeta);
+            preparedStatement.setString(2, passwordCarpeta);
+            preparedStatement.setString(3, nombreUsuario);
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Carpeta> carpetas = readRS(rs);
+            if (carpetas.size() == 1) {
+                carpeta = carpetas.get(0);
+            } else {
+                throw new ObjectNotFoundException("No se ha encontrado la carpeta compartida");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ObjectNotFoundException("No se ha encontrado la carpeta compartida");
+        }
+        return carpeta;
+    }
+
+    public Carpeta updateCarpeta(Carpeta carpeta) {
+        Connection connection = null;
+        PreparedStatement updateCarpeta = null;
+        PreparedStatement updateMensajes = null;
+        try {
+            connection = db.getConnection();
+            connection.setAutoCommit(false);
+            updateCarpeta = connection.prepareStatement(SQLQueries.UPDATE_CARPETA);
+            updateCarpeta.setString(1, carpeta.getPassword());
+            updateCarpeta.setInt(2, carpeta.getId());
+            updateCarpeta.executeUpdate();
+
+            for (Mensaje mensaje : carpeta.getMensajes()) {
+                updateMensajes = connection.prepareStatement(SQLQueries.UPDATE_MENSAJE);
+                updateMensajes.setString(1, mensaje.getContenido());
+                updateMensajes.setInt(2, mensaje.getId());
+                updateMensajes.executeUpdate();
+            }
+
+            connection.commit();
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    throw new DatabaseException("Error al actualizar la carpeta y sus mensajes");
+                }
+            }
+            throw new DatabaseException("Error al actualizar la carpeta y sus mensajes");
+        } finally {
+            try {
+                if (updateCarpeta != null) {
+                    updateCarpeta.close();
+                }
+                if (updateMensajes != null) {
+                    updateMensajes.close();
+                }
+                if (connection != null) {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new DatabaseException("Error al cerrar la conexión");
+            }
+        }
+        return carpeta;
     }
 }
