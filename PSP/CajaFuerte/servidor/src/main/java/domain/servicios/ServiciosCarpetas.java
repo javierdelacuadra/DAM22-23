@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import modelo.Carpeta;
 import modelo.Mensaje;
 
+import java.util.Base64;
 import java.util.List;
 
 public class ServiciosCarpetas {
@@ -36,6 +37,8 @@ public class ServiciosCarpetas {
     }
 
     public Carpeta cargarCarpetaCompartida(String nombreCarpeta, String nombreUsuario, String passwordCarpeta) {
+        Base64.Decoder decoder = Base64.getDecoder();
+        passwordCarpeta = new String(decoder.decode(passwordCarpeta));
         Carpeta carpeta = dao.cargarCarpetaCompartida(nombreCarpeta, nombreUsuario, passwordCarpeta);
         List<Mensaje> mensajes = daoMensajes.getMensajesByCarpeta(carpeta.getId(), carpeta.getPassword());
         carpeta.setMensajes(mensajes);

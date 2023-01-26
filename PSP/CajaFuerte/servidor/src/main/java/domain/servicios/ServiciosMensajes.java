@@ -20,6 +20,7 @@ public class ServiciosMensajes {
         int IDUsuario;
         try {
             IDUsuario = Integer.parseInt(id);
+            password = new String(java.util.Base64.getDecoder().decode(password));
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ConstantesServicios.EL_ID_DEL_USUARIO_DEBE_SER_UN_NUMERO);
         }

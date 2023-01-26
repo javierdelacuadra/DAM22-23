@@ -9,6 +9,7 @@ import modelo.Mensaje;
 import org.example.seguridad.Encriptacion;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class ServiciosCarpetas {
@@ -33,7 +34,9 @@ public class ServiciosCarpetas {
     }
 
     public Single<Either<String, Carpeta>> cargarCarpetaCompartida(String nombreUsuario, String nombreCarpeta, String passwordCarpeta) {
-        return dao.cargarCarpetaCompartida(nombreUsuario, nombreCarpeta, passwordCarpeta)
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedPassword = encoder.encodeToString(passwordCarpeta.getBytes());
+        return dao.cargarCarpetaCompartida(nombreUsuario, nombreCarpeta, encodedPassword)
                 .map(either -> {
                     if (either.isRight()) {
                         Carpeta carpeta = either.get();

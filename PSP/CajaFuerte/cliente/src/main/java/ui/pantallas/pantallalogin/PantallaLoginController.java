@@ -90,6 +90,8 @@ public class PantallaLoginController extends BasePantallaController implements I
         botonRegistro.setVisible(false);
         botonRecuperarPassword.setVisible(false);
         botonMandarEmail.setVisible(false);
+        menuRegistroButton.setDisable(true);
+        menuOpcionesButton.setDisable(true);
     }
 
     @FXML
@@ -115,7 +117,6 @@ public class PantallaLoginController extends BasePantallaController implements I
         } else {
             ReaderLogin readerLogin = new ReaderLogin(nombre, password, email, 0, ConstantesUI.ACTIVATION_CODE, 0, LocalDateTime.now());
             //viewModel.register(readerLogin);
-            //TODO: Hacer el registro
         }
     }
 
@@ -141,8 +142,10 @@ public class PantallaLoginController extends BasePantallaController implements I
 
     public void menuLogin() {
         menuLoginButton.setDisable(true);
-        menuRegistroButton.setDisable(false);
-        menuOpcionesButton.setDisable(false);
+//        menuRegistroButton.setDisable(false);
+//        menuOpcionesButton.setDisable(false);
+        menuRegistroButton.setDisable(true);
+        menuOpcionesButton.setDisable(true);
         textfieldNombre.setVisible(true);
         textfieldPassword.setVisible(true);
         textfieldEmail.setVisible(false);

@@ -8,6 +8,7 @@ import modelo.Carpeta;
 import modelo.Mensaje;
 import org.example.seguridad.Encriptacion;
 
+import java.util.Base64;
 import java.util.List;
 
 public class ServiciosMensajes {
@@ -22,10 +23,14 @@ public class ServiciosMensajes {
     }
 
     public Single<Either<String, List<Mensaje>>> getMensajes(Carpeta carpeta) {
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedPassword = encoder.encodeToString(carpeta.getPassword().getBytes());
+        carpeta.setPassword(encodedPassword);
         Single<Either<String, List<Mensaje>>> mensajes = dao.getAll(carpeta);
         return mensajes.map(either -> {
             if (either.isRight()) {
                 List<Mensaje> mensajesDesencriptados = either.get();
+                carpeta.setPassword(new String(Base64.getDecoder().decode(carpeta.getPassword())));
                 for (Mensaje mensaje : mensajesDesencriptados) {
                     String contenidoDesencriptado = encriptacion.desencriptar(mensaje.getContenido(), carpeta.getPassword());
                     mensaje.setContenido(contenidoDesencriptado);
