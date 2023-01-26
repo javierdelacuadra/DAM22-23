@@ -2,6 +2,16 @@ package jakarta.rest.common;
 
 public class ConstantesLoginRest {
 
+    public static final String CARPETAS_PATH = "carpetas";
+    public static final String ID = "id";
+    public static final String NOMBRE_CARPETA = "nombreCarpeta";
+    public static final String NOMBRE_USUARIO = "nombreUsuario";
+    public static final String PASSWORD_CARPETA = "passwordCarpeta";
+    public static final String PASSWORD = "password";
+    public static final String MENSAJES_PATH = "mensajes";
+    public static final String USUARIOS_PATH = "usuarios";
+    public static final String ID_GENERIC_PATH = "/{id}";
+
     public ConstantesLoginRest() {
     }
 

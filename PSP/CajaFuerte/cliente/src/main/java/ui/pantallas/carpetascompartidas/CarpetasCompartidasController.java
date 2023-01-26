@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Mensaje;
 import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.constantes.ConstantesPantallas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,8 +52,8 @@ public class CarpetasCompartidasController extends BasePantallaController implem
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        columnaContenido.setCellValueFactory(new PropertyValueFactory<>("contenido"));
+        columnaID.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.ID));
+        columnaContenido.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.CONTENIDO));
 
         textoMensaje.setVisible(false);
         botonEnviarMensaje.setVisible(false);
@@ -82,7 +83,7 @@ public class CarpetasCompartidasController extends BasePantallaController implem
         String nombreCarpeta = textoNombreCarpeta.getText();
         String passwordCarpeta = textoPasswordCarpeta.getText();
         if (nombreUsuario.isEmpty() || nombreCarpeta.isEmpty() || passwordCarpeta.isEmpty()) {
-            getPrincipalController().createAlert("Debe completar todos los campos");
+            getPrincipalController().createAlert(ConstantesPantallas.DEBE_COMPLETAR_TODOS_LOS_CAMPOS);
         } else {
             viewModel.cargarCarpetaCompartida(nombreUsuario, nombreCarpeta, passwordCarpeta);
         }
@@ -96,7 +97,7 @@ public class CarpetasCompartidasController extends BasePantallaController implem
             viewModel.addMensaje(mensaje);
             textoMensaje.clear();
         } else {
-            getPrincipalController().createAlert("El mensaje no puede estar vacío");
+            getPrincipalController().createAlert(ConstantesPantallas.EL_MENSAJE_NO_PUEDE_ESTAR_VACIO);
         }
     }
 

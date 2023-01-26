@@ -31,15 +31,15 @@ public class DaoMensajes {
             ResultSet rs = preparedStatement.executeQuery();
             int passwordCorrecta = -1;
             if (rs.next()) {
-                passwordCorrecta = rs.getInt("password_correcta");
+                passwordCorrecta = rs.getInt(Constantes.PASSWORD_CORRECTA);
             }
             if (passwordCorrecta != 1) {
-                throw new ObjectNotFoundException("La contraseña es incorrecta");
+                throw new ObjectNotFoundException(Constantes.LA_PASSWORD_ES_INCORRECTA);
             }
             mensajes = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoMensajes.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException("No se ha podido obtener los mensajes");
+            throw new ObjectNotFoundException(Constantes.NO_SE_HA_PODIDO_OBTENER_LOS_MENSAJES);
         }
         return mensajes;
     }
@@ -50,8 +50,8 @@ public class DaoMensajes {
             while (rs.next()) {
                 Mensaje mensaje = new Mensaje();
                 mensaje.setId(rs.getInt(Constantes.ID));
-                mensaje.setIDCarpeta(rs.getInt("IDCarpeta"));
-                mensaje.setContenido(rs.getString("contenido"));
+                mensaje.setIDCarpeta(rs.getInt(Constantes.ID_CARPETA));
+                mensaje.setContenido(rs.getString(Constantes.CONTENIDO));
                 mensajes.add(mensaje);
             }
         } catch (SQLException ex) {
@@ -71,7 +71,7 @@ public class DaoMensajes {
                 mensaje.setId(rs.getInt(1));
             }
         } catch (SQLException ex) {
-            throw new DatabaseException("Error al insertar el mensaje");
+            throw new DatabaseException(Constantes.ERROR_AL_INSERTAR_EL_MENSAJE);
         }
         return mensaje;
     }
@@ -84,6 +84,7 @@ public class DaoMensajes {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException(Constantes.ERROR_AL_ACTUALIZAR_EL_MENSAJE);
         }
         return mensaje;
     }
@@ -95,6 +96,7 @@ public class DaoMensajes {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException(Constantes.ERROR_AL_ELIMINAR_EL_MENSAJE);
         }
     }
 }

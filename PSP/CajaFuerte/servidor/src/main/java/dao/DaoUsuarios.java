@@ -32,7 +32,7 @@ public class DaoUsuarios {
             usuarios = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_READERS);
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_USUARIOS);
         }
         return usuarios;
     }
@@ -44,32 +44,20 @@ public class DaoUsuarios {
                  PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.INSERT_USUARIO, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, usuario.getNombre());
                 preparedStatement.setString(2, usuario.getPassword());
-                preparedStatement.setString(3, "user");
+                preparedStatement.setString(3, Constantes.USER);
                 preparedStatement.executeUpdate();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
                     usuario.setId(rs.getInt(1));
-                    usuario.setRol("user");
+                    usuario.setRol(Constantes.USER);
                 }
                 return usuario;
             } catch (SQLException ex) {
                 Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_READER);
+                throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_GUARDAR_EL_USUARIO);
             }
         }
-        throw new ObjectAlreadyExistsException(Constantes.YA_EXISTE_UN_READER_CON_ESE_NOMBRE);
-    }
-
-    public boolean delete(String id) {
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_READER)) {
-            preparedStatement.setInt(1, Integer.parseInt(id));
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException(Constantes.NO_SE_HA_PODIDO_ELIMINAR_EL_READER);
-        }
+        throw new ObjectAlreadyExistsException(Constantes.YA_EXISTE_UN_USUARIO_CON_ESE_NOMBRE);
     }
 
     private List<Usuario> readRS(ResultSet rs) {
@@ -78,9 +66,9 @@ public class DaoUsuarios {
             while (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setId(rs.getInt(Constantes.ID));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setPassword(rs.getString("password"));
-                usuario.setRol(rs.getString("rol"));
+                usuario.setNombre(rs.getString(Constantes.NOMBRE));
+                usuario.setPassword(rs.getString(Constantes.PASSWORD));
+                usuario.setRol(rs.getString(Constantes.ROL));
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {

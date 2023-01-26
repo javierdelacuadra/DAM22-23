@@ -2,13 +2,14 @@ package jakarta.rest;
 
 import domain.servicios.ServiciosCarpetas;
 import jakarta.inject.Inject;
+import jakarta.rest.common.ConstantesLoginRest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import modelo.Carpeta;
 
 import java.util.List;
 
-@Path("carpetas")
+@Path(ConstantesLoginRest.CARPETAS_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CarpetasRest {
@@ -21,8 +22,8 @@ public class CarpetasRest {
     }
 
     @GET
-    @Path("/{id}")
-    public List<Carpeta> getCarpetasByUsuario(@PathParam("id") String id) {
+    @Path(ConstantesLoginRest.ID_GENERIC_PATH)
+    public List<Carpeta> getCarpetasByUsuario(@PathParam(ConstantesLoginRest.ID) String id) {
         return servicios.getCarpetasByUsuario(id);
     }
 
@@ -32,7 +33,7 @@ public class CarpetasRest {
     }
 
     @GET
-    public Carpeta cargarCarpetaCompartida(@QueryParam("nombreCarpeta") String nombreCarpeta, @QueryParam("nombreUsuario") String nombreUsuario, @QueryParam("passwordCarpeta") String passwordCarpeta) {
+    public Carpeta cargarCarpetaCompartida(@QueryParam(ConstantesLoginRest.NOMBRE_CARPETA) String nombreCarpeta, @QueryParam(ConstantesLoginRest.NOMBRE_USUARIO) String nombreUsuario, @QueryParam(ConstantesLoginRest.PASSWORD_CARPETA) String passwordCarpeta) {
         return servicios.cargarCarpetaCompartida(nombreCarpeta, nombreUsuario, passwordCarpeta);
     }
 

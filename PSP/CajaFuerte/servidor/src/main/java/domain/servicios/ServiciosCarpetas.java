@@ -2,6 +2,7 @@ package domain.servicios;
 
 import dao.DaoCarpetas;
 import dao.DaoMensajes;
+import domain.servicios.common.ConstantesServicios;
 import jakarta.inject.Inject;
 import modelo.Carpeta;
 import modelo.Mensaje;
@@ -25,7 +26,7 @@ public class ServiciosCarpetas {
         try {
             IDUsuario = Integer.parseInt(id);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("El id del usuario debe ser un número");
+            throw new NumberFormatException(ConstantesServicios.EL_ID_DEL_USUARIO_DEBE_SER_UN_NUMERO);
         }
         return dao.getCarpetasByUsuario(IDUsuario);
     }

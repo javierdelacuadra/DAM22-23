@@ -58,24 +58,21 @@ public class JWTAuth implements HttpAuthenticationMechanism {
                     httpServletResponse.addHeader(ConstantesSecurity.AUTHORIZATION, ConstantesSecurity.BEARER_HEADER + jws);
                 }
             } else if (valores[0].equalsIgnoreCase(ConstantesSecurity.BEARER)) {
-
-                Jws<Claims> jws = Jwts.parserBuilder()
-                        .setSigningKey(key)
-                        .build()
-                        .parseClaimsJws(valores[1]);
-
+                Jws<Claims> jws;
+                try {
+                    jws = Jwts.parserBuilder()
+                            .setSigningKey(key)
+                            .build()
+                            .parseClaimsJws(valores[1]);
+                } catch (Exception e) {
+                    return AuthenticationStatus.SEND_FAILURE;
+                }
                 c = new CredentialValidationResult(jws.getBody().get(ConstantesSecurity.USER_CLAIM_NAME).toString(),
                         Set.of(jws.getBody().get(ConstantesSecurity.GROUP_CLAIM_NAME).toString()));
 
                 httpServletResponse.addHeader(ConstantesSecurity.AUTHORIZATION, ConstantesSecurity.BEARER_HEADER + valores[1]);
 
             }
-
-//            } else if (valores[0].equalsIgnoreCase("Logout")) {
-//                httpServletRequest.getSession().removeAttribute(ConstantesSecurity.CREDENTIAL);
-//                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
-//            }
-
         } else {
             if (httpServletRequest.getSession().getAttribute(ConstantesSecurity.CREDENTIAL) != null)
                 c = (CredentialValidationResult) httpServletRequest.getSession().getAttribute(ConstantesSecurity.CREDENTIAL);

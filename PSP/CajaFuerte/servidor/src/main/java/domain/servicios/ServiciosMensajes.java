@@ -1,6 +1,7 @@
 package domain.servicios;
 
 import dao.DaoMensajes;
+import domain.servicios.common.ConstantesServicios;
 import jakarta.inject.Inject;
 import modelo.Mensaje;
 
@@ -20,7 +21,7 @@ public class ServiciosMensajes {
         try {
             IDUsuario = Integer.parseInt(id);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("El id del usuario debe ser un número");
+            throw new NumberFormatException(ConstantesServicios.EL_ID_DEL_USUARIO_DEBE_SER_UN_NUMERO);
         }
         return dao.getMensajesByCarpeta(IDUsuario, password);
     }
@@ -38,7 +39,7 @@ public class ServiciosMensajes {
         try {
             IDMensaje = Integer.parseInt(id);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("El id del mensaje debe ser un número");
+            throw new NumberFormatException(ConstantesServicios.EL_ID_DEL_MENSAJE_DEBE_SER_UN_NUMERO);
         }
         dao.deleteMensaje(IDMensaje);
     }

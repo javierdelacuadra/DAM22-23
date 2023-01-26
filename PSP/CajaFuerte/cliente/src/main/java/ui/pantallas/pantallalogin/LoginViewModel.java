@@ -37,19 +37,6 @@ public class LoginViewModel {
                 });
     }
 
-    public void register(Usuario usuario) {
-//        serviciosLogin.register(usuario)
-//                .observeOn(Schedulers.from(Platform::runLater))
-//                .subscribe(either -> {
-//                    if (either.isRight()) {
-//                        state.set(new LoginState(ConstantesUI.USUARIO_REGISTRADO_CORRECTAMENTE, null));
-//                    } else {
-//                        state.set(new LoginState(either.getLeft(), null));
-//                    }
-//                });
-        //TODO: descomentar
-    }
-
     public void recoverPassword(String email) {
         serviciosLogin.recoverPassword(email)
                 .observeOn(Schedulers.from(Platform::runLater))

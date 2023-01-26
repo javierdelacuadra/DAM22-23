@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Carpeta;
 import modelo.Mensaje;
 import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.constantes.ConstantesPantallas;
 
 import java.util.Objects;
 
@@ -47,14 +48,14 @@ public class ListCarpetasController extends BasePantallaController {
     private MFXTextField textoMensaje;
 
     public void initialize() {
-        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCarpeta"));
-        columnaModo.setCellValueFactory(new PropertyValueFactory<>("modoEdicion"));
-        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        columnaContenido.setCellValueFactory(new PropertyValueFactory<>("contenido"));
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.NOMBRE_CARPETA));
+        columnaModo.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.MODO_EDICION));
+        columnaID.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.ID));
+        columnaContenido.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.CONTENIDO));
         viewModel.getState().addListener((observableValue, oldState, newState) -> {
             if (newState.error != null) {
                 Platform.runLater(() -> {
-                    if (Objects.equals(newState.error, "La contraseña es incorrecta")) {
+                    if (Objects.equals(newState.error, ConstantesPantallas.LA_PASSWORD_ES_INCORRECTA)) {
                         tablaMensajes.getItems().clear();
                     }
                     getPrincipalController().createAlert(newState.error);
@@ -83,17 +84,17 @@ public class ListCarpetasController extends BasePantallaController {
     public void cargarMensajes() {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Cargar mensajes");
-        dialog.setHeaderText("Cargar mensajes");
-        dialog.setContentText("Introduce la contraseña de la carpeta " + carpetaSeleccionada.getNombreCarpeta());
+        dialog.setTitle(ConstantesPantallas.CARGAR_MENSAJES);
+        dialog.setHeaderText(ConstantesPantallas.CARGAR_MENSAJES);
+        dialog.setContentText(ConstantesPantallas.INTRODUCE_LA_PASSWORD_DE_LA_CARPETA + carpetaSeleccionada.getNombreCarpeta());
         dialog.showAndWait().ifPresent(passCarpeta -> {
             try {
                 carpetaSeleccionada.setPassword(passCarpeta);
                 viewModel.cargarMensajes(carpetaSeleccionada);
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error");
+                alert.setTitle(ConstantesPantallas.ERROR);
+                alert.setHeaderText(ConstantesPantallas.ERROR);
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
@@ -110,9 +111,9 @@ public class ListCarpetasController extends BasePantallaController {
             textoMensaje.clear();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada");
+            alert.setTitle(ConstantesPantallas.ERROR);
+            alert.setHeaderText(ConstantesPantallas.ERROR);
+            alert.setContentText(ConstantesPantallas.NO_HAY_NINGUNA_CARPETA_SELECCIONADA);
             alert.showAndWait();
         }
     }
@@ -127,9 +128,9 @@ public class ListCarpetasController extends BasePantallaController {
             textoMensaje.clear();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada");
+            alert.setTitle(ConstantesPantallas.ERROR);
+            alert.setHeaderText(ConstantesPantallas.ERROR);
+            alert.setContentText(ConstantesPantallas.NO_HAY_NINGUNA_CARPETA_SELECCIONADA);
             alert.showAndWait();
         }
     }
@@ -144,9 +145,9 @@ public class ListCarpetasController extends BasePantallaController {
             textoMensaje.clear();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada");
+            alert.setTitle(ConstantesPantallas.ERROR);
+            alert.setHeaderText(ConstantesPantallas.ERROR);
+            alert.setContentText(ConstantesPantallas.NO_HAY_NINGUNA_CARPETA_SELECCIONADA);
             alert.showAndWait();
         }
     }
@@ -162,25 +163,25 @@ public class ListCarpetasController extends BasePantallaController {
         Carpeta carpetaSeleccionada = tablaCarpetas.getSelectionModel().getSelectedItem();
         if (carpetaSeleccionada != null) {
             TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Cambiar contraseña de carpeta");
-            dialog.setHeaderText("Cambiar contraseña de carpeta");
-            dialog.setContentText("Introduce la nueva contraseña de la carpeta " + carpetaSeleccionada.getNombreCarpeta());
+            dialog.setTitle(ConstantesPantallas.CAMBIAR_PASSWORD_DE_CARPETA);
+            dialog.setHeaderText(ConstantesPantallas.CAMBIAR_PASSWORD_DE_CARPETA);
+            dialog.setContentText(ConstantesPantallas.INTRODUCE_LA_NUEVA_PASSWORD_DE_LA_CARPETA + carpetaSeleccionada.getNombreCarpeta());
             dialog.showAndWait().ifPresent(nuevaPass -> {
                 try {
                     viewModel.cambiarPasswordCarpeta(carpetaSeleccionada, nuevaPass);
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Error");
+                    alert.setTitle(ConstantesPantallas.ERROR);
+                    alert.setHeaderText(ConstantesPantallas.ERROR);
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 }
             });
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error");
-            alert.setContentText("No hay ninguna carpeta seleccionada");
+            alert.setTitle(ConstantesPantallas.ERROR);
+            alert.setHeaderText(ConstantesPantallas.ERROR);
+            alert.setContentText(ConstantesPantallas.NO_HAY_NINGUNA_CARPETA_SELECCIONADA);
             alert.showAndWait();
         }
     }

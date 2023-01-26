@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import modelo.Mensaje;
 import servicios.ServiciosCarpetas;
 import servicios.ServiciosMensajes;
+import ui.pantallas.common.constantes.ConstantesPantallas;
 
 public class CarpetasCompartidasViewModel {
 
@@ -29,14 +30,14 @@ public class CarpetasCompartidasViewModel {
                 .subscribe(either -> {
                     if (either.isRight() && either.get().getMensajes() != null) {
                         if (either.isRight() && either.get().getMensajes().size() == 0) {
-                            state.set(new CarpetasCompartidasState(either.get(), "No hay mensajes en esta carpeta"));
+                            state.set(new CarpetasCompartidasState(either.get(), ConstantesPantallas.NO_HAY_MENSAJES_EN_ESTA_CARPETA));
                         } else if (either.isRight() && either.get().getMensajes().size() != 0) {
                             state.set(new CarpetasCompartidasState(either.get(), null));
                         } else {
                             state.set(new CarpetasCompartidasState(null, either.getLeft()));
                         }
                     } else {
-                        state.set(new CarpetasCompartidasState(null, "No se ha encontrado ninguna carpeta con esos datos"));
+                        state.set(new CarpetasCompartidasState(null, ConstantesPantallas.NO_SE_HA_ENCONTRADO_NINGUNA_CARPETA_CON_ESOS_DATOS));
                     }
                 });
     }

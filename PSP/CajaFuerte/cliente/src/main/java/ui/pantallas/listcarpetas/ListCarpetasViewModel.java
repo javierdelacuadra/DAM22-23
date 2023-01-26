@@ -9,6 +9,7 @@ import modelo.Carpeta;
 import modelo.Mensaje;
 import servicios.ServiciosCarpetas;
 import servicios.ServiciosMensajes;
+import ui.pantallas.common.constantes.ConstantesPantallas;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,14 +33,13 @@ public class ListCarpetasViewModel {
         return state;
     }
 
-
     public void cargarMensajes(Carpeta carpeta) {
         servicios.getMensajes(carpeta)
                 .subscribe(either -> {
                     if (either.isRight() && either.get().size() != 0) {
                         state.set(new ListCarpetasState(null, either.get(), null, true));
                     } else if (either.isRight() && either.get().size() == 0) {
-                        state.set(new ListCarpetasState(null, null, "No hay mensajes en esta carpeta", true));
+                        state.set(new ListCarpetasState(null, null, ConstantesPantallas.NO_HAY_NINGUNA_CARPETA_SELECCIONADA, true));
                     } else {
                         state.set(new ListCarpetasState(null, null, either.getLeft(), false));
                     }
@@ -48,7 +48,7 @@ public class ListCarpetasViewModel {
 
     public void addMensaje(Mensaje mensaje, String passCarpeta) {
         if (state.get().isLoaded == null || !state.get().isLoaded) {
-            state.set(new ListCarpetasState(null, null, "No se ha introducido la contraseña de esta carpeta", false));
+            state.set(new ListCarpetasState(null, null, ConstantesPantallas.NO_SE_HA_INTRODUCIDO_LA_PASSWORD_DE_ESTA_CARPETA, false));
         } else {
             servicios.addMensaje(mensaje, passCarpeta)
                     .subscribe(either -> {
@@ -66,7 +66,7 @@ public class ListCarpetasViewModel {
 
     public void updateMensaje(Mensaje mensaje, String passCarpeta) {
         if (state.get().isLoaded == null || !state.get().isLoaded) {
-            state.set(new ListCarpetasState(null, null, "No se ha introducido la contraseña de esta carpeta", false));
+            state.set(new ListCarpetasState(null, null, ConstantesPantallas.NO_SE_HA_INTRODUCIDO_LA_PASSWORD_DE_ESTA_CARPETA, false));
         } else {
             servicios.updateMensaje(mensaje, passCarpeta)
                     .subscribe(either -> {
@@ -85,7 +85,7 @@ public class ListCarpetasViewModel {
 
     public void deleteMensaje(Mensaje mensaje) {
         if (state.get().isLoaded == null || !state.get().isLoaded) {
-            state.set(new ListCarpetasState(null, null, "No se ha introducido la contraseña de esta carpeta", false));
+            state.set(new ListCarpetasState(null, null, ConstantesPantallas.NO_SE_HA_INTRODUCIDO_LA_PASSWORD_DE_ESTA_CARPETA, false));
         } else {
             servicios.deleteMensaje(String.valueOf(mensaje.getId()))
                     .subscribe(either -> {
@@ -116,7 +116,7 @@ public class ListCarpetasViewModel {
         serviciosCarpetas.cambiarPasswordCarpeta(carpeta, nuevaPass)
                 .subscribe(either -> {
                     if (either.isRight()) {
-                        state.set(new ListCarpetasState(serviciosCarpetas.getCarpetas(String.valueOf(carpeta.getIDUsuario())).blockingGet().getOrElse(() -> null), null, "Contraseña cambiada correctamente", null));
+                        state.set(new ListCarpetasState(serviciosCarpetas.getCarpetas(String.valueOf(carpeta.getIDUsuario())).blockingGet().getOrElse(() -> null), null, ConstantesPantallas.PASSWORD_CAMBIADA_CORRECTAMENTE, null));
                     } else {
                         state.set(new ListCarpetasState(null, null, either.getLeft(), null));
                     }

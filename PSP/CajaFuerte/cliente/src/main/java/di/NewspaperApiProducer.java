@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import config.common.Constantes;
 import data.network.AuthorizationInterceptor;
-import data.retrofit.*;
+import data.retrofit.CarpetasAPI;
+import data.retrofit.LoginApi;
+import data.retrofit.MensajesAPI;
+import data.retrofit.UsuariosAPI;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -70,17 +73,12 @@ public class NewspaperApiProducer {
     }
 
     @Produces
-    public NewspapersApi getNewspapersApi(Retrofit retro) {
-        return retro.create(NewspapersApi.class);
-    }
-
-    @Produces
     public LoginApi getLoginApi(Retrofit retro) {
         return retro.create(LoginApi.class);
     }
 
     @Produces
-    public UsuariosAPI getReadersApi(Retrofit retro) {
+    public UsuariosAPI getUsersAPI(Retrofit retro) {
         return retro.create(UsuariosAPI.class);
     }
 

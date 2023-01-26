@@ -5,7 +5,6 @@ package di;
 // (powered by FernFlower decompiler)
 //
 
-
 import di.common.ConstantesDI;
 import okhttp3.Cookie;
 import okhttp3.Cookie.Builder;

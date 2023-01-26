@@ -13,6 +13,7 @@ import modelo.Reader;
 import modelo.Usuario;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.constantes.ConstantesPantallas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,8 +48,8 @@ public class AddReaderScreenController extends BasePantallaController implements
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesUI.ID));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        rolColumn.setCellValueFactory(new PropertyValueFactory<>("rol"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.NOMBRE));
+        rolColumn.setCellValueFactory(new PropertyValueFactory<>(ConstantesPantallas.ROL));
 
         viewModel.getUsuarios();
 

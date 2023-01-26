@@ -32,7 +32,7 @@ public class DaoCarpetas {
             carpetas = readRS(rs);
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException("No se han encontrado carpetas");
+            throw new ObjectNotFoundException(Constantes.NO_SE_HAN_ENCONTRADO_CARPETAS);
         }
         return carpetas;
     }
@@ -43,10 +43,10 @@ public class DaoCarpetas {
             while (rs.next()) {
                 Carpeta carpeta = new Carpeta();
                 carpeta.setId(rs.getInt(Constantes.ID));
-                carpeta.setNombreCarpeta(rs.getString("nombreCarpeta"));
-                carpeta.setPassword(rs.getString("password"));
-                carpeta.setIDUsuario(rs.getInt("IDUsuario"));
-                carpeta.setModoEdicion(rs.getBoolean("modoEdicion"));
+                carpeta.setNombreCarpeta(rs.getString(Constantes.NOMBRE_CARPETA));
+                carpeta.setPassword(rs.getString(Constantes.PASSWORD));
+                carpeta.setIDUsuario(rs.getInt(Constantes.ID_USUARIO));
+                carpeta.setModoEdicion(rs.getBoolean(Constantes.MODO_EDICION));
                 carpetas.add(carpeta);
             }
         } catch (SQLException ex) {
@@ -70,7 +70,7 @@ public class DaoCarpetas {
             return carpeta;
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            throw new DatabaseException("Error al insertar la carpeta");
+            throw new DatabaseException(Constantes.ERROR_AL_INSERTAR_LA_CARPETA);
         }
     }
 
@@ -86,11 +86,11 @@ public class DaoCarpetas {
             if (carpetas.size() == 1) {
                 carpeta = carpetas.get(0);
             } else {
-                throw new ObjectNotFoundException("No se ha encontrado la carpeta compartida");
+                throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_LA_CARPETA_COMPARTIDA);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ObjectNotFoundException("No se ha encontrado la carpeta compartida");
+            throw new ObjectNotFoundException(Constantes.NO_SE_HA_ENCONTRADO_LA_CARPETA_COMPARTIDA);
         }
         return carpeta;
     }
@@ -120,10 +120,10 @@ public class DaoCarpetas {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    throw new DatabaseException("Error al actualizar la carpeta y sus mensajes");
+                    throw new DatabaseException(Constantes.ERROR_AL_ACTUALIZAR_LA_CARPETA_Y_SUS_MENSAJES);
                 }
             }
-            throw new DatabaseException("Error al actualizar la carpeta y sus mensajes");
+            throw new DatabaseException(Constantes.ERROR_AL_ACTUALIZAR_LA_CARPETA_Y_SUS_MENSAJES);
         } finally {
             try {
                 if (updateCarpeta != null) {
@@ -137,7 +137,7 @@ public class DaoCarpetas {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new DatabaseException("Error al cerrar la conexión");
+                throw new DatabaseException(Constantes.ERROR_AL_CERRAR_LA_CONEXION);
             }
         }
         return carpeta;

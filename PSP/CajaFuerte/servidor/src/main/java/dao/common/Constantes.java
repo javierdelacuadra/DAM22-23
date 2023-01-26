@@ -2,46 +2,33 @@ package dao.common;
 
 public class Constantes {
 
+    public static final String NO_SE_HAN_ENCONTRADO_CARPETAS = "No se han encontrado carpetas";
+    public static final String NOMBRE_CARPETA = "nombreCarpeta";
+    public static final String ID_USUARIO = "IDUsuario";
+    public static final String MODO_EDICION = "modoEdicion";
+    public static final String ERROR_AL_INSERTAR_LA_CARPETA = "Error al insertar la carpeta";
+    public static final String NO_SE_HA_ENCONTRADO_LA_CARPETA_COMPARTIDA = "No se ha encontrado la carpeta compartida";
+    public static final String ERROR_AL_CERRAR_LA_CONEXION = "Error al cerrar la conexión";
+    public static final String ERROR_AL_ACTUALIZAR_LA_CARPETA_Y_SUS_MENSAJES = "Error al actualizar la carpeta y sus mensajes";
+    public static final String PASSWORD_CORRECTA = "password_correcta";
+    public static final String LA_PASSWORD_ES_INCORRECTA = "La contraseña es incorrecta";
+    public static final String NO_SE_HA_PODIDO_OBTENER_LOS_MENSAJES = "No se ha podido obtener los mensajes";
+    public static final String ID_CARPETA = "IDCarpeta";
+    public static final String CONTENIDO = "contenido";
+    public static final String ERROR_AL_INSERTAR_EL_MENSAJE = "Error al insertar el mensaje";
+    public static final String ERROR_AL_ACTUALIZAR_EL_MENSAJE = "Error al actualizar el mensaje";
+    public static final String ERROR_AL_ELIMINAR_EL_MENSAJE = "Error al eliminar el mensaje";
+    public static final String USER = "user";
+    public static final String NOMBRE = "nombre";
+    public static final String ROL = "rol";
+
     public Constantes() {
     }
 
     public static final String ID = "id";
-    public static final String NAME = "name";
-    public static final String DATE_OF_BIRTH = "date_of_birth";
-    public static final String NAME_ARTICLE = "name_article";
-    public static final String ID_NEWSPAPER = "id_newspaper";
-    public static final String ID_TYPE = "id_type";
-    public static final String DESCRIPTION = "description";
-    public static final String RELEASE_DATE = "release_date";
-    public static final String READERS = "count(readarticle.id_reader)";
-    public static final String ID_READER = "id_reader";
-    public static final String ID_ARTICLE = "id_article";
-    public static final String RATING = "rating";
-    public static final String ERROR_AL_LEER_LOS_READ_ARTICLES = "Error al leer los readArticles";
-    public static final String ERROR_AL_INSERTAR_EL_READ_ARTICLE = "Error al insertar el readArticle";
-    public static final String NO_SE_HAN_ENCONTRADO_ARTICLES = "No se han encontrado articles";
-    public static final String NO_SE_HA_PODIDO_GUARDAR_EL_ARTICLE = "No se ha podido guardar el article";
-    public static final String YA_EXISTE_UN_ARTICLE_CON_ESE_NOMBRE = "Ya existe un article con ese nombre";
-    public static final String NO_SE_HA_PODIDO_ACTUALIZAR_EL_ARTICLE = "No se ha podido actualizar el article";
-    public static final String NO_EXISTE_UN_ARTICLE_CON_ESE_NOMBRE = "No existe un article con ese nombre";
-    public static final String NO_SE_HA_PODIDO_ELIMINAR_EL_ARTICLE = "No se ha podido eliminar el article";
-    public static final String NO_EXISTE_UN_ARTICLE_CON_ESE_ID = "No existe un article con ese id";
-    public static final String NO_SE_HA_PODIDO_ELIMINAR_EL_NEWSPAPER = "No se ha podido eliminar el newspaper";
-    public static final String NO_SE_HA_ENCONTRADO_EL_NEWSPAPER = "No se ha encontrado el newspaper";
-    public static final String NO_SE_HA_PODIDO_ACTUALIZAR_EL_NEWSPAPER = "No se ha podido actualizar el newspaper";
-    public static final String NO_SE_HAN_ENCONTRADO_NEWSPAPERS = "No se han encontrado newspapers";
-    public static final String NO_SE_HA_PODIDO_GUARDAR_EL_NEWSPAPER = "No se ha podido guardar el newspaper";
-    public static final String YA_EXISTE_UN_NEWSPAPER_CON_ESE_NOMBRE = "Ya existe un newspaper con ese nombre";
-    public static final String ERROR_AL_REALIZAR_LA_CONSULTA = "Error al realizar la consulta";
-    public static final String ERROR_AL_LEER_LOS_READER = "Error al leer los reader";
-    public static final String YA_EXISTE_UN_READER_CON_ESE_NOMBRE = "Ya existe un reader con ese nombre";
-    public static final String NO_SE_HA_PODIDO_ACTUALIZAR_EL_READER = "No se ha podido actualizar el reader";
-    public static final String NO_SE_HA_PODIDO_GUARDAR_EL_READER = "No se ha podido guardar el reader";
-    public static final String NO_SE_HAN_ENCONTRADO_READERS = "No se han encontrado readers";
-    public static final String NO_SE_HA_PODIDO_ELIMINAR_EL_READER = "No se ha podido eliminar el reader";
-    public static final String NO_SE_HA_PODIDO_GUARDAR_LA_SUSCRIPCION = "No se ha podido guardar la suscripción";
-    public static final String NO_SE_HA_PODIDO_ELIMINAR_LA_SUSCRIPCION = "No se ha podido eliminar la suscripción";
-    public static final String BAD_RATINGS = "bad_ratings";
+    public static final String YA_EXISTE_UN_USUARIO_CON_ESE_NOMBRE = "Ya existe un usuario con ese nombre";
+    public static final String NO_SE_HA_PODIDO_GUARDAR_EL_USUARIO = "No se ha podido guardar el usuario";
+    public static final String NO_SE_HAN_ENCONTRADO_USUARIOS = "No se han encontrado usuarios";
     public static final String CONFIG_YAML = "config.yaml";
     public static final String URL_DB = "urlDB";
     public static final String USER_NAME = "user_name";
@@ -49,5 +36,4 @@ public class Constantes {
     public static final String DRIVER = "driver";
     public static final String MAX_CALLS = "maxCalls";
     public static final String CALL_LIMIT_COOLDOWN = "callLimitCooldown";
-    public static final String CALLS = "count(*)";
 }

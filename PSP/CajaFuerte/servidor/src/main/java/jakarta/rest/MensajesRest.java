@@ -2,13 +2,14 @@ package jakarta.rest;
 
 import domain.servicios.ServiciosMensajes;
 import jakarta.inject.Inject;
+import jakarta.rest.common.ConstantesLoginRest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import modelo.Mensaje;
 
 import java.util.List;
 
-@Path("mensajes")
+@Path(ConstantesLoginRest.MENSAJES_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MensajesRest {
@@ -21,8 +22,8 @@ public class MensajesRest {
     }
 
     @GET
-    @Path("/{id}")
-    public List<Mensaje> getMensajesByCarpeta(@PathParam("id") String id, @QueryParam("password") String password) {
+    @Path(ConstantesLoginRest.ID_GENERIC_PATH)
+    public List<Mensaje> getMensajesByCarpeta(@PathParam(ConstantesLoginRest.ID) String id, @QueryParam(ConstantesLoginRest.PASSWORD) String password) {
         return servicios.getMensajesByUsuario(id, password);
     }
 
@@ -37,8 +38,8 @@ public class MensajesRest {
     }
 
     @DELETE
-    @Path("/{id}")
-    public void deleteMensaje(@PathParam("id") String id) {
+    @Path(ConstantesLoginRest.ID_GENERIC_PATH)
+    public void deleteMensaje(@PathParam(ConstantesLoginRest.ID) String id) {
         servicios.deleteMensaje(id);
     }
 
