@@ -14,88 +14,80 @@ import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Tuple;
 import model.Newspaper;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.include;
+
 public class DaoNewspaper {
     private JPAUtil jpaUtil;
     private EntityManager em;
+    private MongoClient mongo;
+    private MongoDatabase db;
 
     @Inject
     public DaoNewspaper(JPAUtil jpaUtil) {
         this.jpaUtil = jpaUtil;
         this.em = jpaUtil.getEntityManager();
+        this.mongo = MongoClients.create("mongodb://informatica.iesquevedo.es:2323");
+        this.db = mongo.getDatabase("JavierdelaCuadra");
     }
 
     public Either<Integer, List<Newspaper>> getAll() {
-//        List<Newspaper> newspapers = new ArrayList<>();
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            newspapers = em
-//                    .createNamedQuery("HQL_GET_ALL_NEWSPAPERS", Newspaper.class)
-//                    .getResultList();
-//
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//
-//        return newspapers.isEmpty() ? Either.left(-1) : Either.right(newspapers);
-
-        MongoClient mongo = MongoClients.create("mongodb://informatica.iesquevedo.es:2323");
-
-        MongoDatabase db = mongo.getDatabase("JavierdelaCuadra");
         MongoCollection<Document> est = db.getCollection("newspapers");
         List<Newspaper> newspapers = new ArrayList<>();
-
-        List<Document> documents = est.find().into(new ArrayList<>());
-        for (Document supplier : documents) {
-               newspapers.add(new Gson().fromJson(supplier.toJson(), Newspaper.class));
-           }
-
+        Bson projection = include("id", "name", "releaseDate");
+        List<Document> documents = est.find().projection(projection).into(new ArrayList<>());
+        for (Document newspaper : documents) {
+            ObjectId id = newspaper.getObjectId("_id");
+            Newspaper newspaper1 = new Gson().fromJson(newspaper.toJson(), Newspaper.class);
+            newspaper1.set_id(id);
+            newspapers.add(newspaper1);
+        }
         return newspapers.isEmpty() ? Either.left(-1) : Either.right(newspapers);
     }
 
     public Newspaper get(Newspaper newspaper) {
-        em = jpaUtil.getEntityManager();
 
-        try {
-            newspaper = em
-                    .createNamedQuery("HQL_GET_NEWSPAPER_BY_ID", Newspaper.class)
-                    .setParameter("id", newspaper.getId())
-                    .getSingleResult();
+        MongoCollection<Document> est = db.getCollection("newspapers");
+        List<Newspaper> newspapers = new ArrayList<>();
 
-        } catch (PersistenceException e) {
-            e.printStackTrace();
-        } finally {
-            if (em != null) em.close();
+        est.find(eq("id", newspaper.getId())).into(new ArrayList<>()).forEach(document -> newspapers.add(new Gson().fromJson(document.toJson(), Newspaper.class)));
+        if (newspapers.size() > 0) {
+            newspaper = newspapers.get(0);
         }
         return newspaper;
     }
 
     public Integer add(Newspaper newspaper) {
-        em = jpaUtil.getEntityManager();
-        EntityTransaction transaction = null;
+        MongoCollection<Document> est = db.getCollection("newspapers");
 
-        try {
-            transaction = em.getTransaction();
-            transaction.begin();
-            em.persist(newspaper);
-            transaction.commit();
-            return 1;
-        } catch (PersistenceException e) {
-            assert transaction != null;
-            if (transaction.isActive()) transaction.rollback();
-            e.printStackTrace();
-            return -1;
-        } finally {
-            if (em != null) em.close();
-        }
+        Document d = new Document();
+        d.append("id", newspaper.getId());
+        d.append("name", newspaper.getName());
+        d.append("release_date", newspaper.getRelease_date());
+        d.put("articles", Arrays.asList(new Document()
+                        .append("id", newspaper.getArticles().get(0).getId())
+                        .append("title", newspaper.getArticles().get(0).getName_article())
+                        .append("content", newspaper.getArticles().get(0).getType().getDescription()),
+                new Document()
+                        .append("id", newspaper.getArticles().get(1).getId())
+                        .append("title", newspaper.getArticles().get(1).getName_article())
+                        .append("content", newspaper.getArticles().get(1).getType().getDescription()),
+                new Document()
+                        .append("id", newspaper.getArticles().get(2).getId())
+                        .append("title", newspaper.getArticles().get(2).getName_article())
+                        .append("content", newspaper.getArticles().get(2).getType().getDescription())));
+
+        est.insertOne(d);
+        return 1;
     }
 
     public Integer delete(Newspaper newspaper) {
