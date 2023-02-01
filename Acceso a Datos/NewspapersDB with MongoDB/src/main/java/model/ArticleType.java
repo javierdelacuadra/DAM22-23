@@ -1,7 +1,6 @@
 package model;
 
 import common.Constantes;
-import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
@@ -10,19 +9,13 @@ import lombok.*;
 @Setter
 @ToString
 
-@Entity
-@Table(name = "type")
-
-@NamedQueries({
-        @NamedQuery(name = "HQL_GET_ALL_TYPES", query = "SELECT t FROM ArticleType t"),
-        @NamedQuery(name = "HQL_GET_MOST_READ_TYPE", query = "SELECT article.type FROM ReadArticle read JOIN read.article article GROUP BY article.type ORDER BY COUNT(*) DESC LIMIT 1"),
-})
+//@NamedQueries({
+//        @NamedQuery(name = "HQL_GET_ALL_TYPES", query = "SELECT t FROM ArticleType t"),
+//        @NamedQuery(name = "HQL_GET_MOST_READ_TYPE", query = "SELECT article.type FROM ReadArticle read JOIN read.article article GROUP BY article.type ORDER BY COUNT(*) DESC LIMIT 1"),
+//})
 public class ArticleType {
-    @Id
     private int id;
-    @Column(name = "description")
     private String description;
-
 
     public ArticleType(String line) {
         String[] split = line.split(Constantes.PUNTO_Y_COMA);
@@ -34,3 +27,5 @@ public class ArticleType {
         this.id = id;
     }
 }
+
+//TODO: borrar

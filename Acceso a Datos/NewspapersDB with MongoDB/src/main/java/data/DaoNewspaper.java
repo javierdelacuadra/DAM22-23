@@ -11,17 +11,13 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
-import jakarta.persistence.Tuple;
 import model.Newspaper;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Projections.include;
@@ -59,7 +55,7 @@ public class DaoNewspaper {
         MongoCollection<Document> est = db.getCollection("newspapers");
         List<Newspaper> newspapers = new ArrayList<>();
 
-        est.find(eq("id", newspaper.getId())).into(new ArrayList<>()).forEach(document -> newspapers.add(new Gson().fromJson(document.toJson(), Newspaper.class)));
+        est.find(eq("_id", newspaper.get_id())).into(new ArrayList<>()).forEach(document -> newspapers.add(new Gson().fromJson(document.toJson(), Newspaper.class)));
         if (newspapers.size() > 0) {
             newspaper = newspapers.get(0);
         }
@@ -70,21 +66,8 @@ public class DaoNewspaper {
         MongoCollection<Document> est = db.getCollection("newspapers");
 
         Document d = new Document();
-        d.append("id", newspaper.getId());
         d.append("name", newspaper.getName());
-        d.append("release_date", newspaper.getRelease_date());
-        d.put("articles", Arrays.asList(new Document()
-                        .append("id", newspaper.getArticles().get(0).getId())
-                        .append("title", newspaper.getArticles().get(0).getName_article())
-                        .append("content", newspaper.getArticles().get(0).getType().getDescription()),
-                new Document()
-                        .append("id", newspaper.getArticles().get(1).getId())
-                        .append("title", newspaper.getArticles().get(1).getName_article())
-                        .append("content", newspaper.getArticles().get(1).getType().getDescription()),
-                new Document()
-                        .append("id", newspaper.getArticles().get(2).getId())
-                        .append("title", newspaper.getArticles().get(2).getName_article())
-                        .append("content", newspaper.getArticles().get(2).getType().getDescription())));
+        d.append("releaseDate", newspaper.getReleaseDate());
 
         est.insertOne(d);
         return 1;
@@ -126,22 +109,22 @@ public class DaoNewspaper {
         }
     }
 
-    public Map<String, Integer> getNbrArticles(int newspaper) {
-        em = jpaUtil.getEntityManager();
-
-        try {
-            return em.createNamedQuery("HQL_GET_NUMBER_ARTICLES_BY_NEWSPAPER", Tuple.class)
-                    .setParameter("newspaperID", newspaper)
-                    .getResultStream()
-                    .collect(Collectors.toMap(
-                            tuple -> tuple.get("type").toString(),
-                            tuple -> ((Number) tuple.get("numberArticles")).intValue())
-                    );
-        } catch (PersistenceException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            if (em != null) em.close();
-        }
-    }
+//    public Map<String, Integer> getNbrArticles(int newspaper) {
+//        em = jpaUtil.getEntityManager();
+//
+//        try {
+//            return em.createNamedQuery("HQL_GET_NUMBER_ARTICLES_BY_NEWSPAPER", Tuple.class)
+//                    .setParameter("newspaperID", newspaper)
+//                    .getResultStream()
+//                    .collect(Collectors.toMap(
+//                            tuple -> tuple.get("type").toString(),
+//                            tuple -> ((Number) tuple.get("numberArticles")).intValue())
+//                    );
+//        } catch (PersistenceException e) {
+//            e.printStackTrace();
+//            return null;
+//        } finally {
+//            if (em != null) em.close();
+//        }
+//    }
 }

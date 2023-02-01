@@ -54,7 +54,7 @@ public class UpdateNewspaperScreenController extends BasePantallaController impl
     public void updateNewspaper() {
         if (newspaperTable.getSelectionModel().getSelectedItem() != null) {
             Newspaper newspaper = new Newspaper(
-                    newspaperTable.getSelectionModel().getSelectedItem().getId(),
+                    newspaperTable.getSelectionModel().getSelectedItem().get_id(),
                     nameTextField.getText(),
                     releaseDatePicker.getValue().toString());
             if (viewModel.updateNewspaper(newspaper) == 1) {
@@ -76,7 +76,7 @@ public class UpdateNewspaperScreenController extends BasePantallaController impl
         if (newspaperTable.getSelectionModel().getSelectedItem() != null) {
             Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
             nameTextField.setText(newspaper.getName());
-            releaseDatePicker.setValue(LocalDate.parse(newspaper.getRelease_date()));
+            releaseDatePicker.setValue(LocalDate.parse(newspaper.getReleaseDate()));
         }
     }
 }

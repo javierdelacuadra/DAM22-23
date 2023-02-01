@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
-import model.ArticleType;
 import model.Newspaper;
 import ui.pantallas.common.BasePantallaController;
 
@@ -106,8 +105,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
             nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
             nameTypeColumn.setCellValueFactory(cellData -> {
                 Article article = cellData.getValue();
-                ArticleType type = article.getType();
-                return new SimpleStringProperty(type.getDescription());
+                return new SimpleStringProperty(article.getType());
             });
             articlesTable.setItems(FXCollections.observableArrayList(newspaperWithArticles.getArticles()));
             deleteArticlesButton.setVisible(true);
