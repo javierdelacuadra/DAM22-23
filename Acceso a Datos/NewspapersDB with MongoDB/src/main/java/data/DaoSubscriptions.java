@@ -10,7 +10,6 @@ import model.Newspaper;
 import model.Reader;
 import model.Subscription;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DaoSubscriptions {
@@ -64,48 +63,50 @@ public class DaoSubscriptions {
     }
 
     public Either<Integer, List<Subscription>> get(Newspaper newspaper) {
-        em = jpaUtil.getEntityManager();
-        EntityTransaction tx = null;
-        List<Subscription> subscriptions = new ArrayList<>();
-
-        try {
-            tx = em.getTransaction();
-            tx.begin();
-            subscriptions = em
-                    .createNamedQuery("HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_NEWSPAPER", Subscription.class)
-                    .setParameter("id", newspaper.getId())
-                    .getResultList();
-            tx.commit();
-        } catch (PersistenceException e) {
-            assert tx != null;
-            if (tx.isActive()) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            if (em != null) em.close();
-        }
-        return subscriptions.isEmpty() ? Either.left(-1) : Either.right(subscriptions);
+//        em = jpaUtil.getEntityManager();
+//        EntityTransaction tx = null;
+//        List<Subscription> subscriptions = new ArrayList<>();
+//
+//        try {
+//            tx = em.getTransaction();
+//            tx.begin();
+//            subscriptions = em
+//                    .createNamedQuery("HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_NEWSPAPER", Subscription.class)
+//                    .setParameter("id", newspaper.getId())
+//                    .getResultList();
+//            tx.commit();
+//        } catch (PersistenceException e) {
+//            assert tx != null;
+//            if (tx.isActive()) tx.rollback();
+//            e.printStackTrace();
+//        } finally {
+//            if (em != null) em.close();
+//        }
+//        return subscriptions.isEmpty() ? Either.left(-1) : Either.right(subscriptions);
+        return null;
     }
 
     public Either<Integer, List<Subscription>> get(Reader reader) {
-        em = jpaUtil.getEntityManager();
-        EntityTransaction tx = null;
-        List<Subscription> subscriptions;
-
-        try {
-            tx = em.getTransaction();
-            tx.begin();
-            subscriptions = em
-                    .createNamedQuery("HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_READER", Subscription.class)
-                    .setParameter("id", reader.getId())
-                    .getResultList();
-            tx.commit();
-        } catch (PersistenceException e) {
-            assert tx != null;
-            if (tx.isActive()) tx.rollback();
-            return Either.left(-1);
-        } finally {
-            if (em != null) em.close();
-        }
-        return Either.right(subscriptions);
+//        em = jpaUtil.getEntityManager();
+//        EntityTransaction tx = null;
+//        List<Subscription> subscriptions;
+//
+//        try {
+//            tx = em.getTransaction();
+//            tx.begin();
+//            subscriptions = em
+//                    .createNamedQuery("HQL_GET_ACTIVE_SUBSCRIPTIONS_BY_READER", Subscription.class)
+//                    .setParameter("id", reader.getId())
+//                    .getResultList();
+//            tx.commit();
+//        } catch (PersistenceException e) {
+//            assert tx != null;
+//            if (tx.isActive()) tx.rollback();
+//            return Either.left(-1);
+//        } finally {
+//            if (em != null) em.close();
+//        }
+//        return Either.right(subscriptions);
+        return null;
     }
 }

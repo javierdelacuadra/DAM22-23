@@ -14,6 +14,6 @@ public class ServicesLogin {
     }
 
     public Integer login(Login login) {
-        return daoLogin.login(login);
+        return daoLogin.login(login.getName(), login.getPassword());
     }
 }

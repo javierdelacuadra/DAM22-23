@@ -12,8 +12,6 @@ import servicios.ServicesReadArticles;
 import servicios.ServicesReadersSQL;
 import servicios.ServicesTypes;
 
-import java.util.Map;
-
 public class ListReadersScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
@@ -37,9 +35,9 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
-    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
-        return servicesReadersSQL.getReadersByNewspaper(newspaper).map(FXCollections::observableArrayList);
-    }
+//    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+//        return servicesReadersSQL.getReadersByNewspaper(newspaper).map(FXCollections::observableArrayList);
+//    }
 
     public Either<Integer, ObservableList<Reader>> getReadersByArticleType(ArticleType type) {
         return servicesReadersSQL.getReadersByArticleType(type).map(FXCollections::observableArrayList);
@@ -49,7 +47,7 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());
     }
 
-    public Map<Double, String> getAvgRating(Integer idReader) {
-        return servicesReadArticles.getAvgRating(idReader);
-    }
+//    public Map<Double, String> getAvgRating(Integer idReader) {
+//        return servicesReadArticles.getAvgRating(idReader);
+//    }
 }

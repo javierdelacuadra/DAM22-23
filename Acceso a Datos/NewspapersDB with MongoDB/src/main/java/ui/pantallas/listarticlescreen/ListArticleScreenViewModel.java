@@ -23,9 +23,9 @@ public class ListArticleScreenViewModel {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public ObservableList<Article> getArticlesByType(String type) {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesByType(type).get());
-    }
+//    public ObservableList<Article> getArticlesByType(String type) {
+//        return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesByType(type).get());
+//    }
 
     public ObservableList<ArticleType> getArticleTypes() {
         return FXCollections.observableArrayList(servicesTypes.getArticleTypes().get());

@@ -23,4 +23,9 @@ public class Article {
     private String name;
     private String type;
     private List<ReadArticle> readArticles;
+
+    public Article(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 }

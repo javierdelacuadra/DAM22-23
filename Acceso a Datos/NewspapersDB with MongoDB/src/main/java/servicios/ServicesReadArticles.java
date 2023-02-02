@@ -4,8 +4,6 @@ import data.DaoReadArticles;
 import jakarta.inject.Inject;
 import model.ReadArticle;
 
-import java.util.Map;
-
 public class ServicesReadArticles {
 
     private final DaoReadArticles daoReadArticles;
@@ -23,7 +21,7 @@ public class ServicesReadArticles {
         return daoReadArticles.update(readArticle);
     }
 
-    public Map<Double, String> getAvgRating(Integer idReader) {
-        return daoReadArticles.getAvgRating(idReader);
-    }
+//    public Map<Double, String> getAvgRating(Integer idReader) {
+//        return daoReadArticles.getAvgRating(idReader);
+//    }
 }

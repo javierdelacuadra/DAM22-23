@@ -21,21 +21,21 @@ public class DaoTypes {
     }
 
     public Either<Integer, List<ArticleType>> getAll() {
-        List<ArticleType> types = new ArrayList<>();
-        em = jpaUtil.getEntityManager();
+//        List<ArticleType> types = new ArrayList<>();
+//        em = jpaUtil.getEntityManager();
+//
+//        try {
+//            types = em
+//                    .createNamedQuery("HQL_GET_ALL_TYPES", ArticleType.class)
+//                    .getResultList();
+//
+//        } catch (PersistenceException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (em != null) em.close();
+//        }
 
-        try {
-            types = em
-                    .createNamedQuery("HQL_GET_ALL_TYPES", ArticleType.class)
-                    .getResultList();
-
-        } catch (PersistenceException e) {
-            e.printStackTrace();
-        } finally {
-            if (em != null) em.close();
-        }
-
-        return types.isEmpty() ? Either.left(-1) : Either.right(types);
+        return Either.right(new ArrayList<>());
     }
 
     public Either<Integer, ArticleType> get() {

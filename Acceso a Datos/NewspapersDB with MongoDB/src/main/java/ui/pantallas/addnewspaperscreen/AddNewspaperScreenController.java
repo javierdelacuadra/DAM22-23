@@ -44,9 +44,9 @@ public class AddNewspaperScreenController extends BasePantallaController impleme
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("_id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("release_date"));
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
         newspaperTable.setItems(viewModel.getNewspapers());
     }
 

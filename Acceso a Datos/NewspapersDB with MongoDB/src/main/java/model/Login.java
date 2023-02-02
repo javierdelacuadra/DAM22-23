@@ -1,20 +1,20 @@
 package model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.bson.types.ObjectId;
 
 @Getter
 @Setter
-@ToString(exclude = {"reader"})
-@AllArgsConstructor
+@ToString
 @NoArgsConstructor
 
-//@NamedQueries({
-//        @NamedQuery(name = "HQL_GET_LOGIN", query = "SELECT l FROM Login l WHERE l.name = :name AND l.password = :password")
-//})
 public class Login {
+    private ObjectId _id;
     private String name;
     private String password;
-    private Reader reader;
 
     public Login(String name, String password) {
         this.name = name;

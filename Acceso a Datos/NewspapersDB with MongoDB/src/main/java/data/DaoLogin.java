@@ -1,38 +1,32 @@
 package data;
 
-import data.hibernate.JPAUtil;
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceException;
-import model.Login;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class DaoLogin {
 
-    private JPAUtil jpaUtil;
-    private EntityManager em;
+    private MongoClient mongo;
+    private MongoDatabase db;
 
-    @Inject
-    public DaoLogin(JPAUtil jpaUtil) {
-        this.jpaUtil = jpaUtil;
-        this.em = jpaUtil.getEntityManager();
+    public DaoLogin() {
+        this.mongo = MongoClients.create("mongodb://informatica.iesquevedo.es:2323");
+        this.db = mongo.getDatabase("JavierdelaCuadra");
     }
 
-    public Integer login(Login login) {
-        em = jpaUtil.getEntityManager();
-        Login user;
-
-        try {
-            user = em
-                    .createNamedQuery("HQL_GET_LOGIN", Login.class)
-                    .setParameter("name", login.getName())
-                    .setParameter("password", login.getPassword())
-                    .getSingleResult();
-        } catch (PersistenceException e) {
-            return -2;
-        } finally {
-            if (em != null) em.close();
+    public Integer login(String user, String password) {
+        MongoCollection<Document> collection = db.getCollection("login");
+        Document document = collection.find(eq("user", user)).first();
+        if (document == null) {
+            return -3;
         }
-        return user.getReader().getId();
-
+        if (!document.getString("password").equals(password)) {
+            return -2;
+        }
+        return document.getInteger("_id");
     }
 }

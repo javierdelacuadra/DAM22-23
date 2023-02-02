@@ -3,8 +3,6 @@ package ui.pantallas.addarticlescreen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -56,18 +54,8 @@ public class AddArticleScreenController extends BasePantallaController implement
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        typeColumn.setCellValueFactory(cellData -> {
-            Article article = cellData.getValue();
-            ArticleType type = article.getType();
-            return new SimpleStringProperty(type.getDescription());
-        });
-        newspaperIDColumn.setCellValueFactory(cellData -> {
-            Article article = cellData.getValue();
-            Newspaper newspaper = article.getNewspaper();
-            return new SimpleIntegerProperty(newspaper.getId()).asObject();
-        });
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         articlesTable.setItems(viewModel.getArticles());
         typeIDComboBox.setItems(viewModel.getArticleTypes());
         newspaperIDComboBox.setItems(viewModel.getNewspapers());
@@ -78,9 +66,8 @@ public class AddArticleScreenController extends BasePantallaController implement
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS, ButtonType.OK);
             alert.showAndWait();
         } else {
-            Article article = new Article(0, nameText.getText(),
-                    new ArticleType(typeIDComboBox.getSelectionModel().getSelectedItem().getId()),
-                    new Newspaper(newspaperIDComboBox.getSelectionModel().getSelectedItem().getId()));
+            Article article = new Article(nameText.getText(),
+                    String.valueOf(typeIDComboBox.getSelectionModel().getSelectedItem().getId()));
             if (viewModel.addArticle(article) == 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(viewModel.getArticles());

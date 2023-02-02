@@ -21,7 +21,7 @@ public class LoginViewModel {
         return servicesLogin.login(login);
     }
 
-    public Reader getReader(int id) {
-        return servicesReadersSQL.getReadersById(id);
+    public Reader getReader(String name) {
+        return servicesReadersSQL.getReadersById(name);
     }
 }

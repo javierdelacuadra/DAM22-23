@@ -8,12 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Login;
 import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class UpdateReaderController extends BasePantallaController implements Initializable {
@@ -53,13 +53,12 @@ public class UpdateReaderController extends BasePantallaController implements In
 
     public void updateReader() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
-            Login login = readersTable.getSelectionModel().getSelectedItem().getLogin();
-            login.setPassword(passwordTextField.getText());
+//            Login login = readersTable.getSelectionModel().getSelectedItem().getLogin();
+//            login.setPassword(passwordTextField.getText());
             Reader reader = new Reader(
                     readersTable.getSelectionModel().getSelectedItem().getId(),
                     readersTable.getSelectionModel().getSelectedItem().getName(),
-                    birthDatePicker.getValue(), login);
-            login.setReader(reader);
+                    birthDatePicker.getValue().toString());
             int result = viewModel.updateReader(reader);
             if (result == 1) {
                 readersTable.getItems().clear();
@@ -79,8 +78,8 @@ public class UpdateReaderController extends BasePantallaController implements In
     public void fillTextFields() {
         if (readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = readersTable.getSelectionModel().getSelectedItem();
-            birthDatePicker.setValue(reader.getDateOfBirth());
-            passwordTextField.setText(reader.getLogin().getPassword());
+            birthDatePicker.setValue(LocalDate.parse(reader.getDateOfBirth()));
+//            passwordTextField.setText(reader.getLogin().getPassword());
         }
     }
 }

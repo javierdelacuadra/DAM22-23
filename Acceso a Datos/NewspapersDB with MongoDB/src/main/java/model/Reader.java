@@ -28,4 +28,11 @@ public class Reader {
         this.name = text;
         this.dateOfBirth = value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reader reader)) return false;
+        return id == reader.id;
+    }
 }
