@@ -49,7 +49,7 @@ public class ListReadersScreenController extends BasePantallaController {
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("cancellationDate"));
         readersTable.setItems(viewModel.getReaders());
         newspaperComboBox.setItems(
                 FXCollections.observableArrayList(viewModel.getNewspapers().stream().peek(newspaper -> newspaper.setName(newspaper.getName())).toList())
@@ -61,13 +61,13 @@ public class ListReadersScreenController extends BasePantallaController {
 
 
     public void filterByNewspaper() {
-//        Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
-//        if (viewModel.getReadersByNewspaper(newspaper).isRight()) {
-//            readersTable.setItems(viewModel.getReadersByNewspaper(newspaper).get());
-//        } else {
-//            readersTable.setItems(viewModel.getReaders());
-//            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_WITH_THAT_NEWSPAPER);
-//        }
+        Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
+        if (viewModel.getReadersByNewspaper(newspaper).isRight()) {
+            readersTable.setItems(FXCollections.observableArrayList(viewModel.getReadersByNewspaper(newspaper).get()));
+        } else {
+            readersTable.setItems(viewModel.getReaders());
+            this.getPrincipalController().createAlert(ConstantesUI.COULDN_T_FIND_ANY_READER_WITH_THAT_NEWSPAPER);
+        }
     }
 
     public void filterByArticleType() {

@@ -1,14 +1,15 @@
 package data;
 
 import com.google.gson.Gson;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Newspaper;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ public class DaoNewspaperImpl implements DaoNewspaper {
         FindIterable<Document> documents = db.getCollection("newspapers").find();
         for (Document document : documents) {
             String json = document.toJson();
-            newspapers.add(gson.fromJson(json, Newspaper.class));
+            Newspaper newspaper = gson.fromJson(json, Newspaper.class);
+            newspaper.set_id(document.getObjectId("_id"));
+            newspapers.add(newspaper);
         }
         return Either.right(newspapers);
     }
@@ -60,18 +63,33 @@ public class DaoNewspaperImpl implements DaoNewspaper {
 
     @Override
     public Integer delete(Newspaper newspaper) {
-        ObjectId id = newspaper.get_id();
-        db.getCollection("newspapers").deleteOne(eq("_id", id));
-        return 1;
+        MongoCollection<Document> collection = db.getCollection("newspapers");
+        Document document = collection.find(eq("name", newspaper.getName())).first();
+        if (document == null) {
+            return -1;
+        }
+        if (document.get("readers", List.class).size() > 0 || document.get("articles", List.class).size() > 0) {
+            return 0;
+        }
+        DeleteResult deleteResult = collection.deleteOne(document);
+        return deleteResult.getDeletedCount() == 1 ? 1 : -1;
     }
 
     @Override
     public Integer update(Newspaper newspaper) {
-        ObjectId id = newspaper.get_id();
-        String json = gson.toJson(newspaper);
-        Document document = Document.parse(json);
-        db.getCollection("newspapers").replaceOne(eq("_id", id), document);
-        return 1;
+        try {
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = Filters.eq("_id", new ObjectId(newspaper.get_id().toString()));
+            Bson update = new Document("$set", new Document("name", newspaper.getName()).append("releaseDate", newspaper.getReleaseDate()));
+            UpdateResult result = collection.updateOne(filter, update);
+            if (result.getModifiedCount() == 1) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } catch (Exception e) {
+            return -2;
+        }
     }
 
 //    public Map<String, Integer> getNbrArticles(int newspaper) {

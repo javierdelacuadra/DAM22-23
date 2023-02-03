@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.extern.log4j.Log4j2;
 import model.Login;
+import model.Reader;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
@@ -54,8 +55,13 @@ public class PantallaLoginController extends BasePantallaController implements I
             } else if (id == -3) {
                 this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
             } else {
-//                this.getPrincipalController().setReader(viewModel.getReader(id));
-                this.getPrincipalController().onLoginHecho(id <= 0);
+                Reader reader = viewModel.getReader(id);
+                if (reader == null) {
+                    this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
+                } else {
+                    this.getPrincipalController().setReader(reader);
+                    this.getPrincipalController().onLoginHecho(id <= 0);
+                }
             }
         }
     }

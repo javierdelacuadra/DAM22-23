@@ -3,12 +3,12 @@ package data;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.mongodb.client.*;
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Article;
 import model.Newspaper;
+import model.Reader;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -16,8 +16,9 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mongodb.client.model.Filters.elemMatch;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.push;
+import static com.mongodb.client.model.Updates.*;
 
 public class DaoArticles {
 
@@ -40,7 +41,9 @@ public class DaoArticles {
         for (Document newspaper : newspapers) {
             String newspaperJson = newspaper.toJson();
             Newspaper newspaperObject = gson.fromJson(newspaperJson, Newspaper.class);
-            articles.addAll(newspaperObject.getArticles());
+            if (newspaperObject.getArticles() != null) {
+                articles.addAll(newspaperObject.getArticles());
+            }
         }
 
         if (articles.isEmpty()) {
@@ -71,9 +74,9 @@ public class DaoArticles {
         }
     }
 
-    public Integer add(String newspaperName, Article article) {
+    public Integer add(Article article, Newspaper newspaper) {
         MongoCollection<Document> collection = db.getCollection("newspapers");
-        Bson filter = eq("name", newspaperName);
+        Bson filter = eq("name", newspaper.getName());
         Bson update = push("articles", toDocument(article));
         UpdateResult result = collection.updateOne(filter, update);
         if (result.getModifiedCount() == 1) {
@@ -88,11 +91,12 @@ public class DaoArticles {
         return Document.parse(gson.toJson(article));
     }
 
-    public Integer update(Article article) {
+    public Integer update(Article article, String oldName) {
         try {
-            Bson filter = eq("name", article.getName());
-            Bson newValue = new Document("$set", toDocument(article));
-            UpdateResult updateResult = db.getCollection("articles").updateOne(filter, newValue);
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = eq("articles.name", oldName);
+            Bson update = set("articles.$", toDocument(article));
+            UpdateResult updateResult = collection.updateOne(filter, update);
             return updateResult.getModifiedCount() == 1 ? 1 : -1;
         } catch (Exception e) {
             return -1;
@@ -101,34 +105,50 @@ public class DaoArticles {
 
     public Integer delete(Article article) {
         try {
-            Bson filter = eq("name", article.getName());
-            DeleteResult deleteResult = db.getCollection("articles").deleteOne(filter);
-            return deleteResult.getDeletedCount() == 1 ? 1 : -1;
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = eq("articles.name", article.getName());
+            Bson update = pull("articles", new Document("name", article.getName()));
+            UpdateResult updateResult = collection.updateOne(filter, update);
+            return updateResult.getModifiedCount() == 1 ? 1 : -1;
         } catch (Exception e) {
             return -1;
         }
     }
 
-//    public Either<Integer, List<Article>> getAll(Integer id) {
-//        List<Article> articles = null;
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            articles = em
-//                    .createNamedQuery("HQL_GET_ARTICLE_BY_ID", Article.class)
-//                    .setParameter("id", id)
-//                    .getResultList();
-//
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//
-//        assert articles != null;
-//        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-//    }
-//
+    public Either<Integer, List<Article>> getAll(String name) {
+        MongoCollection<Document> collection = db.getCollection("newspapers");
+        Bson filter = eq("name", name);
+        Document newspaper = collection.find(filter).first();
+        if (newspaper == null) {
+            return Either.left(-1);
+        }
+        List<Article> articles = (List<Article>) newspaper.get("articles");
+        if (articles == null) {
+            return Either.left(-1);
+        } else {
+            return Either.right(articles);
+        }
+    }
+
+    public Either<Integer, List<Article>> getAll(Reader reader) {
+        try {
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = elemMatch("readers", new Document("id", reader.getId()));
+            List<Newspaper> newspapers = new ArrayList<>();
+            for (Document document : collection.find(filter)) {
+                newspapers.add(gson.fromJson(document.toJson(), Newspaper.class));
+            }
+            List<Article> articles = new ArrayList<>();
+            for (Newspaper newspaper : newspapers) {
+                articles.addAll(newspaper.getArticles());
+            }
+            return Either.right(articles);
+        } catch (Exception e) {
+            return Either.left(-1);
+        }
+    }
+
+    //
 //    public Either<Integer, List<Article>> getAll(String type) {
 //        List<Article> articles = new ArrayList<>();
 //        em = jpaUtil.getEntityManager();
@@ -166,25 +186,17 @@ public class DaoArticles {
 //        }
 //    }
 //
-//    public Integer delete(Integer id) {
-//        em = jpaUtil.getEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//
-//        try {
-//            em.createNamedQuery("HQL_DELETE_ARTICLE_BY_NEWSPAPER_ID")
-//                    .setParameter("id", id)
-//                    .executeUpdate();
-//            tx.commit();
-//            return 1;
-//        } catch (Exception e) {
-//            if (tx.isActive()) tx.rollback();
-//            e.printStackTrace();
-//            return -1;
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//    }
+    public Integer delete(String name) {
+        try {
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = eq("name", name);
+            Bson update = unset("articles");
+            UpdateResult result = collection.updateMany(filter, update);
+            return result.getModifiedCount() == 1 ? 1 : -1;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 //
 //    public List<Article> getAllWithTypes() {
 //        em = jpaUtil.getEntityManager();

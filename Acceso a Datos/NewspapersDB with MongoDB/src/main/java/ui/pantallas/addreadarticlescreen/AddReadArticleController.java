@@ -40,9 +40,6 @@ public class AddReadArticleController extends BasePantallaController implements 
     private TableColumn<Article, String> typeColumn;
 
     @FXML
-    private TableColumn<Article, Integer> newspaperIDColumn;
-
-    @FXML
     private MFXComboBox<Integer> ratingComboBox;
 
     @Override
@@ -55,12 +52,12 @@ public class AddReadArticleController extends BasePantallaController implements 
 
     @Override
     public void principalCargado() {
-//        if (viewModel.getArticles(this.getPrincipalController().getReader()).isLeft()) {
-//            articlesTable.setItems(FXCollections.observableArrayList());
-//            this.getPrincipalController().createAlert(ConstantesUI.SUBSCRIBE_TO_A_NEWSPAPER_TO_RATE_AND_VIEW_ARTICLES);
-//        } else {
-//            articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
-//        }
+        if (viewModel.getArticles(this.getPrincipalController().getReader()).isLeft()) {
+            articlesTable.setItems(FXCollections.observableArrayList());
+            this.getPrincipalController().createAlert(ConstantesUI.SUBSCRIBE_TO_A_NEWSPAPER_TO_RATE_AND_VIEW_ARTICLES);
+        } else {
+            articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
+        }
     }
 
     public void addRating() {

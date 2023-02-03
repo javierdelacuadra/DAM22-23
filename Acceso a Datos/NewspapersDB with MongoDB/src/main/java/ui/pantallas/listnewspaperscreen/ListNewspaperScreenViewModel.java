@@ -26,9 +26,9 @@ public class ListNewspaperScreenViewModel {
         return servicesNewspaperSQL.getArticlesByNameNewspaper(newspaper);
     }
 
-//    public int deleteArticlesFromNewspaper(Newspaper newspaper) {
-//        return servicesArticlesSQL.deleteArticleFromNewspaper(newspaper.getId());
-//    }
+    public int deleteArticlesFromNewspaper(Newspaper newspaper) {
+        return servicesArticlesSQL.deleteArticleFromNewspaper(newspaper.getName());
+    }
 
 //    public Map<String, Integer> getNbrArticles(int idNewspaper) {
 //        return servicesNewspaperSQL.getNbrArticles(idNewspaper);

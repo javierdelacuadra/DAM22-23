@@ -44,7 +44,7 @@ public class DeleteReaderController extends BasePantallaController {
         Reader reader = readersTable.getSelectionModel().getSelectedItem();
         if (reader != null) {
             int result = viewModel.deleteReader(reader, false);
-            if (result == 1) {
+            if (result >= 1) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "The reader was deleted successfully", ButtonType.OK);
                 alert.showAndWait();
                 readersTable.setItems(viewModel.getReaders());

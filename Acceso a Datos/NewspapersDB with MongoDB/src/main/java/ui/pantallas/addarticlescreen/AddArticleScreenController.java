@@ -11,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
-import model.ArticleType;
 import model.Newspaper;
 import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
@@ -32,43 +31,37 @@ public class AddArticleScreenController extends BasePantallaController implement
     private TableView<Article> articlesTable;
 
     @FXML
-    private TableColumn<Article, Integer> idColumn;
-
-    @FXML
     private TableColumn<Article, String> nameColumn;
 
     @FXML
     private TableColumn<Article, String> typeColumn;
 
     @FXML
-    private TableColumn<Article, Integer> newspaperIDColumn;
-
-    @FXML
     private MFXTextField nameText;
 
     @FXML
-    private MFXComboBox<ArticleType> typeIDComboBox;
+    private MFXTextField typeTextField;
 
     @FXML
-    private MFXComboBox<Newspaper> newspaperIDComboBox;
+    private MFXComboBox<Newspaper> newspaperComboBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         articlesTable.setItems(viewModel.getArticles());
-        typeIDComboBox.setItems(viewModel.getArticleTypes());
-        newspaperIDComboBox.setItems(viewModel.getNewspapers());
+        newspaperComboBox.setItems(viewModel.getNewspapers());
     }
 
     public void addArticle() {
-        if (nameText.getText().isEmpty() || typeIDComboBox.getSelectionModel().getSelectedItem() == null || newspaperIDComboBox.getSelectionModel().getSelectedItem() == null) {
+        if (nameText.getText().isEmpty() || typeTextField.getText().isEmpty() || newspaperComboBox.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS, ButtonType.OK);
             alert.showAndWait();
         } else {
             Article article = new Article(nameText.getText(),
-                    String.valueOf(typeIDComboBox.getSelectionModel().getSelectedItem().getId()));
-            if (viewModel.addArticle(article) == 1) {
+                    String.valueOf(typeTextField.getText()));
+            Newspaper newspaper = newspaperComboBox.getSelectionModel().getSelectedItem();
+            if (viewModel.addArticle(article, newspaper) == 1) {
                 articlesTable.getItems().clear();
                 articlesTable.setItems(viewModel.getArticles());
             } else {

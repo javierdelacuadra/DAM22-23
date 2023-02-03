@@ -12,6 +12,8 @@ import servicios.ServicesReadArticles;
 import servicios.ServicesReadersSQL;
 import servicios.ServicesTypes;
 
+import java.util.List;
+
 public class ListReadersScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
@@ -35,9 +37,9 @@ public class ListReadersScreenViewModel {
         return FXCollections.observableArrayList(servicesNewspaperSQL.getNewspapers().get());
     }
 
-//    public Either<Integer, ObservableList<Reader>> getReadersByNewspaper(Newspaper newspaper) {
-//        return servicesReadersSQL.getReadersByNewspaper(newspaper).map(FXCollections::observableArrayList);
-//    }
+    public Either<Integer, List<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+        return servicesReadersSQL.getReadersByNewspaper(newspaper);
+    }
 
     public Either<Integer, ObservableList<Reader>> getReadersByArticleType(ArticleType type) {
         return servicesReadersSQL.getReadersByArticleType(type).map(FXCollections::observableArrayList);

@@ -1,48 +1,56 @@
 package servicios;
 
 import data.DaoReaders;
-import data.DaoSubscriptions;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.ArticleType;
+import model.Newspaper;
 import model.Reader;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ServicesReadersSQL {
 
     private final DaoReaders daoReaders;
-    private final DaoSubscriptions daoSubscriptions;
 
     @Inject
-    public ServicesReadersSQL(DaoReaders daoReaders, DaoSubscriptions daoSubscriptions) {
+    public ServicesReadersSQL(DaoReaders daoReaders) {
         this.daoReaders = daoReaders;
-        this.daoSubscriptions = daoSubscriptions;
     }
 
-    public int saveReader(Reader reader) {
-        return daoReaders.add(reader);
+    public int saveReader(Reader reader, Newspaper newspaper) {
+        return daoReaders.add(reader, newspaper);
     }
 
     public Either<Integer, List<Reader>> getAllReaders() {
-        return daoReaders.getAll();
+        Either<Integer, List<Reader>> readers = daoReaders.getAll();
+        if (readers.isRight()) {
+            List<Reader> list = readers.get();
+            list.sort(Comparator.comparingInt(Reader::getId));
+            return Either.right(list);
+        } else {
+            return Either.left(readers.getLeft());
+        }
     }
 
     public int deleteReader(Reader reader, boolean delete) {
-//        if (!delete) {
-//            if (!daoSubscriptions.get(reader).get().isEmpty()) {
-//                return -2;
-//            } else {
-//                return daoReaders.delete(reader);
-//            }
-//        } else {
-//            return daoReaders.delete(reader);
-//        }
+        if (!delete) {
+            List<Reader> readers = daoReaders.getAll().get();
+            Reader reader1 = readers.stream().filter(r -> r.getName().equals(reader.getName())).findFirst().orElse(null);
+            if (reader1 != null) {
+                if (reader1.getCancellationDate() == null) {
+                    return -2;
+                } else {
+                    return daoReaders.delete(reader.getName());
+                }
+            }
+        }
         return daoReaders.delete(reader.getName());
     }
 
     public Integer updateReader(Reader reader) {
-        return daoReaders.update(reader.getName(), reader);
+        return daoReaders.update(reader);
     }
 
 //    public Either<Integer, List<Reader>> getReadersByNewspaper(Newspaper newspaper) {
@@ -54,7 +62,11 @@ public class ServicesReadersSQL {
         return null;
     }
 
-    public Reader getReadersById(String name) {
-        return daoReaders.get(name);
+    public Reader getReadersById(Integer id) {
+        return daoReaders.get(id);
+    }
+
+    public Either<Integer, List<Reader>> getReadersByNewspaper(Newspaper newspaper) {
+        return daoReaders.getAll(newspaper);
     }
 }

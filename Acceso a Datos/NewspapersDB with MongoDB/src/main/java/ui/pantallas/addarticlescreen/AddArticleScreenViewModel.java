@@ -26,8 +26,8 @@ public class AddArticleScreenViewModel {
         return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public Integer addArticle(Article article) {
-        return servicesArticlesSQL.addArticle(article);
+    public Integer addArticle(Article article, Newspaper newspaper) {
+        return servicesArticlesSQL.addArticle(article, newspaper);
     }
 
     public ObservableList<ArticleType> getArticleTypes() {

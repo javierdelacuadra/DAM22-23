@@ -13,7 +13,6 @@ import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class UpdateReaderController extends BasePantallaController implements Initializable {
@@ -38,7 +37,7 @@ public class UpdateReaderController extends BasePantallaController implements In
     private TableColumn<Reader, String> birthDateColumn;
 
     @FXML
-    private MFXTextField passwordTextField;
+    private MFXTextField nameTextField;
 
     @FXML
     private MFXDatePicker birthDatePicker;
@@ -52,15 +51,15 @@ public class UpdateReaderController extends BasePantallaController implements In
     }
 
     public void updateReader() {
-        if (readersTable.getSelectionModel().getSelectedItem() != null) {
-//            Login login = readersTable.getSelectionModel().getSelectedItem().getLogin();
-//            login.setPassword(passwordTextField.getText());
+        if (readersTable.getSelectionModel().getSelectedItem() != null || birthDatePicker.getValue() != null) {
             Reader reader = new Reader(
                     readersTable.getSelectionModel().getSelectedItem().getId(),
-                    readersTable.getSelectionModel().getSelectedItem().getName(),
-                    birthDatePicker.getValue().toString());
+                    nameTextField.getText(),
+                    "");
+
+
             int result = viewModel.updateReader(reader);
-            if (result == 1) {
+            if (result >= 1) {
                 readersTable.getItems().clear();
                 readersTable.setItems(viewModel.getReaders());
             } else if (result == -1) {
@@ -72,14 +71,16 @@ public class UpdateReaderController extends BasePantallaController implements In
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
         birthDatePicker.setValue(null);
-        passwordTextField.setText(ConstantesUI.ANY);
+        nameTextField.setText(ConstantesUI.ANY);
     }
 
     public void fillTextFields() {
-        if (readersTable.getSelectionModel().getSelectedItem() != null) {
+        if (
+
+                readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = readersTable.getSelectionModel().getSelectedItem();
-            birthDatePicker.setValue(LocalDate.parse(reader.getDateOfBirth()));
-//            passwordTextField.setText(reader.getLogin().getPassword());
+//            birthDatePicker.setValue(LocalDate.parse(reader.getDateOfBirth()));
+            nameTextField.setText(reader.getName());
         }
     }
 }

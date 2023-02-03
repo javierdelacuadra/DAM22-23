@@ -16,10 +16,10 @@ public class UpdateArticleViewModel {
     }
 
     public ObservableList<Article> getArticles() {
-        return FXCollections.observableArrayList(servicesArticlesSQL.getArticlesAndTypes());
+        return FXCollections.observableArrayList(servicesArticlesSQL.getArticles().get());
     }
 
-    public Integer updateArticle(Article article) {
-        return servicesArticlesSQL.updateArticle(article);
+    public Integer updateArticle(Article article, String oldName) {
+        return servicesArticlesSQL.updateArticle(article, oldName);
     }
 }

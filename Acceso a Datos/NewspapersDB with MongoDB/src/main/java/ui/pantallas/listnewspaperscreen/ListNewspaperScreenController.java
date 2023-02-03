@@ -68,25 +68,25 @@ public class ListNewspaperScreenController extends BasePantallaController implem
     }
 
     public void deleteArticlesFromNewspaper() {
-//        Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
-//        if (newspaper != null) {
-//            if (newspaper.getArticles().isEmpty()) {
-//                this.getPrincipalController().createAlert("This newspaper has no articles");
-//            } else {
-//                int result = viewModel.deleteArticlesFromNewspaper(newspaper);
-//                if (result > 0) {
-//                    this.getPrincipalController().createAlert("Articles deleted successfully");
-//                    articlesTable.setItems(FXCollections.emptyObservableList());
-//                    numberArticlesTable.setItems(FXCollections.emptyObservableList());
-//                    newspaperTable.setItems(viewModel.getNewspapers());
-//                    deleteArticlesButton.setVisible(false);
-//                } else {
-//                    this.getPrincipalController().createAlert("Error deleting articles");
-//                }
-//            }
-//        } else {
-//            this.getPrincipalController().createAlert("Select a newspaper");
-//        }
+        Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
+        if (newspaper != null) {
+            if (newspaper.getArticles().isEmpty()) {
+                this.getPrincipalController().createAlert("This newspaper has no articles");
+            } else {
+                int result = viewModel.deleteArticlesFromNewspaper(newspaper);
+                if (result > 0) {
+                    this.getPrincipalController().createAlert("Articles deleted successfully");
+                    articlesTable.setItems(FXCollections.emptyObservableList());
+                    numberArticlesTable.setItems(FXCollections.emptyObservableList());
+                    newspaperTable.setItems(viewModel.getNewspapers());
+                    deleteArticlesButton.setVisible(false);
+                } else {
+                    this.getPrincipalController().createAlert("Error deleting articles");
+                }
+            }
+        } else {
+            this.getPrincipalController().createAlert("Select a newspaper");
+        }
     }
 
     public void getArticlesAndNumbers() {
@@ -98,8 +98,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
         Newspaper newspaperWithArticles = viewModel.getArticlesFromNewspaper(newspaper);
         if (!newspaperWithArticles.getArticles().isEmpty()) {
-            idArticleColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
+            nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             nameTypeColumn.setCellValueFactory(cellData -> {
                 Article article = cellData.getValue();
                 return new SimpleStringProperty(article.getType());

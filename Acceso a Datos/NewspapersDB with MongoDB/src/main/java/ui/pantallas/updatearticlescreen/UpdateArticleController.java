@@ -41,20 +41,15 @@ public class UpdateArticleController extends BasePantallaController implements I
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-//        articlesTable.setItems(viewModel.getArticles());
+        articlesTable.setItems(viewModel.getArticles());
     }
 
     public void updateArticle() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null) {
             Article article = new Article();
             article.setName(nameTextField.getText());
-            try {
-                article.setType(String.valueOf((Integer.parseInt(typeTextField.getText()))));
-            } catch (NumberFormatException e) {
-                this.getPrincipalController().createAlert("The type must be a number");
-            }
-//            article.setNewspaper(articlesTable.getSelectionModel().getSelectedItem().getNewspaper());
-            if (viewModel.updateArticle(article) == 1) {
+            article.setType(typeTextField.getText());
+            if (viewModel.updateArticle(article, articlesTable.getSelectionModel().getSelectedItem().getName()) == 1) {
                 articlesTable.getSelectionModel().getSelectedItem().setName(nameTextField.getText());
                 articlesTable.refresh();
                 this.getPrincipalController().createAlert("Article updated successfully!");
@@ -69,7 +64,7 @@ public class UpdateArticleController extends BasePantallaController implements I
         if (articlesTable.getSelectionModel().getSelectedItem() != null) {
             Article article = articlesTable.getSelectionModel().getSelectedItem();
             nameTextField.setText(article.getName());
-            typeTextField.setText(String.valueOf(article.getType()));
+            typeTextField.setText(article.getType());
         }
     }
 }

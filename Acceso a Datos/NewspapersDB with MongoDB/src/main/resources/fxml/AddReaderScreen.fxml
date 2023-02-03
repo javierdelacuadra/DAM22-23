@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
@@ -22,4 +20,5 @@
     <Label layoutX="461.0" layoutY="215.0"/>
     <Label layoutX="441.0" layoutY="278.0" text="Date of Birth"/>
     <Label layoutX="450.0" layoutY="183.0" text="Password"/>
+    <MFXComboBox fx:id="newspaperComboBox" layoutX="412.0" layoutY="183.0" prefHeight="50.0" prefWidth="126.0"/>
 </AnchorPane>
