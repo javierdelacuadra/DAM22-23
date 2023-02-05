@@ -41,9 +41,6 @@ public class ListNewspaperScreenController extends BasePantallaController implem
     private TableView<Article> articlesTable;
 
     @FXML
-    private TableColumn<Article, Integer> idArticleColumn;
-
-    @FXML
     private TableColumn<Article, String> nameArticleColumn;
 
     @FXML
@@ -54,9 +51,6 @@ public class ListNewspaperScreenController extends BasePantallaController implem
 
     @FXML
     private TableView<String> numberArticlesTable;
-
-    @FXML
-    private TableColumn<String, String> numberArticlesColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,7 +91,7 @@ public class ListNewspaperScreenController extends BasePantallaController implem
     private void getArticlesOfNewspaper() {
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
         Newspaper newspaperWithArticles = viewModel.getArticlesFromNewspaper(newspaper);
-        if (!newspaperWithArticles.getArticles().isEmpty()) {
+        if (newspaperWithArticles != null) {
             nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             nameTypeColumn.setCellValueFactory(cellData -> {
                 Article article = cellData.getValue();

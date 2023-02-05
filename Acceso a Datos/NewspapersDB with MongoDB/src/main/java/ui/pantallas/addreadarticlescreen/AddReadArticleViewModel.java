@@ -25,11 +25,11 @@ public class AddReadArticleViewModel {
         return servicesArticlesSQL.getArticlesByReaderID(reader);
     }
 
-    public int addRating(ReadArticle readArticle) {
-        return servicesReadArticles.addRating(readArticle);
+    public int addRating(ReadArticle readArticle, Article article) {
+        return servicesReadArticles.addRating(readArticle, article);
     }
 
-    public int updateRating(ReadArticle readArticle) {
-        return servicesReadArticles.updateRating(readArticle);
+    public int updateRating(ReadArticle readArticle, Article article) {
+        return servicesReadArticles.updateRating(readArticle, article);
     }
 }

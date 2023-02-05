@@ -55,12 +55,16 @@ public class PantallaLoginController extends BasePantallaController implements I
             } else if (id == -3) {
                 this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
             } else {
-                Reader reader = viewModel.getReader(id);
-                if (reader == null) {
-                    this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
+                if (id != -1) {
+                    Reader reader = viewModel.getReader(id);
+                    if (reader == null) {
+                        this.getPrincipalController().createAlert(ConstantesUI.THERE_WAS_AN_ERROR_TRYING_TO_LOG_IN);
+                    } else {
+                        this.getPrincipalController().setReader(reader);
+                        this.getPrincipalController().onLoginHecho(id <= 0);
+                    }
                 } else {
-                    this.getPrincipalController().setReader(reader);
-                    this.getPrincipalController().onLoginHecho(id <= 0);
+                    this.getPrincipalController().onLoginHecho(true);
                 }
             }
         }

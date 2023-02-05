@@ -140,7 +140,9 @@ public class DaoArticles {
             }
             List<Article> articles = new ArrayList<>();
             for (Newspaper newspaper : newspapers) {
-                articles.addAll(newspaper.getArticles());
+                if (newspaper.getArticles() != null) {
+                    articles.addAll(newspaper.getArticles());
+                }
             }
             return Either.right(articles);
         } catch (Exception e) {

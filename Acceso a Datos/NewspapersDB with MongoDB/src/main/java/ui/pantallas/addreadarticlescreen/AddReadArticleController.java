@@ -60,13 +60,43 @@ public class AddReadArticleController extends BasePantallaController implements 
         }
     }
 
+//    public void addRating() {
+//        if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
+//            ReadArticle readArticle = new ReadArticle(this.getPrincipalController().getReader().getId(), ratingComboBox.getSelectionModel().getSelectedItem());
+//            Article article = articlesTable.getSelectionModel().getSelectedItem();
+//            int result = viewModel.addRating(readArticle, article);
+//            if (result >= 1) {
+//                this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);
+//            } else if (result == -1) {
+//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//                alert.setTitle("Confirmation");
+//                alert.setHeaderText("You have already rated this article");
+//                alert.setContentText("Do you want to update the rating?");
+//                alert.showAndWait().ifPresent(response -> {
+//                    if (response == ButtonType.OK) {
+//                        readArticle.setId(result);
+//                        int resultUpdate = viewModel.updateRating(readArticle, article);
+//                        if (resultUpdate >= 1) {
+//                            this.getPrincipalController().createAlert("The rating has been updated successfully");
+//                        } else {
+//                            this.getPrincipalController().createAlert("The rating could not be updated");
+//                        }
+//                    }
+//                });
+//            } else if (result == -2) {
+//                this.getPrincipalController().createAlert("The rating could not be submitted");
+//            }
+//        } else {
+//            this.getPrincipalController().createAlert(ConstantesUI.SELECT_AN_ARTICLE_AND_A_RATING);
+//        }
+//    }
+
     public void addRating() {
         if (articlesTable.getSelectionModel().getSelectedItem() != null && ratingComboBox.getSelectionModel().getSelectedItem() != null) {
             ReadArticle readArticle = new ReadArticle(this.getPrincipalController().getReader().getId(), ratingComboBox.getSelectionModel().getSelectedItem());
-            int result = viewModel.addRating(readArticle);
+            Article article = articlesTable.getSelectionModel().getSelectedItem();
+            int result = viewModel.addRating(readArticle, article);
             if (result >= 1) {
-                articlesTable.getItems().clear();
-//                articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                 this.getPrincipalController().createAlert(ConstantesUI.THE_RATING_HAS_BEEN_SUBMITTED_SUCCESSFULLY);
             } else if (result == -1) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -75,11 +105,8 @@ public class AddReadArticleController extends BasePantallaController implements 
                 alert.setContentText("Do you want to update the rating?");
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        readArticle.setId(result);
-                        int resultUpdate = viewModel.updateRating(readArticle);
+                        int resultUpdate = viewModel.updateRating(readArticle, article);
                         if (resultUpdate >= 1) {
-                            articlesTable.getItems().clear();
-//                            articlesTable.setItems(FXCollections.observableArrayList(viewModel.getArticles(this.getPrincipalController().getReader()).get()));
                             this.getPrincipalController().createAlert("The rating has been updated successfully");
                         } else {
                             this.getPrincipalController().createAlert("The rating could not be updated");
@@ -87,10 +114,11 @@ public class AddReadArticleController extends BasePantallaController implements 
                     }
                 });
             } else if (result == -2) {
-                this.getPrincipalController().createAlert("The rating could not be submitted");
+                this.getPrincipalController().createAlert("The reader was not found");
             }
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.SELECT_AN_ARTICLE_AND_A_RATING);
         }
     }
+
 }

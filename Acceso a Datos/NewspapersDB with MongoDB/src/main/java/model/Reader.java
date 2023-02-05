@@ -7,6 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 
 //@NamedQueries({
 //        @NamedQuery(name = "HQL_GET_ALL_READERS", query = "from Reader"),
@@ -27,12 +28,5 @@ public class Reader {
         this.id = id;
         this.name = text;
         this.dateOfBirth = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Reader reader)) return false;
-        return id == reader.id;
     }
 }

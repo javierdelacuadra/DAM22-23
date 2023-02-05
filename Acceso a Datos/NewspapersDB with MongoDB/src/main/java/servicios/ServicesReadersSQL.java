@@ -37,7 +37,10 @@ public class ServicesReadersSQL {
     public int deleteReader(Reader reader, boolean delete) {
         if (!delete) {
             List<Reader> readers = daoReaders.getAll().get();
-            Reader reader1 = readers.stream().filter(r -> r.getName().equals(reader.getName())).findFirst().orElse(null);
+            Reader reader1 = null;
+            if (reader.getName() != null) {
+                reader1 = readers.stream().filter(r -> reader.getName().equals(r.getName())).findFirst().orElse(null);
+            }
             if (reader1 != null) {
                 if (reader1.getCancellationDate() == null) {
                     return -2;
