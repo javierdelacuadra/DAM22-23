@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">RoomDatabase</string>
+    <string name="name">name</string>
+    <string name="suffixCorreo">\@gmail.com</string>
+    <string name="nombre">Nombre</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="emailConfirmation">Confirmo que quiero recibir información por correo electrónico</string>
+    <string name="add">Añadir</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="anterior">ANTERIOR</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="_uno">1</string>
+    <string name="formatoIncorrectoEmail">Formato incorrecto en el email</string>
+    <string name="camposVaciosError">No puede haber campos vacíos</string>
+    <string name="errorEmail">Error: El email especificado ya corresponde a una persona registrada</string>
+    <string name="error_campos_vacios">No se han rellenado todos los campos</string>
+    <string name="error_formato_email">El formato del email es incorrecto</string>
+    <string name="error_al_guardar_persona">Error al añadir persona</string>
+    <string name="persona_guardada">Persona agregada correctamente</string>
+    <string name="error_persona_no_existe">La persona que intenta borrar no existe</string>
+    <string name="error_al_eliminar_persona">No se ha podido eliminar la persona</string>
+    <string name="persona_eliminada">Persona eliminada correctamente</string>
+    <string name="error_no_hay_mas_personas">No hay más personas</string>
+    <string name="title_activity_recicler">ReciclerActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="verLista">Ver lista</string>
+    <string name="SI">Sí</string>
+    <string name="update_message">¿Quieres actualizar esta persona?</string>
+    <string name="no">No</string>
+    <string name="persona_no_actualizada">Persona no actualizada</string>
+    <string name="empty_fields">Debes rellenar todos los campos</string>
+    <string name="empty_password">Si dejas la contraseña vacía se mantendrá la actual</string>
+</resources>
