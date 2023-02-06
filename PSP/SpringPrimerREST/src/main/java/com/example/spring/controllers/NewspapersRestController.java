@@ -33,9 +33,9 @@ public class NewspapersRestController {
         return servicios.createNewspaper(newspaper);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Newspaper updateNewspaper(@PathVariable Long id, @RequestBody Newspaper newspaper) {
+    public int updateNewspaper(@RequestBody Newspaper newspaper) {
         return servicios.updateNewspaper(newspaper);
     }
 

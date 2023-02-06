@@ -33,9 +33,9 @@ public class ReadersRestController {
         return servicios.createReader(reader);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Reader updateReader(@PathVariable Long id, @RequestBody Reader reader) {
+    public int updateReader(@RequestBody Reader reader) {
         return servicios.updateReader(reader);
     }
 

@@ -38,9 +38,9 @@ public class ServiciosNewspapers {
         return newspaperMapper.toNewspaper(newspapersRepository.save(newspaperMapper.toNewspaperEntity(newspaper)));
     }
 
-    public Newspaper updateNewspaper(Newspaper newspaper) {
+    public int updateNewspaper(Newspaper newspaper) {
         NewspaperEntity newspaperEntity = newspaperMapper.toNewspaperEntity(newspaper);
-        return newspaperMapper.toNewspaper(newspapersRepository.updateNewspaper(newspaperEntity.getName(), newspaperEntity.getRelease_date(), String.valueOf(newspaperEntity.getId())).orElseThrow(() -> new ObjectDoesntExistException("Newspaper not found")));
+        return newspapersRepository.updateNewspaper(newspaperEntity.getName(), newspaperEntity.getRelease_date(), String.valueOf(newspaperEntity.getId()));
     }
 
     public void deleteNewspaper(Long id) {

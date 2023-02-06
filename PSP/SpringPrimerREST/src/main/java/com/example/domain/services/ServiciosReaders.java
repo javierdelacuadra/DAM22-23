@@ -38,9 +38,9 @@ public class ServiciosReaders {
         return readerMapper.toReader(readersRepository.save(readerMapper.toReaderEntity(reader)));
     }
 
-    public Reader updateReader(Reader reader) {
+    public int updateReader(Reader reader) {
         ReaderEntity readerEntity = readerMapper.toReaderEntity(reader);
-        return readerMapper.toReader(readersRepository.updateReader(readerEntity.getName(), String.valueOf(readerEntity.getDateOfBirth()), String.valueOf(readerEntity.getId())).orElseThrow(() -> new ObjectDoesntExistException("Reader not found")));
+        return readersRepository.updateReader(readerEntity.getName(), readerEntity.getDateOfBirth(), String.valueOf(readerEntity.getId()));
     }
 
     public void deleteReader(Long id) {
