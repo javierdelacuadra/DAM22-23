@@ -21,48 +21,12 @@ import java.io.IOException;
 @Component("MisErrores")
 public class ControlErrores extends ResponseEntityExceptionHandler implements AccessDeniedHandler, AuthenticationFailureHandler {
 
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ObjectDoesntExistException.class)
     public ResponseEntity<ApiError> handleNotFoundException(ObjectDoesntExistException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ApiError(e.getMessage()));
     }
-
-
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(UsernameNotFoundException.class)
-//    public ResponseEntity<ApiError> handleUsernameNotFoundException(UsernameNotFoundException e) {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                .body(new ApiError(e.getMessage(),"debug","404"));
-//    }
-//
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(InsufficientAuthenticationException.class)
-//    public ResponseEntity<ApiError> handleAuthException(InsufficientAuthenticationException e) {
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                .body(new ApiError(e.getMessage(),"debug","404"));
-//    }
-//
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(BadCredentialsException.class)
-//    public ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException e) {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                .body(new ApiError(e.getMessage(),"debug","404"));
-//    }
-//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-//    @ExceptionHandler(AccessDeniedException.class)
-//    public ResponseEntity<ApiError> handleAccessException(AccessDeniedException e) {
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                .body(new ApiError(e.getMessage(),"debug","404"));
-//    }
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    @ExceptionHandler(DataIntegrityViolationException.class)
-//    public ResponseEntity<ApiError> handleDataIntegrityException(DataIntegrityViolationException e) {
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                .body(new ApiError(e.getMessage(),"entidad no existe","404"));
-//    }
-
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, org.springframework.security.access.AccessDeniedException accessDeniedException) throws IOException, ServletException {
