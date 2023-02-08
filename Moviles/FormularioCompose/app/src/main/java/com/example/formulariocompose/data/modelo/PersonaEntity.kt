@@ -1,9 +1,9 @@
-package com.example.recyclerview.data.modelo
+package com.example.formulariocompose.data.modelo
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.recyclerview.data.common.Constantes
+import com.example.formulariocompose.data.common.Constantes
 
 @Entity(tableName = Constantes.TABLE_NAME)
 data class PersonaEntity(

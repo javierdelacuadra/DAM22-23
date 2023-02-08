@@ -1,4 +1,4 @@
-package com.example.recyclerview.domain.modelo
+package com.example.formulariocompose.domain.modelo
 
 data class Persona(
     val nombre: String,

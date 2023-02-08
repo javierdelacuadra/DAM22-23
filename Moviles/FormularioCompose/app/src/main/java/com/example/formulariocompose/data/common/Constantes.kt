@@ -1,4 +1,4 @@
-package com.example.recyclerview.data.common
+package com.example.formulariocompose.data.common
 
 object Constantes {
     const val TABLE_NAME = "personas"
@@ -9,4 +9,5 @@ object Constantes {
     const val SELECT_PERSONA = "SELECT * FROM $TABLE_NAME WHERE $EMAIL = :email"
     const val DATABASE_PATH = "database/personas.db"
     const val ITEM_DATABASE = "item_database"
+    const val ASSET_DB = "assetDB"
 }

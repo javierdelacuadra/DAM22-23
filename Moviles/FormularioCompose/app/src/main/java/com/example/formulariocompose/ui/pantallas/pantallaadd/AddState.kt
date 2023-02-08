@@ -1,7 +1,7 @@
-package com.example.recyclerview.ui.addactivity
+package com.example.formulariocompose.ui.pantallas.pantallaadd
 
-import com.example.recyclerview.domain.modelo.Persona
-import com.example.recyclerview.ui.common.ConstantesUI
+import com.example.formulariocompose.domain.modelo.Persona
+import com.example.formulariocompose.ui.common.ConstantesUI
 
 data class AddState(
     val persona: Persona = Persona(

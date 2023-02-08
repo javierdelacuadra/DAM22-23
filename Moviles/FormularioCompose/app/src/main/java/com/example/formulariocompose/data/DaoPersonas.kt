@@ -1,8 +1,8 @@
-package com.example.recyclerview.data
+package com.example.formulariocompose.data
 
 import androidx.room.*
-import com.example.recyclerview.data.common.Constantes
-import com.example.recyclerview.data.modelo.PersonaEntity
+import com.example.formulariocompose.data.common.Constantes
+import com.example.formulariocompose.data.modelo.PersonaEntity
 
 @Dao
 interface DaoPersonas {

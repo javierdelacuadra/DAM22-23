@@ -1,6 +1,6 @@
-package com.example.recyclerview.ui.addactivity
+package com.example.formulariocompose.ui.pantallas.pantallaadd
 
-import com.example.recyclerview.domain.modelo.Persona
+import com.example.formulariocompose.domain.modelo.Persona
 
 sealed interface AddEvent {
     data class AddPersona(val persona: Persona) : AddEvent

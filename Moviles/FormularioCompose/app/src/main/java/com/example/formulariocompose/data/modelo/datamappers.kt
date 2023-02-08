@@ -1,6 +1,6 @@
-package com.example.recyclerview.data.modelo
+package com.example.formulariocompose.data.modelo
 
-import com.example.recyclerview.domain.modelo.Persona
+import com.example.formulariocompose.domain.modelo.Persona
 
 fun PersonaEntity.toPersona(): Persona {
     return Persona(
