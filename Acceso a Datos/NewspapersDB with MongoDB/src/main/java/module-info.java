@@ -40,6 +40,7 @@ module MercadonaFX {
     exports ui.pantallas.deletearticlescreen;
     exports ui.pantallas.updatearticlescreen;
     exports ui.pantallas.common;
+    exports ui.consola;
     exports servicios;
     exports config;
     exports data;
