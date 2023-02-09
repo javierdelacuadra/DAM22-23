@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -55,14 +57,14 @@ fun PantallaAdd(
             .fillMaxSize()
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+    ) {
         Text(text = "Formulario", style = MaterialTheme.typography.h4)
         OutlinedTextField(value = nombre, onValueChange = {
             nombre = it
-        },modifier = Modifier.padding(bottom = 8.dp), label = { Text(text = "Nombre") })
+        }, modifier = Modifier.padding(bottom = 8.dp), label = { Text(text = "Nombre") })
         OutlinedTextField(value = password, onValueChange = {
             password = it
-        },modifier = Modifier.padding(bottom = 8.dp), label = { Text(text = "Password") })
+        }, modifier = Modifier.padding(bottom = 8.dp), label = { Text(text = "Password") })
         OutlinedTextField(value = email, onValueChange = {
             email = it
         }, modifier = Modifier.padding(bottom = 8.dp), label = { Text(text = "Email") })
