@@ -1,6 +1,7 @@
 package com.example.formulariocompose.ui.pantallas.pantallalist
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.formulariocompose.domain.modelo.Persona
 import com.example.formulariocompose.domain.usecases.DeletePersonaUseCase
 import com.example.formulariocompose.domain.usecases.GetPersonasUseCase
@@ -25,14 +26,24 @@ class ListViewModel @Inject constructor(
         when (event) {
             is ListEvent.GetPersonas -> cargarPersonas()
             is ListEvent.DeletePersona -> deletePersona(event.persona)
+            is ListEvent.ResetMensaje -> resetMensaje()
         }
+    }
+
+    private fun resetMensaje() {
+        _uiState.update { it.copy(mensaje = null) }
     }
 
     private fun deletePersona(persona: Persona) {
         viewModelScope.launch {
             try {
                 deletePersonaUseCase.invoke(persona)
-                _uiState.update { it.copy(mensaje = ConstantesUI.PERSONA_BORRADA) }
+                _uiState.update {
+                    it.copy(
+                        mensaje = ConstantesUI.PERSONA_BORRADA,
+                        lista = getPersonasUseCase.invoke()
+                    )
+                }
             } catch (e: Exception) {
                 _uiState.update { it.copy(mensaje = ConstantesUI.ERROR_BORRAR_PERSONA) }
             }

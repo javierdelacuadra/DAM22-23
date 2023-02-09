@@ -5,5 +5,5 @@ import com.example.formulariocompose.ui.common.ConstantesUI
 
 data class ListState(
     val mensaje: String? = ConstantesUI.NADA,
-    val lista: List<Persona>?,
+    val lista: List<Persona> = emptyList(),
 )
