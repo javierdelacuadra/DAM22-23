@@ -51,6 +51,7 @@ public class UpdateArticleController extends BasePantallaController implements I
             article.setType(typeTextField.getText());
             if (viewModel.updateArticle(article, articlesTable.getSelectionModel().getSelectedItem().getName()) == 1) {
                 articlesTable.getSelectionModel().getSelectedItem().setName(nameTextField.getText());
+                articlesTable.getSelectionModel().getSelectedItem().setType(typeTextField.getText());
                 articlesTable.refresh();
                 this.getPrincipalController().createAlert("Article updated successfully!");
             } else {

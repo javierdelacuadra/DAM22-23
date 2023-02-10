@@ -12,7 +12,6 @@ public enum Pantallas {
     ADDREADERSCREEN("/fxml/AddReaderScreen.fxml"),
     UPDATEREADERSCREEN("/fxml/UpdateReaderScreen.fxml"),
     ADDREADARTICLESCREEN("/fxml/AddReadArticleScreen.fxml"),
-    ADDSUBSCRIPTIONSCREEN("/fxml/AddSubscriptionScreen.fxml"),
     ADDNEWSPAPERSCREEN("/fxml/AddNewspaperScreen.fxml"),
     UPDATENEWSPAPERSCREEN("/fxml/UpdateNewspaperScreen.fxml"),
     UPDATEARTICLESCREEN("/fxml/UpdateArticleScreen.fxml"),

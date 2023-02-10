@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.updatereaderscreen.UpdateReaderController">
-    <TableView fx:id="readersTable" layoutX="51.0" layoutY="102.0" onMouseClicked="#fillTextFields" prefHeight="300.0"
-               prefWidth="305.0">
+    <TableView fx:id="readersTable" layoutX="51.0" layoutY="102.0" prefHeight="300.0" prefWidth="305.0"
+               onMouseClicked="#fillTextFields">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID"/>
-            <TableColumn fx:id="nameColumn" prefWidth="128.19998168945312" text="Name"/>
-            <TableColumn fx:id="birthDateColumn" prefWidth="102.20001220703125" text="Date of Birth"/>
+            <TableColumn fx:id="idColumn" prefWidth="49.33334732055664" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="117.6666488647461" text="Name"/>
+            <TableColumn fx:id="cancellationDateColumn" prefWidth="139.6666717529297" text="Cancellation Date"/>
         </columns>
     </TableView>
     <MFXDatePicker fx:id="birthDatePicker" layoutX="375.0" layoutY="242.0"/>

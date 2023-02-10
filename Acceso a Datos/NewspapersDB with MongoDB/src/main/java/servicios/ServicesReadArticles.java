@@ -21,8 +21,4 @@ public class ServicesReadArticles {
     public int updateRating(ReadArticle readArticle, Article article) {
         return daoReadArticles.update(readArticle, article);
     }
-
-//    public Map<Double, String> getAvgRating(Integer idReader) {
-//        return daoReadArticles.getAvgRating(idReader);
-//    }
 }

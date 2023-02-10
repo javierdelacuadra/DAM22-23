@@ -33,10 +33,6 @@
                 <MenuItem mnemonicParsing="false" onAction="#addReadArticlesMenu"
                           text="Add a read article"/>
             </Menu>
-            <Menu fx:id="subscriptionsMenu" mnemonicParsing="false" text="Subscriptions">
-                <MenuItem mnemonicParsing="false" onAction="#addSubscriptionMenu"
-                          text="Manage subscriptions"/>
-            </Menu>
         </MenuBar>
     </top>
 </BorderPane>

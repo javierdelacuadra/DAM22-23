@@ -8,7 +8,6 @@ import model.ArticleType;
 import model.Newspaper;
 import model.Reader;
 import servicios.ServicesNewspaperSQL;
-import servicios.ServicesReadArticles;
 import servicios.ServicesReadersSQL;
 import servicios.ServicesTypes;
 
@@ -18,14 +17,12 @@ public class ListReadersScreenViewModel {
 
     private final ServicesNewspaperSQL servicesNewspaperSQL;
     private final ServicesReadersSQL servicesReadersSQL;
-    private final ServicesReadArticles servicesReadArticles;
     private final ServicesTypes servicesTypes;
 
     @Inject
-    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesReadersSQL servicesReadersSQL, ServicesReadArticles servicesReadArticles, ServicesTypes servicesTypes) {
+    public ListReadersScreenViewModel(ServicesNewspaperSQL servicesNewspaperSQL, ServicesReadersSQL servicesReadersSQL, ServicesTypes servicesTypes) {
         this.servicesNewspaperSQL = servicesNewspaperSQL;
         this.servicesReadersSQL = servicesReadersSQL;
-        this.servicesReadArticles = servicesReadArticles;
         this.servicesTypes = servicesTypes;
     }
 

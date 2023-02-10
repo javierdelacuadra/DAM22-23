@@ -6,6 +6,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,7 +39,7 @@ public class AddReaderScreenController extends BasePantallaController implements
     private TableColumn<Reader, String> nameColumn;
 
     @FXML
-    private TableColumn<Reader, String> birthDateColumn;
+    private TableColumn<Reader, String> cancellationDateColumn;
 
     @FXML
     private MFXTextField nameTextField;
@@ -56,7 +57,17 @@ public class AddReaderScreenController extends BasePantallaController implements
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        cancellationDateColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(item == null ? "No cancellation date" : item);
+                }
+            }
+        });
         readersTable.setItems(viewModel.getReaders());
         newspaperComboBox.setItems(viewModel.getNewspapers());
     }

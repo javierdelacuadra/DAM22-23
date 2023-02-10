@@ -9,6 +9,7 @@ import model.Reader;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class ServicesReadersSQL {
 
@@ -27,6 +28,9 @@ public class ServicesReadersSQL {
         Either<Integer, List<Reader>> readers = daoReaders.getAll();
         if (readers.isRight()) {
             List<Reader> list = readers.get();
+            list.removeIf(Objects::isNull);
+            list.removeIf(r -> r.getName() == null);
+            list.removeIf(r -> list.stream().filter(r1 -> r1.getId() == (r.getId())).count() > 1);
             list.sort(Comparator.comparingInt(Reader::getId));
             return Either.right(list);
         } else {

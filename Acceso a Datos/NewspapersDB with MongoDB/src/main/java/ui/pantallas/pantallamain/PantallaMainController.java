@@ -49,9 +49,6 @@ public class PantallaMainController extends BasePantallaController implements In
     private Menu readArticlesMenu;
 
     @FXML
-    private Menu subscriptionsMenu;
-
-    @FXML
     private BorderPane root;
 
     @FXML
@@ -91,7 +88,6 @@ public class PantallaMainController extends BasePantallaController implements In
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
         readArticlesMenu.setVisible(false);
-        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLAMAIN);
     }
 
@@ -102,7 +98,6 @@ public class PantallaMainController extends BasePantallaController implements In
         optionsMenu.setVisible(false);
         readersMenu.setVisible(false);
         readArticlesMenu.setVisible(false);
-        subscriptionsMenu.setVisible(false);
         cargarPantalla(Pantallas.PANTALLALOGIN);
     }
 
@@ -131,7 +126,6 @@ public class PantallaMainController extends BasePantallaController implements In
         } else {
             optionsMenu.setVisible(true);
             readArticlesMenu.setVisible(true);
-            subscriptionsMenu.setVisible(true);
             cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
         }
     }
@@ -188,10 +182,6 @@ public class PantallaMainController extends BasePantallaController implements In
 
     public void addReadArticlesMenu() {
         cargarPantalla(Pantallas.ADDREADARTICLESCREEN);
-    }
-
-    public void addSubscriptionMenu() {
-        cargarPantalla(Pantallas.ADDSUBSCRIPTIONSCREEN);
     }
 
     public void addNewspaperMenu() {

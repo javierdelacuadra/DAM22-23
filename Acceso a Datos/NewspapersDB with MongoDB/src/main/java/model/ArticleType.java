@@ -9,10 +9,6 @@ import lombok.*;
 @Setter
 @ToString
 
-//@NamedQueries({
-//        @NamedQuery(name = "HQL_GET_ALL_TYPES", query = "SELECT t FROM ArticleType t"),
-//        @NamedQuery(name = "HQL_GET_MOST_READ_TYPE", query = "SELECT article.type FROM ReadArticle read JOIN read.article article GROUP BY article.type ORDER BY COUNT(*) DESC LIMIT 1"),
-//})
 public class ArticleType {
     private int id;
     private String description;
@@ -27,5 +23,3 @@ public class ArticleType {
         this.id = id;
     }
 }
-
-//TODO: borrar

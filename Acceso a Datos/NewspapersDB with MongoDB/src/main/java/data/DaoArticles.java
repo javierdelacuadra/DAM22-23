@@ -1,8 +1,11 @@
 package data;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.UpdateResult;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -12,12 +15,13 @@ import model.Reader;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.elemMatch;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
 import static com.mongodb.client.model.Updates.*;
 
 public class DaoArticles {
@@ -34,18 +38,14 @@ public class DaoArticles {
     }
 
     public Either<Integer, List<Article>> getAll() {
+        MongoCollection<Document> collection = db.getCollection("newspapers");
         List<Article> articles = new ArrayList<>();
-        MongoCollection<Document> newspaperCollection = db.getCollection("newspapers");
-        FindIterable<Document> newspapers = newspaperCollection.find();
-
-        for (Document newspaper : newspapers) {
-            String newspaperJson = newspaper.toJson();
-            Newspaper newspaperObject = gson.fromJson(newspaperJson, Newspaper.class);
-            if (newspaperObject.getArticles() != null) {
-                articles.addAll(newspaperObject.getArticles());
+        for (Document document : collection.find().projection(fields(include("articles.name", "articles.type")))) {
+            List<Document> articles1 = document.get("articles", List.class);
+            if (articles1 != null) {
+                articles.addAll(convertToArticles(articles1));
             }
         }
-
         if (articles.isEmpty()) {
             return Either.left(-1);
         } else {
@@ -53,23 +53,21 @@ public class DaoArticles {
         }
     }
 
-    public Article get(String name) {
-        try {
-            MongoCollection<Document> collection = db.getCollection("newspapers");
-            FindIterable<Document> iterable = collection.find();
+    private List<Article> convertToArticles(List<Document> articlesDoc) {
+        List<Article> articles = new ArrayList<>();
+        for (Document articleDoc : articlesDoc) {
+            articles.add(new Article(articleDoc.getString("name"), articleDoc.getString("type")));
+        }
+        return articles;
+    }
 
-            for (Document document : iterable) {
-                JsonReader reader = new JsonReader(new StringReader(document.toJson()));
-                reader.setLenient(true);
-                Newspaper newspaper = new Gson().fromJson(reader, Newspaper.class);
-                for (Article article : newspaper.getArticles()) {
-                    if (article.getName().equals(name)) {
-                        return article;
-                    }
-                }
-            }
-            return null;
-        } catch (Exception e) {
+    public Article get(String name) {
+        MongoCollection<Document> collection = db.getCollection("newspapers");
+        Document result = collection.find(Filters.and(Filters.eq("articles.name", name))).projection(include("articles.$")).first();
+        if (result != null) {
+            List<Article> articles = result.get("articles", List.class);
+            return articles.get(0);
+        } else {
             return null;
         }
     }
@@ -117,12 +115,13 @@ public class DaoArticles {
 
     public Either<Integer, List<Article>> getAll(String name) {
         MongoCollection<Document> collection = db.getCollection("newspapers");
+        List<Article> articles;
         Bson filter = eq("name", name);
-        Document newspaper = collection.find(filter).first();
+        Document newspaper = collection.find(filter).projection(include("articles")).first();
         if (newspaper == null) {
             return Either.left(-1);
         }
-        List<Article> articles = (List<Article>) newspaper.get("articles");
+        articles = (List<Article>) newspaper.get("articles");
         if (articles == null) {
             return Either.left(-1);
         } else {
@@ -134,14 +133,15 @@ public class DaoArticles {
         try {
             MongoCollection<Document> collection = db.getCollection("newspapers");
             Bson filter = elemMatch("readers", new Document("id", reader.getId()));
-            List<Newspaper> newspapers = new ArrayList<>();
-            for (Document document : collection.find(filter)) {
-                newspapers.add(gson.fromJson(document.toJson(), Newspaper.class));
-            }
+            Bson projection = fields(include("articles"));
+            List<Document> newspapers = collection.find(filter).projection(projection).into(new ArrayList<>());
             List<Article> articles = new ArrayList<>();
-            for (Newspaper newspaper : newspapers) {
-                if (newspaper.getArticles() != null) {
-                    articles.addAll(newspaper.getArticles());
+            for (Document newspaper : newspapers) {
+                List<Document> articleDocuments = (List<Document>) newspaper.get("articles");
+                if (articleDocuments != null) {
+                    for (Document articleDocument : articleDocuments) {
+                        articles.add(gson.fromJson(articleDocument.toJson(), Article.class));
+                    }
                 }
             }
             return Either.right(articles);
@@ -150,44 +150,7 @@ public class DaoArticles {
         }
     }
 
-    //
-//    public Either<Integer, List<Article>> getAll(String type) {
-//        List<Article> articles = new ArrayList<>();
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            articles = em
-//                    .createNamedQuery("HQL_GET_ARTICLES_BY_TYPE", Article.class)
-//                    .setParameter("description", type)
-//                    .getResultList();
-//
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//
-//        return articles.isEmpty() ? Either.left(-1) : Either.right(articles);
-//    }
-//
-//    public Integer delete(Article article) {
-//        em = jpaUtil.getEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//
-//        try {
-//            em.remove(em.merge(article));
-//            tx.commit();
-//            return 1;
-//        } catch (Exception e) {
-//            if (tx.isActive()) tx.rollback();
-//            e.printStackTrace();
-//            return -1;
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//    }
-//
+
     public Integer delete(String name) {
         try {
             MongoCollection<Document> collection = db.getCollection("newspapers");
@@ -199,21 +162,4 @@ public class DaoArticles {
             return -1;
         }
     }
-//
-//    public List<Article> getAllWithTypes() {
-//        em = jpaUtil.getEntityManager();
-//        List<Article> articles = new ArrayList<>();
-//
-//        try {
-//            articles = em
-//                    .createNamedQuery("HQL_GET_ALL_ARTICLES_AND_TYPES", Article.class)
-//                    .getResultList();
-//
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//        return articles;
-//    }
 }

@@ -10,7 +10,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Article;
 import model.ArticleType;
-import model.Query1;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
@@ -29,28 +28,10 @@ public class ListArticleScreenController extends BasePantallaController implemen
     private TableView<Article> articlesTable;
 
     @FXML
-    private TableColumn<Article, Integer> idColumn;
-
-    @FXML
     private TableColumn<Article, String> nameColumn;
 
     @FXML
     private TableColumn<Article, String> typeColumn;
-
-    @FXML
-    private TableColumn<Article, Integer> newspaperIDColumn;
-
-    @FXML
-    private TableView<Query1> articlesQueryTable;
-
-    @FXML
-    private TableColumn<Query1, String> nameArticleColumn;
-
-    @FXML
-    private TableColumn<Query1, Integer> readerCountColumn;
-
-    @FXML
-    private TableColumn<Query1, String> articleTypeColumn;
 
     @FXML
     private MFXComboBox<ArticleType> typeComboBox;
@@ -60,17 +41,12 @@ public class ListArticleScreenController extends BasePantallaController implemen
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         articlesTable.setItems(viewModel.getArticles());
-        articlesQueryTable.setVisible(false);
-        nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name_article"));
-        readerCountColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
-        articleTypeColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         typeComboBox.setItems(viewModel.getArticleTypes());
     }
 
     public void showArticles() {
         articlesTable.setVisible(true);
         articlesTable.setItems(viewModel.getArticles());
-        articlesQueryTable.setVisible(false);
         typeComboBox.getSelectionModel().clearSelection();
     }
 

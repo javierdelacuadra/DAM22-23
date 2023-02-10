@@ -2,7 +2,10 @@ package data;
 
 import com.google.gson.Gson;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -19,6 +22,8 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
 import static com.mongodb.client.model.Updates.*;
 
 public class DaoReaders {
@@ -41,31 +46,41 @@ public class DaoReaders {
 
     public Either<Integer, List<Reader>> getAll() {
         MongoCollection<Document> collection = db.getCollection("newspapers");
-        try {
-            List<Reader> readers = new ArrayList<>();
-            FindIterable<Document> documents = collection.find();
-            for (Document document : documents) {
-                String json = document.toJson();
-                Newspaper newspaper = gson.fromJson(json, Newspaper.class);
-                if (newspaper.getReaders() != null) {
-                    readers.addAll(newspaper.getReaders());
-                }
+        List<Reader> readers = new ArrayList<>();
+        for (Document document : collection.find().projection(fields(include("readers.id", "readers.name", "readers.cancellationDate")))) {
+            List<Document> readers1 = document.get("readers", List.class);
+            if (readers1 != null) {
+                readers.addAll(convertToReaders(readers1));
             }
-            return Either.right(readers);
-        } catch (Exception e) {
-            return Either.left(-1);
         }
+        if (readers.isEmpty()) {
+            return Either.left(-1);
+        } else {
+            return Either.right(readers);
+        }
+    }
+
+    private List<Reader> convertToReaders(List<Document> readers1) {
+        List<Reader> readers = new ArrayList<>();
+        for (Document reader : readers1) {
+            readers.add(new Reader(
+                    reader.getInteger("id"),
+                    reader.getString("name"),
+                    reader.getString("cancellationDate")));
+        }
+        return readers;
     }
 
     public Reader get(Integer id) {
         MongoCollection<Document> collection = db.getCollection("newspapers");
-        Bson filter = eq("readers.id", id);
-        Document found = collection.find(filter).first();
-        if (found != null) {
-            List<Document> readers = (List<Document>) found.get("readers");
-            for (Document reader : readers) {
-                if (Objects.equals(reader.getInteger("id"), id)) {
-                    return fromDocument(reader);
+        Document result = collection.find().projection(fields(include("readers"))).first();
+        if (result != null) {
+            List<Document> readers = result.get("readers", List.class);
+            if (readers != null) {
+                for (Document reader : readers) {
+                    if (Objects.equals(reader.getInteger("id"), id)) {
+                        return fromDocument(reader);
+                    }
                 }
             }
         }
@@ -132,11 +147,10 @@ public class DaoReaders {
     public Either<Integer, List<Reader>> getAll(Newspaper newspaper) {
         MongoCollection<Document> collection = db.getCollection("newspapers");
         Bson filter = eq("name", newspaper.getName());
-        Document document = collection.find(filter).first();
+        Document document = collection.find(filter).projection(fields(include("readers"))).first();
         List<Reader> readers = new ArrayList<>();
         if (document != null) {
-            Newspaper newspaper1 = gson.fromJson(document.toJson(), Newspaper.class);
-            readers = newspaper1.getReaders();
+            readers = convertToReaders(document.get("readers", List.class));
         }
         if (readers.isEmpty()) {
             return Either.left(-1);
@@ -145,22 +159,3 @@ public class DaoReaders {
         }
     }
 }
-//
-//    public Either<Integer, List<Reader>> getAll(ArticleType type) {
-//        List<Reader> readers = new ArrayList<>();
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            readers = em
-//                    .createNamedQuery("HQL_GET_READERS_BY_ARTICLE_TYPE", Reader.class)
-//                    .setParameter("description", type.getDescription())
-//                    .getResultList();
-//
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//
-//        return readers.isEmpty() ? Either.left(-1) : Either.right(readers);
-//    }

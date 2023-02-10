@@ -4,6 +4,7 @@ import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,7 +33,7 @@ public class ListReadersScreenController extends BasePantallaController {
     private TableColumn<Reader, String> nameColumn;
 
     @FXML
-    private TableColumn<Reader, String> birthDateColumn;
+    private TableColumn<Reader, String> cancellationDateColumn;
 
     @FXML
     public MFXComboBox<Newspaper> newspaperComboBox;
@@ -49,7 +50,17 @@ public class ListReadersScreenController extends BasePantallaController {
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("cancellationDate"));
+        cancellationDateColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(item == null ? "No cancellation date" : item);
+                }
+            }
+        });
         readersTable.setItems(viewModel.getReaders());
         newspaperComboBox.setItems(
                 FXCollections.observableArrayList(viewModel.getNewspapers().stream().peek(newspaper -> newspaper.setName(newspaper.getName())).toList())

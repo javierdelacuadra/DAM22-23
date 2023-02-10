@@ -82,23 +82,4 @@ public class DaoReadArticles {
         }
         return -1;
     }
-
-//    public Map<Double, String> getAvgRating(int idReader) {
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            return em.createNamedQuery("HQL_GET_AVG_RATING_BY_READER", Tuple.class)
-//                    .setParameter("idReader", idReader)
-//                    .getResultStream()
-//                    .collect(Collectors.toMap(
-//                            tuple -> ((Number) tuple.get("avgRating")).doubleValue(),
-//                            tuple -> (tuple.get("name")).toString())
-//                    );
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//            return null;
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//    }
 }
