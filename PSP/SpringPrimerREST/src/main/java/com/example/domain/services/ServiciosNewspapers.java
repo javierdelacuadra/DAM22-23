@@ -1,5 +1,6 @@
 package com.example.domain.services;
 
+import com.example.common.Constantes;
 import com.example.data.NewspapersRepository;
 import com.example.data.modelo.NewspaperEntity;
 import com.example.data.modelo.mappers.NewspaperMapper;
@@ -31,7 +32,7 @@ public class ServiciosNewspapers {
     public Newspaper getNewspaperById(Long id) {
         return newspapersRepository.findById(String.valueOf(id))
                 .map(newspaperMapper::toNewspaper)
-                .orElseThrow(() -> new ObjectDoesntExistException("Newspaper not found"));
+                .orElseThrow(() -> new ObjectDoesntExistException(Constantes.NEWSPAPER_NOT_FOUND));
     }
 
     public Newspaper createNewspaper(Newspaper newspaper) {
@@ -47,7 +48,7 @@ public class ServiciosNewspapers {
         try {
             newspapersRepository.deleteById(String.valueOf(id));
         } catch (Exception e) {
-            throw new ObjectDoesntExistException("Newspaper not found");
+            throw new ObjectDoesntExistException(Constantes.NEWSPAPER_NOT_FOUND);
         }
     }
 }

@@ -21,16 +21,9 @@ public class NewspaperEntity {
     @Column(name = "release_date")
     private String release_date;
 
-    public NewspaperEntity(int id, String text, String toString) {
+    public NewspaperEntity(int id, String name, String releaseDate) {
         this.id = id;
-        this.name = text;
-        this.release_date = toString;
-    }
-
-    @Override
-    public String toString() {
-        return id +
-                ", name='" + name + '\'' +
-                ", Date='" + release_date + '\'';
+        this.name = name;
+        this.release_date = releaseDate;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.spring.controllers;
 
+import com.example.common.Constantes;
 import com.example.domain.modelo.Newspaper;
 import com.example.domain.services.ServiciosNewspapers;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/newspapers")
+@RequestMapping(Constantes.API_NEWSPAPERS_PATH)
 public class NewspapersRestController {
 
     private final ServiciosNewspapers servicios;
@@ -22,7 +23,7 @@ public class NewspapersRestController {
         return servicios.getNewspapers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(Constantes.ID_PATH)
     public Newspaper getNewspaperById(@PathVariable Long id) {
         return servicios.getNewspaperById(id);
     }
@@ -39,7 +40,7 @@ public class NewspapersRestController {
         return servicios.updateNewspaper(newspaper);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(Constantes.ID_PATH)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteNewspaper(@PathVariable Long id) {
         servicios.deleteNewspaper(id);

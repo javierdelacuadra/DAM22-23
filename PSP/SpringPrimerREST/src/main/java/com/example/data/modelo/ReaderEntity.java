@@ -25,9 +25,9 @@ public class ReaderEntity {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    public ReaderEntity(int id, String text, LocalDate value) {
+    public ReaderEntity(int id, String name, LocalDate dateOfBirth) {
         this.id = id;
-        this.name = text;
-        this.dateOfBirth = value;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
     }
 }

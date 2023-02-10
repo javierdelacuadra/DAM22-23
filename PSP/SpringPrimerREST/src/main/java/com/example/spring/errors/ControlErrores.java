@@ -1,7 +1,7 @@
 package com.example.spring.errors;
 
+import com.example.common.Constantes;
 import com.example.domain.exceptions.ObjectDoesntExistException;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.io.IOException;
 
 @ControllerAdvice
-@Component("MisErrores")
+@Component(Constantes.MIS_ERRORES)
 public class ControlErrores extends ResponseEntityExceptionHandler implements AccessDeniedHandler, AuthenticationFailureHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -29,13 +29,13 @@ public class ControlErrores extends ResponseEntityExceptionHandler implements Ac
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, org.springframework.security.access.AccessDeniedException accessDeniedException) throws IOException, ServletException {
+    public void handle(HttpServletRequest request, HttpServletResponse response, org.springframework.security.access.AccessDeniedException accessDeniedException) throws IOException {
         response.getWriter().println(ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ApiError(accessDeniedException.getMessage())));
     }
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
         response.getWriter().println(exception);
 
     }

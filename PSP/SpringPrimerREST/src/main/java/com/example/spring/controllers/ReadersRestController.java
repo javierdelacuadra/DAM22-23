@@ -1,5 +1,6 @@
 package com.example.spring.controllers;
 
+import com.example.common.Constantes;
 import com.example.domain.modelo.Reader;
 import com.example.domain.services.ServiciosReaders;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/readers")
+@RequestMapping(Constantes.API_READERS_PATH)
 public class ReadersRestController {
 
     private final ServiciosReaders servicios;
@@ -22,7 +23,7 @@ public class ReadersRestController {
         return servicios.getReaders();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(Constantes.ID_PATH)
     public Reader getReaderById(@PathVariable Long id) {
         return servicios.getReaderById(id);
     }
@@ -39,7 +40,7 @@ public class ReadersRestController {
         return servicios.updateReader(reader);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(Constantes.ID_PATH)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteReader(@PathVariable Long id) {
         servicios.deleteReader(id);

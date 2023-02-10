@@ -1,5 +1,6 @@
 package com.example.domain.services;
 
+import com.example.common.Constantes;
 import com.example.data.ReadersRepository;
 import com.example.data.modelo.ReaderEntity;
 import com.example.data.modelo.mappers.ReadersMapper;
@@ -31,7 +32,7 @@ public class ServiciosReaders {
     public Reader getReaderById(Long id) {
         return readersRepository.findById(id.intValue())
                 .map(readerMapper::toReader)
-                .orElseThrow(() -> new ObjectDoesntExistException("Reader not found"));
+                .orElseThrow(() -> new ObjectDoesntExistException(Constantes.READER_NOT_FOUND));
     }
 
     public Reader createReader(Reader reader) {
@@ -47,7 +48,7 @@ public class ServiciosReaders {
         try {
             readersRepository.deleteById(id.intValue());
         } catch (Exception e) {
-            throw new ObjectDoesntExistException("Reader not found");
+            throw new ObjectDoesntExistException(Constantes.READER_NOT_FOUND);
         }
     }
 }
