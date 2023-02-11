@@ -61,6 +61,27 @@ public class DaoArticles {
         return articles;
     }
 
+    public Either<Integer, List<Article>> getAll(Reader reader) {
+        try {
+            MongoCollection<Document> collection = db.getCollection("newspapers");
+            Bson filter = elemMatch("readers", new Document("id", reader.getId()));
+            Bson projection = fields(include("articles"));
+            List<Document> newspapers = collection.find(filter).projection(projection).into(new ArrayList<>());
+            List<Article> articles = new ArrayList<>();
+            for (Document newspaper : newspapers) {
+                List<Document> articleDocuments = (List<Document>) newspaper.get("articles");
+                if (articleDocuments != null) {
+                    for (Document articleDocument : articleDocuments) {
+                        articles.add(gson.fromJson(articleDocument.toJson(), Article.class));
+                    }
+                }
+            }
+            return Either.right(articles);
+        } catch (Exception e) {
+            return Either.left(-1);
+        }
+    }
+
     public Article get(String name) {
         MongoCollection<Document> collection = db.getCollection("newspapers");
         Document result = collection.find(Filters.and(Filters.eq("articles.name", name))).projection(include("articles.$")).first();
@@ -113,48 +134,10 @@ public class DaoArticles {
         }
     }
 
-    public Either<Integer, List<Article>> getAll(String name) {
-        MongoCollection<Document> collection = db.getCollection("newspapers");
-        List<Article> articles;
-        Bson filter = eq("name", name);
-        Document newspaper = collection.find(filter).projection(include("articles")).first();
-        if (newspaper == null) {
-            return Either.left(-1);
-        }
-        articles = (List<Article>) newspaper.get("articles");
-        if (articles == null) {
-            return Either.left(-1);
-        } else {
-            return Either.right(articles);
-        }
-    }
-
-    public Either<Integer, List<Article>> getAll(Reader reader) {
+    public Integer delete(Newspaper newspaper) {
         try {
             MongoCollection<Document> collection = db.getCollection("newspapers");
-            Bson filter = elemMatch("readers", new Document("id", reader.getId()));
-            Bson projection = fields(include("articles"));
-            List<Document> newspapers = collection.find(filter).projection(projection).into(new ArrayList<>());
-            List<Article> articles = new ArrayList<>();
-            for (Document newspaper : newspapers) {
-                List<Document> articleDocuments = (List<Document>) newspaper.get("articles");
-                if (articleDocuments != null) {
-                    for (Document articleDocument : articleDocuments) {
-                        articles.add(gson.fromJson(articleDocument.toJson(), Article.class));
-                    }
-                }
-            }
-            return Either.right(articles);
-        } catch (Exception e) {
-            return Either.left(-1);
-        }
-    }
-
-
-    public Integer delete(String name) {
-        try {
-            MongoCollection<Document> collection = db.getCollection("newspapers");
-            Bson filter = eq("name", name);
+            Bson filter = eq("name", newspaper.getName());
             Bson update = unset("articles");
             UpdateResult result = collection.updateMany(filter, update);
             return result.getModifiedCount() == 1 ? 1 : -1;

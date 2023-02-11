@@ -14,6 +14,6 @@
             <TableColumn fx:id="releaseDateColumn" prefWidth="102.20001220703125" text="Release Date"/>
         </columns>
     </TableView>
-    <MFXButton fx:id="deleteButton" layoutX="484.0" layoutY="188.0" mnemonicParsing="false" text="Delete"
+    <MFXButton layoutX="484.0" layoutY="188.0" mnemonicParsing="false" text="Delete"
                onMouseClicked="#deleteNewspaper"/>
 </AnchorPane>

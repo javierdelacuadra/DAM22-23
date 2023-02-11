@@ -25,16 +25,10 @@ public class DeleteArticleScreenController extends BasePantallaController implem
     private TableView<Article> articlesTable;
 
     @FXML
-    private TableColumn<Article, Integer> idColumn;
-
-    @FXML
     private TableColumn<Article, String> nameColumn;
 
     @FXML
     private TableColumn<Article, String> typeColumn;
-
-    @FXML
-    private TableColumn<Article, Integer> newspaperIDColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

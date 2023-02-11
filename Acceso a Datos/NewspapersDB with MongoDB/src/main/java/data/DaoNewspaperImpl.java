@@ -62,20 +62,6 @@ public class DaoNewspaperImpl implements DaoNewspaper {
     }
 
     @Override
-    public Integer delete(Newspaper newspaper) {
-        MongoCollection<Document> collection = db.getCollection("newspapers");
-        Document document = collection.find(eq("name", newspaper.getName())).first();
-        if (document == null) {
-            return -1;
-        }
-        if (document.get("readers", List.class).size() > 0 || document.get("articles", List.class).size() > 0) {
-            return 0;
-        }
-        DeleteResult deleteResult = collection.deleteOne(document);
-        return deleteResult.getDeletedCount() == 1 ? 1 : -1;
-    }
-
-    @Override
     public Integer update(Newspaper newspaper) {
         try {
             MongoCollection<Document> collection = db.getCollection("newspapers");
@@ -92,22 +78,17 @@ public class DaoNewspaperImpl implements DaoNewspaper {
         }
     }
 
-//    public Map<String, Integer> getNbrArticles(int newspaper) {
-//        em = jpaUtil.getEntityManager();
-//
-//        try {
-//            return em.createNamedQuery("HQL_GET_NUMBER_ARTICLES_BY_NEWSPAPER", Tuple.class)
-//                    .setParameter("newspaperID", newspaper)
-//                    .getResultStream()
-//                    .collect(Collectors.toMap(
-//                            tuple -> tuple.get("type").toString(),
-//                            tuple -> ((Number) tuple.get("numberArticles")).intValue())
-//                    );
-//        } catch (PersistenceException e) {
-//            e.printStackTrace();
-//            return null;
-//        } finally {
-//            if (em != null) em.close();
-//        }
-//    }
+    @Override
+    public Integer delete(Newspaper newspaper) {
+        MongoCollection<Document> collection = db.getCollection("newspapers");
+        Document document = collection.find(eq("name", newspaper.getName())).first();
+        if (document == null) {
+            return -1;
+        }
+        if (document.get("readers", List.class).size() > 0 || document.get("articles", List.class).size() > 0) {
+            return 0;
+        }
+        DeleteResult deleteResult = collection.deleteOne(document);
+        return deleteResult.getDeletedCount() == 1 ? 1 : -1;
+    }
 }

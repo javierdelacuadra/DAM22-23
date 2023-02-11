@@ -58,7 +58,6 @@ public class UpdateArticleController extends BasePantallaController implements I
                 this.getPrincipalController().createAlert("Article not updated!");
             }
         }
-
     }
 
     public void fillTextFields() {

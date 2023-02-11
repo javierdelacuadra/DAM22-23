@@ -1,7 +1,6 @@
 package ui.pantallas.addreaderscreen;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -16,6 +15,7 @@ import ui.common.ConstantesUI;
 import ui.pantallas.common.BasePantallaController;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,9 +48,6 @@ public class AddReaderScreenController extends BasePantallaController implements
     private MFXTextField passwordField;
 
     @FXML
-    private MFXDatePicker birthDatePicker;
-
-    @FXML
     private MFXComboBox<Newspaper> newspaperComboBox;
 
     @Override
@@ -73,11 +70,11 @@ public class AddReaderScreenController extends BasePantallaController implements
     }
 
     public void saveReader() {
-        if (nameTextField.getText().isEmpty() || passwordField.getText().isEmpty() || birthDatePicker.getValue() == null || newspaperComboBox.getValue() == null) {
+        if (nameTextField.getText().isEmpty() || passwordField.getText().isEmpty() || newspaperComboBox.getValue() == null) {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_MUST_FILL_ALL_THE_FIELDS);
         } else {
-            if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty() || birthDatePicker.getValue() != null) {
-                Reader reader = new Reader(nameTextField.getText(), birthDatePicker.getValue().toString());
+            if (!nameTextField.getText().isEmpty() || !passwordField.getText().isEmpty()) {
+                Reader reader = new Reader(nameTextField.getText(), LocalDate.now().toString());
                 List<Reader> readers = readersTable.getItems();
                 AtomicInteger maxId = new AtomicInteger();
                 readers.stream().filter(reader1 -> reader1.getId() > maxId.get()).forEach(reader1 -> maxId.set(reader1.getId()));

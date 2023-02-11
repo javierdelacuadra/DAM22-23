@@ -10,20 +10,20 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/18"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.pantallalogin.PantallaLoginController">
     <MFXTextField fx:id="textfieldNombre" alignment="CENTER" layoutX="268.0" layoutY="275.0" prefHeight="49.0"
-                  prefWidth="221.0" promptText="Escriba su nombre"/>
+                  prefWidth="221.0" promptText="Enter your name"/>
     <MFXTextField fx:id="textfieldPassword" alignment="CENTER" layoutX="270.0" layoutY="368.0" prefHeight="49.0"
-                  prefWidth="221.0" promptText="Escriba su DNI"/>
-    <Label fx:id="textoNombre" layoutX="350.0" layoutY="237.0" text="Nombre">
+                  prefWidth="221.0" promptText="Enter your password"/>
+    <Label layoutX="350.0" layoutY="237.0" text="Name">
         <font>
             <Font size="16.0"/>
         </font>
     </Label>
-    <Label fx:id="textoDNI" layoutX="365.0" layoutY="334.0" text="DNI">
+    <Label layoutX="365.0" layoutY="334.0" text="Password">
         <font>
             <Font size="16.0"/>
         </font>
     </Label>
-    <MFXButton fx:id="botonInicioSesion" layoutX="311.0" layoutY="443.0" onAction="#inicioSesion" text="Iniciar Sesión">
+    <MFXButton layoutX="311.0" layoutY="443.0" onAction="#inicioSesion" text="Log in">
         <font>
             <Font size="18.0"/>
         </font>

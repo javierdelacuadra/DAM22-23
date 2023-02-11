@@ -1,6 +1,5 @@
 package ui.pantallas.updatereaderscreen;
 
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -40,9 +39,6 @@ public class UpdateReaderController extends BasePantallaController implements In
     @FXML
     private MFXTextField nameTextField;
 
-    @FXML
-    private MFXDatePicker birthDatePicker;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -62,13 +58,11 @@ public class UpdateReaderController extends BasePantallaController implements In
     }
 
     public void updateReader() {
-        if (readersTable.getSelectionModel().getSelectedItem() != null || birthDatePicker.getValue() != null) {
+        if (readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = new Reader(
                     readersTable.getSelectionModel().getSelectedItem().getId(),
                     nameTextField.getText(),
                     "");
-
-
             int result = viewModel.updateReader(reader);
             if (result >= 1) {
                 readersTable.getItems().clear();
@@ -81,16 +75,12 @@ public class UpdateReaderController extends BasePantallaController implements In
         } else {
             this.getPrincipalController().createAlert(ConstantesUI.YOU_HAVEN_T_SELECTED_ANY_READER);
         }
-        birthDatePicker.setValue(null);
         nameTextField.setText(ConstantesUI.ANY);
     }
 
     public void fillTextFields() {
-        if (
-
-                readersTable.getSelectionModel().getSelectedItem() != null) {
+        if (readersTable.getSelectionModel().getSelectedItem() != null) {
             Reader reader = readersTable.getSelectionModel().getSelectedItem();
-//            birthDatePicker.setValue(LocalDate.parse(reader.getDateOfBirth()));
             nameTextField.setText(reader.getName());
         }
     }

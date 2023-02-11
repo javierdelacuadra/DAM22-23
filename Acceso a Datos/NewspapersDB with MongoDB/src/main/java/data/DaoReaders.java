@@ -29,7 +29,6 @@ import static com.mongodb.client.model.Updates.*;
 public class DaoReaders {
     private MongoClient mongo;
     private MongoDatabase db;
-    private Gson gson;
 
     @Inject
     public DaoReaders() {
@@ -41,7 +40,6 @@ public class DaoReaders {
         );
         this.mongo = MongoClients.create("mongodb://informatica.iesquevedo.es:2323");
         this.db = mongo.getDatabase("JavierdelaCuadra").withCodecRegistry(pojoCodecRegistry);
-        this.gson = new Gson();
     }
 
     public Either<Integer, List<Reader>> getAll() {
@@ -69,6 +67,21 @@ public class DaoReaders {
                     reader.getString("cancellationDate")));
         }
         return readers;
+    }
+
+    public Either<Integer, List<Reader>> getAll(Newspaper newspaper) {
+        MongoCollection<Document> collection = db.getCollection("newspapers");
+        Bson filter = eq("name", newspaper.getName());
+        Document document = collection.find(filter).projection(fields(include("readers"))).first();
+        List<Reader> readers = new ArrayList<>();
+        if (document != null) {
+            readers = convertToReaders(document.get("readers", List.class));
+        }
+        if (readers.isEmpty()) {
+            return Either.left(-1);
+        } else {
+            return Either.right(readers);
+        }
     }
 
     public Reader get(Integer id) {
@@ -141,21 +154,6 @@ public class DaoReaders {
             return (int) updateResult.getModifiedCount();
         } catch (Exception e) {
             return -1;
-        }
-    }
-
-    public Either<Integer, List<Reader>> getAll(Newspaper newspaper) {
-        MongoCollection<Document> collection = db.getCollection("newspapers");
-        Bson filter = eq("name", newspaper.getName());
-        Document document = collection.find(filter).projection(fields(include("readers"))).first();
-        List<Reader> readers = new ArrayList<>();
-        if (document != null) {
-            readers = convertToReaders(document.get("readers", List.class));
-        }
-        if (readers.isEmpty()) {
-            return Either.left(-1);
-        } else {
-            return Either.right(readers);
         }
     }
 }

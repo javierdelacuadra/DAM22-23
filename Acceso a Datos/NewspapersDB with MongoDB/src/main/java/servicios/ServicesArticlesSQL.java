@@ -22,10 +22,6 @@ public class ServicesArticlesSQL {
         return daoArticles.getAll();
     }
 
-    public Either<Integer, List<Article>> getArticlesByNewspaper(String name) {
-        return daoArticles.getAll(name);
-    }
-
     public Integer addArticle(Article article, Newspaper newspaper) {
         return daoArticles.add(article, newspaper);
     }
@@ -34,21 +30,12 @@ public class ServicesArticlesSQL {
         return daoArticles.delete(article);
     }
 
-    public Integer deleteArticleFromNewspaper(String name) {
-        return daoArticles.delete(name);
+    public Integer deleteArticleFromNewspaper(Newspaper newspaper) {
+        return daoArticles.delete(newspaper);
     }
 
     public Integer updateArticle(Article article, String oldName) {
         return daoArticles.update(article, oldName);
-    }
-
-//    public Either<Integer, List<Article>> getArticlesByType(String type) {
-//        return daoArticles.getAll(type);
-//    }
-
-    public List<Article> getArticlesAndTypes() {
-//        return daoArticles.getAllWithTypes();
-        return null;
     }
 
     public Either<Integer, List<Article>> getArticlesByReaderID(Reader reader) {

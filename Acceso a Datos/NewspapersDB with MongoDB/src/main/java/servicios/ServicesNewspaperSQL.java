@@ -35,7 +35,4 @@ public class ServicesNewspaperSQL {
         return daoNewspaper.update(newspaper);
     }
 
-//    public Map<String, Integer> getNbrArticles(int idNewspaper) {
-//        return daoNewspaper.getNbrArticles(idNewspaper);
-//    }
 }

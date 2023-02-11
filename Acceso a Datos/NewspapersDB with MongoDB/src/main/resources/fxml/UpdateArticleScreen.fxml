@@ -4,16 +4,13 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ui.pantallas.updatearticlescreen.UpdateArticleController">
     <TableView fx:id="articlesTable" layoutX="50.0" layoutY="72.0" onMouseClicked="#fillTextFields" prefHeight="235.0"
                prefWidth="381.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="67.39999008178711" text="ID"/>
-            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle"/>
-            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="IDType"/>
-            <TableColumn fx:id="newspaperIDColumn" prefWidth="100.20001220703125" text="IDNewspaper"/>
+            <TableColumn fx:id="nameColumn" prefWidth="258.6667060852051" text="Name of the Article"/>
+            <TableColumn fx:id="typeColumn" prefWidth="120.6666259765625" text="Type"/>
         </columns>
     </TableView>
     <MFXButton layoutX="571.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#updateArticle" text="Update"/>

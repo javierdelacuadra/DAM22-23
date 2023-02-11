@@ -22,6 +22,6 @@ public class LoginViewModel {
     }
 
     public Reader getReader(Integer id) {
-        return servicesReadersSQL.getReadersById(id);
+        return servicesReadersSQL.getReaderById(id);
     }
 }

@@ -43,7 +43,6 @@ module MercadonaFX {
     exports servicios;
     exports config;
     exports data;
-    exports data.hibernate;
     exports di;
     exports model;
 

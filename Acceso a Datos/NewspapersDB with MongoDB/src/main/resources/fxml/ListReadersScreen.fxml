@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ui.pantallas.listreaderscreen.ListReadersScreenController">
-    <TableView fx:id="readersTable" layoutX="51.0" layoutY="102.0" prefHeight="300.0" prefWidth="305.0">
+    <TableView fx:id="readersTable" layoutX="124.0" layoutY="81.0" prefHeight="300.0" prefWidth="320.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="49.33334732055664" text="ID"/>
-            <TableColumn fx:id="nameColumn" prefWidth="117.6666488647461" text="Name"/>
-            <TableColumn fx:id="cancellationDateColumn" prefWidth="139.6666717529297" text="Cancellation Date"/>
+            <TableColumn fx:id="idColumn" prefWidth="54.66669464111328" text="ID"/>
+            <TableColumn fx:id="nameColumn" prefWidth="128.66661071777344" text="Name"/>
+            <TableColumn fx:id="cancellationDateColumn" prefWidth="136.00006103515625" text="Cancellation Date"/>
         </columns>
     </TableView>
-    <MFXButton layoutX="77.0" layoutY="513.0" mnemonicParsing="false" onAction="#filterByNewspaper"
+    <MFXButton layoutX="562.0" layoutY="248.0" mnemonicParsing="false" onAction="#filterByNewspaper"
                text="Filter Readers"/>
-    <Label layoutX="72.0" layoutY="418.0" text="Filter by newspaper"/>
-    <MFXComboBox fx:id="newspaperComboBox" layoutX="14.0" layoutY="449.0" prefHeight="40.0" prefWidth="220.0"/>
+    <Label layoutX="557.0" layoutY="123.0" text="Filter by newspaper"/>
+    <MFXComboBox fx:id="newspaperComboBox" layoutX="499.0" layoutY="178.0" prefHeight="40.0" prefWidth="220.0"/>
     <Label contentDisplay="CENTER" layoutX="360.0" layoutY="30.0" prefHeight="25.0" prefWidth="75.0"
            text="Filter Readers" textAlignment="CENTER"/>
-    <Label layoutX="314.0" layoutY="418.0" text="Filter by articleType"/>
-    <MFXComboBox fx:id="articleTypeComboBox" layoutX="256.0" layoutY="449.0" prefHeight="40.0" prefWidth="220.0"/>
-    <MFXButton layoutX="319.0" layoutY="513.0" mnemonicParsing="false" onAction="#filterByArticleType"
-               text="Filter Readers"/>
-    <MFXButton layoutX="559.0" layoutY="456.0" mnemonicParsing="false" onAction="#resetFilters"
+    <MFXButton layoutX="226.0" layoutY="419.0" mnemonicParsing="false" onAction="#resetFilters"
                text="Reset All Filters"/>
-    <MFXButton layoutX="499.0" layoutY="389.0" mnemonicParsing="false" onAction="#getAvgRatingByReader"
-               text="Get avg rating by reader"/>
-    <TableView fx:id="ratingsTable" layoutX="439.0" layoutY="102.0" prefHeight="270.0" prefWidth="272.0">
-        <columns>
-            <TableColumn fx:id="newspapernameColumn" prefWidth="270.6665954589844" text="Average Ratings"/>
-        </columns>
-    </TableView>
-    <Label contentDisplay="CENTER" layoutX="422.0" layoutY="67.0" prefHeight="25.0" prefWidth="305.0"
-           text="Select a reader to see the average ratings by newspaper" textAlignment="CENTER"/>
 </AnchorPane>

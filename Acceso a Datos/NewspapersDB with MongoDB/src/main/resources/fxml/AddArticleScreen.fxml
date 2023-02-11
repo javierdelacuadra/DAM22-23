@@ -5,21 +5,22 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ui.pantallas.addarticlescreen.AddArticleScreenController">
     <Label layoutX="351.0" layoutY="52.0" text="Add Article Screen"/>
-    <TableView fx:id="articlesTable" layoutX="62.0" layoutY="182.0" prefHeight="235.0" prefWidth="381.0">
+    <TableView fx:id="articlesTable" layoutX="62.0" layoutY="182.0" prefHeight="235.0" prefWidth="322.0">
         <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="155.6000213623047" text="nameArticle"/>
-            <TableColumn fx:id="typeColumn" prefWidth="58.199981689453125" text="Type"/>
+            <TableColumn fx:id="nameColumn" prefWidth="215.33335494995117" text="Name of the Article"/>
+            <TableColumn fx:id="typeColumn" prefWidth="105.33334350585938" text="Type"/>
         </columns>
     </TableView>
-    <MFXButton fx:id="addArticle" layoutX="608.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#addArticle"
+    <MFXButton fx:id="addArticle" layoutX="608.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#addArticle"
                text="Add Article"/>
     <MFXTextField fx:id="nameText" layoutX="560.0" layoutY="204.0" prefHeight="50.0" prefWidth="172.0"/>
     <Label layoutX="630.0" layoutY="173.0" text="Name"/>
     <Label layoutX="628.0" layoutY="274.0" text="IDType"/>
-    <Label layoutX="611.0" layoutY="348.0" text="IDNewspaper"/>
+    <Label layoutX="611.0" layoutY="365.0" text="IDNewspaper"/>
     <MFXTextField fx:id="typeTextField" layoutX="537.0" layoutY="300.0" prefHeight="40.0" prefWidth="217.0"/>
-    <MFXComboBox fx:id="newspaperComboBox" layoutX="530.0" layoutY="377.0" prefHeight="40.0" prefWidth="233.0"/>
+    <MFXComboBox fx:id="newspaperComboBox" layoutX="530.0" layoutY="397.0" prefHeight="40.0" prefWidth="233.0"/>
 </AnchorPane>

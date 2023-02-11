@@ -12,7 +12,7 @@ public interface DaoNewspaper {
 
     Integer add(Newspaper newspaper);
 
-    Integer delete(Newspaper newspaper);
-
     Integer update(Newspaper newspaper);
+
+    Integer delete(Newspaper newspaper);
 }

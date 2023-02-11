@@ -49,9 +49,6 @@ public class ListNewspaperScreenController extends BasePantallaController implem
     @FXML
     private MFXButton deleteArticlesButton;
 
-    @FXML
-    private TableView<String> numberArticlesTable;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("_id"));
@@ -71,7 +68,6 @@ public class ListNewspaperScreenController extends BasePantallaController implem
                 if (result > 0) {
                     this.getPrincipalController().createAlert("Articles deleted successfully");
                     articlesTable.setItems(FXCollections.emptyObservableList());
-                    numberArticlesTable.setItems(FXCollections.emptyObservableList());
                     newspaperTable.setItems(viewModel.getNewspapers());
                     deleteArticlesButton.setVisible(false);
                 } else {
@@ -85,13 +81,12 @@ public class ListNewspaperScreenController extends BasePantallaController implem
 
     public void getArticlesAndNumbers() {
         getArticlesOfNewspaper();
-//        getNumberArticlesOfNewspaper();
     }
 
     private void getArticlesOfNewspaper() {
         Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
         Newspaper newspaperWithArticles = viewModel.getArticlesFromNewspaper(newspaper);
-        if (newspaperWithArticles != null) {
+        if (newspaperWithArticles != null && newspaperWithArticles.getArticles() != null) {
             nameArticleColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             nameTypeColumn.setCellValueFactory(cellData -> {
                 Article article = cellData.getValue();
@@ -105,23 +100,4 @@ public class ListNewspaperScreenController extends BasePantallaController implem
             deleteArticlesButton.setVisible(false);
         }
     }
-
-//    private void getNumberArticlesOfNewspaper() {
-//        Newspaper newspaper = newspaperTable.getSelectionModel().getSelectedItem();
-//        if (newspaper != null) {
-//            Map<String, Integer> avgRatings = viewModel.getNbrArticles(newspaper.getId());
-//            if (avgRatings != null) {
-//                List<String> dataList = new ArrayList<>();
-//                for (Map.Entry<String, Integer> entry : avgRatings.entrySet()) {
-//                    dataList.add(entry.getKey() + ": " + entry.getValue() + " article");
-//                }
-//                numberArticlesTable.setItems(FXCollections.observableArrayList(dataList));
-//                numberArticlesColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
-//            } else {
-//                this.getPrincipalController().createAlert("The newspaper " + newspaper.getName() + " has no articles");
-//            }
-//        } else {
-//            this.getPrincipalController().createAlert("Please select a reader");
-//        }
-//    }
 }
