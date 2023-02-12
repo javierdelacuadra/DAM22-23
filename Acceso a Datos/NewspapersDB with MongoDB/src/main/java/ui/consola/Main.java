@@ -34,11 +34,11 @@ public class Main {
 //        daoQueries.query12().forEach(System.out::println);
 //        System.out.println("Query 13:");
 //        daoQueries.query13().forEach(System.out::println);
-//        System.out.println("Query 14:");
-//        daoQueries.query14().forEach(System.out::println);
-        System.out.println("Query 15:");
-        daoQueries.query15().forEach(System.out::println);
-        //System.out.println("Query 16:");
-        //daoQueries.query16().forEach(System.out::println);
+        System.out.println("Query 14:");
+        daoQueries.query14().forEach(System.out::println);
+//        System.out.println("Query 15:");
+//        daoQueries.query15().forEach(System.out::println);
+//        System.out.println("Query 16:");
+//        daoQueries.query16().forEach(System.out::println);
     }
 }

@@ -229,19 +229,21 @@ public class DaoQueries {
 //]
 
     public List<String> query5() {
-        List<String> readers = new ArrayList<>();
+        List<String> articles = new ArrayList<>();
         MongoCollection<Document> collection = db.getCollection("newspapers");
 
         collection.aggregate(Arrays.asList(unwind("$articles"),
                 project(fields(include("articles.name", "articles.type", "articles.readers"), excludeId())))).into(new ArrayList<>()).forEach(reader -> {
-            String name = reader.getString("articles.name");
-            String type = reader.getString("articles.type");
-            Integer readerCount = reader.getInteger("articles.readers");
-            readers.add(name + " - " + type + " - " + readerCount);
+            Document article = (Document) reader.get("articles");
+            String name = article.getString("name");
+            String type = article.getString("type");
+            List readers = article.get("readers", List.class);
+            int readerCount = (readers != null) ? readers.size() : 0;
+            articles.add(name + " - " + type + " - " + readerCount);
         });
 
-        return readers;
-    } //TODO: fix null values
+        return articles;
+    }
 
     //F. Get the name of the 10 oldest newspapers
 
@@ -274,8 +276,8 @@ public class DaoQueries {
         return readers;
     }
 
-    //G. Get the articles of a given type, together with the name of the newspaper
-
+//    G. Get the articles of a given type, together with the name of the newspaper
+//
 //    [
 //  {
 //    $unwind: "$articles",
@@ -301,10 +303,14 @@ public class DaoQueries {
         collection.aggregate(Arrays.asList(
                 unwind("$articles"),
                 match(eq("articles.type", "Politics")),
-                project(fields(include("name", "articles.name"), excludeId())))).into(new ArrayList<>()).forEach(reader -> readers.add(reader.getString("name") + " - " + reader.getString("articles.name")));
+                project(fields(include("name", "articles.name"), excludeId())))).iterator().forEachRemaining(document -> {
+            String newspaperName = document.getString("name");
+            String articleName = document.get("articles", Document.class).getString("name");
+            readers.add(newspaperName + " - " + articleName);
+        });
 
         return readers;
-    } //TODO: fix null values in articles.name
+    }
 
     //H. Get the number of Sports articles by newspaper
 
@@ -417,16 +423,21 @@ public class DaoQueries {
 //]
 
     public List<String> query10() {
-        List<String> readers = new ArrayList<>();
+        List<String> articles = new ArrayList<>();
         MongoCollection<Document> collection = db.getCollection("newspapers");
 
         collection.aggregate(Arrays.asList(
                 unwind("$articles"),
                 match(gte("articles.readers.mark", 3)),
-                project(fields(include("articles.name", "articles.type", "articles.readers"), excludeId())))).into(new ArrayList<>()).forEach(reader -> readers.add(reader.getString("articles.name") + " - " + reader.getString("articles.type") + " - " + reader.getString("articles.readers")));
-
-        return readers;
-        //TODO: fix null values in all fields
+                project(fields(include("articles.name", "articles.type", "articles.readers"), excludeId())))).into(new ArrayList<>()).forEach(reader -> {
+            Document article = (Document) reader.get("articles");
+            String name = article.getString("name");
+            String type = article.getString("type");
+            List readers = article.get("readers", List.class);
+            int readerCount = (readers != null) ? readers.size() : 0;
+            articles.add(name + " - " + type + " - " + readerCount);
+        });
+        return articles;
     }
 
     //K. Get the average number of subscriptions per reader
@@ -547,8 +558,8 @@ public class DaoQueries {
         return readers;
     }
 
-    //N. Readers with no ratings lower than 3
-
+//    N. Readers with no ratings lower than 3
+//
 //[
 //  {
 //    $unwind: "$articles"
@@ -588,8 +599,9 @@ public class DaoQueries {
                         group(null, addToSet("names", "$readers.name")),
                         project(fields(include("names"), excludeId())))).into(new ArrayList<>())
                 .forEach(reader -> {
-                    if (reader.getString("names") != null && !reader.getString("names").isEmpty()) {
-                        readers.add(reader.getString("names"));
+                    List<String> names = reader.get("names", List.class);
+                    if (names != null && !names.isEmpty()) {
+                        readers.addAll(names);
                     }
                 });
         return readers;
@@ -598,43 +610,52 @@ public class DaoQueries {
     //O. Get the newspapers with an average rating lower than 5, indicating the readers that have rated more than 4 articles with a lower-than-5 rating
 
 //    [
-//  {
-//    $unwind: "$articles",
-//  },
-//  {
-//    $unwind: "$articles.readers",
-//  },
-//  {
-//    $match: {
-//      "articles.readers.mark": {
-//        $lt: 5,
-//      },
-//    },
-//  },
-//  {
-//    $group: {
-//      _id: "$name",
-//      count: {
-//        $sum: 1,
-//      },
-//      readers: {
-//        $push: "$articles.readers.name",
-//      },
-//    },
-//  },
-//  {
-//    $match: {
-//      count: {
-//        $gt: 4,
-//      },
-//    },
-//  },
-//  {
-//    $project: {
-//      _id: 1,
-//      readers: 1,
-//    },
-//  },
+//{
+//$unwind: "$articles"
+//},
+//{
+//$unwind: "$articles.readers"
+//},
+//{
+//$match: {
+//"articles.readers.rating": {
+//$lt: 5
+//}
+//}
+//},
+//{
+//$group: {
+//_id: {
+//newspaper: "$name",
+//reader: "$articles.readers.id"
+//},
+//count: {
+//$sum: 1
+//}
+//}
+//},
+//{
+//$match: {
+//count: {
+//$gt: 4
+//}
+//}
+//},
+//{
+//$group: {
+//_id: "$_id.newspaper",
+//readers: {
+//$push: "$_id.reader"
+//}
+//}
+//},
+//{
+//$project: {
+//_id: 0,
+//newspaper: "$_id",
+//readers: "$readers"
+//}
+//}
 //]
 
     public List<String> query15() {
@@ -642,55 +663,73 @@ public class DaoQueries {
         MongoCollection<Document> collection = db.getCollection("newspapers");
 
         collection.aggregate(Arrays.asList(
-                unwind("$articles"),
-                unwind("$articles.readers"),
-                match(eq("articles.readers.ratings", new Document("$lt", 5))),
-                group("$name", sum("count", 1), push("readers", "$articles.readers.name")),
-                match(eq("count", new Document("$gt", 4))),
-                project(fields(include("_id", "readers"), excludeId())))).into(new ArrayList<>()).forEach(reader -> readers.add(reader.getString("_id")));
-
+                        match(lt("articles.readers.rating", 5)),
+                        unwind("$articles"),
+                        unwind("$articles.readers"),
+                        group("$_id", avg("averageRating", "$articles.readers.rating"), sum("totalRatings", 1)),
+                        match(gte("totalRatings", 4)),
+                        group("$_id", avg("averageRating", "$averageRating")),
+                        match(lt("averageRating", 5)),
+                        project(fields(include("_id"), excludeId())))).into(new ArrayList<>())
+                .forEach(reader -> {
+                    if (reader.getString("_id") != null && !reader.getString("_id").isEmpty()) {
+                        readers.add(reader.getString("_id"));
+                    }
+                });
+        if (readers.isEmpty()) {
+            readers.add("No results");
+        }
         return readers;
-
     }
 
     //P. Readers that are not registered as users (Use $lookup) (users are in login collection)
 
 //    [
-//  {
-//    $lookup: {
-//      from: "login",
-//      localField: "readers.name",
-//      foreignField: "username",
-//      as: "users",
-//    },
-//  },
-//  {
-//    $unwind: "$readers",
-//  },
-//  {
-//    $match: {
-//      users: {
-//        $size: 0,
-//      },
-//    },
-//  },
-//  {
-//    $project: {
-//      _id: 0,
-//      name: 1,
-//      readers: 1,
-//    },
-//  },
+//{
+//"$lookup": {
+//"from": "login",
+//"localField": "readers.id",
+//"foreignField": "_id",
+//"as": "registered_readers"
+//}
+//},
+//{
+//"$unwind": "$registered_readers"
+//},
+//{
+//"$group": {
+//"_id": "$readers.id",
+//"count": {
+//"$sum": 1
+//}
+//}
+//},
+//{
+//"$match": {
+//"count": {
+//"$eq": 0
+//}
+//}
+//}
 //]
 
-    public void query16() {
+    public List<String> query16() {
         List<String> readers = new ArrayList<>();
         MongoCollection<Document> collection = db.getCollection("newspapers");
 
         collection.aggregate(Arrays.asList(
-                lookup("login", "readers.name", "username", "users"),
-                unwind("$readers"),
-                match(eq("users", new Document("$size", 0))),
-                project(fields(include("name", "readers"), excludeId())))).into(new ArrayList<>()).forEach(reader -> readers.add(reader.getString("_id")));
+                        lookup("login", "readers.id", "_id", "registered_readers"),
+                        unwind("$registered_readers"),
+                        group("$readers.id", sum("count", 1)),
+                        match(eq("count", 0)))).into(new ArrayList<>())
+                .forEach(reader -> {
+                    if (reader.getString("_id") != null && !reader.getString("_id").isEmpty()) {
+                        readers.add(reader.getString("_id"));
+                    }
+                });
+        if (readers.isEmpty()) {
+            readers.add("No results");
+        }
+        return readers;
     }
 }
