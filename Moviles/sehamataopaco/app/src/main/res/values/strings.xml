@@ -105,4 +105,5 @@ Director del hospital</string>
     <string name="dr_nefario">Dr. Nefario</string>
     <string name="info">Información</string>
     <string name="conoce_a_nuestros_doctores">Conoce a nuestros doctores</string>
+    <string name="title_activity_usuario">UsuarioActivity</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".timber.App"
         android:allowBackup="true"
@@ -15,12 +16,17 @@
         android:theme="@style/Theme.Formulario"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".uicompose.usuarioactivity.UsuarioActivity"
+            android:exported="false"
+            android:label="@string/title_activity_usuario"
+            android:theme="@style/Theme.Formulario" />
         <activity
             android:name=".ui.splashactivity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -28,19 +34,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.loginactivity.LoginActivity"
             android:parentActivityName=".ui.splashactivity.SplashActivity" />
-
         <activity
             android:name=".ui.usuarioactivity.UsuarioActivity"
             android:parentActivityName=".ui.loginactivity.LoginActivity" />
-
         <activity
             android:name=".ui.doctoractivity.DoctorActivity"
             android:parentActivityName=".ui.loginactivity.LoginActivity" />
-
     </application>
 
 </manifest>
