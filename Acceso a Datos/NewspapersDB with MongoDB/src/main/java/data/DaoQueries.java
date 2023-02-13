@@ -9,6 +9,7 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Accumulators.*;
 import static com.mongodb.client.model.Aggregates.*;
@@ -596,16 +597,16 @@ public class DaoQueries {
                         unwind("$articles"),
                         unwind("$articles.readers"),
                         match(gte("articles.readers.mark", 3)),
-                        group(null, addToSet("names", "$readers.name")),
-                        project(fields(include("names"), excludeId())))).into(new ArrayList<>())
+                        group(null, addToSet("readerIds", "$articles.readers.id")),
+                        project(fields(include("readerIds"), excludeId())))).into(new ArrayList<>())
                 .forEach(reader -> {
-                    List<String> names = reader.get("names", List.class);
-                    if (names != null && !names.isEmpty()) {
-                        readers.addAll(names);
+                    if (reader.get("readerIds", ArrayList.class) != null) {
+                        List<Integer> readerIds = reader.get("readerIds", ArrayList.class);
+                        readers.addAll(readerIds.stream().map(String::valueOf).collect(Collectors.toList()));
                     }
                 });
         return readers;
-    } //TODO: devuelve un array en vez de un string
+    }
 
     //O. Get the newspapers with an average rating lower than 5, indicating the readers that have rated more than 4 articles with a lower-than-5 rating
 
