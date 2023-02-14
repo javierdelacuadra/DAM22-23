@@ -1,5 +1,6 @@
 package com.example.recyclerview.ui.peliculasactivity.fragments.toprated
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class TopRatedFragment : Fragment() {
 
     private val viewModel: TopRatedViewModel by viewModels()
 
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
