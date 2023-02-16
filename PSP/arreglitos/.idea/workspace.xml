@@ -5,30 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="16-2-23 fixed ClienteGraphQL">
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/CamionesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/ConductoresRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/EmpresasRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/DatabaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/ObjectNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Camion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Conductor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Empresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosCamiones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosConductores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosEmpresas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/CamionesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/ConductoresController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/EmpresasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ApiError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ControlErrores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SpringPrimerREST/src/main/resources/graphql/schema.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/GetAllEmpresas.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/GetAllEmpresas.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,24 +85,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Javi/IdeaProjects/DAM22-23/PSP/arreglitos",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.kotlinCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Javi/IdeaProjects/DAM22-23/PSP/arreglitos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server\queries\conductores" />
@@ -145,6 +147,8 @@
       <workItem from="1676560882917" duration="749000" />
       <workItem from="1676573605871" duration="13000" />
       <workItem from="1676573646465" duration="15000" />
+      <workItem from="1676574263982" duration="513000" />
+      <workItem from="1676574786538" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary="16-2-23 fixed ClienteGraphQL">
       <created>1676542071933</created>

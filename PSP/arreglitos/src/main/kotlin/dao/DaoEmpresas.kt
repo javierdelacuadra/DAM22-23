@@ -29,7 +29,9 @@ class DaoEmpresas {
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = AddEmpresaMutation.builder().nombre(empresa.nombre).direccion(empresa.direccion).camiones(empresa.camiones).build()
+        val query =
+            AddEmpresaMutation.builder().nombre(empresa.nombre).direccion(empresa.direccion).camiones(empresa.camiones)
+                .build()
 
         val response = apolloClient.mutate(query).execute()
         println(response.data()?.addEmpresa()?.id())
@@ -40,7 +42,8 @@ class DaoEmpresas {
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = UpdateEmpresaMutation.builder().id(empresa.id).nombre(empresa.nombre).direccion(empresa.direccion).camiones(empresa.camiones).build()
+        val query = UpdateEmpresaMutation.builder().id(empresa.id).nombre(empresa.nombre).direccion(empresa.direccion)
+            .camiones(empresa.camiones).build()
 
         val response = apolloClient.mutate(query).execute()
         println(response.data()?.updateEmpresa()?.id())

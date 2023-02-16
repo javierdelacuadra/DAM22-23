@@ -1,5 +1,6 @@
 package ui.pantallas.pantallacamiones
 
+import io.github.palexdev.materialfx.controls.MFXButton
 import io.github.palexdev.materialfx.controls.MFXDatePicker
 import io.github.palexdev.materialfx.controls.MFXTextField
 import javafx.collections.FXCollections
@@ -8,10 +9,11 @@ import javafx.fxml.Initializable
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import servicios.modelo.Camion
+import ui.pantallas.common.BasePantallaController
 import java.net.URL
 import java.util.*
 
-class CamionesController : Initializable {
+class CamionesController : Initializable, BasePantallaController() {
 
     private val viewModel = CamionesViewModel()
 
@@ -33,6 +35,15 @@ class CamionesController : Initializable {
     @FXML
     private lateinit var fechaDatePicker: MFXDatePicker
 
+    @FXML
+    private lateinit var agregarButton: MFXButton
+
+    @FXML
+    private lateinit var actualizarButton: MFXButton
+
+    @FXML
+    private lateinit var borrarButton: MFXButton
+
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         idColumn = TableColumn<Camion, Int>("ID")
         modeloColumn = TableColumn<Camion, String>("Modelo")
@@ -40,6 +51,12 @@ class CamionesController : Initializable {
         camionesTable = TableView<Camion>()
         camionesTable.columns.addAll(idColumn, modeloColumn, fechaColumn)
         camionesTable.items = FXCollections.observableArrayList(viewModel.getAllCamiones())
+    }
+
+    override fun principalCargado() {
+        agregarButton.setOnAction { agregarCamion() }
+        actualizarButton.setOnAction { actualizarCamion() }
+        borrarButton.setOnAction { borrarCamion() }
     }
 
     private fun agregarCamion() {

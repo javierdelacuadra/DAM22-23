@@ -37,7 +37,8 @@ class DaoCamiones {
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = UpdateCamionMutation.builder().id(camion.id).modelo(camion.modelo).fechaFabricacion(camion.fechaConstruccion).build()
+        val query = UpdateCamionMutation.builder().id(camion.id).modelo(camion.modelo)
+            .fechaFabricacion(camion.fechaConstruccion).build()
 
         val response = apolloClient.mutate(query).execute()
         println(response.data()?.updateCamion()?.id())

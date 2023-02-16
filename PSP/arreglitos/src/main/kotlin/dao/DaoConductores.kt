@@ -27,8 +27,8 @@ class DaoConductores {
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = AddConductorMutation.builder().nombre(conductor.nombre).apellido(conductor.apellido).fechaNacimiento(conductor.fechaNacimiento).direccion(conductor.direccion).telefono(conductor.telefono).email(conductor.email).licencia(conductor.licencia).fechaVencimientoLicencia(conductor.fechaVencimientoLicencia).fechaIngreso(conductor.fechaIngreso).fechaSalida(conductor.fechaSalida).activo(conductor.activo).build()
-
+        val query = AddConductorMutation.builder().nombre(conductor.nombre).telefono(conductor.telefono)
+            .camion(conductor.camion).build()
         val response = apolloClient.mutate(query).execute()
         println(response.data()?.addConductor()?.id())
     }
@@ -38,7 +38,9 @@ class DaoConductores {
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = UpdateConductorMutation.builder().id(conductor.id).nombre(conductor.nombre).apellido(conductor.apellido).fechaNacimiento(conductor.fechaNacimiento).direccion(conductor.direccion).telefono(conductor.telefono).email(conductor.email).licencia(conductor.licencia).fechaVencimientoLicencia(conductor.fechaVencimientoLicencia).fechaIngreso(conductor.fechaIngreso).fechaSalida(conductor.fechaSalida).activo(conductor.activo).build()
+        val query =
+            UpdateConductorMutation.builder().id(conductor.id).nombre(conductor.nombre).telefono(conductor.telefono)
+                .camion(conductor.camion).build()
 
         val response = apolloClient.mutate(query).execute()
         println(response.data()?.updateConductor()?.id())

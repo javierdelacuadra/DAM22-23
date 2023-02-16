@@ -6,6 +6,7 @@ import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
+import servicios.modelo.Camion
 import servicios.modelo.Conductor
 import java.net.URL
 import java.util.*
@@ -35,9 +36,6 @@ class PantallaConductoresController : Initializable {
     @FXML
     private lateinit var textoTelefono: MFXTextField
 
-    @FXML
-    private lateinit var IDCamion: MFXTextField
-
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         idColumn = TableColumn<Conductor, Int>("ID")
         nombreColumn = TableColumn<Conductor, String>("Nombre")
@@ -46,6 +44,22 @@ class PantallaConductoresController : Initializable {
         tablaConductores = TableView<Conductor>()
         tablaConductores.columns.addAll(idColumn, nombreColumn, telefonoColumn, idCamionColumn)
         tablaConductores.items = FXCollections.observableArrayList(viewModel.getAllConductores())
+    }
+
+    private fun agregarConductor() {
+        val conductor = Conductor(0, textoNombre.text, textoTelefono.text, Camion(0, "", ""))
+        viewModel.agregarConductor(conductor)
+    }
+
+    private fun actualizarConductor() {
+        val conductorActual = tablaConductores.selectionModel.selectedItem
+        val conductor = Conductor(conductorActual.id, textoNombre.text, textoTelefono.text, Camion(0, "", ""))
+        viewModel.actualizarConductor(conductor)
+    }
+
+    private fun borrarConductor() {
+        val conductorActual = tablaConductores.selectionModel.selectedItem
+        viewModel.eliminarConductor(conductorActual.id.toString())
     }
 
 }

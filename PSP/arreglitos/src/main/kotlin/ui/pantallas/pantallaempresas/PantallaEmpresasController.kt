@@ -13,17 +13,23 @@ class PantallaEmpresasController : Initializable {
 
     private val viewModel = PantallaEmpresasViewModel()
 
-    @FXML private lateinit var tablaEmpresas: TableView<Empresa>
+    @FXML
+    private lateinit var tablaEmpresas: TableView<Empresa>
 
-    @FXML private lateinit var idColumn: TableColumn<Empresa, Int>
+    @FXML
+    private lateinit var idColumn: TableColumn<Empresa, Int>
 
-    @FXML private lateinit var nombreColumn: TableColumn<Empresa, String>
+    @FXML
+    private lateinit var nombreColumn: TableColumn<Empresa, String>
 
-    @FXML private lateinit var direccionColumn: TableColumn<Empresa, String>
+    @FXML
+    private lateinit var direccionColumn: TableColumn<Empresa, String>
 
-    @FXML private lateinit var textoNombre: MFXTextField
+    @FXML
+    private lateinit var textoNombre: MFXTextField
 
-    @FXML private lateinit var textoDireccion: MFXTextField
+    @FXML
+    private lateinit var textoDireccion: MFXTextField
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         idColumn = TableColumn<Empresa, Int>("ID")

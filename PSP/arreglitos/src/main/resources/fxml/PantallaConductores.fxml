@@ -8,19 +8,19 @@
             prefHeight="600.0" prefWidth="800.0">
     <TableView fx:id="tablaConductores" layoutX="103.0" layoutY="132.0" prefHeight="297.0" prefWidth="262.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="65.20000457763672" text="ID" />
-            <TableColumn fx:id="nombreColumn" prefWidth="109.60000610351562" text="Nombre" />
-            <TableColumn fx:id="telefonoColumn" prefWidth="86.39999389648438" text="Teléfono" />
-            <TableColumn fx:id="idCamionColumn" prefWidth="86.39999389648438" text="IDCamion" />
+            <TableColumn fx:id="idColumn" prefWidth="65.20000457763672" text="ID"/>
+            <TableColumn fx:id="nombreColumn" prefWidth="109.60000610351562" text="Nombre"/>
+            <TableColumn fx:id="telefonoColumn" prefWidth="86.39999389648438" text="Teléfono"/>
+            <TableColumn fx:id="idCamionColumn" prefWidth="86.39999389648438" text="IDCamion"/>
         </columns>
     </TableView>
-    <MFXTextField fx:id="textoNombre" layoutX="474.0" layoutY="145.0" prefHeight="50.0" prefWidth="181.0" />
-    <Label layoutX="544.0" layoutY="105.0" text="Nombre" />
-    <MFXTextField fx:id="textoTelefono" layoutX="474.0" layoutY="209.0" prefHeight="50.0" prefWidth="181.0" />
-    <Label layoutX="544.0" layoutY="169.0" text="Teléfono" />
-    <MFXTextField fx:id="IDCamion" layoutX="474.0" layoutY="273.0" prefHeight="50.0" prefWidth="181.0" />
-    <Label layoutX="544.0" layoutY="233.0" text="IDCamion" />
-    <MFXButton layoutX="427.0" layoutY="430.0" mnemonicParsing="false" text="Añadir" />
-    <MFXButton layoutX="529.0" layoutY="430.0" mnemonicParsing="false" text="Actualizar" />
-    <MFXButton layoutX="638.0" layoutY="430.0" mnemonicParsing="false" text="Borrar" />
+    <MFXTextField fx:id="textoNombre" layoutX="474.0" layoutY="145.0" prefHeight="50.0" prefWidth="181.0"/>
+    <Label layoutX="544.0" layoutY="105.0" text="Nombre"/>
+    <MFXTextField fx:id="textoTelefono" layoutX="474.0" layoutY="209.0" prefHeight="50.0" prefWidth="181.0"/>
+    <Label layoutX="544.0" layoutY="169.0" text="Teléfono"/>
+    <MFXTextField fx:id="IDCamion" layoutX="474.0" layoutY="273.0" prefHeight="50.0" prefWidth="181.0"/>
+    <Label layoutX="544.0" layoutY="233.0" text="IDCamion"/>
+    <MFXButton layoutX="427.0" layoutY="430.0" mnemonicParsing="false" text="Añadir"/>
+    <MFXButton layoutX="529.0" layoutY="430.0" mnemonicParsing="false" text="Actualizar"/>
+    <MFXButton layoutX="638.0" layoutY="430.0" mnemonicParsing="false" text="Borrar"/>
 </AnchorPane>
