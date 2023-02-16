@@ -1,0 +1,7 @@
+mutation UpdateCamion($id: Int!, $modelo: String!, $fecha: String!) {
+    actualizarCamion(id: $id, modelo: $modelo, fechaConstruccion: $fecha) {
+        id
+        modelo
+        fechaConstruccion
+    }
+}

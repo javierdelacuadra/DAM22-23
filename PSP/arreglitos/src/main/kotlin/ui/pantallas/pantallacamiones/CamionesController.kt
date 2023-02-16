@@ -1,8 +1,8 @@
 package ui.pantallas.pantallacamiones
 
-import io.github.palexdev.materialfx.controls.MFXButton
 import io.github.palexdev.materialfx.controls.MFXDatePicker
 import io.github.palexdev.materialfx.controls.MFXTextField
+import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.TableColumn
@@ -13,7 +13,7 @@ import java.util.*
 
 class CamionesController : Initializable {
 
-//    private val viewModel = CamionesViewModel()
+    private val viewModel = CamionesViewModel()
 
     @FXML
     private lateinit var idColumn: TableColumn<Camion, Int>
@@ -33,31 +33,28 @@ class CamionesController : Initializable {
     @FXML
     private lateinit var fechaDatePicker: MFXDatePicker
 
-    @FXML
-    private lateinit var addButton: MFXButton
-
-    @FXML
-    private lateinit var updateButton: MFXButton
-
-    @FXML
-    private lateinit var deleteButton: MFXButton
-
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         idColumn = TableColumn<Camion, Int>("ID")
         modeloColumn = TableColumn<Camion, String>("Modelo")
         fechaColumn = TableColumn<Camion, String>("Fecha")
-
+        camionesTable = TableView<Camion>()
+        camionesTable.columns.addAll(idColumn, modeloColumn, fechaColumn)
+        camionesTable.items = FXCollections.observableArrayList(viewModel.getAllCamiones())
     }
 
     private fun agregarCamion() {
-        // Implementar lógica para agregar un camión
+        val camion = Camion(0, modeloTextField.text, fechaDatePicker.value.toString())
+        viewModel.agregarCamion(camion)
     }
 
     private fun actualizarCamion() {
-        // Implementar lógica para actualizar un camión
+        val camionActual = camionesTable.selectionModel.selectedItem
+        val camion = Camion(camionActual.id, modeloTextField.text, fechaDatePicker.value.toString())
+        viewModel.actualizarCamion(camion)
     }
 
     private fun borrarCamion() {
-        // Implementar lógica para borrar un camión
+        val camionActual = camionesTable.selectionModel.selectedItem
+        viewModel.eliminarCamion(camionActual.id.toString())
     }
 }

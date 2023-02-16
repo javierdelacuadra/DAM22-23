@@ -1,0 +1,7 @@
+query GetAllCamiones {
+    getallcamiones {
+        id
+        modelo
+        fechaConstruccion
+    }
+}

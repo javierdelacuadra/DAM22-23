@@ -1,0 +1,5 @@
+#mutation DeleteCamion($id: ID!) {
+#    borrarCamion(id: $id) {
+#        id
+#    }
+#}
