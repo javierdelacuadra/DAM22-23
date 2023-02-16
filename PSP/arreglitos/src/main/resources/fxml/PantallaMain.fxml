@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.mainscreen.MainController">
+    <top>
+        <MenuBar>
+            <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
+                <MenuItem mnemonicParsing="false" onAction="#salir" text="Exit"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Camiones">
+                <MenuItem mnemonicParsing="false" onAction="#listCamionesMenu"
+                          text="Gestionar camiones"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Conductores" onAction="#listConductoresMenu">
+                <MenuItem mnemonicParsing="false" onAction="#listConductoresMenu"
+                          text="Gestionar conductores"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Empresas">
+                <MenuItem mnemonicParsing="false" onAction="#listEmpresasMenu"
+                          text="Gestionar empresas"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
