@@ -8,6 +8,9 @@ import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope.coroutineContext
+import kotlinx.coroutines.launch
 import servicios.modelo.Camion
 import ui.pantallas.common.BasePantallaController
 import java.net.URL
@@ -50,28 +53,28 @@ class CamionesController : Initializable, BasePantallaController() {
         fechaColumn = TableColumn<Camion, String>("Fecha")
         camionesTable = TableView<Camion>()
         camionesTable.columns.addAll(idColumn, modeloColumn, fechaColumn)
-        camionesTable.items = FXCollections.observableArrayList(viewModel.getAllCamiones())
+        CoroutineScope(coroutineContext).launch { camionesTable.items = FXCollections.observableArrayList(viewModel.getAllCamiones()) }
     }
 
     override fun principalCargado() {
-        agregarButton.setOnAction { agregarCamion() }
-        actualizarButton.setOnAction { actualizarCamion() }
-        borrarButton.setOnAction { borrarCamion() }
+        agregarButton.setOnAction { CoroutineScope(coroutineContext).launch { agregarCamion() } }
+        actualizarButton.setOnAction { CoroutineScope(coroutineContext).launch { actualizarCamion() } }
+        borrarButton.setOnAction { CoroutineScope(coroutineContext).launch { borrarCamion() } }
     }
 
-    private fun agregarCamion() {
+    private suspend fun agregarCamion() {
         val camion = Camion(0, modeloTextField.text, fechaDatePicker.value.toString())
         viewModel.agregarCamion(camion)
     }
 
-    private fun actualizarCamion() {
+    private suspend fun actualizarCamion() {
         val camionActual = camionesTable.selectionModel.selectedItem
         val camion = Camion(camionActual.id, modeloTextField.text, fechaDatePicker.value.toString())
         viewModel.actualizarCamion(camion)
     }
 
-    private fun borrarCamion() {
+    private suspend fun borrarCamion() {
         val camionActual = camionesTable.selectionModel.selectedItem
-        viewModel.eliminarCamion(camionActual.id.toString())
+        viewModel.eliminarCamion(camionActual.id)
     }
 }

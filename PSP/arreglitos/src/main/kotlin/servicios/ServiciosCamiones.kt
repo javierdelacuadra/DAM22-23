@@ -7,19 +7,19 @@ class ServiciosCamiones {
 
     private val dao = DaoCamiones()
 
-    fun getAllCamiones(): List<Camion> {
+    suspend fun getAllCamiones(): List<Camion> {
         return dao.getAllCamiones()
     }
 
-    fun agregarCamion(camion: Camion) {
+    suspend fun agregarCamion(camion: Camion) {
         dao.agregarCamion(camion)
     }
 
-    fun actualizarCamion(camion: Camion) {
+    suspend fun actualizarCamion(camion: Camion) {
         dao.actualizarCamion(camion)
     }
 
-    fun eliminarCamion(id: String) {
+    suspend fun eliminarCamion(id: Int) {
         dao.eliminarCamion(id)
     }
 }

@@ -6,19 +6,19 @@ import servicios.modelo.Conductor
 class ServiciosConductores {
     private val dao = DaoConductores()
 
-    fun getAllConductores(): List<Conductor> {
+    suspend fun getAllConductores(): List<Conductor> {
         return dao.getAllConductores()
     }
 
-    fun agregarConductor(conductor: Conductor) {
+    suspend fun agregarConductor(conductor: Conductor) {
         dao.agregarConductor(conductor)
     }
 
-    fun actualizarConductor(conductor: Conductor) {
+    suspend fun actualizarConductor(conductor: Conductor) {
         dao.actualizarConductor(conductor)
     }
 
-    fun eliminarConductor(id: String) {
+    suspend fun eliminarConductor(id: Int) {
         dao.eliminarConductor(id)
     }
 }

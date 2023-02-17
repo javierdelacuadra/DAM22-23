@@ -9,19 +9,19 @@ class PantallaEmpresasViewModel {
 
     private val servicios = ServiciosEmpresas()
 
-    fun getAllEmpresas(): ObservableList<Empresa> {
+    suspend fun getAllEmpresas(): ObservableList<Empresa> {
         return FXCollections.observableArrayList(servicios.getAllEmpresas())
     }
 
-    fun agregarEmpresa(empresa: Empresa) {
+    suspend fun agregarEmpresa(empresa: Empresa) {
         servicios.agregarEmpresa(empresa)
     }
 
-    fun actualizarEmpresa(empresa: Empresa) {
+    suspend fun actualizarEmpresa(empresa: Empresa) {
         servicios.actualizarEmpresa(empresa)
     }
 
-    fun eliminarEmpresa(id: String) {
+    suspend fun eliminarEmpresa(id: Int) {
         servicios.eliminarEmpresa(id)
     }
 }

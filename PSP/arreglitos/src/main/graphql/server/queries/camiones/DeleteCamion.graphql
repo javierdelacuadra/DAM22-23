@@ -1,5 +1,3 @@
-#mutation DeleteCamion($id: ID!) {
-#    borrarCamion(id: $id) {
-#        id
-#    }
-#}
+mutation DeleteCamion($id: Int!) {
+    borrarCamion(id: $id)
+}

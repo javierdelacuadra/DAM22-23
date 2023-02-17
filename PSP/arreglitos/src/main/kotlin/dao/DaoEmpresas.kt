@@ -2,61 +2,87 @@ package dao
 
 import com.apollographql.apollo3.ApolloClient
 import server.AddEmpresaMutation
+import server.DeleteEmpresaMutation
 import server.GetAllEmpresasQuery
 import server.UpdateEmpresaMutation
+import servicios.modelo.Camion
 import servicios.modelo.Empresa
 
 class DaoEmpresas {
 
-    fun getAllEmpresas(): List<Empresa> {
+    suspend fun getAllEmpresas(): List<Empresa> {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = GetAllEmpresasQuery.builder().build()
+        val query = GetAllEmpresasQuery()
 
         val response = apolloClient.query(query).execute()
+        var empresasList = emptyList<Empresa>()
+        if (!response.hasErrors()) {
+            val empresas = response.data?.getallempresas?.map {
+                Empresa(
+                    id = it.id,
+                    nombre = it.nombre,
+                    direccion = it.direccion,
+                    camiones = it.camiones.map { camion ->
+                        Camion(
+                            id = camion.id,
+                            modelo = camion.modelo,
+                            fechaConstruccion = camion.fechaConstruccion
+                        )
+                    }
+                )
+            } ?: emptyList()
+            empresasList = empresas
+        } else {
 
-        val empresas = response.data()?.empresas()?.map {
-            Empresa(it.id(), it.nombre(), it.direccion(), it.camiones())
-        } ?: emptyList()
-
-        return empresas
+        }
+        return empresasList
     }
 
-    fun agregarEmpresa(empresa: Empresa) {
+    suspend fun agregarEmpresa(empresa: Empresa): String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query =
-            AddEmpresaMutation.builder().nombre(empresa.nombre).direccion(empresa.direccion).camiones(empresa.camiones)
-                .build()
+        val mutation = AddEmpresaMutation(empresa.nombre, empresa.direccion)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.addEmpresa()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            response.data?.crearEmpresa?.id.toString()
+        } else {
+            "Error"
+        }
     }
 
-    fun actualizarEmpresa(empresa: Empresa) {
+    suspend fun actualizarEmpresa(empresa: Empresa): String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = UpdateEmpresaMutation.builder().id(empresa.id).nombre(empresa.nombre).direccion(empresa.direccion)
-            .camiones(empresa.camiones).build()
+        val mutation = UpdateEmpresaMutation(empresa.id, empresa.nombre, empresa.direccion)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.updateEmpresa()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            response.data?.actualizarEmpresa?.id.toString()
+        } else {
+            "Error"
+        }
     }
 
-    fun eliminarEmpresa(id: String) {
+    suspend fun eliminarEmpresa(id: Int): String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = DeleteEmpresaQuery.builder().id(id).build()
+        val mutation = DeleteEmpresaMutation(id)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.deleteEmpresa()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            "Empresa eliminada"
+        } else {
+            "Error"
+        }
     }
 }

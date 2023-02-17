@@ -1,0 +1,3 @@
+mutation DeleteEmpresa($id: Int!) {
+  borrarEmpresa(id: $id)
+}

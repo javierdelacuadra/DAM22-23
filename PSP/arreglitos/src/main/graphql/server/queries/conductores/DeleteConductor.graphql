@@ -1,5 +1,3 @@
-#mutation DeleteConductor($id: Int!) {
-#  borrarConductor(id: $id) {
-#    id
-#  }
-#}
+mutation DeleteConductor($id: Int!) {
+  borrarConductor(id: $id)
+}
