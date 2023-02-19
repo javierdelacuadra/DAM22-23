@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="16-2-23 fixed ClienteGraphQL">
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="17-2-23 finished ClienteGraphQL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/DeleteCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/DeleteCamion.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/DeleteConductor.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/DeleteConductor.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/DeleteEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/DeleteEmpresa.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosCamiones.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +184,7 @@
       <workItem from="1676573646465" duration="15000" />
       <workItem from="1676574263982" duration="513000" />
       <workItem from="1676574786538" duration="22000" />
-      <workItem from="1676659900721" duration="2684000" />
+      <workItem from="1676659900721" duration="3809000" />
     </task>
     <task id="LOCAL-00001" summary="16-2-23 fixed ClienteGraphQL">
       <created>1676542071933</created>
@@ -210,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676542071933</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="17-2-23 finished ClienteGraphQL">
+      <created>1676663060474</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676663060474</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +208,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="16-2-23 fixed ClienteGraphQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="16-2-23 fixed ClienteGraphQL" />
+    <MESSAGE value="17-2-23 finished ClienteGraphQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="17-2-23 finished ClienteGraphQL" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

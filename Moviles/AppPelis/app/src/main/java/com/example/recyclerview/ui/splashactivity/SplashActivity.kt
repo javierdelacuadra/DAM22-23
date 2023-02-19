@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.recyclerview.databinding.ActivitySplashBinding
 import com.example.recyclerview.ui.common.ConstantesUI
-import com.example.recyclerview.ui.peliculasactivity.PeliculasActivity
+import com.example.recyclerview.uicompose.pelisactivity.PeliculasActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -10,7 +10,8 @@ object ConstantesUI {
     const val ID = "id"
     const val MINUTOS = " minutos"
     const val CONECTATE_A_INTERNET_PARA_VER_DETALLES = "Conéctate a internet para ver los detalles"
-    const val CONECTATE_A_INTERNET_PARA_VER_PELICULAS = "Conéctate a internet para ver las películas"
+    const val CONECTATE_A_INTERNET_PARA_VER_PELICULAS =
+        "Conéctate a internet para ver las películas"
     const val TRENDING = "Trending"
     const val TOP_RATED = "Top Rated"
     const val USECOMPATLOADINGFORDRAWABLES = "UseCompatLoadingForDrawables"

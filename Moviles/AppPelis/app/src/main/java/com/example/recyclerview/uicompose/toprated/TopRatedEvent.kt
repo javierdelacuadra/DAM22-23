@@ -1,4 +1,4 @@
-package com.example.recyclerview.ui.peliculasactivity.fragments.toprated
+package com.example.recyclerview.uicompose.toprated
 
 import com.example.recyclerview.domain.modelo.Pelicula
 
@@ -8,7 +8,7 @@ sealed interface TopRatedEvent {
     }
 
     data class TopRatedState(
-        val movies: List<Pelicula>? = emptyList(),
+        val movies: List<Pelicula> = emptyList(),
         val cargando: Boolean = false,
         val error: String? = null,
 

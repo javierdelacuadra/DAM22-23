@@ -1,4 +1,4 @@
-package com.example.recyclerview.ui.peliculasactivity.fragments.detalle
+package com.example.recyclerview.uicompose.trending
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,46 +10,46 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
-class DetalleViewModel @Inject constructor(
+class TrendingViewModel @Inject constructor(
     private val repository: PeliculasRepository
 ) : ViewModel() {
 
-    private val _uiDetalleState: MutableStateFlow<DetalleEvent.DetalleState> by lazy {
-        MutableStateFlow(DetalleEvent.DetalleState())
+    private val _uiTrendingState: MutableStateFlow<TrendingState> by lazy {
+        MutableStateFlow(TrendingState())
     }
-    val uiDetalleState: StateFlow<DetalleEvent.DetalleState> = _uiDetalleState
+    val uiTrendingState: StateFlow<TrendingState> = _uiTrendingState
 
     private val _uiError = Channel<String>()
-    val uiError = _uiError.receiveAsFlow()
 
-    fun handleEvent(event: DetalleEvent) {
+    fun handleEvent(event: TrendingEvent.Eventos) {
         when (event) {
-            is DetalleEvent.LoadPelicula -> {
-                cargarPeliculas(event.id)
+            TrendingEvent.Eventos.LoadPeliculas -> {
+                cargarPeliculas()
             }
         }
     }
 
-    private fun cargarPeliculas(id: Int) {
+    private fun cargarPeliculas() {
         viewModelScope.launch {
-            _uiDetalleState.update { it.copy(cargando = true) }
-            repository.fetchPeliculaByID(id)
+            _uiTrendingState.update { it.copy(cargando = true) }
+            repository.fetchTrendingMovies()
                 .catch { cause -> _uiError.send(cause.message ?: "") }
                 .collect { result ->
                     when (result) {
                         is NetworkResult.Error -> {
-                            _uiDetalleState.update {
+                            _uiTrendingState.update {
                                 it.copy(
-                                    mensaje = result.message,
+                                    error = result.message,
                                     cargando = false
                                 )
                             }
                         }
                         is NetworkResult.Success -> {
-                            _uiDetalleState.update {
+                            _uiTrendingState.update {
                                 it.copy(
-                                    pelicula = result.data,
+                                    movies = result.data ?: emptyList(),
                                     cargando = false
                                 )
                             }
@@ -59,4 +59,5 @@ class DetalleViewModel @Inject constructor(
                 }
         }
     }
+
 }

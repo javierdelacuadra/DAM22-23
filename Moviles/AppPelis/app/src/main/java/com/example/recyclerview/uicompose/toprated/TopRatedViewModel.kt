@@ -1,4 +1,4 @@
-package com.example.recyclerview.ui.peliculasactivity.fragments.toprated
+package com.example.recyclerview.uicompose.toprated
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,6 @@ class TopRatedViewModel @Inject constructor(
     val uiTopRatedState: StateFlow<TopRatedEvent.TopRatedState> = _uiTopRatedState
 
     private val _uiError = Channel<String>()
-    val uiError = _uiError.receiveAsFlow()
 
     fun handleEvent(event: TopRatedEvent.Eventos) {
         when (event) {
@@ -49,7 +48,7 @@ class TopRatedViewModel @Inject constructor(
                         is NetworkResult.Success -> {
                             _uiTopRatedState.update {
                                 it.copy(
-                                    movies = result.data,
+                                    movies = result.data ?: emptyList(),
                                     cargando = false
                                 )
                             }
