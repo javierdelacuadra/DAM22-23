@@ -56,7 +56,6 @@ fun PersonaItem(persona: Persona) {
         elevation = 8.dp,
         backgroundColor = Purple200
     ) {
-        //do a column and center the content
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -99,9 +98,7 @@ fun PantallaList(
     }
     state.mensaje?.let {
         LaunchedEffect(key1 = true) {
-            //show a toast
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            //reset the state
             viewModel.handleEvent(ListEvent.ResetMensaje)
         }
     }

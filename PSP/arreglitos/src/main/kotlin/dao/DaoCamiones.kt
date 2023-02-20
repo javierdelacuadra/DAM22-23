@@ -2,55 +2,80 @@ package dao
 
 import com.apollographql.apollo3.ApolloClient
 import server.AddCamionMutation
+import server.DeleteCamionMutation
 import server.GetAllCamionesQuery
 import server.UpdateCamionMutation
 import servicios.modelo.Camion
 
+
 class DaoCamiones {
-    fun getAllCamiones(): List<Camion> {
+    suspend fun getAllCamiones(): List<Camion> {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = GetAllCamionesQuery.builder().build()
+        val getAllCamionesQuery = GetAllCamionesQuery()
 
-        val response = apolloClient.query(query).execute()
-        val camiones = response.data()?.camiones()?.map {
-            Camion(it.id(), it.modelo(), it.fechaFabricacion())
-        } ?: emptyList()
-        return camiones
+        val response = apolloClient.query(getAllCamionesQuery).execute()
+        var camionesList = emptyList<Camion>()
+        if (!response.hasErrors()) {
+            val camiones = response.data?.getallcamiones?.map {
+                Camion(
+                    id = it.id,
+                    modelo = it.modelo,
+                    fechaConstruccion = it.fechaConstruccion
+                )
+            } ?: emptyList()
+            camionesList = camiones
+        } else {
+
+        }
+
+        return camionesList
     }
 
-    fun agregarCamion(camion: Camion) {
+    suspend fun agregarCamion(camion: Camion): String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = AddCamionMutation.builder().modelo(camion.modelo).fechaFabricacion(camion.fechaConstruccion).build()
+        val mutation = AddCamionMutation(camion.modelo, camion.fechaConstruccion)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.addCamion()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            response.data?.crearCamion?.id.toString()
+        } else {
+            "Error"
+        }
     }
 
-    fun actualizarCamion(camion: Camion) {
+    suspend fun actualizarCamion(camion: Camion) : String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = UpdateCamionMutation.builder().id(camion.id).modelo(camion.modelo).fechaFabricacion(camion.fechaConstruccion).build()
+        val mutation = UpdateCamionMutation(camion.id, camion.modelo, camion.fechaConstruccion)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.updateCamion()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            response.data?.actualizarCamion?.id.toString()
+        } else {
+            "Error"
+        }
     }
 
-    fun eliminarCamion(id: String) {
+    suspend fun eliminarCamion(id: Int) : String {
         val apolloClient = ApolloClient.Builder()
             .serverUrl("https://localhost:8080/graphql")
             .build()
 
-        val query = DeleteCamion.builder().id(id).build()
+        val mutation = DeleteCamionMutation(id)
 
-        val response = apolloClient.mutate(query).execute()
-        println(response.data()?.deleteCamion()?.id())
+        val response = apolloClient.mutation(mutation).execute()
+        return if (!response.hasErrors()) {
+            "Camion eliminado"
+        } else {
+            "Error"
+        }
     }
 }

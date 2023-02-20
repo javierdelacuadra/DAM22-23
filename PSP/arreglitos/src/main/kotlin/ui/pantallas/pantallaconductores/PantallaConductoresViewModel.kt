@@ -6,19 +6,19 @@ import servicios.modelo.Conductor
 class PantallaConductoresViewModel {
     private val servicios = ServiciosConductores()
 
-    fun getAllConductores(): List<Conductor> {
+    suspend fun getAllConductores(): List<Conductor> {
         return servicios.getAllConductores()
     }
 
-    fun agregarConductor(conductor: Conductor) {
+    suspend fun agregarConductor(conductor: Conductor) {
         servicios.agregarConductor(conductor)
     }
 
-    fun actualizarConductor(conductor: Conductor) {
+    suspend fun actualizarConductor(conductor: Conductor) {
         servicios.actualizarConductor(conductor)
     }
 
-    fun eliminarConductor(id: String) {
+    suspend fun eliminarConductor(id: Int) {
         servicios.eliminarConductor(id)
     }
 }

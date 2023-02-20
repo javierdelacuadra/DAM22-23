@@ -7,19 +7,19 @@ class ServiciosEmpresas {
 
     private val dao = DaoEmpresas()
 
-    fun getAllEmpresas(): List<Empresa> {
+    suspend fun getAllEmpresas(): List<Empresa> {
         return dao.getAllEmpresas()
     }
 
-    fun agregarEmpresa(empresa: Empresa) {
+    suspend fun agregarEmpresa(empresa: Empresa) {
         dao.agregarEmpresa(empresa)
     }
 
-    fun actualizarEmpresa(empresa: Empresa) {
+    suspend fun actualizarEmpresa(empresa: Empresa) {
         dao.actualizarEmpresa(empresa)
     }
 
-    fun eliminarEmpresa(id: String) {
+    suspend fun eliminarEmpresa(id: Int) {
         dao.eliminarEmpresa(id)
     }
 

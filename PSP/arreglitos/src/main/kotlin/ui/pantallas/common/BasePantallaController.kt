@@ -13,5 +13,5 @@ open class BasePantallaController {
         this.pantallaMainController = pantallaMainController
     }
 
-    fun principalCargado() {}
+    open fun principalCargado() {}
 }

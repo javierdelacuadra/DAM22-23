@@ -11,11 +11,11 @@
         "introspect": false
       },
       "Localhost GraphQL Endpoint": {
-          "url": "http://localhost:8080/graphql",
-          "headers": {
+        "url": "http://localhost:8080/graphql",
+        "headers": {
           "user-agent": "JS GraphQL"
-          },
-          "introspect": true
+        },
+        "introspect": true
       }
     }
   }

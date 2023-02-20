@@ -1,12 +1,12 @@
 query GetAllEmpresas {
-  getallempresas {
-    id
-    nombre
-    direccion
-    camiones {
+    getallempresas {
         id
-        modelo
-        fechaConstruccion
+        nombre
+        direccion
+        camiones {
+            id
+            modelo
+            fechaConstruccion
+        }
     }
-  }
 }

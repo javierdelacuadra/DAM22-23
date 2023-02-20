@@ -21,6 +21,7 @@ class MainController : Initializable, BasePantallaController() {
 
     @FXML
     lateinit var root: BorderPane
+
     @FXML
     lateinit var optionsMenu: Menu
 

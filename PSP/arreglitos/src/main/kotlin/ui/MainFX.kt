@@ -15,7 +15,7 @@ class MainFX : Application() {
             val loaderMenu = FXMLLoader(
                 javaClass.getResource(Pantallas.PANTALLAMAIN.ruta)
             )
-            val root : BorderPane = loaderMenu.load()
+            val root: BorderPane = loaderMenu.load()
             val scene = Scene(root)
             primaryStage.title = "Cliente GraphQL"
             primaryStage.scene = scene

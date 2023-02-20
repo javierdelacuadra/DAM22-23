@@ -6,19 +6,19 @@ import servicios.modelo.Camion
 class CamionesViewModel {
     private val servicios = ServiciosCamiones()
 
-    fun getAllCamiones(): List<Camion> {
+    suspend fun getAllCamiones(): List<Camion> {
         return servicios.getAllCamiones()
     }
 
-    fun agregarCamion(camion: Camion) {
+    suspend fun agregarCamion(camion: Camion) {
         servicios.agregarCamion(camion)
     }
 
-    fun actualizarCamion(camion: Camion) {
+    suspend fun actualizarCamion(camion: Camion) {
         servicios.actualizarCamion(camion)
     }
 
-    fun eliminarCamion(id: String) {
+    suspend fun eliminarCamion(id: Int) {
         servicios.eliminarCamion(id)
     }
 }
