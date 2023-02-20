@@ -6,7 +6,7 @@ data class MovieResponse(
     val original_title: String?,
     val overview: String?,
     val release_date: String?,
-    val revenue: Int?,
+    val revenue: Long?,
     val runtime: Int?,
     val vote_average: Double?,
     val vote_count: Int?

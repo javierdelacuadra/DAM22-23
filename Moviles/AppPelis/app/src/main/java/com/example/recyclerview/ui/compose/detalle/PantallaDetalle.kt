@@ -1,4 +1,4 @@
-package com.example.recyclerview.uicompose.detalle
+package com.example.recyclerview.ui.compose.detalle
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.recyclerview.domain.modelo.IndividualMovie
+import com.example.recyclerview.ui.common.ConstantesUI
 
 @Composable
 fun PantallaDetalle(id: Int) {
@@ -46,7 +47,7 @@ fun IndividualMovieCard(pelicula: IndividualMovie) {
         ) {
             AsyncImage(
                 model = "https://image.tmdb.org/t/p/w500${pelicula.poster_path}",
-                contentDescription = "Imagen de la pelicula",
+                contentDescription = ConstantesUI.IMAGEN_DE_LA_PELICULA,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(292.dp)
@@ -84,7 +85,7 @@ fun IndividualMovieCard(pelicula: IndividualMovie) {
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
-                    text = pelicula.revenue.toString() + "$",
+                    text = pelicula.revenue.toString() + ConstantesUI.DOLARES,
                     modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterVertically),
@@ -93,7 +94,7 @@ fun IndividualMovieCard(pelicula: IndividualMovie) {
                     style = MaterialTheme.typography.body1
                 )
                 Text(
-                    text = pelicula.runtime.toString() + " min",
+                    text = pelicula.runtime.toString() + ConstantesUI.MINUTOS,
                     modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterVertically),
@@ -109,7 +110,7 @@ fun IndividualMovieCard(pelicula: IndividualMovie) {
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
-                    text = pelicula.vote_average.toString() + " / 10",
+                    text = pelicula.vote_average.toString() + ConstantesUI.DE_DIEZ,
                     modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterVertically),
@@ -118,7 +119,7 @@ fun IndividualMovieCard(pelicula: IndividualMovie) {
                     style = MaterialTheme.typography.body1
                 )
                 Text(
-                    text = pelicula.vote_count.toString() + " votos",
+                    text = pelicula.vote_count.toString() + ConstantesUI.VOTOS,
                     modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterVertically),

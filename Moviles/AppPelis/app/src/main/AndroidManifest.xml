@@ -32,7 +32,7 @@
         </activity>
 
         <activity
-            android:name=".uicompose.pelisactivity.PeliculasActivity"
+            android:name="com.example.recyclerview.ui.compose.pelisactivity.PeliculasActivity"
             android:parentActivityName=".ui.splashactivity.SplashActivity" />
 
     </application>
