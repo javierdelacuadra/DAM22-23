@@ -4,39 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="16-2-23 fixed ClienteGraphQL">
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/AddCamion.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/DeleteCamion.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/GetAllCamiones.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/UpdateCamion.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/AddConductor.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/DeleteConductor.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/GetAllConductores.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/UpdateConductor.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/AddEmpresa.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/DeleteEmpresa.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/GetAllEmpresas.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/UpdateEmpresa.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosConductores.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosEmpresas.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="16-2-23 full client + queries implementation, pending fixes on dao and deletes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/ServiciosCamiones.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +100,7 @@
       <updated>1676538676070</updated>
       <workItem from="1676538677227" duration="8432000" />
       <workItem from="1676548627464" duration="97000" />
-      <workItem from="1676548740059" duration="746000" />
+      <workItem from="1676548740059" duration="1918000" />
     </task>
     <task id="LOCAL-00001" summary="16-2-23 fixed ClienteGraphQL">
       <created>1676542071933</created>
@@ -140,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676542071933</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="16-2-23 full client + queries implementation, pending fixes on dao and deletes">
+      <created>1676549789343</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549789343</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +124,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="16-2-23 fixed ClienteGraphQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="16-2-23 fixed ClienteGraphQL" />
+    <MESSAGE value="16-2-23 full client + queries implementation, pending fixes on dao and deletes" />
+    <option name="LAST_COMMIT_MESSAGE" value="16-2-23 full client + queries implementation, pending fixes on dao and deletes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
