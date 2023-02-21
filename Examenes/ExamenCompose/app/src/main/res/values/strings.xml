@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ExamenXML</string>
+    <string name="hospitalesypacientes">Hospitales</string>
+    <string name="pacientes">Pacientes</string>
+    <string name="detalle">Detalle</string>
+    <string name="search">Buscar</string>
+    <string name="uuid">IDHospital</string>
+    <string name="nombre_hospital">NombreHospital</string>
+    <string name="numero_camas">Número de camas</string>
+    <string name="direccion">Dirección</string>
+    <string name="nombre_paciente">Nombre del paciente</string>
+    <string name="idPaciente">UUID Paciente</string>
+    <string name="dnipaciente">DNI Paciente</string>
+    <string name="boton_editar">Editar nombre</string>
+    <string name="enfermedad_paciente">Enfermedad del paciente</string>
+</resources>
