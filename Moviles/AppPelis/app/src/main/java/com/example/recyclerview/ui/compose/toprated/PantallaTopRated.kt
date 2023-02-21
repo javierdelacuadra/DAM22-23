@@ -1,4 +1,4 @@
-package com.example.recyclerview.uicompose.trending
+package com.example.recyclerview.ui.compose.toprated
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -7,15 +7,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.recyclerview.uicompose.pelisactivity.PeliculaCard
+import com.example.recyclerview.ui.compose.common.PeliculaCard
 
 @Composable
-fun PantallaTrending(
+fun PantallaTopRated(
     navController: NavHostController,
-    viewModel: TrendingViewModel = hiltViewModel()
+    viewModel: TopRatedViewModel = hiltViewModel()
 ) {
-    viewModel.handleEvent(TrendingEvent.Eventos.LoadPeliculas)
-    val state by viewModel.uiTrendingState.collectAsState()
+    viewModel.handleEvent(TopRatedEvent.Eventos.LoadPeliculas)
+    val state by viewModel.uiTopRatedState.collectAsState()
     LazyColumn {
         items(state.movies) { pelicula ->
             PeliculaCard(pelicula = pelicula, navController = navController)

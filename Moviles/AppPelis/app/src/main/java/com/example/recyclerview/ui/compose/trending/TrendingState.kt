@@ -1,4 +1,4 @@
-package com.example.recyclerview.uicompose.trending
+package com.example.recyclerview.ui.compose.trending
 
 import com.example.recyclerview.domain.modelo.Pelicula
 

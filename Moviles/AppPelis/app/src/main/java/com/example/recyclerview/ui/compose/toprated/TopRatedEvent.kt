@@ -1,4 +1,4 @@
-package com.example.recyclerview.uicompose.toprated
+package com.example.recyclerview.ui.compose.toprated
 
 import com.example.recyclerview.domain.modelo.Pelicula
 

@@ -1,4 +1,4 @@
-package com.example.recyclerview.uicompose.detalle
+package com.example.recyclerview.ui.compose.detalle
 
 import com.example.recyclerview.domain.modelo.IndividualMovie
 

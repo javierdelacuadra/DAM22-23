@@ -1,63 +1,69 @@
-package com.example.recyclerview.uicompose.trending
+package com.example.recyclerview.ui.compose.detalle
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerview.data.repositories.PeliculasRepository
 import com.example.recyclerview.network.NetworkResult
+import com.example.recyclerview.ui.common.ConstantesUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class TrendingViewModel @Inject constructor(
+class DetalleViewModel @Inject constructor(
     private val repository: PeliculasRepository
 ) : ViewModel() {
 
-    private val _uiTrendingState: MutableStateFlow<TrendingState> by lazy {
-        MutableStateFlow(TrendingState())
+    private val _uiDetalleState: MutableStateFlow<DetalleEvent.DetalleState> by lazy {
+        MutableStateFlow(DetalleEvent.DetalleState())
     }
-    val uiTrendingState: StateFlow<TrendingState> = _uiTrendingState
+    val uiDetalleState: StateFlow<DetalleEvent.DetalleState> = _uiDetalleState
 
     private val _uiError = Channel<String>()
 
-    fun handleEvent(event: TrendingEvent.Eventos) {
+    fun handleEvent(event: DetalleEvent) {
         when (event) {
-            TrendingEvent.Eventos.LoadPeliculas -> {
-                cargarPeliculas()
+            is DetalleEvent.LoadPelicula -> {
+                cargarPeliculas(event.id)
             }
         }
     }
 
-    private fun cargarPeliculas() {
+    private fun cargarPeliculas(id: Int) {
         viewModelScope.launch {
-            _uiTrendingState.update { it.copy(cargando = true) }
-            repository.fetchTrendingMovies()
+            _uiDetalleState.update { it.copy(cargando = true) }
+            repository.fetchPeliculaByID(id)
                 .catch { cause -> _uiError.send(cause.message ?: "") }
                 .collect { result ->
                     when (result) {
                         is NetworkResult.Error -> {
-                            _uiTrendingState.update {
+                            _uiDetalleState.update {
                                 it.copy(
-                                    error = result.message,
+                                    mensaje = result.message,
                                     cargando = false
                                 )
                             }
                         }
                         is NetworkResult.Success -> {
-                            _uiTrendingState.update {
+                            _uiDetalleState.update {
                                 it.copy(
-                                    movies = result.data ?: emptyList(),
+                                    pelicula = result.data,
                                     cargando = false
                                 )
                             }
                         }
-                        else -> {}
+                        else -> {
+                            _uiDetalleState.update {
+                                it.copy(
+                                    mensaje = ConstantesUI.ERROR_DESCONOCIDO,
+                                    cargando = false
+                                )
+                            }
+                        }
                     }
                 }
         }
     }
-
 }
