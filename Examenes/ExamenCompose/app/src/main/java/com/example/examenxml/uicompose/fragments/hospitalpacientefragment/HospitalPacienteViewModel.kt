@@ -68,7 +68,7 @@ class HospitalPacienteViewModel @Inject constructor(
                         is NetworkResult.Success -> {
                             _uiHospitalPacienteState.update {
                                 it.copy(
-                                    hospitales = result.data,
+                                    hospitales = result.data!!,
                                     cargando = false
                                 )
                             }

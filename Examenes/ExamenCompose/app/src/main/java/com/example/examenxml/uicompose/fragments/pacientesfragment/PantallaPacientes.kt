@@ -1,12 +1,15 @@
-package com.example.examenxml.uicompose
+package com.example.examenxml.uicompose.fragments.pacientesfragment
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.examenxml.uicompose.fragments.hospitalpacientefragment.PacienteCard
 import com.example.examenxml.uicompose.fragments.pacientesfragment.PacienteEvent
+import com.example.examenxml.uicompose.fragments.pacientesfragment.PacienteViewModel
 
 @Composable
 fun PantallaPacientes(

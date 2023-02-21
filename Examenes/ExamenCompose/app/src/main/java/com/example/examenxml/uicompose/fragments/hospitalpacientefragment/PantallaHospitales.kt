@@ -1,4 +1,4 @@
-package com.example.examenxml.uicompose
+package com.example.examenxml.uicompose.fragments.hospitalpacientefragment
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -19,7 +20,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.examenxml.domain.modelo.Hospital
 import com.example.examenxml.domain.modelo.Paciente
-import com.example.examenxml.uicompose.fragments.hospitalpacientefragment.HospitalPacienteEvent
 
 @Composable
 fun PantallaHospitales(
@@ -54,7 +54,7 @@ fun HospitalCard(hospital: Hospital, viewModel: HospitalPacienteViewModel = hilt
                 .fillMaxWidth()
                 .padding(5.dp)
                 .background(color = Color.LightGray)
-                .clickable { viewModel.handleEvent(HospitalPacienteEvent.Eventos.LoadPacientes(hospital.id)) }
+                .clickable { viewModel.handleEvent(HospitalPacienteEvent.Eventos.LoadPacientes(hospital.id.toString())) }
         ) {
             Text(text = "UUID: ${hospital.id}", modifier = Modifier.padding(8.dp))
             Text(text = "Nombre: ${hospital.nombre}", modifier = Modifier.padding(8.dp))

@@ -1,4 +1,4 @@
-package com.example.examenxml.ui.fragments.detallefragment
+package com.example.examenxml.uicompose.fragments.detallefragment
 
 import com.example.examenxml.data.modelo.EnfermedadEntity
 import com.example.examenxml.data.modelo.PacienteWithEnfermedades

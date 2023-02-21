@@ -14,8 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.examenxml.data.modelo.toPaciente
 import com.example.examenxml.domain.modelo.Enfermedad
-import com.example.examenxml.uicompose.PacienteCardWithoutNavigation
+import com.example.examenxml.uicompose.fragments.hospitalpacientefragment.PacienteCardWithoutNavigation
 
 @Composable
 fun PantallaDetalle(id: String) {
@@ -25,11 +26,11 @@ fun PantallaDetalle(id: String) {
     val paciente = state.paciente
     val enfermedades = paciente?.enfermedades
     if (paciente != null) {
-        PacienteCardWithoutNavigation(paciente = paciente)
+        PacienteCardWithoutNavigation(paciente = paciente.paciente.toPaciente())
     }
 
 //    LazyColumn {
-//        items(enfermedades!!) { enfermedad ->
+//        items(enfermedades) { enfermedad ->
 //            EnfermedadCard(enfermedad = enfermedad)
 //        }
 //    }

@@ -1,9 +1,8 @@
-package com.example.examenxml.ui.fragments.detallefragment
+package com.example.examenxml.uicompose.fragments.detallefragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.examenxml.data.modelo.EnfermedadEntity
-import com.example.examenxml.data.modelo.toEnfermedad
 import com.example.examenxml.data.repositories.PacientesRepository
 import com.example.examenxml.network.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel

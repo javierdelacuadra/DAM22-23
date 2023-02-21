@@ -7,7 +7,8 @@ import java.util.*
 sealed interface HospitalPacienteEvent {
     sealed class Eventos {
         object LoadHospitales : Eventos()
-        data class LoadPacientes(val id: UUID) : Eventos()
+        data class LoadPacientes(val id: String) : Eventos()
+        data class BorrarHospital(val id: String) : Eventos()
     }
 
     data class HospitalPacienteState(
