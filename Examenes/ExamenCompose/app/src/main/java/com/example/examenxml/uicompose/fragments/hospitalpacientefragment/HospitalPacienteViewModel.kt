@@ -24,7 +24,6 @@ class HospitalPacienteViewModel @Inject constructor(
         _uiHospitalPacienteState
 
     private val _uiError = Channel<String>()
-    val uiError = _uiError.receiveAsFlow()
 
     fun handleEvent(event: HospitalPacienteEvent.Eventos) {
         when (event) {
@@ -33,6 +32,20 @@ class HospitalPacienteViewModel @Inject constructor(
             }
             is HospitalPacienteEvent.Eventos.LoadPacientes -> {
                 cargarPacientes(event.id)
+            }
+            is HospitalPacienteEvent.Eventos.BorrarHospital -> {
+                borrarHospital(event.id)
+            }
+        }
+    }
+
+    private fun borrarHospital(id: String) {
+        viewModelScope.launch {
+            try {
+                hospitalesRepository.deleteHospital(id)
+                cargarHospitales()
+            } catch (e: Exception) {
+                _uiHospitalPacienteState.update { it.copy(error = "No se ha `podido borrar el hospital") }
             }
         }
     }
@@ -55,7 +68,7 @@ class HospitalPacienteViewModel @Inject constructor(
                         is NetworkResult.Success -> {
                             _uiHospitalPacienteState.update {
                                 it.copy(
-                                    hospitales = result.data!!,
+                                    hospitales = result.data,
                                     cargando = false
                                 )
                             }
@@ -66,11 +79,11 @@ class HospitalPacienteViewModel @Inject constructor(
         }
     }
 
-    private fun cargarPacientes(id: UUID) {
+    private fun cargarPacientes(id: String) {
         val hospitales = _uiHospitalPacienteState.value.hospitales
-        val hospital = hospitales.find { it.id == id }
-        hospital?.let {
-            _uiHospitalPacienteState.update { it.copy(pacientes = it.pacientes) }
+        val hospital = hospitales?.find { it.id.toString() == id }
+        hospital?.let { hospital ->
+            _uiHospitalPacienteState.update { it.copy(pacientes = hospital.pacientes) }
         }
     }
 }

@@ -15,4 +15,5 @@
     <string name="enfermedad_paciente">Enfermedad del paciente</string>
     <string name="editar">Eliminar Hospital</string>
     <string name="mensaje_lista">Mensaje</string>
+    <string name="add_enfermedad">Añadir enfermedad</string>
 </resources>

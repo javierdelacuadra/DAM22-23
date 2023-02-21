@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.examenxml.uicompose.fragments.detallefragment.PantallaDetalle
 import com.example.recyclerview.ui.compose.theme.FormularioTheme
 import dagger.hilt.android.AndroidEntryPoint
 

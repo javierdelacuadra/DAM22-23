@@ -1,11 +1,9 @@
-package com.example.examenxml.uicompose
+package com.example.examenxml.uicompose.fragments.detallefragment
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -17,8 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.examenxml.domain.modelo.Enfermedad
-import com.example.examenxml.uicompose.fragments.detallefragment.DetalleEvent
-import com.example.examenxml.uicompose.fragments.detallefragment.DetalleViewModel
+import com.example.examenxml.uicompose.PacienteCardWithoutNavigation
 
 @Composable
 fun PantallaDetalle(id: String) {

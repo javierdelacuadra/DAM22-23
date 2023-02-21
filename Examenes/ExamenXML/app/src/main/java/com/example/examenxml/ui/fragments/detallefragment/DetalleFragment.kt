@@ -1,10 +1,10 @@
 package com.example.examenxml.ui.fragments.detallefragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,9 +14,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.examenxml.data.modelo.EnfermedadEntity
+import com.example.examenxml.data.modelo.toEnfermedad
 import com.example.examenxml.databinding.FragmentDetalleBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class DetalleFragment : Fragment() {
@@ -36,7 +40,6 @@ class DetalleFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UnsafeRepeatOnLifecycleDetector", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,21 +53,17 @@ class DetalleFragment : Fragment() {
 
         val adapter = AdapterEnfermedades(ArrayList())
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiDetalleState.collect { value ->
-                    value.paciente?.let { pelicula ->
-                        binding.idPaciente.text = pelicula.id.toString()
-                        binding.nombrePaciente.editText?.setText(pelicula.nombre)
-                        binding.dniPaciente.text = pelicula.dni
-                        if (pelicula.enfermedades.isEmpty()) {
-                            binding.listaEnfermedades.visibility = View.GONE
-                            binding.mensajeLista.visibility = View.VISIBLE
-                            binding.mensajeLista.text = "No hay enfermedades"
-                        } else {
-                            binding.listaEnfermedades.visibility = View.VISIBLE
-                            adapter.cambiarLista(pelicula.enfermedades)
-                        }
+                    value.paciente?.let { paciente ->
+                        binding.idPaciente.text = paciente.paciente.id.toString()
+                        binding.nombrePaciente.editText?.text?.clear()
+                        binding.nombrePaciente.editText?.setText(paciente.paciente.nombre)
+                        binding.dniPaciente.text = paciente.paciente.dni
+                        val enfermedades = paciente.enfermedades.map { it.toEnfermedad() }
+                        adapter.cambiarLista(enfermedades)
+                        Toast.makeText(requireContext(), "Recarga la pantalla para ver el cambio de nombre", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -73,10 +72,18 @@ class DetalleFragment : Fragment() {
         listaEnfermedades = binding.listaEnfermedades
         listaEnfermedades.adapter = adapter
         listaEnfermedades.layoutManager = GridLayoutManager(requireContext(), 1)
-    }
 
+        binding.botonAddEnfermedad.setOnClickListener {
+            val id = binding.idPaciente.text.toString()
+            val enfermedad = binding.nombreEnfermedad.editText?.text.toString()
+            val enfermedadEntity = EnfermedadEntity(enfermedad, UUID.fromString(id))
+            viewModel.handleEvent(DetalleEvent.AddEnfermedad(enfermedadEntity))
+        }
+
+        binding.botonEditar.setOnClickListener {
+            val id = binding.idPaciente.text.toString()
+            val nombre = binding.nombrePaciente.editText?.text.toString()
+            viewModel.handleEvent(DetalleEvent.EditarPaciente(id, nombre))
+        }
+    }
 }
-//datos del paciente
-//recyclerview enfermedades
-//actualizar nombre paciente
-//añadir enfermedad

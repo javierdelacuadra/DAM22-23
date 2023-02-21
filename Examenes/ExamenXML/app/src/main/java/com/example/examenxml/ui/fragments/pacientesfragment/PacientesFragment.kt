@@ -1,6 +1,5 @@
 package com.example.examenxml.ui.fragments.pacientesfragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,6 @@ class PacientesFragment : Fragment() {
 
     private val viewModel: PacienteViewModel by viewModels()
 
-    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,20 +62,11 @@ class PacientesFragment : Fragment() {
                 }
             })
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiPacienteState.collect { value ->
                     binding.loadingPacientes.visibility = if (value.cargando) View.VISIBLE else View.GONE
                     value.pacientes?.let { adapterPacientes.cambiarLista(it) }
-                    value.error.let {
-                        value.error?.let { it1 ->
-                            Snackbar.make(
-                                binding.root,
-                                it1,
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
-                    }
                 }
             }
         }
@@ -88,9 +77,4 @@ class PacientesFragment : Fragment() {
         return binding.root
 
     }
-
-
-    //recycler todos los pacientes de todos los hospitales
-    //pinchar en uno lleva al detalle
-    //filtrar por nombre de usuario (no)
 }

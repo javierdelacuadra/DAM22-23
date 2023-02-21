@@ -24,7 +24,6 @@ class HospitalPacienteViewModel @Inject constructor(
         _uiHospitalPacienteState
 
     private val _uiError = Channel<String>()
-    val uiError = _uiError.receiveAsFlow()
 
     fun handleEvent(event: HospitalPacienteEvent.Eventos) {
         when (event) {
@@ -44,6 +43,7 @@ class HospitalPacienteViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 hospitalesRepository.deleteHospital(id)
+                cargarHospitales()
             } catch (e: Exception) {
                 _uiHospitalPacienteState.update { it.copy(error = "No se ha `podido borrar el hospital") }
             }
@@ -82,8 +82,8 @@ class HospitalPacienteViewModel @Inject constructor(
     private fun cargarPacientes(id: String) {
         val hospitales = _uiHospitalPacienteState.value.hospitales
         val hospital = hospitales?.find { it.id.toString() == id }
-        hospital?.let {
-            _uiHospitalPacienteState.update { it.copy(pacientes = it.pacientes) }
+        hospital?.let { hospital ->
+            _uiHospitalPacienteState.update { it.copy(pacientes = hospital.pacientes) }
         }
     }
 }

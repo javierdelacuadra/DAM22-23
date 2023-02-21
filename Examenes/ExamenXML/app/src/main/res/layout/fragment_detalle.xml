@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/indigo">
@@ -11,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.40" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/peliculaCardView"
@@ -44,7 +43,7 @@
                 app:layout_constraintHorizontal_bias="0.515"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.7"/>
+                app:layout_constraintVertical_bias="0.7" />
 
 
             <TextView
@@ -65,10 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:hint="@string/nombre_paciente"
                 android:text="@string/nombre_paciente"
                 android:textAlignment="center"
                 android:textSize="16sp"
-                android:hint="@string/nombre_paciente"
                 app:layout_constraintBottom_toTopOf="@+id/dniPaciente"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,22 +111,37 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/botonAddEnfermedad"
         app:layout_constraintVertical_bias="0.483" />
 
-    <TextView
-        android:id="@+id/mensajeLista"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreEnfermedad"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_margin="8dp"
-        android:text="@string/mensaje_lista"
+        android:hint="@string/add_enfermedad"
+        android:text="@string/add_enfermedad"
         android:textAlignment="center"
         android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/botonAddEnfermedad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/indigo"
+        android:text="@string/add_enfermedad"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/listaEnfermedades"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreEnfermedad" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

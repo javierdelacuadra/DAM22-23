@@ -23,7 +23,6 @@ class PacienteViewModel @Inject constructor(
         _uiPacienteState
 
     private val _uiError = Channel<String>()
-    val uiError = _uiError.receiveAsFlow()
 
     fun handleEvent(event: PacienteEvent.Eventos) {
         when (event) {
@@ -37,7 +36,7 @@ class PacienteViewModel @Inject constructor(
         viewModelScope.launch {
             _uiPacienteState.update { it.copy(cargando = true) }
             pacientesRepository.fetchAllPacientes()
-                .catch { cause -> _uiError.send(cause.message ?: "") }
+                .catch { _uiError.send("error inesperado") }
                 .collect { result ->
                     when (result) {
                         is NetworkResult.Error -> {

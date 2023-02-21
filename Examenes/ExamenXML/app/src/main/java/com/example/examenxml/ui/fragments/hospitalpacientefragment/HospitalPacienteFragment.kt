@@ -32,7 +32,6 @@ class HospitalPacienteFragment : Fragment() {
 
     private val viewModel: HospitalPacienteViewModel by viewModels()
 
-    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -77,11 +76,12 @@ class HospitalPacienteFragment : Fragment() {
                 }
             })
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiHospitalPacienteState.collect { value ->
                     binding.loadingHospitales.visibility = if (value.cargando) View.VISIBLE else View.GONE
                     value.hospitales?.let { adapterHospitales.cambiarLista(it) }
+                    value.pacientes?.let { adapterPacientes.cambiarLista(it) }
                     value.error.let {
                         value.error?.let { it1 ->
                             Snackbar.make(
@@ -94,8 +94,6 @@ class HospitalPacienteFragment : Fragment() {
                 }
             }
         }
-
-        viewModel.uiHospitalPacienteState.value.pacientes?.let { adapterPacientes.cambiarLista(it) }
 
         listaHospitales = binding.listaHospitales
         listaHospitales.adapter = adapterHospitales

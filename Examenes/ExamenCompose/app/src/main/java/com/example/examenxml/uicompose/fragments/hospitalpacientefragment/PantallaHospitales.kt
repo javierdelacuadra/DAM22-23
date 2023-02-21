@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -21,7 +20,6 @@ import androidx.navigation.NavHostController
 import com.example.examenxml.domain.modelo.Hospital
 import com.example.examenxml.domain.modelo.Paciente
 import com.example.examenxml.uicompose.fragments.hospitalpacientefragment.HospitalPacienteEvent
-import com.example.examenxml.uicompose.fragments.hospitalpacientefragment.HospitalPacienteViewModel
 
 @Composable
 fun PantallaHospitales(
