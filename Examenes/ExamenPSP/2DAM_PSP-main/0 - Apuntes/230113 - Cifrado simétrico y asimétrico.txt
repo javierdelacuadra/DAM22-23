@@ -1,0 +1,9 @@
+Simétrico --> Una misma clave desde los dos lados
+
+Asimétrico --> Una clave privada y una pública
+
+Mensaje --> Se cifra simétricamente
+
+Clave simétrica del mensaje --> Se cifra asimétricamente
+
+10:10 --> Código

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="536.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.suscriptions.changeSuscription.ChangeSuscriptionsController">
+
+    <MFXTableView fx:id="tblNewsUnsusc" layoutX="492.0" layoutY="82.0" prefHeight="418.0" prefWidth="294.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="idColumnSusc" minWidth="50.0" prefHeight="42.0" prefWidth="50.0" text="Id" />
+            <MFXTableColumn fx:id="nameColumnSusc" prefHeight="42.0" prefWidth="250.0" text="Name" />
+            <MFXTableColumn fx:id="releaseColumnSusc" prefHeight="42.0" prefWidth="100.0" text="Release Date" />
+        </tableColumns>
+    </MFXTableView>
+
+
+    <MFXTableView fx:id="tblNewsSusc" layoutX="14.0" layoutY="82.0" prefHeight="418.0" prefWidth="294.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="idColumnUn" minWidth="50.0" prefHeight="42.0" prefWidth="50.0" text="Id" />
+            <MFXTableColumn fx:id="nameColumnUn" prefHeight="42.0" prefWidth="250.0" text="Name" />
+            <MFXTableColumn fx:id="releaseColumnUn" prefHeight="42.0" prefWidth="100.0" text="Release Date" />
+        </tableColumns>
+    </MFXTableView>
+   <Label alignment="CENTER" layoutX="16.0" layoutY="46.0" prefHeight="33.0" prefWidth="284.0" text="SUSCRIBED" textAlignment="RIGHT" textFill="#a17d7d">
+      <font>
+         <Font name="Sitka Small" size="34.0" />
+      </font>
+   </Label>
+   <Label alignment="CENTER" layoutX="502.0" layoutY="41.0" prefHeight="33.0" prefWidth="284.0" text="UNSUSCRIBED" textAlignment="RIGHT" textFill="#a17d7d">
+      <font>
+         <Font name="Sitka Small" size="34.0" />
+      </font>
+   </Label>
+   <MFXButton layoutX="353.0" layoutY="248.0" onAction="#addOrDeleteSubscription" prefHeight="41.0" prefWidth="116.0" text="CHANGE" />
+
+
+
+</AnchorPane>

@@ -1,0 +1,6 @@
+mutation RegisterMutation($username: String!, $password: String!, $name: String!, $surname: String!) {
+
+    createPersona(name: $name, surname: $surname, username: $username, password: $password) {
+        id
+    }
+}

@@ -1,0 +1,21 @@
+11:50 --> Bajar documentacion
+
+11:58 --> Que me guardo --> hashes en servicios
+
+12:06 --> Filters son aduanas
+
+12:09 --> Prueba (primero no pasa por servlet y cuando recarga si)
+
+12:11 --> RemoveAttribute para invalidar la sesión
+
+12:13 --> Tipos de filters (Containers y Writer/ReaderInterception) --> WR no se ven, son para desZippear o parsear JSON (???
+
+12:16 --> abortWith para cortar llamadas en JAXRS
+
+12:19 --> Anotación para vincular REST y Filter
+
+12:21 --> Filtros funcionamiento
+
+12:28 --> Mandar mail (step 1 en configuracion)
+
+ 

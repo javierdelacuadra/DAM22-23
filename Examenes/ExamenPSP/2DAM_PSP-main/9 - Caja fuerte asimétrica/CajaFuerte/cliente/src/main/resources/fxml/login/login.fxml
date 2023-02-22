@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.login.LoginController">
+    <MFXTextField fx:id="mfxUser" floatingText="user name" layoutX="276.0" layoutY="42.0" prefHeight="50.0" prefWidth="269.0" />
+    <MFXPasswordField fx:id="mfxPassword" floatingText="password" layoutX="275.0" layoutY="101.0" prefHeight="50.0" prefWidth="270.0" />
+    <MFXButton layoutX="352.0" layoutY="167.0" mnemonicParsing="false" onAction="#tryLogin" prefHeight="25.0" prefWidth="117.0" text="Log In">
+        <font>
+            <Font name="Alef Regular" size="12.0" />
+        </font>
+    </MFXButton>
+    <MFXButton layoutX="352.0" layoutY="219.0" mnemonicParsing="false" onAction="#goToSignup" prefHeight="25.0" prefWidth="117.0" text="Sign up">
+        <font>
+            <Font name="Alef Regular" size="12.0" />
+        </font>
+    </MFXButton>
+   <Label layoutX="553.0" layoutY="54.0" prefHeight="25.0" prefWidth="528.0" text="root para el admin / rooto || pepe para un user)" textFill="#0055ff" />
+   <Label layoutX="553.0" layoutY="117.0" text="&lt;-- No te preocupes, pone el user que lo hago por vos para que no te canses" textFill="#0055ff" />
+
+</AnchorPane>

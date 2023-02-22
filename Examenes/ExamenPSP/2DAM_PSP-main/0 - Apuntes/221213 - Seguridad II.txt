@@ -1,0 +1,12 @@
+passwordHash.verify(user.getPassword.getValue(), pass);
+
+09:13 --> Filtro para el rol (== RolesAllowed)
+
+09:19 --> Get security context en filtro de JAX
+
+09:32 --> Prueba y error
+
+09:38 --> Logout --> Igual que tp anterior
+
+09:49 --> Cliente
+

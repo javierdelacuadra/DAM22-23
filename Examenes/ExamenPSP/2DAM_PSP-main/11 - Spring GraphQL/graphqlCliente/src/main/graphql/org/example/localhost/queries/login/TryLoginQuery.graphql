@@ -1,0 +1,11 @@
+query TryLoginQuery {
+
+    getPersonaByUsernameLogged{
+        id
+        name
+        surname
+        login {
+            role
+        }
+    }
+}

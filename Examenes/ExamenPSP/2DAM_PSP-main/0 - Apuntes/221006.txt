@@ -1,0 +1,27 @@
+10:26 - 10:33 / 10:35 --> async javaFX con debug y recibir dato en el set on succeeded
+
+10:44 --> RxJava diferencia entre flow, observ, completable
+
+10:47 --> Single en ui y librerias
+
+	10:51 --> Error no volver al hilo gráfico al terminar de ejecutar tarea del Single 
+	
+	10:56 --> Librería que contiene la clase que nos permite volver al hilo FX y actualizar javafx al 16
+
+	11:02 --> Singles en retrofit + (1104) libreria
+
+------------- recreo -------------
+
+11:49 --> Funcionamiento desde el JokeApi
+	
+	11:52 --> map del Single para no devolver un Single<Either<Object, JokeApi>>
+
+	11:56 --> Agregar CallAdapter en el retrofit
+
+	12:06 --> Settear WAIT o DEFAULT en el controller
+
+12:10 --> debug problema y soluciones al cambio de hilos
+
+	12:14 --> Platform.runLater({
+
+	});

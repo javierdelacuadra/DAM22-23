@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="520.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.folders.main_folders.MainFoldersController">
+    <Label layoutX="348.0" layoutY="47.0" prefHeight="58.0" prefWidth="203.0" text="Tus carpetas" textAlignment="CENTER">
+        <font>
+            <Font name="Droid Sans Mono" size="27.0" />
+        </font>
+    </Label>
+    <MFXButton layoutX="398.0" layoutY="403.0" mnemonicParsing="false" onAction="#searchFolder" prefHeight="43.0" prefWidth="104.0" text="BUSCAR">
+        <font>
+            <Font name="Comic Sans MS Bold" size="18.0" />
+        </font>
+    </MFXButton>
+    <MFXTableView fx:id="mfxFolders" layoutX="97.0" layoutY="164.0" prefHeight="191.0" prefWidth="311.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="idColumn" layoutX="177.0" layoutY="139.0" minWidth="72.0" prefHeight="41.0" prefWidth="72.0" text="ID" />
+            <MFXTableColumn fx:id="nameColumn" layoutX="267.0" layoutY="139.0" prefHeight="41.0" prefWidth="150.0" text="Name" />
+            <MFXTableColumn fx:id="readOnlyColumn" layoutX="367.0" layoutY="139.0" minWidth="89.0" prefHeight="41.0" prefWidth="108.0" text="Sólo lectura?" textAlignment="CENTER" />
+        </tableColumns>
+    </MFXTableView>
+    <MFXTextField fx:id="txtNameUser" floatingText="Nombre de usuario" layoutX="510.0" layoutY="164.0" prefHeight="50.0" prefWidth="134.0" />
+    <MFXTextField fx:id="txtNameFolder" floatingText="Nombre de la carpeta" layoutX="510.0" layoutY="235.0" prefHeight="50.0" prefWidth="134.0" />
+    <MFXPasswordField fx:id="pwdFolder" floatingText="Password" layoutX="510.0" layoutY="304.0" prefHeight="50.0" prefWidth="134.0" />
+    <MFXButton layoutX="398.0" layoutY="462.0" mnemonicParsing="false" onAction="#addFolder" prefHeight="43.0" prefWidth="104.0" text="CREAR">
+        <font>
+            <Font name="Comic Sans MS Bold" size="18.0" />
+        </font>
+    </MFXButton>
+   <MFXCheckbox fx:id="chkReadOnly" layoutX="534.0" layoutY="380.0" mnemonicParsing="false" text="Sólo lectura" />
+   <Label layoutX="653.0" layoutY="164.0" prefHeight="50.0" prefWidth="240.0" text="Este campo es para buscar, no se pueden agregar carpetas a otros usuarios" wrapText="true" />
+   <Label layoutX="76.0" layoutY="105.0" prefHeight="50.0" prefWidth="353.0" text="La contraseña para todas las carpetas es la misma que el nombre" wrapText="true" />
+   <Label layoutX="645.0" layoutY="364.0" prefHeight="50.0" prefWidth="240.0" text="Este campo es para añadir" wrapText="true" />
+</AnchorPane>

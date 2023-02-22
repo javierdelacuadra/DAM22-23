@@ -1,0 +1,17 @@
+11:55 --> Explicación pizarra
+
+12:03 HMac
+
+12:11 --> Codigo
+
+12:14 --> Dependencias
+
+12:17 --> Funcionamiento
+
+12:21 --> Creación de token (claims...)
+
+12:25 --> Creación de firma (NO usar @SneakyThrows) --> Mejor usar clave fija ("clave" del properties y puede ser lo que quiera)
+
+12:32 --> Últimas cosas de comprobar?
+
+atiende, que luego pasa lo q pasa.....

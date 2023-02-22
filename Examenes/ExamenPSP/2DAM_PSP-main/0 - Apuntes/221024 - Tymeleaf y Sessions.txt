@@ -1,0 +1,17 @@
+TymeLeaf
+
+Hasta 10:38 --> Me colgué pero importante
+
+10:44 --> tags ocultos
+
+10:48 --> Error CDI not available -->stop y start
+
+10:54 --> Coger parámetros de index.jsp a PrantillaBackground.java (req.getParameter(name del form))
+
+10:59 --> parametro null y control de páginas
+
+12:00 --> req.getSession
+
+12:05 --> Parametros de la session siempre con casting
+
+12:13 --> Contador de visitas

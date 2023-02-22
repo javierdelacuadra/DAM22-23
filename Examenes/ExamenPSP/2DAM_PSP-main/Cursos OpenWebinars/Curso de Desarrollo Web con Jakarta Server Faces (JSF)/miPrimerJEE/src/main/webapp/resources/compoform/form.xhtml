@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="mailLabel"/>
+		<composite:attribute name="mailValue"/>
+		<composite:attribute name="passLabel"/>
+		<composite:attribute name="passValue"/>	
+		<composite:attribute name="submitText"/>
+	</composite:interface>
+	
+	<composite:implementation>
+		<h:form>
+		<h:outputLabel for="email" value="#{cc.attrs.mailLabel}"/>
+		<h:inputText id="email" value="#{cc.attrs.mailLabel}" />
+		
+		<h:outputLabel for="password" value="#{cc.attrs.passLabel}"/>
+		<h:inputText id="password" value="#{cc.attrs.passValue}" />
+	
+		<h:commandButton action="user-details" value="#{cc.attrs.submitText}" />
+	</h:form>
+		
+	
+	</composite:implementation>
+</html>

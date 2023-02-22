@@ -1,0 +1,21 @@
+10:34 --> JAX - RS
+
+	10:38 --> MegaServlet y urls
+
+10:43 --> Payara Alpha 6 con Docker
+	
+10:47 --> Arrancarlo en local (Glassfish) 
+
+10:52 --> Version local de payara con java 17
+
+10:53 --> Lo mete en docker (charla hasta las 11)
+
+11:00 --> Crea el contenedor
+
+11:04 --> Admin
+
+11:06 --> Crea configuracion payara remoto
+
+11:08 --> Uso del sever
+
+11:46 --> Debug

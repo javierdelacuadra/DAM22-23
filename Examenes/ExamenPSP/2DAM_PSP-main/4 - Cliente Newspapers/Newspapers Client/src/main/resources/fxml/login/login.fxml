@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ui.screens.login.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+        <children>
+            <MFXTextField fx:id="mfxUser" floatingText="user" layoutX="275.0" layoutY="42.0" prefHeight="49.0"
+                          prefWidth="116.0"/>
+            <MFXPasswordField fx:id="mfxPassword" floatingText="password" layoutX="275.0" layoutY="101.0"
+                              prefHeight="49.0" prefWidth="112.0"/>
+            <MFXButton fx:id="btnLogin" layoutX="276.0" layoutY="157.0" mnemonicParsing="false"
+                       onAction="#tryLogin" prefHeight="25.0" prefWidth="117.0" text="Log In">
+                <font>
+                    <Font name="Alef Regular" size="12.0"/>
+                </font>
+            </MFXButton>
+            <StackPane prefHeight="150.0" prefWidth="200.0"/>
+
+        </children>
+</AnchorPane>

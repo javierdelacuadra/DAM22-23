@@ -1,0 +1,58 @@
+create table user
+(
+    name        varchar(10)   not null
+        primary key,
+    certificate varchar(1000) not null,
+    role        varchar(5)    not null,
+    check (`role` in ('ADMIN','USER'))
+);
+
+create table folder
+(
+    id                 int auto_increment
+        primary key,
+    name               varchar(20)   not null,
+    password           varchar(1000) not null,
+    `read_only`        int           not null,
+    name_user          varchar(20)   not null,
+    is_owner           int           not null,
+    original_folder_id int           null,
+    constraint folder_pk_unique
+        unique (name, name_user),
+    constraint folder_user_name_fk
+        foreign key (name_user) references user (name)
+);
+
+create table message
+(
+    id              int auto_increment
+        primary key,
+    message         varchar(10000) not null,
+    id_folder       int            not null,
+    constraint message_folder_id_fk
+        foreign key (id_folder) references folder (id)
+);
+
+
+
+
+MENSAJES:
+
+1,5hRSWyliPVupxtcXBVB4p87IHGtdThwTiuB4vMj7GGQ2b5Tbmd0vl4Mz3ekbfy0nkWC6YQ==,2
+3,tl4w3dXcLspkuEn5UwV8KjHOIBRbjh8zppI9BR6tt-txAI-0CpqV9WDKy6eCl8fqPmNo,2
+4,4PT0KToS0HCV7CXIZaRjZzTgCyxUVZcslDIHDwsc2dCmZoa5X19qCCpKYAfEXu5OnLpJtqR3,4
+5,w7psUBCDyea9FGTnRJYHClLFJYrTotGl4BTdN2OYjiavDofsJJuss-AFquCKf5X38ZyZNrZPRfvH,4
+6,DlNrkrIN2JWgttv63Ozm_KoYTluzb7raXm5FsfshBn6FHI4CUgBfNhO66EJemh9S,7
+8,yKpYqvWUS61PBCXZt25fqxbiQouBjKNBF6YiLAJt2mQS-PtL0tF-8Nm_AmODI9Q=,4
+9,qWov9RKcqtIByWghJ-YkaX2Wrqi-H9GFRtQoXS-ZCTOHop3GjWYbz45-IDq74hs_hsM=,4
+10,Ya8QVZKQDJpv_328qGtXVjjxvgdDYPNWYzQG61rFrI7P5M980-GZskhuxYc_sfe1,4
+11,CQyAqad5FB6fvOqGCRc-LMGAOrNoGIY4excOfwSvLV45Tt-gX3qlXLJRCqO1r_Nu4w==,23
+12,oN2bs92rn7ry3LCnYSSQjR1hX7WCzYeLoOmttFFi2t0_xmApJjEd7MAzHQRb8io=,23
+13,BzXA3EyJf62lX2gMo-SIxV1IQCjCU5otz-3ZpAXUba98yDo9aI9sTPnELSlBEzQ=,4
+14,ZXfEwAbqUqRj2EYXZrZAGYyy5_qcAyzNSJ_B0VMPogpiTlCoIiMkNLXyLbUQFnCTPkHHIzM=,4
+15,07DMVdzHB8RBmcQSiFAy327vOJrn9AZ6LezfCoBEudXPTmsB5hqyfW8IJ4KT8jnfMUFosQ==,9
+16,iX1zfI7koW15KCCdGF3agjMle9S8aQHEHzz5xENeQQr583MHx6LE8sUaoLHX7gNs,2
+17,zd9XTFIEKEdNh0zjw6rz4uTaTG1b8b3dwMRpNUHGmiZSYeHCzg_w4uDGsBeef1UaX34=,23
+18,4a2dDJQ0CvOJORJEcTDG8RVMFbvJQaduMjMPR66TEopr7hCr2EKa6HvGTjtod8q9,23
+19,5kbu8o7XffALomdLiugdbrpK-xUcOceJJLv7Ouvl7AIQVBbcMLVYSKed4wHZ3Xst18uOWP2XBQ==,34
+

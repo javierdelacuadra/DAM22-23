@@ -1,0 +1,26 @@
+package domain.servicios;
+
+import org.miutils.domain.modelo.Reader;
+
+import java.util.List;
+
+public interface ReaderServices {
+
+    List<Reader> getAll();
+
+    Reader get(String id);
+
+
+    Reader update(Reader newReader);
+
+    boolean delete(String id);
+
+
+    // OTHER METHODS
+
+    List<Reader> getReadersByType(String nameType);
+
+    List<Reader> getReadersByNewspaper(String idNews);
+
+    List<String> getOldestReaders(String idNews);
+}

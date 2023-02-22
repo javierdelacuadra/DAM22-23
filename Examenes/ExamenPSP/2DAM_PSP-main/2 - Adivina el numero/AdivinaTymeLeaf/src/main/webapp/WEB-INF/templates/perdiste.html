@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el número</title>
+</head>
+<body>
+<h1>PERDISTE!!!!</h1>
+<h5>El numero era <label th:text="${numRandom}"></label></h5>
+<img src="assets/images/que_inyusticia_cr7.gif" alt="que inyusticia"> <!--Si que funciona el gif, el sonarlint es una mierda-->
+<form action="juego" method="post">
+    <input type="submit" value="Intentar de nuevo!">
+</form>
+</body>
+</html>

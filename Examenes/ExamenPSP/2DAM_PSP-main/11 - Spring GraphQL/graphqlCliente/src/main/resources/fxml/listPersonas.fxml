@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.ListPersonasController">
+        <MFXTableView fx:id="tblPersonas" layoutX="400.0" layoutY="100.0" prefHeight="500.0" prefWidth="800.0">
+            <tableColumns>
+                <MFXTableColumn fx:id="colId" prefWidth="200.0" text="ID" />
+                <MFXTableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+                <MFXTableColumn fx:id="colApellido" prefWidth="200.0" text="Apellido" />
+                <MFXTableColumn fx:id="colCantMasc" prefWidth="200.0" text="Mascotas" />
+            </tableColumns>
+        </MFXTableView>
+        <MFXButton fx:id="btnKill" layoutX="209.0" layoutY="293.0" visible="false" mnemonicParsing="false" onAction="#matar" text="Matar" />
+        <MFXButton fx:id="btnClearSelection" layoutX="209.0" layoutY="400.0" visible="false" mnemonicParsing="false" onAction="#clearSelection" text="Clear selection" />
+</AnchorPane>

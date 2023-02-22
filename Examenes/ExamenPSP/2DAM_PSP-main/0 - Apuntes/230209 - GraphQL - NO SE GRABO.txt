@@ -1,0 +1,19 @@
+10:30 --> Base
+
+10:38 --> Creación fde proyecto --> Kotlin Multiplatform y Console application
+
+10:40 --> build.gradle con dependencias
+
+10:42 --> Agregar schema externo
+
+10:45 --> NO ESTÁ GRADLE
+
+-------
+
+10:51 --> Dependencias servidor y properties (para probarlo)
+
+10:55 --> Schema estructura
+
+10:59 --> @QueryMapping, @MutationMapping y @Arguments. @SchemaMapping para coger los objetos del objeto de una query
+
+11:04 --> Arrancar servidor con path del properties

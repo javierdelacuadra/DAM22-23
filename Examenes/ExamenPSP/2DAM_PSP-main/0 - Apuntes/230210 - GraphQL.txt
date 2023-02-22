@@ -1,0 +1,19 @@
+09:52 --> Dependencias
+
+09:53--> Schema, properties y @Query, @Mutation y @Schema
+
+09:58 --> configuración cliente JavaFX en Kotlin
+
+10:02 --> Orden para bajar schema
+
+10:06 --> Test query GraphQL Cliente con variables
+
+10:11 --> Las queries del cliente llaman a una query del servidor
+
+10:12 --> REBUILD PARA GENERAR QUERIES
+
+10:15 --> Singleton sin inyección con object
+
+10:19 --> GlobalScope
+
+10:23 -->  CONFIG y configurar varios servicios (no es necesario)

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="78514ed7-7171-407d-8464-f61ede0bad55" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2G4NyXcuipdmEB31YQ7M74y2xJd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Desktop/2DAM_PSP/5 - Login/miprimerREST/miprimerREST&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;caee3eba576873e59766c97e9cd83edb&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Desktop\2DAM_DATACC\02 - Newspapers with JDBC\02 - Newspapers JDBC\src\main\resources\fxml\newspapers" />
+      <recent name="C:\Users\Usuario\Desktop\2DAM_DATACC\02 - Newspapers with JDBC\02 - Newspapers JDBC\src\main\java\ui\screens\newspapers\updNews" />
+      <recent name="C:\Users\Usuario\Desktop\2DAM_DATACC\02 - Newspapers with JDBC\02 - Newspapers JDBC\src\main\java\ui\screens\newspapers\addNews" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="serivces.common.ServicesConstants" />
+      <recent name="ui.screens.common.ScreenConstants" />
+      <recent name="dao.common.DBConstants" />
+      <recent name="dao.common.DAOConstants" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Desktop\2DAM_DATACC\02 - Newspapers with JDBC\02 - Newspapers JDBC\src\main\resources\fxml\ReadArticles" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DIJavafx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.main.DIJavafx" />
+      <module name="02 - Newspapers JDBC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DIJavafx" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="78514ed7-7171-407d-8464-f61ede0bad55" name="Changes" comment="" />
+      <created>1665644150486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665644150486</updated>
+      <workItem from="1665696702301" duration="735000" />
+      <workItem from="1665745024766" duration="719000" />
+      <workItem from="1665747806770" duration="443000" />
+      <workItem from="1665932044939" duration="9915000" />
+      <workItem from="1666197510253" duration="246000" />
+      <workItem from="1666206123810" duration="808000" />
+      <workItem from="1666379291088" duration="1670000" />
+      <workItem from="1666446907897" duration="5315000" />
+      <workItem from="1666456833121" duration="2015000" />
+      <workItem from="1666464680062" duration="1219000" />
+      <workItem from="1666516234535" duration="178000" />
+      <workItem from="1666631879608" duration="7677000" />
+      <workItem from="1667240639770" duration="2683000" />
+      <workItem from="1667293344005" duration="12813000" />
+      <workItem from="1667318450134" duration="2938000" />
+      <workItem from="1667323299552" duration="231000" />
+      <workItem from="1667392383822" duration="2165000" />
+      <workItem from="1667501642196" duration="9449000" />
+      <workItem from="1667640488432" duration="2358000" />
+      <workItem from="1667670953015" duration="7200000" />
+      <workItem from="1667845958124" duration="7409000" />
+      <workItem from="1667893569700" duration="25000" />
+      <workItem from="1667946198887" duration="1319000" />
+      <workItem from="1667986264522" duration="1027000" />
+      <workItem from="1668011618220" duration="153000" />
+      <workItem from="1668027198919" duration="7763000" />
+      <workItem from="1668081218133" duration="1776000" />
+      <workItem from="1668157669507" duration="39000" />
+      <workItem from="1668171573813" duration="1058000" />
+      <workItem from="1668188052278" duration="22868000" />
+      <workItem from="1668244878361" duration="6404000" />
+      <workItem from="1668257533026" duration="265000" />
+      <workItem from="1668297256522" duration="538000" />
+      <workItem from="1668331490197" duration="606000" />
+      <workItem from="1668332955902" duration="3479000" />
+      <workItem from="1668343072162" duration="220000" />
+      <workItem from="1668350682529" duration="3391000" />
+      <workItem from="1668354137768" duration="26000" />
+      <workItem from="1668354272510" duration="903000" />
+      <workItem from="1668362634798" duration="632000" />
+      <workItem from="1668383115743" duration="1839000" />
+      <workItem from="1669921280496" duration="975000" />
+      <workItem from="1670255031156" duration="1607000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/readers/updReaders/UpdReaderController.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/readers/updReaders/UpdReaderController.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/newspapers/listNews/ListNewsController.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/newspapers/listNews/ListNewsViewModel.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ArticlesDAOImpl.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>323</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/serivces/impl/ReaderServicesImpl.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadArticlesDAOImpl.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>251</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadersDAOImpl.java</url>
+          <line>196</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ArticlesDAOImpl.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ArticlesDAOImpl.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/articles/addArticle/AddArticleViewModel.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ArticlesDAOImpl.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadArticlesDAOImpl.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/principal/PrincipalController.java</url>
+          <line>256</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/suscriptions/changeSuscription/ChangeSuscriptionsViewModel.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/suscriptions/changeSuscription/ChangeSuscriptionsController.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/suscriptions/changeSuscription/ChangeSuscriptionsViewModel.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/readarticles/addReadArt/AddReadArtController.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/readarticles/addReadArt/AddReadArtController.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/readarticles/addReadArt/AddReadArtController.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/ReadArticlesDAOImpl.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ui/screens/articles/addArticle/AddArticleViewModel.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/impl/DBConnection.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/serivces/impl/ReadArticleServicesImpl.java</url>
+          <line>23</line>
+          <properties class="serivces.impl.ReadArticleServicesImpl" method="add">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/ReadArticlesDAO.java</url>
+          <line>15</line>
+          <properties class="dao.ReadArticlesDAO" method="add">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.zaxxer.hikari.pool.HikariProxyResultSet" memberName="statement" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tblNewsSusc.getSelectionModel().getSelection()" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

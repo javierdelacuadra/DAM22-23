@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.screens.newspapers.updnews.UpdNewsController">
+   <MFXTextField fx:id="txtName" floatingText="Name" layoutX="77.0" layoutY="100.0" prefHeight="40.0"
+                 prefWidth="174.0"/>
+   <DatePicker fx:id="dpkBirth" layoutX="77.0" layoutY="175.0"/>
+   <MFXButton fx:id="btnUpd" layoutX="108.0" layoutY="246.0" mnemonicParsing="false" onAction="#updNews"
+              prefHeight="41.0" prefWidth="113.0" text="Update">
+      <font>
+         <Font name="DejaVu Serif Condensed" size="12.0"/>
+      </font>
+   </MFXButton>
+   <MFXButton fx:id="btnAdd" layoutX="108.0" layoutY="308.0" mnemonicParsing="false" onAction="#addNews"
+              prefHeight="41.0" prefWidth="113.0" text="Add">
+      <font>
+         <Font name="DejaVu Serif Condensed" size="12.0"/>
+      </font>
+   </MFXButton>
+   <Label layoutX="164.0" layoutY="28.0" text="UPDATE NEWSPAPER">
+      <font>
+         <Font name="Monotype Corsiva" size="44.0"/>
+      </font>
+   </Label>
+   <MFXTableView fx:id="tblNews" layoutX="281.0" layoutY="100.0" prefHeight="200.0" prefWidth="284.0">
+      <tableColumns>
+         <MFXTableColumn fx:id="idColumn" minWidth="50.0" prefHeight="42.0" prefWidth="50.0" text="Id"/>
+         <MFXTableColumn fx:id="nameColumn" prefHeight="42.0" prefWidth="250.0" text="Name"/>
+         <MFXTableColumn fx:id="releaseColumn" prefHeight="42.0" prefWidth="100.0" text="Release Date"/>
+      </tableColumns>
+   </MFXTableView>
+</AnchorPane>

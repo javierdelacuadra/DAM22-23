@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="577.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantallas.paisdetalle.PaisDetalleController">
+    <Group layoutX="212.0" layoutY="208.0"/>
+    <Group layoutX="152.0" layoutY="107.0"/>
+
+    <Text layoutX="59.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="184.13671875"/>
+    <Text fill="#05d5ff" layoutX="381.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="%PaisesEnDetalle">
+        <font>
+            <Font name="Candara" size="26.0"/>
+        </font>
+    </Text>
+    <MFXTableView fx:id="tblPaises" layoutX="92.0" layoutY="207.0" prefHeight="242.0" prefWidth="387.0"/>
+    <Label layoutX="531.0" layoutY="230.0" prefHeight="20.0" prefWidth="67.0" text="%Nombre" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="526.0" layoutY="351.0" prefHeight="20.0" prefWidth="74.0" text="%Telefono" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="530.0" layoutY="379.0" prefHeight="20.0" prefWidth="74.0" text="%Dominio" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="541.0" layoutY="260.0" prefHeight="20.0" prefWidth="67.0" text="%Capital" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="510.0" layoutY="293.0" prefHeight="20.0" prefWidth="87.0" text="%Continente" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="530.0" layoutY="322.0" prefHeight="20.0" prefWidth="67.0" text="%Moneda" textFill="#ff00d9">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Label>
+    <Text fx:id="txtInfoNombre" fill="#3cd7a6" layoutX="604.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+    <Text fx:id="txtInfoCapital" fill="#3cd7a6" layoutX="604.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+    <Text fx:id="txtInfoContinente" fill="#3cd7a6" layoutX="604.0" layoutY="307.0" strokeType="OUTSIDE"
+          strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+    <Text fx:id="txtInfoMoneda" fill="#3cd7a6" layoutX="604.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+    <Text fx:id="txtInfoTelefono" fill="#3cd7a6" layoutX="604.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+    <Text fx:id="txtInfoDominio" fill="#3cd7a6" layoutX="604.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Candara" size="16.0"/>
+        </font>
+    </Text>
+
+</AnchorPane>

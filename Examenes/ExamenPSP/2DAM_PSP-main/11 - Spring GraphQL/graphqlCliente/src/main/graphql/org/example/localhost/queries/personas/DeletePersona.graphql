@@ -1,0 +1,7 @@
+mutation DeletePersona ($id: Int!){
+    deletePersona(id: $id){
+        id
+        name
+        surname
+    }
+}

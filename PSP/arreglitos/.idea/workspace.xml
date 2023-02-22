@@ -4,75 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="17-2-23 finished ClienteGraphQL">
-      <change afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ClienteGraphQL/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Camion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Empresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/AddConductor.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/common/Constantes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/CamionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/CamionesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/ConductoresRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/ConductoresRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/EmpresasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/EmpresasRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/DatabaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/excepciones/DatabaseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/ObjectNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/excepciones/ObjectNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Camion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Conductor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Conductor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Empresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosCamiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosCamiones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosConductores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosConductores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosEmpresas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/CamionesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/CamionesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/ConductoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/ConductoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/EmpresasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/EmpresasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/errores/ApiError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ControlErrores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/errores/ControlErrores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/graphql/schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="22-2-23 odio PSP">
+      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/AddCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/AddCamion.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/DeleteCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/DeleteCamion.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/GetAllCamiones.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/GetAllCamiones.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/UpdateCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/UpdateCamion.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/AddConductor.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/DeleteConductor.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/DeleteConductor.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/GetAllConductores.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/GetAllConductores.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/UpdateConductor.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/UpdateConductor.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/AddEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/AddEmpresa.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/DeleteEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/DeleteEmpresa.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/GetAllEmpresas.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/GetAllEmpresas.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/UpdateEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/UpdateEmpresa.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/servicios/modelo/Empresa.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/modelo/Empresa.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaMain.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +72,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -225,7 +161,7 @@
       <workItem from="1676574263982" duration="513000" />
       <workItem from="1676574786538" duration="22000" />
       <workItem from="1676659900721" duration="3809000" />
-      <workItem from="1677080627556" duration="8824000" />
+      <workItem from="1677080627556" duration="9237000" />
     </task>
     <task id="LOCAL-00001" summary="16-2-23 fixed ClienteGraphQL">
       <created>1676542071933</created>
@@ -241,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676663060474</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="22-2-23 odio PSP">
+      <created>1677096280909</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677096280909</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +193,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="16-2-23 fixed ClienteGraphQL" />
     <MESSAGE value="17-2-23 finished ClienteGraphQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="17-2-23 finished ClienteGraphQL" />
+    <MESSAGE value="22-2-23 odio PSP" />
+    <option name="LAST_COMMIT_MESSAGE" value="22-2-23 odio PSP" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -299,7 +243,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt</url>
-          <line>45</line>
+          <line>44</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>

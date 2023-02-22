@@ -1,0 +1,51 @@
+module cliente {
+    requires utils;
+    requires javafx.graphics;
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires jakarta.cdi;
+    requires jakarta.inject;
+    requires lombok;
+    requires org.apache.logging.log4j;
+    requires io.reactivex.rxjava3;
+    requires io.vavr;
+    requires retrofit2;
+    requires com.squareup.moshi;
+    requires retrofit2.converter.scalars;
+    requires okhttp3;
+    requires seguridad;
+    requires retrofit2.adapter.rxjava3;
+    requires retrofit2.converter.moshi;
+    requires MaterialFX;
+
+    exports dao.retrofit.produces;
+    exports dao.retrofit.llamadas;
+    exports ui.main to javafx.graphics;
+    exports ui.screens.login;
+    exports ui.screens.folders.main_folders;
+    exports ui.screens.messages.main_messages;
+    exports ui.screens.register;
+    exports dao;
+    exports dao.impl;
+    exports dao.common;
+    exports dao.retrofit.network;
+    exports domain.serivces;
+    exports domain.serivces.impl;
+    exports config;
+    exports config.common;
+    exports di;
+
+    opens common;
+    opens config.common;
+    opens ui.screens.common;
+    opens ui.screens.principal;
+    opens ui.screens.login;
+    opens ui.screens.folders.main_folders;
+    opens ui.screens.messages.main_messages;
+    opens ui.screens.register;
+    opens ui.main;
+    opens dao.common;
+    opens config;
+    opens fxml;
+    exports common;
+}

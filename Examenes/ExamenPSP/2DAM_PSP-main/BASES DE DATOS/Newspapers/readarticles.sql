@@ -1,0 +1,11 @@
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (3, 3, 5, 3);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (3, 6, 2, 19);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (1, 6, 4, 28);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (3, 14, 4, 62);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (1, 14, 4, 71);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (1, 27, 2, 80);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (1, 29, 4, 84);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (3, 27, 5, 91);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (2, 4, 5, 103);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (2, 6, 5, 104);
+INSERT INTO tomasMacri_Newspapers.readarticles (id_reader, id_article, rating, id) VALUES (117, 3, 5, 106);

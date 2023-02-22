@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.principal.PrincipalController">
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <menus>
+                <Menu fx:id="menuOptions" mnemonicParsing="false" text="OPTIONS">
+                    <items>
+                        <MenuItem fx:id="menuItemOptExit" mnemonicParsing="false" onAction="#exit" text="Exit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="menuNewspapers" mnemonicParsing="false" text="NEWSPAPERS">
+                    <items>
+                        <MenuItem fx:id="menuNewsList" mnemonicParsing="false" onAction="#menuClickNews" text="List"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuNewsAdd" mnemonicParsing="false" onAction="#menuClickNews" text="Add"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuNewsUp" mnemonicParsing="false" onAction="#menuClickNews" text="Update"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuNewsDel" mnemonicParsing="false" onAction="#menuClickNews" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="menuArticles" mnemonicParsing="false" text="ARTICLES">
+                    <items>
+                        <MenuItem fx:id="menuArtList" mnemonicParsing="false" onAction="#menuClickArt" text="List"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuArtAdd" mnemonicParsing="false" onAction="#menuClickArt" text="Add"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuArtUp" mnemonicParsing="false" onAction="#menuClickArt" text="Update"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuArtDel" mnemonicParsing="false" onAction="#menuClickArt" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="menuReader" mnemonicParsing="false" text="READER">
+                    <MenuItem fx:id="menuReaderDel" mnemonicParsing="false" onAction="#menuClickReader"
+                              text="Delete"/>
+                    <MenuItem fx:id="menuReaderUp" mnemonicParsing="false" onAction="#menuClickReader"
+                              text="Update"/>
+                    <MenuItem fx:id="menuReaderAdd" mnemonicParsing="false" onAction="#menuClickReader" text="Add"/>
+                    <MenuItem fx:id="menuReaderList" mnemonicParsing="false" onAction="#menuClickReader"
+                              text="List"/>
+                </Menu>
+                <Menu fx:id="menuRA" mnemonicParsing="false" text="READ ARTICLE">
+                    <MenuItem fx:id="menuRAGet" mnemonicParsing="false" onAction="#menuClickRA"
+                              text="List"/>
+                    <MenuItem fx:id="menuRAUp" mnemonicParsing="false" onAction="#menuClickRA"
+                              text="Update"/>
+                    <MenuItem fx:id="menuRAAdd" mnemonicParsing="false" onAction="#menuClickRA"
+                              text="Add"/>
+                    <MenuItem fx:id="menuRADel" mnemonicParsing="false" onAction="#menuClickRA"
+                              text="Delete"/>
+                </Menu>
+                <Menu fx:id="menuSubs" mnemonicParsing="false" text="SUBSCRIPTIONS">
+                    <items>
+                        <MenuItem fx:id="menuSubsGet" mnemonicParsing="false" onAction="#menuClickSubs"
+                                  text="List"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuSubsAdd" mnemonicParsing="false" onAction="#menuClickSubs"
+                                  text="Add"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuSubsUp" mnemonicParsing="false" onAction="#menuClickSubs"
+                                  text="Update"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuSubsDel" mnemonicParsing="false" onAction="#menuClickSubs"
+                                  text="Delete"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

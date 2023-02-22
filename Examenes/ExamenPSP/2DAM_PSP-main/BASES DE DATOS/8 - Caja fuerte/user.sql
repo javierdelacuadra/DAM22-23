@@ -1,0 +1,5 @@
+INSERT INTO TomasMacri_CajaFuerte.user (name, password, role) VALUES ('aa', 'PBKDF2WithHmacSHA256:2048:1UECmPOrZGL/Y6SoNoMpPZxtlAFqC2ok7d2KUI/JwuQ=:UuVBA07zflbeCLJy/MggULrN/x1gYzFl5xCd8AqFFSs=', 'USER');
+INSERT INTO TomasMacri_CajaFuerte.user (name, password, role) VALUES ('root', 'PBKDF2WithHmacSHA256:2048:/HQyXe7xrvjow+/1PCUPXYWtydbzC30XlfralaOXXDc=:/thJhQ0Ixe7IUwYZnWBXNd28Iicnx+AeSq3AUJfE4C4=', 'ADMIN');
+INSERT INTO TomasMacri_CajaFuerte.user (name, password, role) VALUES ('user1', 'PBKDF2WithHmacSHA256:2048:wN5mOZ7ELm3p6+B8aJ44R+0oTfURQ7/a7aO1YvnHi4I=:iSwHq5Mrd8Q406m7nFH1uB1mIz8T75ybG1r7eWmf5lo=', 'USER');
+INSERT INTO TomasMacri_CajaFuerte.user (name, password, role) VALUES ('user2', 'PBKDF2WithHmacSHA256:2048:79odlUtkf0tIQ1ws7B68lsObpsOr87SEg0C3hJEa3cU=:/ZrFlbbOYgftIvSh5hMus8mzFn//eZ5FdAqyiTSkCak=', 'USER');
+INSERT INTO TomasMacri_CajaFuerte.user (name, password, role) VALUES ('user3', 'PBKDF2WithHmacSHA256:2048:CyxMgJB456QKKDIazCX5JFWVSpGo1v+DgnAJmeZB2ig=:jdQ/1BajxRCVkw+iQXdp45eE32St5d0GXYZX40RdLw8=', 'USER');

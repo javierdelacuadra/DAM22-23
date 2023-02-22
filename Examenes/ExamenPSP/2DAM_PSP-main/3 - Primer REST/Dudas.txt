@@ -1,0 +1,13 @@
+1 - Que devuelvo en el update?? El nuevo objeto? Lo traigo de la BD?
+
+2 - Validaciones del PUT / POST que hago en servicios pueden lanzar excepciones???
+
+3 - Que es el validator? Deberíamos usarlo?
+
+4 - Respetamos accesos a la base o borramos todo de una (integrity error en ReadersDao)
+
+5 - Para el delete devolvemos un response o nos inventamos una excepcion exitosa?
+
+6 - Hay forma de conectarme a una BD local en otro contenedor? localhost ya no serviría no?
+
+// 8 - Error al hacer el POST y PUT --> Tiene que ser con el Hibernate?? --> Tener los constructores necesarios

@@ -1,0 +1,35 @@
+10:26 --> Resumen
+
+10:30 --> Configuración de arranque
+
+	10:31 --> Bajar tomcat 10.1.1
+
+	10:36 --> Deploy para que sepa que hacer
+
+	10:40 --> re deploy para cambiar cosas (abajo del stop)
+
+10:46 --> Meter css y otras cosas en webapp
+
+10:54 --> Excepción y consola
+
+10:57 --> Nuevo Servlet
+
+11:04 --> Post con postman
+
+11:06 --> Rellenar bloque con """ --- """ y Servlet MVC
+
+11:48 - 11:50~ --> Funcionamiento lógico jsp o similar
+
+11:58 --> Sessions para guardar datos de las llamadas del mismo sitio (se guardan en cookies o tokens)
+	
+	12:00 / 12:07 --> Funcionamiento de cookies
+
+	12:11 --> Funcionamiento tokens
+
+12:15 --> primefaces
+
+12:19 --> templates
+
+12:22 --> Carpetas restringidas
+
+12:27 --> Recuperar parámetros jsp

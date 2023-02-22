@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="456.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.readers.updreaders.UpdReaderController">
+    <Label layoutX="130.0" layoutY="26.0" text="UPDATE READER">
+        <font>
+            <Font name="Monotype Corsiva" size="44.0" />
+        </font>
+    </Label>
+    <MFXTextField fx:id="txtName" floatingText="Name" layoutX="76.0" layoutY="100.0" prefHeight="40.0" prefWidth="174.0" />
+    <DatePicker fx:id="dpkBirth" layoutX="76.0" layoutY="168.0" />
+    <Label alignment="CENTER" layoutX="95.0" layoutY="211.0" prefHeight="17.0" prefWidth="118.0" text="Credentials">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <MFXTextField fx:id="txtUser" floatingText="email" layoutX="60.0" layoutY="249.0" prefHeight="50.0" prefWidth="190.0" />
+    <MFXPasswordField fx:id="txtPass" floatingText="password" layoutX="60.0" layoutY="314.0" prefHeight="50.0" prefWidth="190.0" />
+    <MFXButton fx:id="btnUpd" layoutX="97.0" layoutY="386.0" mnemonicParsing="false" onAction="#updateReader" prefHeight="41.0" prefWidth="113.0" text="Save">
+        <font>
+            <Font name="DejaVu Serif Condensed" size="12.0" />
+        </font>
+    </MFXButton>
+    <MFXButton fx:id="btnAdd" layoutX="97.0" layoutY="386.0" mnemonicParsing="false" onAction="#addReader" prefHeight="41.0" prefWidth="113.0" text="Sing up">
+        <font>
+            <Font name="DejaVu Serif Condensed" size="12.0" />
+        </font>
+    </MFXButton>
+    <MFXTableView fx:id="tblReaders" layoutX="296.0" layoutY="100.0" prefHeight="200.0" prefWidth="284.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="idColumn" minWidth="50.0" prefHeight="42.0" prefWidth="50.0" text="Id" />
+            <MFXTableColumn fx:id="nameColumn" prefHeight="42.0" prefWidth="177.0" text="Name" />
+            <MFXTableColumn fx:id="birthColumn" prefHeight="42.0" prefWidth="100.0" text="Date of Birth" />
+        </tableColumns>
+    </MFXTableView>
+   <MFXButton fx:id="btnClear" layoutX="381.0" layoutY="323.0" mnemonicParsing="false" onAction="#clearTblSelection" prefHeight="41.0" prefWidth="113.0" text="Clear selection">
+      <font>
+         <Font name="DejaVu Serif Condensed" size="12.0" />
+      </font>
+   </MFXButton>
+</AnchorPane>

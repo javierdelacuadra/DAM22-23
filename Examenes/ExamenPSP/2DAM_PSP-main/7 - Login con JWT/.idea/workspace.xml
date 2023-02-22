@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="newspapers:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="776dc520-d222-4cf6-8985-e50b853ca8fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/domain/excepciones/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/security/JWTAuth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/security/JwtTokenUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/security/di/KeyProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/security/revisar/DelegatedAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/security/revisar/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/domain/servicios/impl/ArticleServicesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/domain/servicios/impl/ArticleServicesImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/errores/ControlErrores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/errores/ControlErrores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/rest/RestArticles.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/rest/RestArticles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/rest/RestNewspapers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 - Spring GraphQL/SpringRestBasic/src/main/java/com/basicrest/springrestbasic/spring/rest/RestNewspapers.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2LafKDehSsg06006sWQwgEVJb6J" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Usuario/Desktop/2DAM_PSP/11 - Spring GraphQL/SpringRestBasic",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="GlassFish 6.2022.1" type="GlassfishConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="GlassFish 6.2022.1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="LOCAL" value="false" />
+      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+      <deployment>
+        <artifact name="newspapers:war">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <data>
+          <option name="adminServerHost" value="" />
+          <option name="clusterName" value="" />
+          <option name="credentialAlias" value="a473f50d-1d2d-41a8-b49f-744d7bfb90ba" />
+          <option name="secured" value="true" />
+          <option name="stagingRemotePath" value="" />
+          <option name="transportHostId" />
+          <option name="transportStagingTarget">
+            <TransportTarget>
+              <option name="id" value="edc14bb0-a47a-4f71-81ea-c0d2e9ba1e06" />
+              <id>edc14bb0-a47a-4f71-81ea-c0d2e9ba1e06</id>
+            </TransportTarget>
+          </option>
+          <credential-alias>a473f50d-1d2d-41a8-b49f-744d7bfb90ba</credential-alias>
+          <secured>true</secured>
+          <admin-server-host />
+          <cluster-name />
+          <transport-target>
+            <TransportTarget>
+              <option name="id" value="edc14bb0-a47a-4f71-81ea-c0d2e9ba1e06" />
+              <id>edc14bb0-a47a-4f71-81ea-c0d2e9ba1e06</id>
+            </TransportTarget>
+          </transport-target>
+          <staging-path />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="GlassFish" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9009" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="newspapers:war" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="776dc520-d222-4cf6-8985-e50b853ca8fd" name="Changes" comment="" />
+      <created>1676114047291</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676114047291</updated>
+      <workItem from="1676114048360" duration="8660000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Login JWT/newspapersMultimodulo/servidor/src/main/java/jakarta/security/JWTAuth.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

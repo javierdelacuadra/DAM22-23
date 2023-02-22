@@ -1,0 +1,9 @@
+1 - Al hacer login tiene que llegar la nueva contraseña sin hashear para hacer el verify en el dao? --> SI
+
+2 - Unsatisfied dependencies para el hasheador?? --> DA IGUAL
+
+3 - El filtro???? --> CUIDADO CON LA URL
+
+4 - Lo del resend del mail tiene que ser una vez o todas las veces que quiera? Si es una vez, me guardo un boolean en bd no? --> CUANDO LE DA A RESEND SE ACTUALIZA LA HORA Y SE REENVÍA
+
+5 - El resend del mail es en el mail o llamada a la api?

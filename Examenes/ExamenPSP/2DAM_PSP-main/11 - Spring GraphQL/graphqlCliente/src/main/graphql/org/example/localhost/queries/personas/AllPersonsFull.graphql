@@ -1,0 +1,14 @@
+query AllPersonsFull {
+
+    allPersons {
+        id
+        name
+        surname
+        login {
+            username
+        }
+        mascotas {
+            id
+        }
+    }
+}

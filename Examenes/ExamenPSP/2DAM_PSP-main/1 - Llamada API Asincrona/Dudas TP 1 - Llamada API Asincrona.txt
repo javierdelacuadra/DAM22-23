@@ -1,0 +1,8 @@
+1- Para hacer la llamada con el Task, se me rompe si la función del call hace un _state.setValue(). 
+Entiendo que no hay que hacer esto si no devolver lo que quiero pintar --> Cambiar el return
+
+2 - Error implementar single desde ui --> Usar Single.just --> = pero método sin lambda (si no usar .fromCallable)
+
+3- Los cursor.wait van justo antes de llamar a la funcion que devuelve un single de retrofit y se resetean en el listener????? --> Tener un boolean isLoading en el state
+
+4- .subscribeOn es donde se ejecuta la llamada y observeOn es donde se ejecuta el subscribe (post llamada)

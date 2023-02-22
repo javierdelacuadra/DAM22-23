@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el numero</title>
+</head>
+<body>
+  <h1>GANASTE!!!!!!!</h1>
+  <h5>El numero era <label th:text="${numRandom}"></label> y te han sobrado <label th:text="${vidas}"></label> vidas!</h5>
+  <form action="juego" method="post">
+      <input type="submit" value="Seguir con la racha!">
+  </form>
+</body>
+</html>

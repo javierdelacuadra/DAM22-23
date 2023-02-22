@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="794.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.listadociudades.ListadoCiudadesController">
+    <ComboBox fx:id="cmbPaises" layoutX="308.0" layoutY="119.0" onAction="#paisSelected" prefHeight="45.0" prefWidth="260.0" promptText="%QuePaisQuieresVisitar" />
+    <MFXTableView fx:id="tblEstados" layoutX="24.0" layoutY="195.0" prefHeight="210.0" prefWidth="386.0" />
+    <MFXTableView fx:id="tblCiudades" layoutX="461.0" layoutY="195.0" prefHeight="210.0" prefWidth="235.0" />
+    <Label layoutX="317.0" layoutY="74.0" prefHeight="29.0" prefWidth="242.0" text="%SeleccioneUnPais">
+        <font>
+            <Font name="Century Gothic" size="23.0" />
+        </font>
+    </Label>
+</AnchorPane>

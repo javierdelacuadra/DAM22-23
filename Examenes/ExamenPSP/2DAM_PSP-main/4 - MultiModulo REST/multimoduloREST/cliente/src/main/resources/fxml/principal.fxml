@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.principal.PrincipalController">
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <Menu mnemonicParsing="false" text="OPTIONS">
+                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="NEWSPAPERS">
+                <MenuItem fx:id="menuNewsList" mnemonicParsing="false" onAction="#menuClickNews" text="List / Delete"/>
+                <MenuItem fx:id="menuNewsUp" mnemonicParsing="false" onAction="#menuClickNews" text="Save"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="READER">
+                <MenuItem fx:id="menuReaderList" mnemonicParsing="false" onAction="#menuClickReader"
+                          text="List / Delete"/>
+                <MenuItem fx:id="menuReaderUp" mnemonicParsing="false" onAction="#menuClickReader"
+                          text="Save"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>

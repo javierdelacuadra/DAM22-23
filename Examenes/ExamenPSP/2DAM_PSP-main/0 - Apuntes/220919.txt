@@ -1,0 +1,9 @@
+10:36 - 10:39 - Intro de todo lo que venimos viendo
+
+10:41 - 10:50 Versiones http y capas.........(TCP (pregunta si está) / UDP (mando y si está bien))
+
+10:50 - 10:55 --> Manjeo de cliente HTTP para aplicar protocolo deseado
+
+10:55 -11:00--> Converter Factory (Moshi, Gson, Jackson)
+
+11:04 - 11:11 --> Ejemplo

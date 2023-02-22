@@ -1,0 +1,20 @@
+10:40 --> Intro retrofit --> Se va a postman etc
+
+10:44 --> Definición HTTP --> useless
+
+10:47 - 10:52 --> Modelo cliente servidor con móviles/pc
+
+10:58 - 11:00 --> Definición métodos HTTP
+
+	Post -- Insert
+
+	Get -- Select 
+
+	Put -- Update
+
+	Delete -- Delete
+
+
+11:00 - 11:05 --> Ejemplo llamada retrofit - No funciona
+
+11:06 --> Ejemplo marvel si funciona

@@ -1,0 +1,13 @@
+10:44 - 10:46 --> Named para inyectar produces 
+
+10:57 --> Donde usar retrofit
+
+11:05 --> crea cosas con retrofit
+
+11:48 --> produce retrofit
+
+11:51 --> Pom VAVR
+
+12:03 - 12:08 --> Estructura
+
+12:10 --> API KEY

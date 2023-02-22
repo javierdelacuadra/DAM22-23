@@ -1,0 +1,15 @@
+11:51 --> packaging pom y creación 3 proyectos
+
+11:57 --> pom's (12:05 la mia)
+
+12:11 --> Lombok común a todos
+
+12:13 --> mueve api error
+
+Al medio va el objeto de dao
+
+12:16 -> llamadas retrofit
+
+12:19 --> Control de excepciones con single
+
+12:26 --> Generics singlew 

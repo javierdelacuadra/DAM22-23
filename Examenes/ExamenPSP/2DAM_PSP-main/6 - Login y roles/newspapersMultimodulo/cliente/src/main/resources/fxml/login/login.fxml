@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.login.LoginController">
+    <MFXTextField fx:id="mfxUser" floatingText="email" layoutX="276.0" layoutY="42.0" prefHeight="50.0" prefWidth="269.0" />
+    <MFXPasswordField fx:id="mfxPassword" floatingText="password" layoutX="275.0" layoutY="101.0" prefHeight="50.0" prefWidth="270.0" />
+    <MFXButton fx:id="btnLogin" layoutX="352.0" layoutY="167.0" mnemonicParsing="false" onAction="#tryLogin" prefHeight="25.0" prefWidth="117.0" text="Log In">
+        <font>
+            <Font name="Alef Regular" size="12.0" />
+        </font>
+    </MFXButton>
+   <MFXButton layoutX="327.0" layoutY="253.0" mnemonicParsing="false" onAction="#loginInvitado" prefHeight="26.0" prefWidth="166.0" text="Continuar como invitado">
+      <font>
+         <Font name="Alef Regular" size="12.0" />
+      </font>
+   </MFXButton>
+   <MFXButton layoutX="327.0" layoutY="215.0" mnemonicParsing="false" onAction="#forgot" prefHeight="26.0" prefWidth="166.0" text="Olvidé mi contraseña...">
+      <font>
+         <Font name="Alef Regular" size="12.0" />
+      </font>
+   </MFXButton>
+   <MFXButton layoutX="327.0" layoutY="295.0" mnemonicParsing="false" onAction="#goToRegistro" prefHeight="26.0" prefWidth="166.0" text="Soy nuevo! Registrame">
+      <font>
+         <Font name="Alef Regular" size="12.0" />
+      </font>
+   </MFXButton>
+   <Label layoutX="553.0" layoutY="54.0" prefHeight="26.0" prefWidth="528.0" text="&lt;-- Tu mail (por ejemplo: r1@gmail.com para un reader o root (sin nada más) para el admin)" textFill="#0055ff" />
+   <Label layoutX="553.0" layoutY="117.0" text="&lt;-- Tu pass (por ejemplo: r1 para ambos casos)" textFill="#0055ff" />
+
+</AnchorPane>

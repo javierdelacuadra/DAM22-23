@@ -1,0 +1,200 @@
+[
+  {
+    "name": "The New York Times",
+    "release_date": "2001-11-09",
+    "articles": [
+      {
+        "name": "art1",
+        "description": "desc1",
+        "type": "Sports",
+        "readArticles": [
+          {
+            "id": 1,
+            "marking": 3
+          },
+          {
+            "id": 2,
+            "marking": 4
+          }
+        ]
+      },
+      {
+        "name": "art2",
+        "description": "desc2",
+        "type": "Politics",
+        "readArticles": [
+          {
+            "id": 2,
+            "marking": 5
+          },
+          {
+            "id": 3,
+            "marking": 1
+          }
+        ]
+      },
+      {
+        "name": "art3",
+        "description": "desc3",
+        "type": "Sports",
+        "readArticles": []
+      }
+    ],
+    "readers": [
+      {
+        "id": 1,
+        "name": "John",
+        "cancellationDate": "2019-01-01"
+      },
+      {
+        "id": 2,
+        "name": "Jane",
+        "cancellationDate": null
+      },
+      {
+        "id": 3,
+        "name": "Jack",
+        "cancellationDate": null
+      }
+    ]
+  },
+  {
+    "name": "The Washington Post",
+    "release_date": "2001-11-09",
+    "articles": [
+      {
+        "name": "art4",
+        "description": "desc4",
+        "type": "Politics",
+        "readArticles": [
+          {
+            "id": 1,
+            "marking": 2
+          },
+          {
+            "id": 5,
+            "marking": 3
+          }
+        ]
+      },
+      {
+        "name": "art5",
+        "description": "desc5",
+        "type": "Sports",
+        "readArticles": []
+      },
+      {
+        "name": "art6",
+        "description": "desc6",
+        "type": "Politics",
+        "readArticles": []
+      }
+    ],
+    "readers": [
+      {
+        "id": 1,
+        "name": "John",
+        "cancellationDate": null
+      },
+      {
+        "id": 4,
+        "name": "Charles",
+        "cancellationDate": null
+      },
+      {
+        "id": 5,
+        "name": "Chloe",
+        "cancellationDate": null
+      }
+    ]
+  },
+  {
+    "name": "The Wall Street Journal",
+    "release_date": "2001-11-09",
+    "articles": [
+      {
+        "name": "art7",
+        "description": "desc7",
+        "type": "Sports",
+        "readArticles": []
+      },
+      {
+        "name": "art8",
+        "description": "desc8",
+        "type": "Politics",
+        "readArticles": []
+      },
+      {
+        "name": "art9",
+        "description": "desc9",
+        "type": "Sports",
+        "readArticles": []
+      }
+    ],
+    "readers": []
+  },
+  {
+    "name": "El País",
+    "release_date": "2001-11-09",
+    "articles": [
+      {
+        "name": "art10",
+        "description": "desc10",
+        "type": "Sports",
+        "readArticles": [
+          {
+            "id": 6,
+            "marking": 1
+          },
+          {
+            "id": 4,
+            "marking": 2
+          }
+        ]
+      },
+      {
+        "name": "art11",
+        "description": "desc11",
+        "type": "Politics",
+        "readArticles": [
+          {
+            "id": 6,
+            "marking": 3
+          },
+          {
+            "id": 2,
+            "marking": 4
+          }
+        ]
+      },
+      {
+        "name": "art12",
+        "description": "desc12",
+        "type": "Sports",
+        "readArticles": [
+          {
+            "id": 4,
+            "marking": 5
+          }
+        ]
+      }
+    ],
+    "readers": [
+      {
+        "id": 4,
+        "name": "Charles",
+        "cancellationDate": "2019-01-06"
+      },
+      {
+        "id": 6,
+        "name": "Phil",
+        "cancellationDate": null
+      },
+      {
+        "id": 2,
+        "name": "Jane",
+        "cancellationDate": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+1 - Firmar String aleatorio en el login? Como recupero el mismo String en el server? Con Singleton? O con ver que se ha certificado con la clave publica del servidor (con su privadA) sirve sin importar el contenido?
