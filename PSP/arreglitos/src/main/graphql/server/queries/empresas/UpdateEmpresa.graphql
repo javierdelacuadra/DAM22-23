@@ -1,7 +1,0 @@
-mutation UpdateEmpresa($id: Int!, $nombre: String!, $direccion: String!) {
-    actualizarEmpresa(id: $id, nombre: $nombre, direccion: $direccion) {
-        id
-        nombre
-        direccion
-    }
-}

@@ -1,6 +1,7 @@
 package dao
 
 import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.api.Optional
 import server.AddCamionMutation
 import server.DeleteCamionMutation
 import server.GetAllCamionesQuery
@@ -11,7 +12,7 @@ import servicios.modelo.Camion
 class DaoCamiones {
     suspend fun getAllCamiones(): List<Camion> {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val getAllCamionesQuery = GetAllCamionesQuery()
@@ -19,14 +20,16 @@ class DaoCamiones {
         val response = apolloClient.query(getAllCamionesQuery).execute()
         var camionesList = emptyList<Camion>()
         if (!response.hasErrors()) {
-            val camiones = response.data?.getallcamiones?.map {
-                Camion(
-                    id = it.id,
-                    modelo = it.modelo,
-                    fechaConstruccion = it.fechaConstruccion
-                )
+            val camiones = response.data?.getAllCamiones?.map {
+                it?.let { it1 ->
+                    Camion(
+                        id = it1.id,
+                        modelo = it.modelo,
+                        fechaConstruccion = it.fechaConstruccion
+                    )
+                }
             } ?: emptyList()
-            camionesList = camiones
+            camionesList = camiones.filterNotNull()
         } else {
 
         }
@@ -36,14 +39,14 @@ class DaoCamiones {
 
     suspend fun agregarCamion(camion: Camion): String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
-        val mutation = AddCamionMutation(camion.modelo, camion.fechaConstruccion)
+        val mutation = AddCamionMutation(camion.modelo, camion.fechaConstruccion, camion.id)
 
         val response = apolloClient.mutation(mutation).execute()
         return if (!response.hasErrors()) {
-            response.data?.crearCamion?.id.toString()
+            response.data?.createCamion?.id.toString()
         } else {
             "Error"
         }
@@ -51,14 +54,14 @@ class DaoCamiones {
 
     suspend fun actualizarCamion(camion: Camion) : String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
-        val mutation = UpdateCamionMutation(camion.id, camion.modelo, camion.fechaConstruccion)
+        val mutation = UpdateCamionMutation(camion.id, Optional.present(camion.modelo), Optional.present(camion.fechaConstruccion))
 
         val response = apolloClient.mutation(mutation).execute()
         return if (!response.hasErrors()) {
-            response.data?.actualizarCamion?.id.toString()
+            response.data?.updateCamion?.id.toString()
         } else {
             "Error"
         }
@@ -66,7 +69,7 @@ class DaoCamiones {
 
     suspend fun eliminarCamion(id: Int) : String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = DeleteCamionMutation(id)

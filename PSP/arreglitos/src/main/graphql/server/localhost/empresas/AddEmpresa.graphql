@@ -1,0 +1,7 @@
+mutation AddEmpresa($nombre: String!, $direccion: String!) {
+    createEmpresa(nombre: $nombre, direccion: $direccion) {
+        id
+        nombre
+        direccion
+    }
+}

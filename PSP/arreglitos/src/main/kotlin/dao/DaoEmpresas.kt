@@ -12,7 +12,7 @@ class DaoEmpresas {
 
     suspend fun getAllEmpresas(): List<Empresa> {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val query = GetAllEmpresasQuery()
@@ -20,21 +20,27 @@ class DaoEmpresas {
         val response = apolloClient.query(query).execute()
         var empresasList = emptyList<Empresa>()
         if (!response.hasErrors()) {
-            val empresas = response.data?.getallempresas?.map {
-                Empresa(
-                    id = it.id,
-                    nombre = it.nombre,
-                    direccion = it.direccion,
-                    camiones = it.camiones.map { camion ->
-                        Camion(
-                            id = camion.id,
-                            modelo = camion.modelo,
-                            fechaConstruccion = camion.fechaConstruccion
+            val empresas = response.data?.getAllEmpresas?.map {
+                it.camiones?.let { it1 ->
+                    it1.map { camion ->
+                        camion?.let { it2 ->
+                            Camion(
+                                id = it2.id,
+                                modelo = camion.modelo,
+                                fechaConstruccion = camion.fechaConstruccion
+                            )
+                        }
+                    }.let { it3 ->
+                        Empresa(
+                            id = it.id,
+                            nombre = it.nombre,
+                            direccion = it.direccion,
+                            camiones = it3
                         )
                     }
-                )
+                }
             } ?: emptyList()
-            empresasList = empresas
+            empresasList = empresas.filterNotNull()
         } else {
 
         }
@@ -43,14 +49,14 @@ class DaoEmpresas {
 
     suspend fun agregarEmpresa(empresa: Empresa): String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = AddEmpresaMutation(empresa.nombre, empresa.direccion)
 
         val response = apolloClient.mutation(mutation).execute()
         return if (!response.hasErrors()) {
-            response.data?.crearEmpresa?.id.toString()
+            response.data?.createEmpresa?.id.toString()
         } else {
             "Error"
         }
@@ -58,14 +64,14 @@ class DaoEmpresas {
 
     suspend fun actualizarEmpresa(empresa: Empresa): String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = UpdateEmpresaMutation(empresa.id, empresa.nombre, empresa.direccion)
 
         val response = apolloClient.mutation(mutation).execute()
         return if (!response.hasErrors()) {
-            response.data?.actualizarEmpresa?.id.toString()
+            response.data?.updateEmpresa?.id.toString()
         } else {
             "Error"
         }
@@ -73,7 +79,7 @@ class DaoEmpresas {
 
     suspend fun eliminarEmpresa(id: Int): String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = DeleteEmpresaMutation(id)

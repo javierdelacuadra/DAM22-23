@@ -7,7 +7,7 @@
     <top>
         <MenuBar>
             <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
-                <MenuItem mnemonicParsing="false" onAction="#salir" text="Exit"/>
+                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Camiones">
                 <MenuItem mnemonicParsing="false" onAction="#listCamionesMenu"

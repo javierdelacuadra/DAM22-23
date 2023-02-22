@@ -1,0 +1,3 @@
+mutation DeleteConductor($id: Int!) {
+  deleteConductor(id: $id)
+}

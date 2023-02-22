@@ -1,0 +1,12 @@
+query GetAllConductores {
+    getAllConductores {
+        id
+        nombre
+        telefono
+        camion {
+            id
+            modelo
+            fechaConstruccion
+        }
+    }
+}

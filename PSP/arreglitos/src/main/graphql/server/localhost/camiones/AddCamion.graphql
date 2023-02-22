@@ -1,0 +1,7 @@
+mutation AddCamion($modelo: String!, $fechaConstruccion: String!, $empresaId: Int!) {
+    createCamion(modelo: $modelo, fechaConstruccion: $fechaConstruccion, empresaId: $empresaId) {
+        id
+        modelo
+        fechaConstruccion
+    }
+}

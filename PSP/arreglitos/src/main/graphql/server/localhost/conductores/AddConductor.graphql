@@ -1,0 +1,7 @@
+mutation AddConductor($nombre: String!, $telefono: String!, $camionID: Int!) {
+  createConductor(nombre: $nombre, telefono: $telefono, camionId: $camionID) {
+    id
+    nombre
+    telefono
+  }
+}

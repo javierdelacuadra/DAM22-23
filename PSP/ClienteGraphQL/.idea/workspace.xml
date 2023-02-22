@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee6ecf0f-aba7-4c7e-97b8-67c50713f0aa" name="Changes" comment="15-2-23 GraphQL Cliente initial implementation">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Camion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Camion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Conductor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Conductor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosCamiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosCamiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/graphql/schema.graphqls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +98,7 @@
       <workItem from="1676486014343" duration="7331000" />
       <workItem from="1676560383226" duration="116000" />
       <workItem from="1676574232982" duration="30000" />
+      <workItem from="1677080616583" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="15-2-23 GraphQL Cliente initial implementation">
       <created>1676495938573</created>

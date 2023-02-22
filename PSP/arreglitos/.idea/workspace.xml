@@ -5,7 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41f139b8-62a8-42d4-912a-8253ee561a99" name="Changes" comment="17-2-23 finished ClienteGraphQL">
+      <change afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ClienteGraphQL/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Camion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Empresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/AddConductor.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/Examen 2EV Javier de la Cuadra/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenCompose/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Examenes/ExamenXML/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClienteGraphQL/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/ServidorGraphQlApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/common/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/CamionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/CamionesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/ConductoresRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/ConductoresRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/data/EmpresasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/data/EmpresasRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/DatabaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/excepciones/DatabaseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/excepciones/ObjectNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/excepciones/ObjectNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Camion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Conductor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/modelo/Conductor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/modelo/Empresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosCamiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosCamiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosConductores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosConductores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/domain/servicios/ServiciosEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/domain/servicios/ServiciosEmpresas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/CamionesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/CamionesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/ConductoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/ConductoresController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/controllers/EmpresasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/controllers/EmpresasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/errores/ApiError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/spring/errores/ControlErrores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/java/com/example/servidorgraphql/spring/errores/ControlErrores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/../ServidorGraphQL/src/main/resources/graphql/schema.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/.graphqlconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/AddCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/AddCamion.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/DeleteCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/DeleteCamion.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/GetAllCamiones.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/GetAllCamiones.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/camiones/UpdateCamion.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/camiones/UpdateCamion.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/AddConductor.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/DeleteConductor.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/DeleteConductor.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/GetAllConductores.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/GetAllConductores.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/conductores/UpdateConductor.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/conductores/UpdateConductor.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/AddEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/AddEmpresa.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/DeleteEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/DeleteEmpresa.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/GetAllEmpresas.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/GetAllEmpresas.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/queries/empresas/UpdateEmpresa.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/localhost/empresas/UpdateEmpresa.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/graphql/server/schema.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoConductores.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dao/DaoEmpresas.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/servicios/modelo/Empresa.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/servicios/modelo/Empresa.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MainFX.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/common/BasePantallaController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/mainscreen/MainController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaconductores/PantallaConductoresController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallaempresas/PantallaEmpresasController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaCamiones.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaConductores.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaEmpresas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/PantallaMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/PantallaMain.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +87,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -30,62 +100,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-normalized-cache-sqlite-jvm:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime-jvm:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime-jvm:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-api:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="arreglitos" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-runtime-jvm:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-api:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
-                <item name="com.apollographql.apollo3:apollo-api-jvm:3.7.3" type="b3323d55:ExternalSystemViewDefaultContributor$DependencyExternalSystemNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
             </expand>
             <select />
@@ -120,24 +135,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Javi/IdeaProjects/DAM22-23/PSP/arreglitos&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Javi/IdeaProjects/DAM22-23/PSP/arreglitos",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.kotlinCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server\queries\conductores" />
@@ -145,12 +161,35 @@
       <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Javi\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server" />
+      <recent name="C:\Users\Javi\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server\localhost\queries" />
+      <recent name="C:\Users\Javi\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server\localhost" />
       <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql\server\queries\camiones" />
       <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\graphql" />
-      <recent name="C:\Users\2dam\IdeaProjects\DAM22-23\PSP\arreglitos\src\main\kotlin" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.MainFXKt">
+    <configuration name="arreglitos [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainFXKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -164,6 +203,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.MainFXKt" />
+        <item itemvalue="Gradle.arreglitos [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -185,6 +225,7 @@
       <workItem from="1676574263982" duration="513000" />
       <workItem from="1676574786538" duration="22000" />
       <workItem from="1676659900721" duration="3809000" />
+      <workItem from="1677080627556" duration="8824000" />
     </task>
     <task id="LOCAL-00001" summary="16-2-23 fixed ClienteGraphQL">
       <created>1676542071933</created>
@@ -211,6 +252,66 @@
     <MESSAGE value="17-2-23 finished ClienteGraphQL" />
     <option name="LAST_COMMIT_MESSAGE" value="17-2-23 finished ClienteGraphQL" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>21</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>22</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>31</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dao/DaoCamiones.kt</url>
+          <line>36</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/ui/pantallas/pantallacamiones/CamionesController.kt</url>
+          <line>45</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="FXCollections.observableArrayList(viewModel.getAllCamiones())" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,39 +2,40 @@ type Camion {
     id: Int!
     modelo: String!
     fechaConstruccion: String!
+    conductor: Conductor
 }
 
 type Conductor {
     id: Int!
     nombre: String!
     telefono: String!
-    camion: Camion!
+    camion: Camion
 }
 
 type Empresa {
     id: Int!
     nombre: String!
     direccion: String!
-    camiones: [Camion!]!
+    camiones: [Camion]
 }
 
 type Query {
-    camion(id: Int!): Camion
-    conductor(id: Int!): Conductor
-    empresa(id: Int!): Empresa
-    getallcamiones: [Camion!]!
-    getallconductores: [Conductor!]!
-    getallempresas: [Empresa!]!
+    getAllCamiones: [Camion]!
+    getCamionById(id: Int!): Camion!
+    getAllConductores: [Conductor!]!
+    getConductorById(id: Int!): Conductor!
+    getAllEmpresas: [Empresa!]!
+    getEmpresaById(id: Int!): Empresa!
 }
 
 type Mutation {
-    crearCamion(modelo: String!, fechaConstruccion: String!): Camion!
-    actualizarCamion(id: Int!, modelo: String, fechaConstruccion: String): Camion!
-    borrarCamion(id: Int!): Boolean
-    crearConductor(nombre: String!, telefono: String!, camionId: Int!): Conductor!
-    actualizarConductor(id: Int!, nombre: String, telefono: String, camionId: Int): Conductor!
-    borrarConductor(id: Int!): Boolean
-    crearEmpresa(nombre: String!, direccion: String!): Empresa!
-    actualizarEmpresa(id: Int!, nombre: String, direccion: String): Empresa!
-    borrarEmpresa(id: Int!): Boolean
+    createCamion(modelo: String!, fechaConstruccion: String!, empresaId: Int): Camion
+    updateCamion(id: Int!, modelo: String, fechaConstruccion: String, empresaId: Int): Camion
+    deleteCamion(id: Int!): Int!
+    createConductor(nombre: String!, telefono: String!, camionId: Int): Conductor
+    updateConductor(id: Int!, nombre: String, telefono: String, camionId: Int): Conductor
+    deleteConductor(id: Int!): Int!
+    createEmpresa(nombre: String!, direccion: String): Empresa
+    updateEmpresa(id: Int!, nombre: String, direccion: String): Empresa
+    deleteEmpresa(id: Int!): Int!
 }

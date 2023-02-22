@@ -1,0 +1,12 @@
+query GetAllEmpresas {
+    getAllEmpresas {
+        id
+        nombre
+        direccion
+        camiones {
+            id
+            modelo
+            fechaConstruccion
+        }
+    }
+}

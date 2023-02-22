@@ -1,0 +1,41 @@
+type Camion {
+    id: Int!
+    modelo: String!
+    fechaConstruccion: String!
+    conductor: Conductor
+}
+
+type Conductor {
+    id: Int!
+    nombre: String!
+    telefono: String!
+    camion: Camion
+}
+
+type Empresa {
+    id: Int!
+    nombre: String!
+    direccion: String!
+    camiones: [Camion]
+}
+
+type Query {
+    getAllCamiones: [Camion]!
+    getCamionById(id: Int!): Camion!
+    getAllConductores: [Conductor!]!
+    getConductorById(id: Int!): Conductor!
+    getAllEmpresas: [Empresa!]!
+    getEmpresaById(id: Int!): Empresa!
+}
+
+type Mutation {
+    createCamion(modelo: String!, fechaConstruccion: String!, empresaId: Int!): Camion!
+    updateCamion(id: Int!, modelo: String, fechaConstruccion: String, empresaId: Int): Camion!
+    deleteCamion(id: Int!): Int!
+    createConductor(nombre: String!, telefono: String!, camionId: Int!): Conductor!
+    updateConductor(id: Int!, nombre: String, telefono: String, camionId: Int): Conductor!
+    deleteConductor(id: Int!): Int!
+    createEmpresa(nombre: String!, direccion: String!): Empresa!
+    updateEmpresa(id: Int!, nombre: String, direccion: String): Empresa!
+    deleteEmpresa(id: Int!): Int!
+}

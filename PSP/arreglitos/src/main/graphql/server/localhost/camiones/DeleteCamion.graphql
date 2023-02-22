@@ -1,0 +1,3 @@
+mutation DeleteCamion($id: Int!) {
+    deleteCamion(id: $id)
+}

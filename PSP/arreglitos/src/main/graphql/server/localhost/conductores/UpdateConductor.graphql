@@ -1,0 +1,11 @@
+mutation UpdateConductor($id: Int!, $nombre: String!, $telefono: String!) {
+    updateConductor(id: $id, nombre: $nombre, telefono: $telefono) {
+        id
+        nombre
+        telefono
+        camion {
+            id
+            modelo
+        }
+    }
+}

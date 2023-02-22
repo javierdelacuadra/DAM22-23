@@ -1,7 +1,0 @@
-mutation AddCamion($modelo: String!, $fecha: String!) {
-    crearCamion(modelo: $modelo, fechaConstruccion: $fecha) {
-        id
-        modelo
-        fechaConstruccion
-    }
-}

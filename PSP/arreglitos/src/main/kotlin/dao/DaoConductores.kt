@@ -12,7 +12,7 @@ class DaoConductores {
 
     suspend fun getAllConductores(): List<Conductor> {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val query = GetAllConductoresQuery()
@@ -20,19 +20,23 @@ class DaoConductores {
         val response = apolloClient.query(query).execute()
         var conductoresList = emptyList<Conductor>()
         if (!response.hasErrors()) {
-            val conductores = response.data?.getallconductores?.map {
-                Conductor(
-                    id = it.id,
-                    nombre = it.nombre,
-                    telefono = it.telefono,
-                    camion = Camion(
-                        id = it.camion.id,
+            val conductores = response.data?.getAllConductores?.map {
+                it.camion?.let { it1 ->
+                    Camion(
+                        id = it1.id,
                         modelo = it.camion.modelo,
                         fechaConstruccion = it.camion.fechaConstruccion
                     )
-                )
+                }?.let { it2 ->
+                    Conductor(
+                        id = it.id,
+                        nombre = it.nombre,
+                        telefono = it.telefono,
+                        camion = it2
+                    )
+                }
             } ?: emptyList()
-            conductoresList = conductores
+            conductoresList = conductores.filterNotNull()
         } else {
 
         }
@@ -41,7 +45,7 @@ class DaoConductores {
 
     suspend fun agregarConductor(conductor: Conductor): String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = AddConductorMutation(conductor.nombre, conductor.telefono, conductor.camion.id)
@@ -49,7 +53,7 @@ class DaoConductores {
         val response = apolloClient.mutation(mutation).execute()
 
         return if (!response.hasErrors()) {
-            response.data?.crearConductor?.id.toString()
+            response.data?.createConductor?.id.toString()
         } else {
             "Error"
         }
@@ -57,14 +61,14 @@ class DaoConductores {
 
     suspend fun actualizarConductor(conductor: Conductor) : String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
-        val mutation = UpdateConductorMutation(conductor.id, conductor.nombre, conductor.telefono, conductor.camion.id)
+        val mutation = UpdateConductorMutation(conductor.id, conductor.nombre, conductor.telefono)
 
         val response = apolloClient.mutation(mutation).execute()
         return if (!response.hasErrors()) {
-            response.data?.actualizarConductor?.id.toString()
+            response.data?.updateConductor?.id.toString()
         } else {
             "Error"
         }
@@ -72,7 +76,7 @@ class DaoConductores {
 
     suspend fun eliminarConductor(id: Int) : String {
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://localhost:8080/graphql")
+            .serverUrl("http://localhost:8080/graphql")
             .build()
 
         val mutation = DeleteConductorMutation(id)
