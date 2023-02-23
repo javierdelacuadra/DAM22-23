@@ -1,0 +1,657 @@
+{
+  "info": {
+    "_postman_id": "12408b73-e49f-4b80-af38-9782545c2ee7",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24352298"
+  },
+  "item": [
+    {
+      "name": "Readers",
+      "item": [
+        {
+          "name": "Get todos los readers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/readers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get un reader específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/readers/2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Añadir un reader",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dateOfBirth\": \"2003-12-12\",\r\n    \"name\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/readers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar un reader",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dateOfBirth\": \"2022-06-04\",\r\n    \"id\": 84,\r\n    \"name\": \"TESTCAMBIADO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/readers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar un reader",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/readers/84",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers",
+                "84"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get los readers que han leído artículos de un tipo específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/readers/articleTypes?type=Sports",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers",
+                "articleTypes"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "Sports"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get los readers suscritos a un periódico específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/readers/newspapers?idNewspaper=2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readers",
+                "newspapers"
+              ],
+              "query": [
+                {
+                  "key": "idNewspaper",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Newspapers",
+      "item": [
+        {
+          "name": "Get todos los newspapers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/newspapers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "newspapers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get un newspaper específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/newspapers/2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "newspapers",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Añadir un newspaper",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dateOfBirth\": \"2003-12-12\",\r\n    \"name\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/newspapers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "newspapers"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar un newspaper",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dateOfBirth\": \"2022-06-04\",\r\n    \"id\": 84,\r\n    \"name\": \"TESTCAMBIADO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/newspapers",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "newspapers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar un newspaper",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/newspapers/84",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "newspapers",
+                "84"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Articles",
+      "item": [
+        {
+          "name": "Get todos los articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/articles",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get un article específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/articles/4",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Añadir un article",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name_article\": \"ArtículoTest\",\r\n    \"id_newspaper\": 1,\r\n    \"id_type\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/articles",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar un article",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 11,\r\n    \"name_article\": \"ArtículoTestCambiado\",\r\n    \"id_newspaper\": 1,\r\n    \"id_type\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/articles",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar un article",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/articles/11",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles",
+                "11"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get todos los articles de un tipo específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/articles/type/Sports",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "articles",
+                "type",
+                "Sports"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "Añadir una subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/subscriptions?newspaperId=3&readerId=5",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscriptions"
+              ],
+              "query": [
+                {
+                  "key": "newspaperId",
+                  "value": "3"
+                },
+                {
+                  "key": "readerId",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar una subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/subscriptions?newspaperId=3&readerId=5",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscriptions"
+              ],
+              "query": [
+                {
+                  "key": "newspaperId",
+                  "value": "3"
+                },
+                {
+                  "key": "readerId",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ReadArticles",
+      "item": [
+        {
+          "name": "Añadir un readArticle",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/readarticles?idArticle=3&idReader=5&rating=7",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "readarticles"
+              ],
+              "query": [
+                {
+                  "key": "idArticle",
+                  "value": "3"
+                },
+                {
+                  "key": "idReader",
+                  "value": "5"
+                },
+                {
+                  "key": "rating",
+                  "value": "7"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Queries",
+      "item": [
+        {
+          "name": "Descripción y número de readers de cada article",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/queries/query1",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "queries",
+                "query1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver los 5 subscriptores más antiguos del periódico El Hola Mundo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/queries/query2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "queries",
+                "query2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Artículos de un tipo específico junto con el nombre del periódico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/queries/query3?type=Politics",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "queries",
+                "query3"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "Politics"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Articles de un newspaper específico rateados por readers que hayan hecho al menos 5 ratings menores que 5",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/queries/query3?idNewspaper=2",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "queries",
+                "query3"
+              ],
+              "query": [
+                {
+                  "key": "idNewspaper",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "URL",
+      "value": "http://localhost:8080/ServidorRest-1.0-SNAPSHOT/api",
+      "type": "string"
+    }
+  ]
+}

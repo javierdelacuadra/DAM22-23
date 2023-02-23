@@ -1,0 +1,5 @@
+query GetAllNombresAlumnos {
+    alumnos {
+        nombre
+    }
+}

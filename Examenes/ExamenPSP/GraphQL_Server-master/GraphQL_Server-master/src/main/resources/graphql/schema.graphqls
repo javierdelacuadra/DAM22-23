@@ -1,0 +1,19 @@
+type Alumno {
+    id: Int
+    nombre: String!
+    asignaturas: [Asignatura]
+}
+
+type Asignatura {
+    id: Int
+    nombre: String
+    nota: Int
+}
+
+type Query {
+    alumnos: [Alumno]
+}
+
+type Mutation {
+    addAlumno(nombre: String!): Alumno
+}
