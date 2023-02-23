@@ -1,0 +1,11 @@
+query GetAllAlumnos {
+    getAllAlumnos {
+        id
+        nombre
+        asignaturas {
+            idAlumno
+            nombre
+            nota
+        }
+    }
+}

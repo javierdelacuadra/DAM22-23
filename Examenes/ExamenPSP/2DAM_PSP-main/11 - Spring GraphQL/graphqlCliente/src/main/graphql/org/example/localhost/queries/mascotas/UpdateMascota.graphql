@@ -1,8 +1,0 @@
-mutation UpdateMascota($id: Int!, $name: String!, $type: String!, $age: Int!){
-    updateMascota(id: $id, name: $name, type: $type, age: $age){
-        id
-        name
-        type
-        age
-    }
-}

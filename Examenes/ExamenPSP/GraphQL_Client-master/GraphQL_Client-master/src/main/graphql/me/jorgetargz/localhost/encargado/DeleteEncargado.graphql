@@ -1,5 +1,0 @@
-mutation DeleteEncargado($id: Int!) {
-    deleteEncargado(id: $id) {
-        id
-    }
-}

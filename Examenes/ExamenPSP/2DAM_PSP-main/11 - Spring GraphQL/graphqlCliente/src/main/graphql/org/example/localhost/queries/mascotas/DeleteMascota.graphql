@@ -1,6 +1,0 @@
-mutation DeleteMascota($id: Int!) {
-  deleteMascota(id: $id) {
-      id
-      name
-  }
-}

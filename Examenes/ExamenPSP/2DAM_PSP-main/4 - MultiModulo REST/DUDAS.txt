@@ -1,3 +1,0 @@
-1 - Como devolver un Response para no hacer un thr en Rest?
-
-2 - El response que devuelve el rest es de Jakarta, en el cliente hay que importar y usar la dependencia del Generics para abajo? --> Weld a la mierdaS

@@ -1,9 +1,0 @@
-hasheo de contraseñas
-
-control de errores graphql
-
-login con JWT y roles spring
-
-cliente feo (solo controllers y dao)
-
-guardar información encriptada simétricamente

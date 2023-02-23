@@ -1,8 +1,0 @@
-mutation CreateMascota($name: String!, $typeM: String!, $age: Int!, $owner: Int!) {
-    createMascota(name: $name, type: $typeM, age: $age, persona: $owner) {
-        id
-        name
-        type
-        age
-    }
-}

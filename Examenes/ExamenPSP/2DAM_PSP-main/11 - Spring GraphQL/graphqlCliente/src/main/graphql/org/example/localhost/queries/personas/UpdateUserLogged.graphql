@@ -1,8 +1,0 @@
-
-mutation UpdateUserLogged($name: String!, $surname: String!) {
-    updatePersonaLogueada(name: $name, surname: $surname){
-        id
-        name
-        surname
-    }
-}

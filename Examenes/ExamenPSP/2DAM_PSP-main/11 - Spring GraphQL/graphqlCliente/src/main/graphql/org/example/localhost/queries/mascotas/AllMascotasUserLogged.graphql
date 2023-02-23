@@ -1,8 +1,0 @@
-query AllMascotasUserLogged {
-    allMascotasUserLogged {
-        id
-        name
-        type
-        age
-    }
-}

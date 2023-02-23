@@ -1,7 +1,0 @@
-mutation CreateLinea($tipo: String!, $numero: Int!) {
-    createLinea(tipo: $tipo, numero: $numero) {
-        id
-        tipo
-        numero
-    }
-}

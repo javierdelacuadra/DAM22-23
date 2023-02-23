@@ -1,7 +1,0 @@
-10:30 --> Código ejemplos
-
-10:37 --> Lo que faltaba
-
-10:40 --> Bytes.concat u objeto
-
-10:50 --> Cifrar en servicios del cliente --> La contraseña no llega nunca a servidor

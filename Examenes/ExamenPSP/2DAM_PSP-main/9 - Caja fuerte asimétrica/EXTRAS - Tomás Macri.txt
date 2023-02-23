@@ -1,7 +1,0 @@
-Cosas extras del proyecto:
-
-1 - Me guardo la clave pública del servidor en local (cliente/server/public.pem) para no tener que ir a buscarla cada vez que me registro o hago login
-
-2 - Firmar mensajes con usuario que lo creó, y si no coincide la firma, se muestra bajo "Mensaje corrupto".
-
-3 - Te dejé una clase hermosa de encriptación asimétrica con sus métodos bien documentados para que se la puedas enseñar a tus alumnos el año que viene

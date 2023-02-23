@@ -1,7 +1,0 @@
-mutation CreateEncargado($nombre: String!, $dni: String!) {
-  createEncargado(nombre: $nombre, dni: $dni) {
-    id
-    nombre
-    dni
-  }
-}

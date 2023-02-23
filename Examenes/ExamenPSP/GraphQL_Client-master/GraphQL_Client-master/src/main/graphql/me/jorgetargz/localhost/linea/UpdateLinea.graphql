@@ -1,7 +1,0 @@
-mutation UpdateLinea($id: Int!, $tipo: String!, $numero: Int!) {
-    updateLinea(id: $id, tipo: $tipo, numero: $numero) {
-        id
-        tipo
-        numero
-    }
-}

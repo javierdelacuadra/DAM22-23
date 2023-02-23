@@ -1,1 +1,0 @@
-insert into products(name, price) values ('jeje', 59.00);

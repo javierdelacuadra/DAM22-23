@@ -1,5 +1,0 @@
-mutation DeleteParada($id: Int!) {
-    deleteParada(id: $id) {
-        id
-    }
-}

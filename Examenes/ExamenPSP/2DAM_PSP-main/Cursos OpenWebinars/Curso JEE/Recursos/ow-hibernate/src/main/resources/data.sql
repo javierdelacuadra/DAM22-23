@@ -1,1 +1,0 @@
-INSERT INTO employees(full_name, biography, married) values ('Employee 1', 'Lorem ipsum dolor', 1);
