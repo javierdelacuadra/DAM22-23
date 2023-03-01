@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ItemMongo {
-    private String name;
-    private double price;
-    private int amount;
+public class CustomerMongo {
+    private String first_name;
+    private String last_name;
+    private String email;
 }

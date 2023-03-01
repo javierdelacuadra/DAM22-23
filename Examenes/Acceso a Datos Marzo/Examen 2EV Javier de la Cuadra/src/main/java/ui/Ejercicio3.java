@@ -2,9 +2,8 @@ package ui;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import servicios.ServicesClients;
-import servicios.ServicesPurchases;
-import servicios.modelo.hibernate.ClientsEntity;
+import servicios.ServicesCustomers;
+import servicios.modelo.hibernate.CustomersEntity;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,30 +12,32 @@ public class Ejercicio3 {
     public static void main(String[] args) {
         SeContainerInitializer initializer = SeContainerInitializer.newInstance();
         final SeContainer container = initializer.initialize();
-        ServicesClients services = container.select(ServicesClients.class).get();
+        ServicesCustomers servicesCustomers = container.select(ServicesCustomers.class).get();
 
-        ClientsEntity client = services.getClientById(3);
+        CustomersEntity customer = servicesCustomers.getCustomerByEmail("johndoe@example.com");
 
-        Integer result = services.deleteAllClientData(client, false);
+        //Try to delete for the first time
+        Integer result = servicesCustomers.deleteAllCustomerData(customer, false);
 
         Scanner sc = new Scanner(System.in);
+
         if (result == 1) {
-            System.out.println("Client deleted successfully");
+            System.out.println("Customer deleted successfully");
         } else if (result == -1) {
-            System.out.println("The client doesn't exist or there was an error");
-        } else if (result == -2) {
-            System.out.println("The client has purchases, are you sure you want to delete it?");
+            //Ask if the customer wants to delete because it has orders
+            System.out.println("The customers has orders, are you sure you want to delete it?");
             System.out.println("1 for yes and 2 for no");
             String input = sc.nextLine();
             if (Objects.equals(input, "1")) {
-                Integer deleteResult = services.deleteAllClientData(client, true);
+                //Result of deleting the customer + orders
+                Integer deleteResult = servicesCustomers.deleteAllCustomerData(customer, true);
                 if (deleteResult == 1) {
-                    System.out.println("The client was deleted successfully");
+                    System.out.println("The customer was deleted successfully");
                 } else {
-                    System.out.println("The client was not deleted due to an error");
+                    System.out.println("The customer was not deleted due to an error");
                 }
             } else {
-                System.out.println("The client was not deleted");
+                System.out.println("You decided not to delete the customer");
             }
         }
     }

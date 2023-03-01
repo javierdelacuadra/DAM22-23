@@ -2,62 +2,68 @@ package ui;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import servicios.ServicesClients;
-import servicios.ServicesItems;
-import servicios.ServicesPurchases;
-import servicios.modelo.hibernate.ClientsEntity;
-import servicios.modelo.hibernate.ItemsEntity;
-import servicios.modelo.hibernate.PurchasesEntity;
-import servicios.modelo.hibernate.PurchasesItemsEntity;
+import servicios.ServicesCustomers;
+import servicios.ServicesMenuItems;
+import servicios.ServicesOrders;
+import servicios.ServicesTables;
+import servicios.modelo.hibernate.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ejercicio1 {
     public static void main(String[] args) {
         SeContainerInitializer initializer = SeContainerInitializer.newInstance();
         final SeContainer container = initializer.initialize();
-        ServicesPurchases services = container.select(ServicesPurchases.class).get();
-        ServicesClients servicesClients = container.select(ServicesClients.class).get();
-        ServicesItems servicesItems = container.select(ServicesItems.class).get();
+        ServicesCustomers servicesCustomers = container.select(ServicesCustomers.class).get();
+        ServicesMenuItems servicesMenuItems = container.select(ServicesMenuItems.class).get();
+        ServicesOrders servicesOrders = container.select(ServicesOrders.class).get();
+        ServicesTables servicesTables = container.select(ServicesTables.class).get();
 
-        ClientsEntity anne = servicesClients.getClientById(3);
+        //Getting the customer by email
+        CustomersEntity john = servicesCustomers.getCustomerByEmail("johndoe@example.com");
 
-        ItemsEntity milkItem = servicesItems.getItemByName("milk");
-        ItemsEntity fishItem = servicesItems.getItemByName("fish");
+        //Getting the items by name
+        MenuItemsEntity steak = servicesMenuItems.getItemByName("Steak");
+        MenuItemsEntity salmon = servicesMenuItems.getItemByName("Salmon");
 
-        PurchasesEntity purchase = PurchasesEntity.builder()
+        //Getting table by ID
+        TablesEntity table = servicesTables.getTableById(2);
+
+        OrdersEntity order = OrdersEntity.builder()
                 .id(0)
-                .clientsByIdClient(anne)
-                .pDate(LocalDate.now())
-                .paid(0)
+                .table(table)
+                .customer(john)
+                .orderDate(LocalDate.now())
                 .build();
 
-        PurchasesItemsEntity milk = PurchasesItemsEntity.builder()
+        OrderItemsEntity steakItem = OrderItemsEntity.builder()
                 .id(0)
-                .items(milkItem)
-                .purchases(purchase)
-                .amount(1)
-                .build();
-        PurchasesItemsEntity fish = PurchasesItemsEntity.builder()
-                .id(0)
-                .items(fishItem)
-                .purchases(purchase)
-                .amount(1)
+                .menuItem(steak)
+                .order(order)
+                .price(steak.getPrice())
+                .quantity(1)
                 .build();
 
-        List<PurchasesItemsEntity> items = List.of(milk, fish);
+        OrderItemsEntity salmonItem = OrderItemsEntity.builder()
+                .id(0)
+                .menuItem(salmon)
+                .order(order)
+                .price(salmon.getPrice())
+                .quantity(1)
+                .build();
+
+        List<OrderItemsEntity> orderItems = List.of(steakItem, salmonItem);
         double totalCost = 0;
-        for (PurchasesItemsEntity item : items) {
-            totalCost += item.getItems().getPrice() * item.getAmount();
+        for (OrderItemsEntity item : orderItems) {
+            totalCost += item.getMenuItem().getPrice() * item.getQuantity();
         }
 
-        purchase.setPurchasesItems(items);
-        purchase.setTotalCost(totalCost);
+        order.setOrderItems(orderItems);
+        order.setTotal(totalCost);
 
-        if (services.addPurchase(purchase) == 1) {
-            System.out.println("Purchase added successfully");
+        if (servicesOrders.addOrder(order) >= 1) {
+            System.out.println("Order added successfully");
         } else {
             System.out.println("Unexpected error");
         }

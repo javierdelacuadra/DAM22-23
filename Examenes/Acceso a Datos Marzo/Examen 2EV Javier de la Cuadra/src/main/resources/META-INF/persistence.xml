@@ -4,19 +4,20 @@
              version="2.0">
 
     <persistence-unit name="NewspapersDB">
-        <class>servicios.modelo.hibernate.ClientsEntity</class>
-        <class>servicios.modelo.hibernate.ItemsEntity</class>
-        <class>servicios.modelo.hibernate.PurchasesEntity</class>
-        <class>servicios.modelo.hibernate.PurchasesItemsEntity</class>
+        <class>servicios.modelo.hibernate.CustomersEntity</class>
+        <class>servicios.modelo.hibernate.MenuItemsEntity</class>
+        <class>servicios.modelo.hibernate.OrderItemsEntity</class>
+        <class>servicios.modelo.hibernate.OrdersEntity</class>
+        <class>servicios.modelo.hibernate.TablesEntity</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/DockerTest"/>
+                      value="jdbc:mysql://localhost:3306/WebStore"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="thewitcher"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/DockerTest"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/WebStore"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="thewitcher"/>
